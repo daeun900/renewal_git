@@ -1,0 +1,167 @@
+<? include "../include/header.html"; ?>
+<body>
+    <div id="wrap">
+        <div class="mypage_menu">
+            <h1>나의 학습실</h1>
+            <div class="top_point">
+                <div>
+                    <span class="icon">
+                        <img src="../img/mypage/graduationcap.png" alt="학사모아이콘">
+                    </span>
+                    <span class="name">
+                        <b>홍길동</b>님
+                    </span>
+                </div>
+                <p>새로운 도전을 <br> 응원합니다.</p>
+            </div>
+            <ul>
+                <li><a href="lecture_status.html">학습현황</a></li>
+                <li><a href="lecture_history.html">학습이력</a></li>
+                <li><a href="memberinfo.html">회원정보</a></li>
+                <li class="on"><a href="lecture_save.html">관심강의</a></li>
+                <li><a href="lecture_payment.html">결제내역</a></li>
+                <li><a href="coupon.html">혜택관리</a></li>
+            </ul>
+        </div>
+        <div class="mypage_content">
+            <div class="navi">
+                나의 학습실 > 관심강의
+            </div>
+            <div class="content">
+                <h2>관심강의</h2>
+                <div class="top_button">
+                    <div class="left">
+                        <input type="checkbox" id="cbx_chkAll" name="chkAll">
+                        <label for="chkAll">전체선택</label>
+                    </div>
+                    <div class="right">
+                        <button class="delete">
+                            삭제(1)
+                        </button>
+                        <button class="enrolment">
+                            수강신청<i class="ph ph-caret-right"></i>
+                        </button>
+                    </div>
+                </div>
+                <ul class="saved_lecture_list">
+                    <li>
+                        <input type="checkbox" name="chk">
+                        <div class="left">
+                            <div class="lecture_img">
+                                <img src="../img/educourse/courseimg_ex.png" alt="과정이미지">
+                            </div>
+                            <button>강의맛보기</button>
+                        </div>
+                        <div class="right">
+                            <div class="top">
+                                <strong class="lecture_ttl">능력자의 잇템! 파워포인트 2016 + 오피스 365</strong>
+                                <div class="tag_box">
+                                    <span>챗GPT</span>
+                                    <span>사무행정</span>
+                                    <span>AI</span>
+                                </div>
+                            </div>
+                            <div class="bottom">
+                                <div class="price">
+                                    <strong class="fcred">1000,000</strong>원
+                                </div>
+                                <button class="enrolment">수강신청<i class="ph ph-caret-right"></i></button>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <input type="checkbox" name="chk">
+                        <div class="left">
+                            <div class="lecture_img">
+                                <img src="../img/educourse/courseimg_ex.png" alt="과정이미지">
+                            </div>
+                            <button>강의맛보기</button>
+                        </div>
+                        <div class="right">
+                            <div class="top">
+                                <strong class="lecture_ttl">능력자의 잇템! 파워포인트 2016 + 오피스 365</strong>
+                                <div class="tag_box">
+                                    <span>챗GPT</span>
+                                    <span>사무행정</span>
+                                    <span>AI</span>
+                                </div>
+                            </div>
+                            <div class="bottom">
+                                <div class="price">
+                                    <strong class="fcred">1000,000</strong>원
+                                </div>
+                                <button class="enrolment">수강신청<i class="ph ph-caret-right"></i></button>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <input type="checkbox" name="chk">
+                        <div class="left">
+                            <div class="lecture_img">
+                                <img src="../img/educourse/courseimg_ex.png" alt="과정이미지">
+                            </div>
+                            <button>강의맛보기</button>
+                        </div>
+                        <div class="right">
+                            <div class="top">
+                                <strong class="lecture_ttl">능력자의 잇템! 파워포인트 2016 + 오피스 365</strong>
+                                <div class="tag_box">
+                                    <span>챗GPT</span>
+                                    <span>사무행정</span>
+                                    <span>AI</span>
+                                </div>
+                            </div>
+                            <div class="bottom">
+                                <div class="price">
+                                    <strong class="fcred">1000,000</strong>원
+                                </div>
+                                <button class="enrolment">수강신청<i class="ph ph-caret-right"></i></button>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <button id="load">
+                    + 더보기
+                </button>
+            </div>
+            <!--content-->
+        </div>
+        <!--mypage_content-->
+    </div>
+    <!--wrap-->
+</body>
+
+<? include "../include/footer.html"; ?>
+
+<!--check all-->
+<script>
+$(document).ready(function() {
+    $("#cbx_chkAll").click(function() {
+        if($("#cbx_chkAll").is(":checked")) $("input[name=chk]").prop("checked", true);
+        else $("input[name=chk]").prop("checked", false);
+    });
+    
+    $("input[name=chk]").click(function() {
+        var total = $("input[name=chk]").length;
+        var checked = $("input[name=chk]:checked").length;
+        
+        if(total != checked) $("#cbx_chkAll").prop("checked", false);
+        else $("#cbx_chkAll").prop("checked", true); 
+    });
+});
+</script>
+
+<!--more load-->
+<script>
+$(function(){
+    $('.saved_lecture_list li').hide();
+    $(".saved_lecture_list li").slice(0, 2).css("display", "flex"); 
+    $("#load").click(function(e){
+        e.preventDefault();
+        $(".saved_lecture_list li:hidden").slice(0, 2).fadeIn(200).css('display', 'flex'); // 클릭시 more 갯수 지저정
+        if($(".saved_lecture_list li:hidden").length == 0){ // 컨텐츠 남아있는지 확인
+            $('#load').fadeOut(100); // 컨텐츠 없을 시 버튼 사라짐
+        }
+    });
+})
+</script>

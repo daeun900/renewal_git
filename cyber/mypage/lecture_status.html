@@ -1,0 +1,263 @@
+<? include "../include/header.html"; ?>
+<body>
+    <div id="wrap">
+        <div class="mypage_menu">
+            <h1>나의 학습실</h1>
+            <div class="top_point">
+                <div>
+                    <span class="icon">
+                        <img src="../img/mypage/graduationcap.png" alt="학사모아이콘">
+                    </span>
+                    <span class="name">
+                        <b>홍길동</b>님
+                    </span>
+                </div>
+                <p>새로운 도전을 <br> 응원합니다.</p>
+            </div>
+            <ul>
+                <li class="on"><a href="lecture_status.html">학습현황</a></li>
+                <li><a href="lecture_history.html">학습이력</a></li>
+                <li><a href="memberinfo.html">회원정보</a></li>
+                <li><a href="lecture_save.html">관심강의</a></li>
+                <li><a href="lecture_payment.html">결제내역</a></li>
+                <li><a href="coupon.html">혜택관리</a></li>
+            </ul>
+        </div>
+        <div class="mypage_content">
+            <div class="navi">
+                나의 학습실 > 학습현황
+            </div>
+            <div class="content">
+                <h2 style="border-bottom: 1px solid #707070;">학습중인과정</h2>
+                <div class="lecture_header">
+                    <ul class="lecture_title">
+                        <li class="left">
+                            NCS기반 회사의 꼼꼼한 살림꾼 알잘딱깔센 스마트워커 <span class="btn_02 small_org ml7">PC</span> <span class="btn_02 small_violet ml7">모바일</span>
+                        </li> <li class="right">
+                            <a href="/player/lecture_download.php?LectureCode=<?=$LectureCode?>" target="ScriptFrame"><span class="cursor">학습자료 다운로드</span></a>
+                        </li>
+                   </ul>
+                    <ul class="lecture_detail">
+                        <li class="lecture_detail_left">
+                            <div>
+                                <div class="left_title">수강기간</div>
+                                <div class="left_text"><?=$LectureStart?> ~ <?=$LectureEnd?></div>
+                            </div>
+                            <div>
+                                <div class="left_title">남은수강</div>
+                                <div class="left_text font_red"><?=$RemailDate?>일</div>
+                            </div>
+                            <div>
+                                <button type="button" class="btn_04 on">중간평가응시하기</button>
+                                <button type="button" onclick="javascript:lecture_list_show('A')" class="btn_04 ml10">나의학습진행</button>
+                                <button ype="button" onclick="window.open('<?=$LectureUrl?>')" class="btn_04 ml10">학습내용상세보기</button>
+                            </div>
+                        </li>
+                        <li class="lecture_detail_right">
+                            <ul class="lecture_graph">
+                                <li class="left">1차시</li>
+                                <li class="right graph_color_01">수강대기중</li>
+                         
+                                <li class="graph_bg">
+                                    <div class="graph graph_bg_01" style="width: <?=$PlayStepRate?>%" title="<?=$PlayStepRate?>%""></div>
+                                </li>
+                            </ul>
+                            <ul class="lecture_graph">
+                                <li class="left">강의진도</li>
+                                <li class="right graph_color_02"><?=$ProgressCount?>/<?=$Chapter?></li>
+                                <li class="graph_bg">
+                                    <div class="graph graph_bg_02" style="width: <?=$PlayProgressRate?>%" title="<?=$PlayProgressRate?>%""></div>
+                                </li>
+                            </ul>
+                            <ul class="lecture_graph">
+                                <li class="left">진도율</li>
+                                <li class="right graph_color_03"><?=$Progress?>%</li>
+                                <li class="graph_bg">
+                                    <div class="graph graph_bg_03" style="width: <?=$Progress?>%" title="<?=$Progress?>%""></div>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <!--학습리스트-->
+              
+                <!--나의학습진행-->
+                <div class="lecture_list list_A" style="display:none">
+                    <table class="tbl_typeA mt50" border="0" cellspacing="0">
+                        <colgroup>
+                            <col width="7%">
+                            <col>
+                            <col width="25%">
+                            <col width="7%">
+                            <col width="15%">
+                        </colgroup>
+                        <thead>
+                            <tr>
+                                <th scope="col">차시</th>
+                                <th scope="col">학습명</th>
+                                <th scope="col">학습정보</th>
+                                <th scope="col">진도율</th>
+                                <th scope="col">학습하기</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                          
+                            <tr>
+                                <td><?=$k?></td>
+                                <td class="al">
+                                    <?=$ROW2['ContentsTitle']?>
+                                </td>
+                                <td class="font_9b9b9b">
+                                    <?if($ROW2['ChapterRegDate']) {?>최종수강시간 : <?=$ROW2['ChapterRegDate']?><?}?><br>
+                                    <?if($ROW2['ChapterUserIP']) {?>학습접속 IP : <?=$ROW2['ChapterUserIP']?><?}?>
+                                </td>
+                                <td><?=$ChapterProgress?>%</td>
+                                <td>
+                                        <a href="Javascript:Play( '<?=$k?>','<?=$LectureCode?>','<?=$Study_Seq?>','<?=$ROW2['Chapter_Seq']?>','<?=$ROW2['Contents_idx']?>','<?=$PlayMode?>');"><span class="icon_play_on"></span></a>
+                                  
+                                </td>
+                            </tr>
+                           
+                            <tr>
+                                <td><span class="font_4ca4d4">평가</span></td>
+                                <td class="al">
+                                    중간평가
+                                </td>
+                                <td><?if($MidSaveTime) {?>제출일 : <?=$MidSaveTime?><br />접속아이피 : <?=$MidIP?><?}?></td>
+                                <td>
+                                    <?=$MidTest_msg?>
+                                </td>
+                                <td>
+                                    <button type="button" onclick="Javascript:ExamStart('<?=$Study_Seq?>','<?=$LectureCode?>','<?=$ROW2['Chapter_Seq']?>','MidTest');" class="btn_01">평가응시</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="mt20 ac">
+                        <button type="button" onclick="Javascript:SurveyStart('<?=$Study_Seq?>','<?=$LectureCode?>');" class="btn_01 ml10">설문조사</button>
+                    </div>       
+                </div>
+                <!--나의학습진행-->
+            </div>
+            <!--content-->
+            <div class="content">
+                <h2 style="border-bottom: 1px solid #707070;">복습 중인과정</h2>
+                <div class="lecture_header">
+                    <ul class="lecture_title">
+                        <li class="left">NCS가 제시하는 슬기로운 직장생활_프로일잘러의 업무비법<span class="btn_02 small_org ml7">PC</span></span><span class="btn_02 small_violet ml7">모바일</span></li>
+                        <li class="right">
+                       <a href="/player/lecture_download.php?LectureCode=<?=$LectureCode?>" target="ScriptFrame"><span class="cursor">학습자료 다운로드</span></a>
+                        </li>
+                    </ul>
+                    <ul class="lecture_detail">
+                        <li class="lecture_detail_left">
+                            <div>
+                                <div class="left_title">수강기간</div>
+                                <div class="left_text"><?=$LectureStart?> ~ <?=$LectureEnd?></div>
+                            </div>
+                            <div>
+                                <div class="left_title">남은 복습일</div>
+                                <div class="left_text font_red"><?=$RemailDate?>일</div>
+                            </div>
+                            <div>
+                           <button type="button" onclick="javascript:lecture_list_show('B')" class="btn_04 on">복습하기</button>
+                                <button ype="button" onclick="window.open('<?=$LectureUrl?>')" class="btn_04 ml10">학습내용상세보기</button>
+                            </div>
+                        </li>
+                        <li class="lecture_detail_right">
+                            <ul class="lecture_graph">
+                                <li class="left">강의진도</li>
+                                <li class="right graph_color_02"><?=$ProgressCount?>/<?=$Chapter?></li>
+                                <li class="graph_bg">
+                                    <div class="graph graph_bg_02" style="width: <?=$PlayProgressRate?>%"></div>
+                                </li>
+                            </ul>
+                            <ul class="lecture_graph">
+                                <li class="left">진도율</li>
+                                <li class="right graph_color_03"><?=$Progress?>%</li>
+                                <li class="graph_bg">
+                                    <div class="graph graph_bg_03" style="width: <?=$Progress?>%"></div>
+                                </li>
+                            </ul>
+                            <ul class="lecture_graph">
+                                <li class="left">최종상태</li>
+                                <li class="right graph_color_04"><?=$ProgressStepExpl2?></li>
+                                <li class="graph_bg">
+                                    <div class="graph graph_bg_04" style="width: %"></div>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="lecture_list list_B" style="display:none">
+                    <table class="tbl_typeA mt50" border="0" cellspacing="0">
+                        <colgroup>
+                            <col width="7%">
+                            <col>
+                            <col width="25%">
+                            <col width="7%">
+                            <col width="15%">
+                        </colgroup>
+                        <thead>
+                            <tr>
+                                <th scope="col">차시</th>
+                                <th scope="col">학습명</th>
+                                <th scope="col">학습정보</th>
+                                <th scope="col">진도율</th>
+                                <th scope="col">복습하기</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><?=$k?></td>
+                                <td class="al">
+                                    <?=$ROW2['ContentsTitle']?>
+                                </td>
+                                <td class="font_9b9b9b">
+                                    <?if($ROW2['ChapterRegDate']) {?>최종수강시간 : <?=$ROW2['ChapterRegDate']?><?}?><br>
+                                    <?if($ROW2['ChapterUserIP']) {?>학습접속 IP : <?=$ROW2['ChapterUserIP']?><?}?>
+                                </td>
+                                <td><?=$ChapterProgress?>%</td>
+                                <td>
+                                    <a href="Javascript:RePlay('<?=$k?>','<?=$LectureCode?>','<?=$Study_Seq?>','<?=$ROW2['Chapter_Seq']?>','<?=$ROW2['Contents_idx']?>','<?=$PlayMode?>');"><span class="icon_play_on"></span></a>
+                                </td>
+                            </tr>
+                        
+                            <tr>
+                                <td><span class="font_4ca4d4">평가</span></td>
+                                <td class="al">
+                                    중간평가
+                                </td>
+                                <td><?if($MidSaveTime) {?>제출일 : <?=$MidSaveTime?><br />접속아이피 : <?=$MidIP?><?}?></td>
+                                <td>
+                                    <?=$MidTest_msg?>
+                                </td>
+                                <td>
+                                <button type="button" onclick="Javascript:StudyCorrectResult('<?=$Study_Seq?>','MidTest');" class="btn_01b">결과/첨삭보기</button>
+                        
+                                </td>
+                            </tr>
+                
+                        
+                        </tbody>
+                    </table>
+                    <div class="mt20 ac">
+                        <?if($Survey=="Y") {?>
+                        <button type="button" onclick="Javascript:SurveyStart('<?=$Study_Seq?>','<?=$LectureCode?>');" class="btn_01 ml10">설문조사</button>
+                        <?}?>
+                    </div>
+                </div>
+            </div>
+            <!--content-->
+        </div>
+        <!--mypage_content-->
+    </div>
+    <!--wrap-->
+</body>
+<? include "../include/footer.html"; ?>
+
+<script>
+    function lecture_list_show(seq) {
+        $(".lecture_list.list_"+seq).css("display","block");
+    }
+</script>

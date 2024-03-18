@@ -1,0 +1,608 @@
+<? include "../include/header.html"; ?>
+<body>
+<div id="wrap">
+    <div class="top_section">
+        <div class="title_section">
+            <div class="tag">
+                <span>국민내일</span>
+                <span>고용보험</span>
+            </div>
+            <h2>기적을 부르는 최강 팀워크</h2>
+        </div>
+        <div class="detail_wrap">
+            <div class="left">
+                <div class="lecture_image" style="background-image: url(../img/educourse/courseimg_ex.png);"></div>
+                <div class="lecture_detail">
+                    <ul>
+                        <li><span>강사명</span>홍길동</li>
+                        <li><span>학습시간</span>20시간</li>
+                    </ul>
+                    <div class="star">
+                        <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
+                    </div>
+                    <div class="review">
+                        <span>학습후기</span>
+                        <a href="#" class="fcblue fwbold">80건  <i class="ph ph-caret-right"></i></a>
+                    </div>
+                </div>
+                <button class="preview">
+                    강의 미리보기
+                </button>
+            </div>
+            <div class="right">
+                <div class="select_detail">
+                    <!--국민내일배움카드 테이블-->
+                    <table id="ApplyTypeResult1">
+                        <colgroup>
+                            <col width="170">
+                            <col>
+                        </colgroup>
+                        <tr class="NCS_code">
+                            <th>NCS 코드 / 인증여부</th>
+                            <td>20010105:빅데이터 분석 <span class="bar"></span> 수료증에 분류코드 <span class="fcred">포함</span></td>
+                        </tr>
+                        <tr class="apply_type">
+                            <th>신청유형 <button class="modal-btn" href="#modal01">?</button></th>
+                            <td>
+                                <select name="" id="" onchange="ApplyTypeChange(this.value)">
+                                    <option value="A" selected id="ApplyType1">국민내일배움카드 (재직자)</option>
+                                    <option value="B" id="ApplyType2">일반(수시) </option>
+                                    <option value="C" id="ApplyType3">고용보험환급</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr class="period">
+                            <th>학습기간</th>
+                            <td>
+                                <select name="" id="">
+                                    <option value="" selected>2024.03.01~2024.03.31(1회차)</option>
+                                </select>
+                                <strong class="fcred">마감까지 D-3</strong>
+                                <span>학습기간 30일 + 무료 학습기간 12개월</span>
+                            </td>
+                        </tr>
+                        <tr class="complete">
+                            <th>수료기준</th>
+                            <td>
+                                <b>진도 80%</b> 이상, <b>시험 50%</b> 이상, <b>과제 50%</b>, 과제제출 필수
+                                <button class="fcblue">상세</button>
+                                <span>내일배움카드로 강의 수강시, 반드시 HRD-NET에서 먼저 수강신청 후 HRDe웹사이트에서 수강신청을 해야합니다.</span>
+                            </td>
+                        </tr>
+                        <tr class="support_type">
+                            <th>지원유형 <button class="modal-btn" href="#modal02">?</button></th> 
+                            <td>   
+                                <select name="" id="">
+                                    <option value="" selected>재직자 일반</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr class="regular_price">
+                            <th>교육비정가</th>
+                            <td><strong>71,060원</strong></td>
+                        </tr>
+                        <tr class="support_price">
+                            <th>정부지원금</th>
+                            <td class="fcblue">-39,080원(즉시 차감)</td>
+                        </tr>
+                        <tr class="actual_price">
+                            <th class="fcred">실결제금액</th>
+                            <td><strong class="fcred">31,980원</strong></td>
+                        </tr>
+                    </table>
+                    <!--국민내일배움카드 테이블-->
+                    <!--일반(수시) 테이블-->
+                    <table id="ApplyTypeResult2" style="display: none;">
+                        <colgroup>
+                            <col width="170">
+                            <col>
+                        </colgroup>
+                        <tr class="NCS_code">
+                            <th>NCS 코드 / 인증여부</th>
+                            <td>20010105:빅데이터 분석 <span class="bar"></span> 수료증에 분류코드 <span class="fcred">포함</span></td>
+                        </tr>
+                        <tr class="apply_type">
+                            <th>신청유형 <button class="modal-btn" href="#modal01">?</button></th>
+                            <td>
+                                <select name="" id="" onchange="ApplyTypeChange(this.value)">
+                                    <option value="A" selected id="ApplyType1">국민내일배움카드 (재직자)</option>
+                                    <option value="B" id="ApplyType2">일반(수시) </option>
+                                    <option value="C" id="ApplyType3">고용보험환급</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr class="period">
+                            <th>학습기간</th>
+                            <td>
+                                <select name="" id="">
+                                    <option value="" selected>2024.03.01~2024.03.31(1회차)</option>
+                                </select>
+                                <strong class="fcred">마감까지 D-3</strong>
+                                <span>학습기간 30일 + 무료 학습기간 12개월</span>
+                            </td>
+                        </tr>
+                        <tr class="complete">
+                            <th>수료기준</th>
+                            <td>
+                                <b>진도 80%</b> 이상, <b>시험 50%</b> 이상, <b>과제 50%</b>, 과제제출 필수
+                                <button>상세</button>
+                                <span>내일배움카드로 강의 수강시, 반드시 HRD-NET에서 먼저 수강신청 후 HRDe웹사이트에서 수강신청을 해야합니다.</span>
+                            </td>
+                        </tr>
+                        <tr class="regular_price">
+                            <th>교육비정가</th>
+                            <td><strong>71,060원</strong></td>
+                        </tr> 
+                        <tr class="actual_price">
+                            <th class="fcred">실결제금액</th>
+                            <td><strong class="fcred">31,980원</strong></td>
+                        </tr>
+                    </table>
+                    <!--일반(수시) 테이블-->
+                    <!--고용보험환급 테이블-->
+                    <table id="ApplyTypeResult3" style="display: none;">
+                        <colgroup>
+                            <col width="170">
+                            <col>
+                        </colgroup>
+                        <tr class="NCS_code">
+                            <th>NCS 코드 / 인증여부</th>
+                            <td>20010105:빅데이터 분석 <span class="bar"></span> 수료증에 분류코드 <span class="fcred">포함</span></td>
+                        </tr>
+                        <tr class="apply_type">
+                            <th>신청유형<button class="modal-btn" href="#modal01">?</button></th>
+                            <td>
+                                <select name="" id="" onchange="ApplyTypeChange(this.value)">
+                                    <option value="A" selected id="ApplyType1">국민내일배움카드 (재직자)</option>
+                                    <option value="B" id="ApplyType2">일반(수시)</option>
+                                    <option value="C" id="ApplyType3">고용보험환급</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr class="period">
+                            <th>학습기간</th>
+                            <td>
+                                <select name="" id="">
+                                    <option value="" selected>2024.03.01~2024.03.31(1회차)</option>
+                                </select>
+                                <strong class="fcred">마감까지 D-3</strong>
+                                <span>학습기간 30일 + 무료 학습기간 12개월</span>
+                            </td>
+                        </tr>
+                        <tr class="complete">
+                            <th>수료기준</th>
+                            <td>
+                                <b>진도 80%</b> 이상, <b>시험 50%</b> 이상, <b>과제 50%</b>, 과제제출 필수
+                                <button>상세</button>
+                                <span>내일배움카드로 강의 수강시, 반드시 HRD-NET에서 먼저 수강신청 후 HRDe웹사이트에서 수강신청을 해야합니다.</span>
+                            </td>
+                        </tr>
+                        <tr class="regular_price">
+                            <th>교육비정가</th>
+                            <td><strong>71,060원</strong></td>
+                        </tr>
+                        <tr class="support_price">
+                            <th>정부지원금</th>
+                            <td>-39,080원(즉시 차감)</td>
+                        </tr>
+                        <tr class="actual_price">
+                            <th class="fcred">실결제금액</th>
+                            <td><strong class="fcred">31,980원</strong></td>
+                        </tr>
+                    </table>
+                    <!--고용보험환급 테이블-->
+                </div>
+                <div class="button_wrap">
+                    <button class="course_save_btn modal-btn" href="#modal03"><img src="../img/edudetail/gray_heart.png" alt="관심과정">관심과정</button>
+                    <button class="enrolment_btn">수강신청</buutton>
+                    <button class="enrolment_link_btn" onclick="window.open('https://www.hrd.go.kr/hrdp/ma/pmmao/newIndexRenewal.do')">HRD-NET 1회차 수강신청 바로가기</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--topsection-->
+    <!--bottomsection-->
+    <div class="bottom_section">
+        <div class="tab_btn_box">
+            <div class="tab_btn" class="on" onclick="TabBtnClick(0)">
+                <a href="#tab01">강의설명</a>
+            </div>
+            <div class="tab_btn" onclick="TabBtnClick(1)">
+                <a href="#tab02">강의목차</a>
+            </div>
+            <div class="tab_btn" onclick="TabBtnClick(2)">
+                <a href="#tab03">학습후기<span class="fcred">(4)</span></a>
+            </div>
+        </div>
+        <div class="content_wrap">
+            <!--강의개요-->
+            <div class="content" id="tab01">
+                <span class="title">강의개요</span>
+                <p>CS 담당자에게 이제 요구되는 스킬은 고객 응대가 아닌, 고객경험 관리이다! 어떻게 하면 고객을 충성 고객으로 전환할 수 있을까? 그 방법에 대해 알아보자. <br>
+                    <br>
+                    CX 혁신의 시작: 팬을 만드는 CS<br>
+                    <br>
+                    다양한 채널을 통해 고객과 소통하고,<br>
+                    트렌드를 읽으며 고객 경험 혁신을 위해 고민하는 건 언제나 중요합니다.<br>
+                    그러면 고객을 우리 팬으로 만들기 위한 가장 중요한 채널은 무엇일까요?<br>
+                    바로 CS 조직입니다.<br>
+                    CS조직과 실무자는 더 이상 고객응대에 초점을 맞추는 것이 아니라,<br>
+                    고객경험여정 순간순간마다 긍정적인 경험을 제공하기 위한<br>
+                    다양한 전략 및 전술을 세울 수 있어야 합니다.<br>
+                    여러분은 고객응대를 하고 있나요? 고객경험을 제공하고 있나요?</p>
+            </div>
+            <!--강의개요-->
+            <!--학습목표-->
+            <div class="content" id="tab02">
+                <span class="title">학습목표</span>
+                <p>
+                    1. CX가 단순한 친절 및 서비스와 비교 시 무엇이 다른지 파악할 수 있다.<br>
+                    2. 고객감정 관리를 통해 고객경험 관리를 할수 있다.<br>
+                    3. 고객경험과 고객경험 관리의 차이점에 대해 알 수 있다.<br>
+                    4. 고객 유형별로 고객경험을 제공할 수 있다.<br>
+                    5. VOC 문해력을 향상시켜서 고객에게 더 좋은 응대를 할 수있다.<br>
+                    6. 감정노동에서 벗어나 고객이 새로운 가치를 얻을 수 있도록 CX전문가가 될 수 있다.
+                </p>
+            </div>
+            <!--학습목표-->
+            <!--강의목차-->
+            <div class="content">
+                <span class="title">강의목차</span>
+                <p class="pl50">
+                    <b><span>제 1장</span>요즘 기업이 열광하는 Customer Experience 한 번에 이해하기</b> <br>
+                    <span>제1절</span>요즘 떠오르는 키워드 '고객경험'<br>
+                    <span>제2절</span>'고객경험 관리'는 곧 '감정 관리'이다<br>
+                    <span>제3절</span>고객경험 관리에 필요한 'VOC 문해력'<br>
+                    <br>
+                    <b><span>제2장</span>Customer Experience 관리방법</b><br>
+                    <span>제1절</span>고객경험을 제대로 관리하는 방법<br>
+                    <span>제2절</span>VOC 문해력 향상을 통한 문제해결<br>
+                    <br>
+                    <b><span>제3장</span>나도 한 번 해보자 Customer Experience역량 키우기</b><br>
+                    <span>제1절</span>CS가 아닌 CX 마인드의 전환<br>
+                    <span>제2절</span>고객경험의 시작 CX역량<br>
+                    <span>제3절</span>고객경험 관리를 통한 스트레스 해결 방법<br>
+                </p>
+            </div>
+            <!--강의목차-->
+            <!--교육대상-->
+            <div class="content">
+                <span class="title">교육대상</span>
+                <p>
+                    1. 고객과의 접점에서 고객경험에 대한 중요성을 인식하고 있는 CS담당자<br>
+                    2. 고객경험 관리에 대해 디테일하게 전략 및 전술을 배우고 싶은 CS담당자<br>
+                    3. 팀원들에게 고객경험에 대해 교육을 시키고자 하는 CS팀 관리자<br>
+                    4. 고객경험 관리를 통해 자신의 감정관리 및 스트레스 관리를 하고자 하는 CS담당자<br>
+                    5. 평범한 고객을 CX적 요소를 적용하여 충성고객으로 전환하고자 하는 CS담당자
+                </p>
+            </div>
+            <!--교육대상-->
+            <!--교수소개-->
+            <div class="content">
+                <span class="title">교수소개</span>
+                <div class="professor">
+                    <img src="../img/edudetail/proffesor_ex.png" alt="교수 사진">
+                    <div class="txt">
+                        <p>
+                            <span>교수명</span>최지연
+                        </p>
+                        <p>
+                            <span>학력</span>중앙대학교GHRD대학원 석사
+                        </p>
+                        <p>
+                            <span>경력</span>
+                            現) 위대한상상(플랫폼기업) 교육담당<br>
+                            前) 삼성전자로지텍 인재개발그룹<br>
+                            前) 삼성전자판매 PSO혁신그룹<br>
+                            前) 현대백화점 인재개발파트<br>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!--교육대상-->
+            <!--학습방법-->
+            <div class="content">
+                <span class="title">학습방법</span>
+                <p>동영상(Web+Mobile)</p>
+            </div>
+            <!--학습방법-->
+            <!--수료기준-->
+             <div class="content" style="border-bottom: none;">
+                <span class="title">수료기준</span>
+                <table>
+                    <colgroup>
+                        <col width="16.6%">
+                        <col width="16.6%">
+                        <col width="16.6%">
+                        <col width="16.6%">
+                        <col width="16.6%">
+                        <col width="16.6%">
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th>항목</th>
+                            <th>진도율</th>
+                            <th>진행단계평가</th>
+                            <th>최종평가</th>
+                            <th>과제</th>
+                            <th>수료기준</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>평가비율</td>
+                            <td>0%</td>
+                            <td>0%</td>
+                            <td>100%</td>
+                            <td>0%</td>
+                            <td rowspan="2">60이상</td>
+                        </tr>
+                        <tr>
+                            <td>수료기준</td>
+                            <td>80% 이상</td>
+                            <td>N</td>
+                            <td>Y</td> 
+                            <td>N</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!--수료기준-->
+            <!--학습후기-->
+            <div class="content_review" id="tab03">
+                <div class="title">
+                    학습후기
+                    <span class="fcred">
+                        평점 &nbsp;  <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
+                    </span>
+                </div>
+                <ul>
+                    <li>
+                        <span class="name fwbold">홍*동</span><span class="id fwbold">abc****</span>
+                        <p>주니어 레벨에서 CX 직무 관련하여 기본 개념 잡기가 좋은 것 같습니다. 좋은 교육 잘 들었습니다. 좀 더 심화 과정도 있으면 좋겠어요.</p>
+                    </li>
+                    <li>
+                        <span class="name fwbold">홍*동</span><span class="id fwbold">abc****</span>
+                        <p>주니어 레벨에서 CX 직무 관련하여 기본 개념 잡기가 좋은 것 같습니다. 좋은 교육 잘 들었습니다. 좀 더 심화 과정도 있으면 좋겠어요.</p>
+                    </li>
+                    <li>
+                        <span class="name fwbold">홍*동</span><span class="id fwbold">abc****</span>
+                        <p>주니어 레벨에서 CX 직무 관련하여 기본 개념 잡기가 좋은 것 같습니다. 좋은 교육 잘 들었습니다. 좀 더 심화 과정도 있으면 좋겠어요.</p>
+                    </li>
+                </ul>
+            </div>
+            <!--학습후기-->
+        </div>
+    </div>
+    <!--bottomsection-->
+</div>
+<!--wrap-->
+</body>
+<? include "../include/footer.html"; ?>
+
+<!--신청유형별 TABLE변경-->
+<script>
+    
+    function ApplyTypeChange(str) {
+
+	if (str == 'A') {
+		$('#ApplyTypeResult1').show();
+		$('#ApplyTypeResult2').hide();
+        $('#ApplyTypeResult3').hide();
+	}
+	if (str == 'B') {
+		$('#ApplyTypeResult1').hide();
+		$('#ApplyTypeResult2').show();
+        $('#ApplyTypeResult3').hide();
+	}
+    if (str == 'C') {
+		$('#ApplyTypeResult1').hide();
+		$('#ApplyTypeResult2').hide();
+        $('#ApplyTypeResult3').show();
+	}
+}
+</script>
+
+<!--관심강의 하트-->
+<script>
+$(document).ready(function() {
+$(".course_save_btn").click(function(){
+  $(".course_save_btn img").attr("src", "../img/edudetail/red_heart.png");
+});
+});
+</script>
+
+<!--tab button-->
+
+<script>
+$(document).ready(function() {
+
+   $(window).on('scroll',function(){
+        var scroll = $(window).scrollTop(); 
+
+        if(scroll>990){
+            $('.tab_btn_box').addClass('fixed')
+          }else{
+            $('.tab_btn_box').removeClass('fixed')     
+        }
+    });
+
+  
+});
+function TabBtnClick(tab) {
+    $(".tab_btn").removeClass("on");
+    $(".tab_btn").eq(tab).addClass("on");
+    }
+</script>
+
+<!--modal-->
+
+<!--모달팝업-->
+
+<script>
+        jQuery(document).ready(function() {
+    $('.modal-btn').each(function() {
+        var modalID = $(this).attr('href');
+    
+        $(this).on('click', function(e) {
+            e.preventDefault();
+
+            $('.modal-bg').fadeIn();
+            
+            $('.modal-wrap').hide();
+            $(modalID).show();
+
+            $('html').css({overflow: 'hidden'});
+        });
+
+        $('.close-btn').on('click', function() {
+            $('.modal-bg').fadeOut();
+            $(modalID).hide();
+            $(modalID).removeAttr('style');
+
+            $('html').removeAttr('style');
+        });
+    });
+});
+</script>
+
+<style> 
+    .modal-bg {display:none;width:100%;height:100%;position:fixed;top:0;left:0;right:0;background: rgba(0, 0, 0, 0.6);z-index:999;}
+    .modal-wrap {display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#fff;z-index:1000;}
+    .modal-wrap .close-btn { position: absolute;cursor: pointer;}
+    .modal-wrap .close-btn i {font-size: 35px;}
+</style>
+<!--modal01-->
+<div class="modal-bg"></div>
+<div id="modal01" class="modal-wrap">
+    <div class="close-btn">
+        <i class="ph-thin ph-x"></i>
+    </div>
+    <h3>신청유형 안내</h3>
+    <table>
+        <colgroup>
+            <col width="170px">
+            <col width="570px">
+        </colgroup>
+        <thead>
+            <tr>
+                <th>구분</th>
+                <th>우대대상</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th>
+                    <b>국민내일배움카드 <br> (재직자-구직자)</b>
+                </th>
+                <td>
+                    <span class="fcred">지원금액이 즉시 차감</span>되어 결제금액에 반영되는 유형<br>
+                    <br>
+                    국민내일배움카드를 발급받은 학습자가 1년간 200만원(5년간 300만원) 한도
+                    내에서 수강료를 지원받을 수 있는 과정
+                    <a href="#" class="fcblue">상세내용 바로가기 <i class="ph ph-caret-right"></i></a>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <b>고용보험환급</b>
+                </th>
+                <td>
+                    <span class="fcred">교육비 정가를 선 결제 후</span> 기업규모에 따라 <span class="fcred">추후 환급</span>되는 유형<br>
+                    <br>
+                    사업주가 훈련비용을 부담하여 재직근로자에게 실시하는직업훈련으로, 국가로부터
+                    훈련비용을 지원받을 수 있는 과정
+                    <a href="#" class="fcblue">상세내용 바로가기 <i class="ph ph-caret-right"></i></a>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <b>일반(수시) · 비환급</b>
+                </th>
+                <td>
+                    지원/환급 없이 <span class="fcred">본인이 전액 부담</span>하는 일반 유형<br>
+                    <br>
+                    학습자가 국가 및 회사 지원을 받지 않고 스스로 직무능력 향상 및 자기개발을 위해 
+                    100% 자비 부담으로 수강신청하는 과정
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <b>평생교육바우처</b>
+                </th>
+                <td>
+                    <span class="fcred">바우처를 통해 결제</span>하는 유형<br>
+                    <br>
+                    평생교육바우처 카드를 발급받은 학습자가 1인당 35만원의 수강료를 지원받아 
+                    수강신청하는 과정
+                    <a href="#" class="fcblue">상세내용 바로가기 <i class="ph ph-caret-right"></i></a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<!--modal01-->
+
+<!--modal02-->
+<div class="modal-bg"></div>
+<div id="modal02" class="modal-wrap">
+    <div class="close-btn">
+        <i class="ph-thin ph-x"></i>
+    </div> 
+    <h3>지원유형 안내</h3>
+    <p>
+        국민내일배움카드 발급이 가능한 자 중 아래 우대 대상에 따라 지원유형을 선택하여 결제해 주세요.
+    </p>
+    <table>
+        <colgroup>
+            <col width="200px">
+            <col width="500px">
+        </colgroup>
+        <thead>
+            <tr>
+                <th>지원유형 선택 항목</th>
+                <th>동일 우대 대상</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th>
+                    <b>국민취업제도I<br>
+                        (취성패I 유형)</b>
+                </th>
+                <td style="text-align: center; line-height: 30px;">
+                    II유형 중 저소득층(특정계층 포함)<br>
+                    고용위기 지역ㆍ특별 고용 지원업종<br>
+                    출소예정자<br>
+                    장애인<br>
+                    기초생활수급자<br>
+                    34세 이하 보호 종료 아동<br>
+                    한 부모 가족 지원 대상자<br>
+                    북한이탈주민<br>
+                    아프간 특별기여자<br>
+                    가사근로자
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<!--modal02-->
+
+<!--modal03-->
+<div class="modal-bg"></div>
+<div id="modal03" class="modal-wrap">
+    <div class="close-btn">
+        <i class="ph-thin ph-x"></i>
+    </div> 
+    <div class="img">
+        <img src="../img/edudetail/speaker.png" alt="공지">
+    </div>
+    <p>선택한 강의가 관심강의 리스트에 등록되었습니다. <br>
+        관심강의 리스트로 이동하시겠습니까?
+    </p>
+    <div class="button_wrap">
+        <button>과정 계속 보기</button>
+        <button>관심강의 리스트로 이동</button>
+    </div>
+</div>
+<!--modal03-->

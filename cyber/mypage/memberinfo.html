@@ -1,0 +1,186 @@
+
+<? include "../include/header.html"; ?>
+<body>
+    <div id="wrap">
+        <div class="mypage_menu">
+            <h1>나의 학습실</h1>
+            <div class="top_point">
+                <div>
+                    <span class="icon">
+                        <img src="../img/mypage/graduationcap.png" alt="학사모아이콘">
+                    </span>
+                    <span class="name">
+                        <b>홍길동</b>님
+                    </span>
+                </div>
+                <p>새로운 도전을 <br> 응원합니다.</p>
+            </div>
+            <ul>
+                <li><a href="lecture_status.html">학습현황</a></li>
+                <li><a href="lecture_history.html">학습이력</a></li>
+                <li class="on"><a href="memberinfo.html">회원정보</a></li>
+                <li><a href="lecture_save.html">관심강의</a></li>
+                <li><a href="lecture_payment.html">결제내역</a></li>
+                <li><a href="coupon.html">혜택관리</a></li>
+            </ul>
+        </div>
+        <div class="mypage_content">
+            <div class="navi">
+                나의 학습실 > 회원정보
+            </div>
+            <div class="content">
+            <h2>회원정보</h2>
+            <div class="memberinfo_wrap">
+                <div class="Requiredinfo_area">
+                    <h3>필수정보</h3>
+                    <div class="Requiredinfo_row">
+                        <div class="title">아이디</div>
+                        <div class="content">
+                            <input type="text" class="inp_txt" title="아이디" placeholder="" value="<?=$ID?>" disabled="true">
+                        </div>
+                    </div>                
+                    <div class="Requiredinfo_row">
+                        <div class="title">비밀번호</div>
+                        <div class="content">
+                            <input type="password" name="Pwd" id="Pwd" class="inp_txt" title="비밀번호" placeholder="비밀번호를 입력해주세요.">
+                        </div>
+                        <div class="exp">※ 비밀번호는 영문, 숫자, 특수문자 중 2개 이상의 조합으로 10자 이상 또는 3개 이상의 조합으로 8자 이상 사용하세요.</div>                    
+                    </div>
+                    <div class="Requiredinfo_row">
+                        <div class="title">비밀번호 확인</div>
+                        <div class="content">
+                            <input type="password" name="Pwd2" id="Pwd2" class="inp_txt" title="비밀번호재확인" placeholder="비밀번호를 한번 더 입력해주세요.">
+                        </div>
+                        <div class="exp">※ 정확한 확인을 위해 비밀번호를 한번 더 입력하세요.</div>                      
+                    </div>                
+                    <div class="Requiredinfo_row">
+                        <div class="title">이름</div>
+                        <div class="content">
+                            <input type="text" class="inp_txt" title="이름" disabled="true" value="<?=$Name?>"> <!--style="border:1px solid #ccc"-->
+                        </div>
+                    </div>
+                    <div class="Requiredinfo_row">
+                        <div class="title">휴대폰</div>
+                        <div class="content">
+                            <div class="Sortarea">
+                                <div class="phonebox"><input type="text" name="Mobile01" id="Mobile01" class="inp_txt" value="<?=$Mobile01?>" maxlength="3" title="휴대폰번호" placeholder=""></div>
+                                <div class="phonebox"><input type="text" name="Mobile02" id="Mobile02" class="inp_txt" value="<?=$Mobile02?>" maxlength="4" title="휴대폰번호" placeholder=""></div>
+                                <div class="phonebox"><input type="text" name="Mobile03" id="Mobile03" class="inp_txt" value="<?=$Mobile03?>" maxlength="4" title="휴대폰번호" placeholder=""></div>
+                            </div>
+                        </div>                      
+                    </div>
+                    <div class="Requiredinfo_row">
+                        <div class="title">이메일</div>
+                        <div class="content">
+                            <input type="text" name="Email" id="Email" value="<?=$Email?>" class="inp_txt" title="이메일" placeholder="이메일을 입력해주세요.">
+                        </div>
+                    </div>                
+                </div>
+                
+                <div class="Requiredinfo_area">
+                    <h3>추가정보</h3>
+                    <div class="Requiredinfo_row">
+                        <div class="title">주소</div>
+                        <div class="content">
+                            <div class="Sortarea">
+                                <div class="zipcode"><input type="text" name="Zipcode" id="Zipcode" class="inp_txt" title="우편번호" placeholder="우편번호" value="<?=$Zipcode?>" readonly></div>
+                                <div class="zipsearch"><input type="button" class="searchbtn cp fs14" value="주소검색" onclick="ZipcodeFind();"></div>
+                            </div>
+                            <div class="content">
+                                <input type="text" name="Address01" id="Address01" class="inp_txt" title="주소" placeholder="" value="<?=$Address01?>">
+                            </div>                              
+                            <div class="content">
+                                <input type="text" name="Address02" id="Address02" class="inp_txt" title="상세주소" placeholder="나머지 주소 입력하세요." value="<?=$Address02?>">
+                            </div>                        
+                        </div>   
+                    </div> 
+                    
+                    <div class="Requiredinfo_row">
+                        <div class="title">회사명</div>
+                        <div class="content">
+                            <div class="Sortarea">
+                                <div class="zipcode"><input type="text" name="CompanyName" id="CompanyName" class="inp_txt" title="회사명" placeholder="회사명 입력" value="<?=$CompanyName?>"></div>
+                                <div class="zipsearch">
+                                    <input type="button" class="matchingbtn cp fs14" value="사업주정보 매칭하기" onclick="JoinCompanySearch();">
+                                </div>
+                            </div>
+                        </div> 
+                        <div class="content">  
+                            <div id="company_search_result"></div>
+                        </div>
+                    </div> 
+                    <div class="Requiredinfo_row">
+                        <div class="title">부서</div>
+                        <div class="content">
+                            <input type="text" name="Depart" id="Depart" class="inp_txt" title="부서" placeholder="부서 입력" value="<?=$Depart?>" >
+                        </div>
+                    </div>   
+                    <div class="Requiredinfo_row">
+                        <div class="title">직위</div>
+                        <div class="content">
+                            <input type="text" name="Position" id="Position" class="inp_txt" title="직위" placeholder="직위 입력" value="<?=$Position?>" >
+                        </div>
+                    </div>     
+
+
+                    <?if($MemberType=="B") {?>
+                        <div class="Requiredinfo_row">
+                        <div class="title">내일배움카드</div>
+                            <div class="content">
+                            <select name="CardName" id="CardName" class="inp_slt">
+                                <option value="">- 카드사 선택 -</option>
+                                <?while (list($key,$value)=each($Card_array)) {?>
+                                <option value="<?=$key?>" <?if($CardName==$key) {?>selected<?}?>><?=$value?></option>
+                                <?}?>
+                            </select>
+                            </div>
+                            <div class="title mt10">카드번호</div>
+                            <div class="content">
+                                <div class="Sortarea">
+                                <div class="cardbox mr1"><input type="text" name="CardNumber01" id="CardNumber01" class="inp_txt" value="<?=$CardNumber01?>" maxlength="4" /></div>
+                                <div class="cardbox mr1"><input type="text" name="CardNumber02" id="CardNumber02" class="inp_txt" value="<?=$CardNumber02?>" maxlength="4" /></div>
+                                <div class="cardbox mr1"><input type="text" name="CardNumber03" id="CardNumber03" class="inp_txt" value="<?=$CardNumber03?>" maxlength="4" /></div>
+                                <div class="cardbox mr1"><input type="text" name="CardNumber04" id="CardNumber04" class="inp_txt" value="<?=$CardNumber04?>" maxlength="4" /></div>
+                                </div>
+                            </div>
+                    <?}else{?>
+                            <input type="hidden" name="CardName" id="CardName" value="<?=$CardName?>">
+                            <input type="hidden" name="CardNumber01" id="CardNumber01" class="inp_txt" value="<?=$CardNumber01?>">
+                            <input type="hidden" name="CardNumber02" id="CardNumber02" class="inp_txt" value="<?=$CardNumber02?>">
+                            <input type="hidden" name="CardNumber03" id="CardNumber03" class="inp_txt" value="<?=$CardNumber03?>">
+                            <input type="hidden" name="CardNumber04" id="CardNumber04" class="inp_txt" value="<?=$CardNumber04?>">
+                    <?}?>
+
+
+                    <div class="Requiredinfo_row">
+                        <div class="content">
+                            <input type="checkbox" name="Mailling" id="Mailling" value="Y" <? if($Mailling=="Y"){ ?> checked <? } ?>>
+                            <label for="Mailling">메일/SMS/알림톡 수신에 동의합니다.</label>
+                        </div>
+                    </div>                  
+                    <div class="Requiredinfo_row">
+                        <div class="content">
+                            <input type="checkbox" name="Marketing" id="Marketing" value="Y" <? if($Marketing=="Y"){?> checked <? } ?>>
+                            <label for="Marketing">마케팅 수신에 동의합니다.</label>
+                        </div>
+                    </div>                                                                                                  
+                </div> 
+                <div class="mt20">
+                    <div id="SubmitBtn">
+                        <span class="w100p"><button type="button" class="member_btn01" onclick="MemberEdit()">회원정보 변경</button></span>
+                    </div>
+                    <div id="WaitMag" class="tc" style="display:none">
+                        <span>처리중입니다. 기다려 주세요.</span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        <!--content-->
+    </div>
+    <!--mypage_content-->
+</div>
+<!--wrap-->
+</body>
+
+<? include "../include/footer.html"; ?>
