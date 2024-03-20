@@ -1,4 +1,5 @@
-<? include "../include/support_header.html"; ?>
+<? include "../include/header_support.html"; ?>
+
 <body>
     <div class="top_section">
         <div id="wrap">
@@ -30,10 +31,8 @@
             <ul class="ask">
                 <li>
                     <div id="ContentView">
-                        <a href="Javascript:ContentView(0);">
                         [내일배움카드] 우대 지원유형(취성패, 국취 유형 등)으로 우대받을 수 없는 과정도 있나요?
                         <i class="ph-bold ph-caret-up"></i>
-                        </a>
                     </div>
                     <div id="ContentElement" style="display: none;">
                         인터넷 원격훈련과정(온라인과정)의 경우 재직자는 재직자 과정만, 구직자는 구직자 과정만 수강 가능합니다. <br>
@@ -45,10 +44,8 @@
                 </li>
                 <li>
                     <div id="ContentView">
-                        <a href="Javascript:ContentView(1);">
-                            [내일배움카드] 우대 지원유형(취성패, 국취 유형 등)으로 우대받을 수 없는 과정도 있나요?
-                            <i class="ph-bold ph-caret-up"></i>
-                            </a>
+                        [내일배움카드] 우대 지원유형(취성패, 국취 유형 등)으로 우대받을 수 없는 과정도 있나요?
+                        <i class="ph-bold ph-caret-up"></i>
                     </div>
                     <div id="ContentElement" style="display: none;">
                         인터넷 원격훈련과정(온라인과정)의 경우 재직자는 재직자 과정만, 구직자는 구직자 과정만 수강 가능합니다. <br>
@@ -77,16 +74,20 @@
 </body>
 <? include "../include/footer.html"; ?>
 
-
 <!--답변여닫기-->
 <script>
-    function ContentView(i) {
-	$($("div[id='ContentElement']")).not("div[id='ContentElement']:eq(" + i + ')').hide();
-	$("div[id='ContentElement']:eq(" + i + ')').show();
+    $(document).ready(function(){
+        $('ul li #ContentView').click(function(){
+            if($(this).next($('#ContentElement')).is(":visible")){
+                $(this).find('i').toggleClass("ph-caret-up ph-caret-down");
+                $(this).next($('#ContentElement')).slideUp();
+            }else{
 
-    $($("div[id='ContentView']")).not("div[id='ContentView']:eq(" + i + ')').find('.ph-caret-down').attr('class','ph-caret-up ph-bold');
-    $("div[id='ContentView']:eq(" + i + ')').find('.ph-caret-up').attr('class','ph-caret-down ph-bold');
-}
+                $(this).find('i').toggleClass("ph-caret-down ph-caret-up");
+                $(this).next($('#ContentElement')).slideDown();
+            }
+        });
+    });
 
 </script>
 

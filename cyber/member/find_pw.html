@@ -1,0 +1,140 @@
+<? include "../include/header_member.html"; ?>
+
+<body>
+    <div id="member_wrap">
+        <div class="title">
+            <span>비밀번호 찾기</span>
+            <h1>FIND<br>PASSWORD</h1>
+        </div>
+        <div class="content">
+            <div class="top_txt">
+                비밀번호를 잊으셨나요? <br>
+                아래의 인증방법을 선택하시고 정보를 입력해주세요
+            </div>
+            <!--이메일로 찾기 table-->
+            <table>
+                <colgroup>
+                    <col width="135px">
+                    <col>
+                </colgroup>
+                <tr>
+                    <th>인증방법</th>
+                    <td>
+                        <input type="radio" name="method" id="method1" oninput="ApplyTypeChange('A')" checked><label for="method1">이메일</label>
+                        <input type="radio" name="method" id="method2" oninput="ApplyTypeChange('B')"><label for="method2">휴대폰번호</label>
+                    </td>
+                </tr>
+                <tr>
+                    <th>아이디</th>
+                    <td><input type="text" name="" id=""></td>
+                </tr>
+                <tr>
+                    <th>이름</th>
+                    <td><input type="text" name="" id=""></td>
+                </tr>
+                <tr id="ApplyTypeResult1">
+                    <th>이메일로 찾기</th>
+                    <td><input type="email" name="" id=""></td>
+                </tr>
+                <tr id="ApplyTypeResult2" style="display: none;">
+                    <th>휴대폰 번호로 찾기</th>
+                    <td>
+                        <div class="phonenumber_input">
+                            <input type="text" name="" id="Mobile01" maxlength="3" > - <input type="text" name="" id="Mobile02" maxlength="4"> - <input type="text" name="" id="Mobile03" maxlength="4" > 
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <!--휴대폰번호로 찾기 table-->
+            <button class="btn_black mt40 modal-btn" href="#modal01">OK</button>
+        </div>
+        <!--content-->
+    </div>
+    <!--wrap-->
+</body>
+
+<? include "../include/footer.html"; ?>
+
+
+<!--인증방법별 TABLE변경-->
+<script>
+    
+    function ApplyTypeChange(str) {
+
+	if (str == 'A') {
+		$('#ApplyTypeResult1').show();
+		$('#ApplyTypeResult2').hide();
+	}
+	if (str == 'B') {
+		$('#ApplyTypeResult1').hide();
+		$('#ApplyTypeResult2').show();
+	}
+}
+</script>
+
+<!--모달팝업-->
+
+<script>
+        jQuery(document).ready(function() {
+    $('.modal-btn').each(function() {
+        var modalID = $(this).attr('href');
+    
+        $(this).on('click', function(e) {
+            e.preventDefault();
+
+            $('.modal-bg').fadeIn();
+            
+            $(modalID).show();
+
+            $('html').css({overflow: 'hidden'});
+        });
+
+        $('.close-btn').on('click', function() {
+            $('.modal-bg').fadeOut();
+            $(modalID).hide();
+            $(modalID).removeAttr('style');
+
+            $('html').removeAttr('style');
+        });
+    });
+});
+</script>
+<style> 
+    .modal-bg {display:none;width:100%;height:100%;position:fixed;top:0;left:0;right:0;background: rgba(0, 0, 0, 0.8);z-index:999;}
+    .modal-wrap {display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#fff;z-index:1000;}
+    .close-btn{position: absolute;right: 30px;top: 22px; cursor: pointer;}
+    .close-btn i{font-size: 30px;}
+</style>
+<!--modal01-->
+<div class="modal-bg"></div>
+<div id="modal01" class="modal-wrap">
+    <div class="close-btn">
+        <i class="ph-thin ph-x"></i>
+    </div>
+    <span>비밀번호 찾기</span>
+    <p>
+        비밀번호를 분실하신 경우 개인정보보호를 위해 회원님께서 기재하신 메일 <br>
+        또는 휴대폰으로 임시 비밀번호를 발급하고 있습니다. <br>
+        임시 비밀번호를 발급 받으시면 즉시 로그인 하셔서 회원정보 수정에서 <br>
+        비밀번호를 회원님의 희망 비밀번호로 변경하시기 바랍니다.
+    </p>
+    <div class="flex_box">
+        <div>
+            <div class="img">
+                <img src="../img/common/mail.png" class="pt10" alt="이메일">
+            </div>
+            <p>가입 시 등록한 메일주소로 <br>임시번호 받기</p>
+            <span class="fcred">abc****@naver.com</span>
+            <button>재발급 받기</button>
+        </div>
+        <div>
+            <div class="img">
+                <img src="../img/common/phone.png" alt="휴대폰">
+            </div>
+            <p>가입 시 등록한 휴대폰으로 <br>임시번호 받기</p>
+            <span class="fcred">010-****-5678</span>
+            <button>재발급 받기</button>
+        </div>
+    </div>
+</div>
+<!--modal01-->

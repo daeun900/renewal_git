@@ -1,0 +1,57 @@
+<? include "../include/header_member.html"; ?>
+
+<body>
+    <div id="member_wrap">
+        <div class="title">
+            <span>회원가입</span>
+            <h1>JOIN</h1>
+            <span><i class="fcred">*</i>필수사항 입력</span>
+        </div>
+        <div class="content">
+            <div class="input_box">
+                <label for="userid"><i class="fcred">*</i>ID</label>
+                <input type="text" placeholder="아이디 영문, 숫자 조합 5~25자">
+            </div>
+            <div class="input_box">
+                <label for="userpw"><i class="fcred">*</i>비밀번호</label>
+                <input type="text" placeholder="비밀번호 영문, 숫자, 특수문자 조합 8자 이상">
+            </div>
+            <div class="input_box">
+                <label for="userpw2"><i class="fcred">*</i>비밀번호 확인</label>
+                <input type="text" placeholder="위에 입력하신 비밀번호를 다시한번 입력해주세요">
+            </div>
+            <div class="input_box">
+                <label for="userpw"><i class="fcred">*</i>이름</label>
+                <input type="text" placeholder="이름을 입력하세요">
+            </div>
+            <div class="input_box">
+                <label for="userpw"><i class="fcred">*</i>생년월일</label>
+                <input type="text" placeholder="생년월일 8자리(19900101)">
+            </div>
+            <div class="input_box">
+                <label for="userpw"><i class="fcred">*</i>EMAIL</label>
+                <input type="text" placeholder="이메일">
+            </div>
+            <div class="input_box">
+                <label for="userpw"><i class="fcred">*</i>PHONE</label>
+                <div class="phonenumber_input">
+                    <input type="text" name="" id="Mobile01" maxlength="3" placeholder="010"> <input type="text" name="" id="Mobile02" maxlength="4" placeholder="1234"> <input type="text" name="" id="Mobile03" maxlength="4" placeholder="5678"> 
+                </div>
+            </div>
+            <div class="input_box">
+                <label for="userpw">추천인 ID</label>
+                <div class="recommendid_input mb10">
+                    <input type="text" placeholder="추천인 ID">
+                    <button>추천인 ID 확인</button>
+                </div>
+                <span class="fcred">추천인 ID를 다시 확인해주세요</span>
+            </div>
+            <button class="btn_black" onclick="location.href='join_complete.html'">회원가입</button>
+           
+        </div>
+        <!--content-->
+    </div>
+    <!--wrap-->
+</body>
+
+<? include "../include/footer.html"; ?>

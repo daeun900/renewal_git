@@ -8,7 +8,7 @@
     img,fieldset,iframe{border:0 none}
 	li, ul, ol {list-style: none}
 	input,select,button{vertical-align:middle; appearance: none; -webkit-appearance: none; outline: none; border: none;}
-	input[type="radio"],input[type="checkbox"]{appearance: auto;-webkit-appearance: auto;}
+	input[type="checkbox"]{appearance: auto;-webkit-appearance: auto; cursor: pointer;}
 	i,em,address{font-style:normal}
 	img {vertical-align: middle; border: none}
 	label,button{cursor:pointer}
@@ -34,6 +34,21 @@ select {
 	border-radius: 5px;
 	background: url(../img/caret-down.png ) 95% 50% no-repeat;
 }
+
+input[type='radio'] {
+	-webkit-appearance: none;
+	-moz-appearance: none; 
+	appearance: none; 
+	width: 14px;
+	height: 14px;
+	border: 1px solid #2d2d2d; 
+	border-radius: 50%;
+	outline: none; 
+	cursor: pointer;
+    }
+input[type="radio"]:checked{  background-color: #357AF2; 
+	border: 2px solid white; 
+	box-shadow: 0 0 0 1px #357AF2}
 
 /*bar*/
 .bar {position: relative;}
@@ -63,6 +78,9 @@ select {
 
 /*font-weight*/
 .fwbold{font-weight: bold;}
+
+/*font-size*/
+.fs20{font-size: 20px;}
 
 /* padding margin */
 .pt1 {padding-top:1px !important} 
@@ -102,6 +120,9 @@ select {
 .pb60 {padding-bottom:60px !important;}
 .pb70 {padding-bottom:70px !important;}
 .pb80 {padding-bottom:80px !important;}
+.pb100 {padding-bottom:100px !important;}
+.pb150 {padding-bottom:150px !important;}
+.pb200 {padding-bottom:200px !important;}
 
 .pl1 {padding-left:1px !important;}
 .pl2 {padding-left:2px !important;}

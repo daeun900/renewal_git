@@ -44,6 +44,7 @@
 }
 .category ul li {
   padding: 20px;
+  cursor: pointer;
 }
 .category ul li.on {
   color: #333;
