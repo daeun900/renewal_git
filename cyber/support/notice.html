@@ -1,182 +1,146 @@
+<?
+$list_page = "notice.html";
+?>
 <? include "../include/header_support.html"; ?>
-
 <body>
+<?
+	$idxA = Replace_Check($idx);
+	$pg = Replace_Check_XSS2($pg);
+    $sw = Replace_Check_XSS2($sw);
+
+    ##-- 페이지 조건
+    if(!$pg) $pg = 1;
+    $page_size = 25;
+    $block_size = 10;
+
+    ##-- 검색 조건
+    $where = array();
+    if($sw){
+        $where[] = "(Title LIKE '%$sw%' OR Content LIKE '%$sw%')";
+    }
+    $where[] = "Del='N'";
+    $where[] = "UseYN='Y'";
+
+    $where = implode(" AND ",$where);
+    if($where) $where = "WHERE $where";
+
+    ##-- 정렬조건
+    if($orderby=="") {
+        $str_orderby = "ORDER BY RegDate DESC, idx DESC";
+    }else{
+        $str_orderby = "ORDER BY $orderby";
+    }
+
+    ##-- 검색 등록수
+    $Sql = "SELECT COUNT(*) FROM NoticeCyber $where";
+    $Result = mysqli_query($connect, $Sql);
+    $Row = mysqli_fetch_array($Result);
+    $TOT_NO = $Row[0];
+
+    ##-- 페이지 클래스 생성
+    include_once("../../include/include_page_support.php");
+
+    $PAGE_CLASS = new Page($pg,$TOT_NO,$page_size,$block_size); ##-- 페이지 클래스
+    $BLOCK_LIST = $PAGE_CLASS->blockList(); ##-- 페이지 이동관련
+    $PAGE_UNCOUNT = $PAGE_CLASS->page_uncount; ##-- 게시물 번호 한개씩 감소
+?>
     <div class="top_section">
         <div id="wrap">
             <div class="inner">
                 <h2>공지사항</h2>
-                <div class="search_box">
-                    <input name="" id="" type="text" title="검색어 입력" placeholder="검색어를 입력해주세요"><span class="search_btn"><i class="ph ph-magnifying-glass"></i></span>
-                </div>
+                <form name="BoardSearchForm" action="<?=$_SERVER['PHP_SELF']?>" method="GET">
+	                <div class="search_box">
+	                    <input name="sw" id="sw" type="text" title="검색어 입력" <?if($sw){?>value="<?=$sw?>"<?}?> placeholder="검색어를 입력해주세요">
+	                    <span class="search_btn" onclick="Javascript:BoardSearch();"><i class="ph ph-magnifying-glass"></i></span>
+	                </div>
+                </form>
             </div>
-            <div class="navi">
-                <i class="ph-light ph-house-line"></i>  <i class="ph ph-caret-right"></i>  공지사항
-            </div>
+            <div class="navi"><i class="ph-light ph-house-line"></i>&nbsp;<i class="ph ph-caret-right"></i>&nbsp;공지사항</div>
         </div>
         <!--wrap-->
     </div>
     <!--top_banner-->
     <div class="support_content">
         <div id="wrap">
-            <div class="count">총 <span>32</span>건</div>
+            <div class="count">총 <span><?=$TOT_NO?></span>건</div>
             <ul class="notice">
+            	<?
+					$i = 0;
+                    $SQL = "SELECT * FROM NoticeCyber WHERE Del='N' AND UseYN='Y' AND Notice='Y' ORDER BY RegDate DESC, idx DESC";
+					$QUERY = mysqli_query($connect, $SQL);
+                    if($QUERY && mysqli_num_rows($QUERY)){
+                    	while($ROW = mysqli_fetch_array($QUERY)){
+                        	extract($ROW);
+                            $Title = strcut_utf8($Title,45);
+							$Content = stripslashes($Content);
+				?>
                 <li>
-                    <div id="ContentView">
-                            [내일배움카드] 우대 지원유형(취성패, 국취 유형 등)으로 우대받을 수 없는 과정도 있나요?
-                            <i class="ph-bold ph-caret-up"></i>
-                    </div>
+                    <div id="ContentView"><span class="fcred">[공지]</span> <?=$Title?><i class="ph-bold ph-caret-up"></i></div>
                     <div id="ContentElement" style="display: none;">
-                        <div class="file">
+                    	<?if($FileName1 || $FileName2 || $FileName3 || $FileName4 || $FileName5) { ?>
+                   		<div class="file">
                             <span>DOWNLOAD<i class="ph-fill ph-arrow-fat-down"></i></span>
                             <ul>
-                                <li><img src="../img/common/file_down.png" alt="파일 다운로드"><a href="#">HRDE평생교육원 이용약관, 개인정보처리방침, 마케팅 안내 동의 pdf</a></li>
-                                <li><img src="../img/common/file_down.png" alt="파일 다운로드"><a href="#">HRDE평생교육원 이용약관, 개인정보처리방침, 마케팅 안내 동의 pdf</a></li>
-                                <li><img src="../img/common/file_down.png" alt="파일 다운로드"><a href="#">HRDE평생교육원 이용약관, 개인정보처리방침, 마케팅 안내 동의 pdf</a></li>
+                            	<?if($FileName1) { ?><li><img src="../img/common/file_down.png" alt="파일 다운로드"><a href="../../include/download.php?idx=<?=$idx?>&code=NoticeCyber&file=1"><?=$RealFileName1?></a></li><?}?>
+                            	<?if($FileName2) { ?><li><img src="../img/common/file_down.png" alt="파일 다운로드"><a href="../../include/download.php?idx=<?=$idx?>&code=NoticeCyber&file=2"><?=$RealFileName2?></a></li><?}?>
+                            	<?if($FileName3) { ?><li><img src="../img/common/file_down.png" alt="파일 다운로드"><a href="../../include/download.php?idx=<?=$idx?>&code=NoticeCyber&file=3"><?=$RealFileName3?></a></li><?}?>
+                            	<?if($FileName4) { ?><li><img src="../img/common/file_down.png" alt="파일 다운로드"><a href="../../include/download.php?idx=<?=$idx?>&code=NoticeCyber&file=4"><?=$RealFileName4?></a></li><?}?>
+                            	<?if($FileName5) { ?><li><img src="../img/common/file_down.png" alt="파일 다운로드"><a href="../../include/download.php?idx=<?=$idx?>&code=NoticeCyber&file=5"><?=$RealFileName5?></a></li><?}?>
                             </ul>
                         </div>
-                        인터넷 원격훈련과정(온라인과정)의 경우 재직자는 재직자 과정만, 구직자는 구직자 과정만 수강 가능합니다. <br>
-                        국민내일배움카드 과정은 인터넷 원격훈련과정에 속하므로, 수강 신청 시 재직자/구직자 과정을 구분하여 신청해주시기 바랍니다.<br><br>
-    
-                        ※ 카드 발급 이후 고용 형태가 변경된 분들은 지원 대상 유형이 변경되지 않아 원격훈련과정의 수강 신청이 안 될 수 있으니 관할 고용센터에 문의하시어 변경 요청해주시기
-                        바랍니다.
+                    	<?}?>
+                    	<?=$Content?>
                     </div>
                 </li>
+                <?
+                	$i++;
+					}
+				}
+				?>
+				<?
+					$i = 0;
+                    $SQL = "SELECT * FROM NoticeCyber $where  AND Notice='N'  $str_orderby LIMIT $PAGE_CLASS->page_start, $page_size";
+					$QUERY = mysqli_query($connect, $SQL);
+                    if($QUERY && mysqli_num_rows($QUERY)){
+                    	while($ROW = mysqli_fetch_array($QUERY)){
+                        	extract($ROW);
+                            $Title = strcut_utf8($Title,45);
+							$Content = stripslashes($Content);
+				?>
                 <li>
-                    <div id="ContentView">
-                            [내일배움카드] 우대 지원유형(취성패, 국취 유형 등)으로 우대받을 수 없는 과정도 있나요?
-                            <i class="ph-bold ph-caret-up"></i>
-                    </div>
-                    <div id="ContentElement" style="display: none;">
-                        인터넷 원격훈련과정(온라인과정)의 경우 재직자는 재직자 과정만, 구직자는 구직자 과정만 수강 가능합니다. <br>
-                        국민내일배움카드 과정은 인터넷 원격훈련과정에 속하므로, 수강 신청 시 재직자/구직자 과정을 구분하여 신청해주시기 바랍니다.<br><br>
-    
-                        ※ 카드 발급 이후 고용 형태가 변경된 분들은 지원 대상 유형이 변경되지 않아 원격훈련과정의 수강 신청이 안 될 수 있으니 관할 고용센터에 문의하시어 변경 요청해주시기
-                        바랍니다.
-                    </div>
-                </li>
-                <li>
-                    <div id="ContentView">
-                            [내일배움카드] 우대 지원유형(취성패, 국취 유형 등)으로 우대받을 수 없는 과정도 있나요?
-                            <i class="ph-bold ph-caret-up"></i>
-                    </div>
-                    <div id="ContentElement" style="display: none;">
-                        인터넷 원격훈련과정(온라인과정)의 경우 재직자는 재직자 과정만, 구직자는 구직자 과정만 수강 가능합니다. <br>
-                        국민내일배움카드 과정은 인터넷 원격훈련과정에 속하므로, 수강 신청 시 재직자/구직자 과정을 구분하여 신청해주시기 바랍니다.<br><br>
-    
-                        ※ 카드 발급 이후 고용 형태가 변경된 분들은 지원 대상 유형이 변경되지 않아 원격훈련과정의 수강 신청이 안 될 수 있으니 관할 고용센터에 문의하시어 변경 요청해주시기
-                        바랍니다.
+                    <div id="ContentView"><?=$Title?><i class="ph-bold ph-caret-up"></i></div>
+                    <div id="ContentElement" <?if($idxA!=$idx){?> style="display: none;" <?}?>  >
+                        <?if($FileName1 || $FileName2 || $FileName3 || $FileName4 || $FileName5) { ?>
+                   		<div class="file">
+                            <span>DOWNLOAD<i class="ph-fill ph-arrow-fat-down"></i></span>
+                            <ul>
+                            	<?if($FileName1) { ?><li><img src="../img/common/file_down.png" alt="파일 다운로드"><a href="../../include/download.php?idx=<?=$idx?>&code=NoticeCyber&file=1"><?=$RealFileName1?></a></li><?}?>
+                            	<?if($FileName2) { ?><li><img src="../img/common/file_down.png" alt="파일 다운로드"><a href="../../include/download.php?idx=<?=$idx?>&code=NoticeCyber&file=2"><?=$RealFileName2?></a></li><?}?>
+                            	<?if($FileName3) { ?><li><img src="../img/common/file_down.png" alt="파일 다운로드"><a href="../../include/download.php?idx=<?=$idx?>&code=NoticeCyber&file=3"><?=$RealFileName3?></a></li><?}?>
+                            	<?if($FileName4) { ?><li><img src="../img/common/file_down.png" alt="파일 다운로드"><a href="../../include/download.php?idx=<?=$idx?>&code=NoticeCyber&file=4"><?=$RealFileName4?></a></li><?}?>
+                            	<?if($FileName5) { ?><li><img src="../img/common/file_down.png" alt="파일 다운로드"><a href="../../include/download.php?idx=<?=$idx?>&code=NoticeCyber&file=5"><?=$RealFileName5?></a></li><?}?>
+                            </ul>
+                        </div>
+                    	<?}?>
+                        <?=$Content?>
                     </div>
                 </li>
-                <li>
-                    <div id="ContentView">
-                            [내일배움카드] 우대 지원유형(취성패, 국취 유형 등)으로 우대받을 수 없는 과정도 있나요?
-                            <i class="ph-bold ph-caret-up"></i>
-                    </div>
-                    <div id="ContentElement" style="display: none;">
-                        인터넷 원격훈련과정(온라인과정)의 경우 재직자는 재직자 과정만, 구직자는 구직자 과정만 수강 가능합니다. <br>
-                        국민내일배움카드 과정은 인터넷 원격훈련과정에 속하므로, 수강 신청 시 재직자/구직자 과정을 구분하여 신청해주시기 바랍니다.<br><br>
-    
-                        ※ 카드 발급 이후 고용 형태가 변경된 분들은 지원 대상 유형이 변경되지 않아 원격훈련과정의 수강 신청이 안 될 수 있으니 관할 고용센터에 문의하시어 변경 요청해주시기
-                        바랍니다.
-                    </div>
-                </li>
-                <li>
-                    <div id="ContentView">
-                            [내일배움카드] 우대 지원유형(취성패, 국취 유형 등)으로 우대받을 수 없는 과정도 있나요?
-                            <i class="ph-bold ph-caret-up"></i>
-                    </div>
-                    <div id="ContentElement" style="display: none;">
-                        인터넷 원격훈련과정(온라인과정)의 경우 재직자는 재직자 과정만, 구직자는 구직자 과정만 수강 가능합니다. <br>
-                        국민내일배움카드 과정은 인터넷 원격훈련과정에 속하므로, 수강 신청 시 재직자/구직자 과정을 구분하여 신청해주시기 바랍니다.<br><br>
-    
-                        ※ 카드 발급 이후 고용 형태가 변경된 분들은 지원 대상 유형이 변경되지 않아 원격훈련과정의 수강 신청이 안 될 수 있으니 관할 고용센터에 문의하시어 변경 요청해주시기
-                        바랍니다.
-                    </div>
-                </li>
-                <li>
-                    <div id="ContentView">
-                            [내일배움카드] 우대 지원유형(취성패, 국취 유형 등)으로 우대받을 수 없는 과정도 있나요?
-                            <i class="ph-bold ph-caret-up"></i>
-                    </div>
-                    <div id="ContentElement" style="display: none;">
-                        인터넷 원격훈련과정(온라인과정)의 경우 재직자는 재직자 과정만, 구직자는 구직자 과정만 수강 가능합니다. <br>
-                        국민내일배움카드 과정은 인터넷 원격훈련과정에 속하므로, 수강 신청 시 재직자/구직자 과정을 구분하여 신청해주시기 바랍니다.<br><br>
-    
-                        ※ 카드 발급 이후 고용 형태가 변경된 분들은 지원 대상 유형이 변경되지 않아 원격훈련과정의 수강 신청이 안 될 수 있으니 관할 고용센터에 문의하시어 변경 요청해주시기
-                        바랍니다.
-                    </div>
-                </li>
-                <li>
-                    <div id="ContentView">
-                            [내일배움카드] 우대 지원유형(취성패, 국취 유형 등)으로 우대받을 수 없는 과정도 있나요?
-                            <i class="ph-bold ph-caret-up"></i>
-                    </div>
-                    <div id="ContentElement" style="display: none;">
-                        인터넷 원격훈련과정(온라인과정)의 경우 재직자는 재직자 과정만, 구직자는 구직자 과정만 수강 가능합니다. <br>
-                        국민내일배움카드 과정은 인터넷 원격훈련과정에 속하므로, 수강 신청 시 재직자/구직자 과정을 구분하여 신청해주시기 바랍니다.<br><br>
-    
-                        ※ 카드 발급 이후 고용 형태가 변경된 분들은 지원 대상 유형이 변경되지 않아 원격훈련과정의 수강 신청이 안 될 수 있으니 관할 고용센터에 문의하시어 변경 요청해주시기
-                        바랍니다.
-                    </div>
-                </li>
-                <li>
-                    <div id="ContentView">
-                            [내일배움카드] 우대 지원유형(취성패, 국취 유형 등)으로 우대받을 수 없는 과정도 있나요?
-                            <i class="ph-bold ph-caret-up"></i>
-                    </div>
-                    <div id="ContentElement" style="display: none;">
-                        인터넷 원격훈련과정(온라인과정)의 경우 재직자는 재직자 과정만, 구직자는 구직자 과정만 수강 가능합니다. <br>
-                        국민내일배움카드 과정은 인터넷 원격훈련과정에 속하므로, 수강 신청 시 재직자/구직자 과정을 구분하여 신청해주시기 바랍니다.<br><br>
-    
-                        ※ 카드 발급 이후 고용 형태가 변경된 분들은 지원 대상 유형이 변경되지 않아 원격훈련과정의 수강 신청이 안 될 수 있으니 관할 고용센터에 문의하시어 변경 요청해주시기
-                        바랍니다.
-                    </div>
-                </li>
-                <li>
-                    <div id="ContentView">
-                            [내일배움카드] 우대 지원유형(취성패, 국취 유형 등)으로 우대받을 수 없는 과정도 있나요?
-                            <i class="ph-bold ph-caret-up"></i>
-                    </div>
-                    <div id="ContentElement" style="display: none;">
-                        인터넷 원격훈련과정(온라인과정)의 경우 재직자는 재직자 과정만, 구직자는 구직자 과정만 수강 가능합니다. <br>
-                        국민내일배움카드 과정은 인터넷 원격훈련과정에 속하므로, 수강 신청 시 재직자/구직자 과정을 구분하여 신청해주시기 바랍니다.<br><br>
-    
-                        ※ 카드 발급 이후 고용 형태가 변경된 분들은 지원 대상 유형이 변경되지 않아 원격훈련과정의 수강 신청이 안 될 수 있으니 관할 고용센터에 문의하시어 변경 요청해주시기
-                        바랍니다.
-                    </div>
-                </li>
-                <li>
-                    <div id="ContentView">
-                            [내일배움카드] 우대 지원유형(취성패, 국취 유형 등)으로 우대받을 수 없는 과정도 있나요?
-                            <i class="ph-bold ph-caret-up"></i>
-                    </div>
-                    <div id="ContentElement" style="display: none;">
-                        인터넷 원격훈련과정(온라인과정)의 경우 재직자는 재직자 과정만, 구직자는 구직자 과정만 수강 가능합니다. <br>
-                        국민내일배움카드 과정은 인터넷 원격훈련과정에 속하므로, 수강 신청 시 재직자/구직자 과정을 구분하여 신청해주시기 바랍니다.<br><br>
-    
-                        ※ 카드 발급 이후 고용 형태가 변경된 분들은 지원 대상 유형이 변경되지 않아 원격훈련과정의 수강 신청이 안 될 수 있으니 관할 고용센터에 문의하시어 변경 요청해주시기
-                        바랍니다.
-                    </div>
-                </li>
+                <?
+                	$i++;
+					}
+				}
+				?>
             </ul>
-            <div class="pagination">
-                <ol>
-                    <li class="on">1</li>
-                    <li>2</li>
-                    <li>3</li>
-                    <li>4</li>
-                    <li>5</li>
-                </ol>
-            </div>
+            
+            <!-- page -->
+            <?=$BLOCK_LIST?>
+            <!-- //page -->
+            
         </div>
         <!--wrap-->
     </div>
-
-    
-    
 </body>
 <? include "../include/footer.html"; ?>
-
 
 <!--답변여닫기-->
 <script>
@@ -186,11 +150,19 @@
                 $(this).find('i').toggleClass("ph-caret-up ph-caret-down");
                 $(this).next($('#ContentElement')).slideUp();
             }else{
-
                 $(this).find('i').toggleClass("ph-caret-down ph-caret-up");
                 $(this).next($('#ContentElement')).slideDown();
             }
         });
     });
-
+    
+    function ViewClick(){
+    	if($(this).next($('#ContentElement')).is(":visible")){
+            $(this).find('i').toggleClass("ph-caret-up ph-caret-down");
+            $(this).next($('#ContentElement')).slideUp();
+        }else{
+            $(this).find('i').toggleClass("ph-caret-down ph-caret-up");
+            $(this).next($('#ContentElement')).slideDown();
+        }
+    }
 </script>
