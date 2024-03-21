@@ -1,0 +1,82 @@
+.etc_wrap {
+  width: 1280px;
+  margin: 0 auto;
+}
+.etc_wrap .top {
+  margin: 70px 0 50px 0;
+  text-align: center;
+}
+.etc_wrap .top .logo {
+  width: 80px;
+  display: inline-block;
+}
+.etc_wrap .top .logo img {
+  width: 100%;
+}
+.etc_wrap .top h1 {
+  font-size: 60px;
+  font-weight: bold;
+  line-height: 115px;
+}
+.etc_wrap .top .tab_btn {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+.etc_wrap .top .tab_btn button {
+  width: 224px;
+  padding: 10px 0;
+  border-radius: 50px;
+}
+.etc_wrap .top .tab_btn button.on {
+  background-color: #2d2d2d;
+  color: #fff;
+  font-weight: 500;
+}
+.etc_wrap .content {
+  border-top: 1px solid;
+  padding: 50px 0;
+}
+
+.etc_txt_title {
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 40px;
+}
+
+.etc_txt_stitle {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 20px;
+}
+
+.etc_txt_contents {
+  line-height: 1.75rem;
+}
+
+.etc_txt_contents .tbltitle {
+  border-right: 1px solid #e2e2e4;
+  padding: 1.188rem;
+}
+
+.etc_txt_dotline {
+  padding-left: 1.25rem;
+  background-image: url(/new/images/common/dot_line.svg);
+  background-repeat: no-repeat;
+  background-size: 16px 16px;
+  background-position: 0px 6px;
+  line-height: 1.75rem;
+}
+
+.privacy_menu {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 30px 0;
+  padding: 1.25rem 1.25rem;
+  border: 7px solid #e7e7e7;
+}
+
+.privacy_menu > li {
+  width: 50%;
+  padding: 7px;
+}/*# sourceMappingURL=etc.css.map */

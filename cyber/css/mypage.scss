@@ -336,16 +336,19 @@
                         appearance: auto;
                     }
                     label {
-                        margin-left: 3px;    margin-right: 10px;
+                        margin-left: 3px;
+                        margin-right: 10px;
                     }
                 }
             }
             .txt {
                 padding: 0 20px;
                 p {
-                    font-size: 16px;    margin-bottom: 5px;
+                    font-size: 16px;
+                    margin-bottom: 5px;
                 }
-                span {    margin-right: 10px;
+                span {
+                    margin-right: 10px;
                     i {
                         font-weight: 700;
                         margin-right: 2px;
@@ -367,15 +370,17 @@
         font-weight: bold;
         font-size: 17px;
     }
-    .tab-list{
+    .tab-list {
         display: flex;
-    border-bottom: 1px solid #ccc;
-    margin-bottom: 20px;
-    .tab-button{
-        padding: 0 15px 7px 15px;
-        cursor: pointer;
-    }
-    .tab-button.on{border-bottom: 2px solid;}
+        border-bottom: 1px solid #ccc;
+        margin-bottom: 20px;
+        .tab-button {
+            padding: 0 15px 7px 15px;
+            cursor: pointer;
+        }
+        .tab-button.on {
+            border-bottom: 2px solid;
+        }
     }
 }
 
@@ -384,6 +389,77 @@
 }
 .tab-content.on {
     display: block;
+}
+
+/*설문*/
+.survey_wrap {
+    max-width: 1060px;
+    margin: 0 auto;
+    padding-bottom: 150px;
+    .top {
+        text-align: center;
+        margin: 50px 0 70px 0;
+        h1 {
+            font-size: 60px;
+            font-weight: bold;
+            line-height: 100px;
+        }
+        p {
+            line-height: 29px;
+        }
+    }
+    h2 {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+    .content {
+        margin-bottom: 40px;
+        .title {
+            border-top: 1px solid;
+            border-bottom: 1px solid #ccc;
+            padding: 13px 0;
+            span{
+                margin-left: 17px;
+                font-size: 14px;
+            }
+        }
+        .input_box {
+            input {
+                width: 12px;
+                height: 12px;
+                margin-right: 5px;
+            }
+            label {
+                font-size: 14px;
+                line-height: 14px;
+                margin-right: 20px;
+            }
+        }
+        .input_box.bg {
+            background-image: url(../img/mypage/survey.png);
+            width: 1060px;
+            height: 120px;
+            background-repeat: no-repeat;
+            background-position: 8% 99%;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            margin-bottom: 80px;
+        }
+        textarea {
+            display: block;
+            width: 100%;
+            height: 138px;
+            margin-top: 20px;
+            padding: 10px;
+        }
+        .q{
+            display: flex;
+            padding: 10px;
+            justify-content: space-between;
+        }
+    }
 }
 
 /*기존 소스*/
@@ -1004,7 +1080,9 @@
     margin-top: 10px;
     line-height: 26px;
 }
-.memberinfo_wrap .Requiredinfo_area .Requiredinfo_row .content input[type="checkbox"]{appearance: auto;}
+.memberinfo_wrap .Requiredinfo_area .Requiredinfo_row .content input[type="checkbox"] {
+    appearance: auto;
+}
 
 .btnarea {
     width: 100%;

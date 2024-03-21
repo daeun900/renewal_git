@@ -8,6 +8,21 @@
   font-weight: bold;
   line-height: 50px;
 }
+.top_section .title span.main_course_title {
+  position: relative;
+  padding-left: 15px;
+  font-size: 25px;
+  line-height: 25px;
+}
+.top_section .title span.main_course_title::before {
+  position: absolute;
+  left: 0;
+  top: 0;
+  content: "";
+  width: 5px;
+  height: 100%;
+  background-color: #222;
+}
 .top_section .title .search_box input {
   background-color: #e8e8e8;
   width: 100%;

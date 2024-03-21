@@ -1,0 +1,122 @@
+.main_banner_wrap.event_banner {
+    height: 300px;
+    .main_banner {
+        height: 300px;
+        span {
+            font-size: 36px;
+            text-align: center;
+            margin-top: 53px;
+        }
+    }
+}
+
+.event_con {    padding-bottom: 150px;
+    h1 {
+        text-align: center;
+        font-size: 40px;
+        font-weight: bold;
+        margin-top: 90px;
+    }
+    .tab_btn {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        margin: 70px 0;
+        button {
+            padding: 12px 0px;
+            border-radius: 50px;
+            width: 180px;
+            font-size: 19px;
+        }
+        button.on {
+            background-color: #3a87ef;
+            color: #fff;
+        }
+    }
+
+    .content1 {
+        .table {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            gap: 30px;
+            overflow: hidden;
+            > div {
+                position: relative;
+                .img {
+                    width: 290px;
+                    height: 190px;
+
+                    img {
+                        width: 100%;
+                    }
+                }
+                .txt {
+                    margin: 20px 0;
+                    .date {
+                        font-size: 15px;
+                        color: #999;
+                    }
+                    .title {
+                        display: block;
+                        line-height: 30px;
+                    }
+                    .detail {
+                        font-size: 15px;
+                        color: #999;
+                    }
+                }
+            }
+            > div::after {
+                position: absolute;
+                right: -10px;
+                top: 0px;
+                content: "";
+                width: 1px;
+                height: 300px;
+                background-color: #ccc;
+            }
+        }
+    }
+    .content2 {
+        table {
+            width: 100%;
+            border-top: 1px solid;
+            tr {
+                border-bottom: 1px solid #ccc;
+                th {
+                    padding: 15px 0;
+                }
+                td {
+                    padding: 15px 0;
+                }
+                td.num {
+                    text-align: center;
+                }
+                td.date {
+                    text-align: center;
+                }
+            }
+        }
+    }
+
+    .event_view{
+        .title{    border-top: 1px solid;
+            padding: 25px 0;
+            strong{
+                display: block;
+                font-size: 24px;
+                margin-bottom: 14px;
+            }
+            span{    font-size: 14px;
+                margin-right: 7px;
+
+            }
+        }
+        .content{
+            border-top: 1px solid #ccc;
+            border-bottom: 1px solid #ccc;
+            padding: 40px 20px;
+            line-height: 25px;
+        }
+    }
+}

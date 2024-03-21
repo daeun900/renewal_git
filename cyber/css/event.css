@@ -1,0 +1,115 @@
+.main_banner_wrap.event_banner {
+  height: 300px;
+}
+.main_banner_wrap.event_banner .main_banner {
+  height: 300px;
+}
+.main_banner_wrap.event_banner .main_banner span {
+  font-size: 36px;
+  text-align: center;
+  margin-top: 53px;
+}
+
+.event_con {
+  padding-bottom: 150px;
+}
+.event_con h1 {
+  text-align: center;
+  font-size: 40px;
+  font-weight: bold;
+  margin-top: 90px;
+}
+.event_con .tab_btn {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin: 70px 0;
+}
+.event_con .tab_btn button {
+  padding: 12px 0px;
+  border-radius: 50px;
+  width: 180px;
+  font-size: 19px;
+}
+.event_con .tab_btn button.on {
+  background-color: #3a87ef;
+  color: #fff;
+}
+.event_con .content1 .table {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 30px;
+  overflow: hidden;
+}
+.event_con .content1 .table > div {
+  position: relative;
+}
+.event_con .content1 .table > div .img {
+  width: 290px;
+  height: 190px;
+}
+.event_con .content1 .table > div .img img {
+  width: 100%;
+}
+.event_con .content1 .table > div .txt {
+  margin: 20px 0;
+}
+.event_con .content1 .table > div .txt .date {
+  font-size: 15px;
+  color: #999;
+}
+.event_con .content1 .table > div .txt .title {
+  display: block;
+  line-height: 30px;
+}
+.event_con .content1 .table > div .txt .detail {
+  font-size: 15px;
+  color: #999;
+}
+.event_con .content1 .table > div::after {
+  position: absolute;
+  right: -10px;
+  top: 0px;
+  content: "";
+  width: 1px;
+  height: 300px;
+  background-color: #ccc;
+}
+.event_con .content2 table {
+  width: 100%;
+  border-top: 1px solid;
+}
+.event_con .content2 table tr {
+  border-bottom: 1px solid #ccc;
+}
+.event_con .content2 table tr th {
+  padding: 15px 0;
+}
+.event_con .content2 table tr td {
+  padding: 15px 0;
+}
+.event_con .content2 table tr td.num {
+  text-align: center;
+}
+.event_con .content2 table tr td.date {
+  text-align: center;
+}
+.event_con .event_view .title {
+  border-top: 1px solid;
+  padding: 25px 0;
+}
+.event_con .event_view .title strong {
+  display: block;
+  font-size: 24px;
+  margin-bottom: 14px;
+}
+.event_con .event_view .title span {
+  font-size: 14px;
+  margin-right: 7px;
+}
+.event_con .event_view .content {
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  padding: 40px 20px;
+  line-height: 25px;
+}/*# sourceMappingURL=event.css.map */

@@ -43,7 +43,7 @@
                 <strong>나에게 필요한 과정을 찾아보세요</strong>
             </div>
             <ul>
-                <li>
+                <li onclick="location.href='../educourse/main_course.html'">
                     <div class="img">
                         <img src="../img/main/con1/icon1.png" alt="아이콘">
                     </div>
@@ -304,9 +304,22 @@
                     <strong>공지사항</strong>
                     <a href="../support/notice.html" class="more">전체보기 <i class="ph ph-caret-right"></i></a>
                     <ul>
-                        <li>[공지] HRDe 평생교육원 이용약관, 개인정보처리방침, 마케팅 안내 <span>2023. 07. 18</span></li>
-                        <li>[팝업설정] 최초 로그인시 본인인증 창 오류 해결 방법 안내 <span>2023. 06. 23</span></li>
-                        <li>[PC 수강 환경] Edge, 크롬 네이버웨일 브라우저 이용 권장 안내 <span>2023. 06. 05</span></li>
+                    	<?
+                        $i = 0;
+                        $SQL = "SELECT * FROM NoticeCyber WHERE Del='N' AND UseYN='Y' AND Notice='N' ORDER BY RegDate DESC, idx DESC LIMIT 3";
+						//echo $SQL;
+                        $QUERY = mysqli_query($connect, $SQL);
+                        if($QUERY && mysqli_num_rows($QUERY)){
+                            while($ROW = mysqli_fetch_array($QUERY)){
+                                extract($ROW);
+                                $Title = strcut_utf8($Title,45);
+                        ?>
+                        <li><a href="../support/notice.html"><?=$Title?></a> <span><?=substr($RegDate,0,10)?></span></li>
+                        <?
+                        	$i++;
+                            }
+                        }
+                        ?>
                     </ul>
                 </div>
             </div>
