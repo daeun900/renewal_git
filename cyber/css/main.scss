@@ -1,6 +1,6 @@
 
 
-.con {
+.main_con {
     padding: 60px 0 90px 0;
     .title {
         padding: 20px 0;
@@ -19,7 +19,7 @@
     }
 }
 
-.con1 {
+.main_con1 {
     border-bottom: 1px dashed #777;
     ul {
         display: flex;
@@ -59,7 +59,7 @@
     }
 }
 
-.con2 {
+.main_con2 {
     .content {
         .side {
             > span {
@@ -121,8 +121,8 @@
     }
 }
 
-.con2,
-.con4 {
+.main_con2,
+.main_con4 {
     .content {
         display: flex;
         .side {
@@ -165,7 +165,7 @@
     }
 }
 
-.con3 {
+.main_con3 {
     background-color: #f5f5f5;
     .keyword_list {
         display: flex;
@@ -194,7 +194,7 @@
     }
 }
 
-.con4 {
+.main_con4 {
     .content {
         .side {
             strong {
@@ -228,7 +228,7 @@
     }
 }
 
-.con5 {
+.main_con5 {
     background-color: #f5f5f5;
     .content {
         display: flex;
@@ -307,7 +307,7 @@
     }
 }
 
-.con6 {
+.main_con6 {
     .content1 {
         display: grid;
         grid-template-columns: 1fr 1fr;

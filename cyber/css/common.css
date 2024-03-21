@@ -82,6 +82,10 @@ header .middle_header #wrap .right .point {
 header .middle_header #wrap .right i {
   margin-right: 9px;
 }
+header .gnb {
+  z-index: 10;
+  position: relative;
+}
 header .gnb > ul {
   background-color: rgba(0, 0, 0, 0.5);
   display: flex;
@@ -136,7 +140,6 @@ header .gnb > ul > li:hover {
   left: 0;
   height: 500px;
   width: 100%;
-  z-index: -1;
   background-repeat: no-repeat;
   background-position: 50% 50%;
 }
@@ -165,9 +168,52 @@ header .gnb > ul > li:hover {
   line-height: 30px;
   margin-top: 13px;
 }
+.main_banner_wrap .main_banner #wrap a {
+  display: inline-block;
+  padding: 7px 25px;
+  width: -moz-fit-content;
+  width: fit-content;
+  border-radius: 27px;
+  cursor: pointer;
+  margin-top: 30px;
+}
+.main_banner_wrap .main_banner #wrap a.card1 {
+  background-color: #357af2;
+  color: #fff;
+}
+.main_banner_wrap .main_banner #wrap a.card2 {
+  background-color: #fff;
+  color: #357af2;
+  margin-left: 10px;
+}
+.main_banner_wrap .main_banner #wrap a.voucher1 {
+  background-color: #0b5454;
+  color: #fff;
+}
 .main_banner_wrap .main_banner.active {
   visibility: visible;
   opacity: 1;
+}
+.main_banner_wrap .sub_gnb {
+  position: absolute;
+  bottom: 53px;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  z-index: 10;
+  background-color: #2d2d2d;
+}
+.main_banner_wrap .sub_gnb a {
+  color: #fff;
+  padding: 15px 0;
+  display: block;
+  width: 180px;
+  text-align: center;
+}
+.main_banner_wrap .sub_gnb li.on a {
+  color: #28ba9a;
+  font-weight: 600;
+  border-bottom: 3px solid;
 }
 
 .etc_txt_title {
@@ -214,7 +260,9 @@ header .gnb > ul > li:hover {
 }
 
 /* table 표형식_세로 제목,소제목 */
-.tbl_typeB, .tbl_typeB th, .tbl_typeB td {
+.tbl_typeB,
+.tbl_typeB th,
+.tbl_typeB td {
   border: 0;
 }
 

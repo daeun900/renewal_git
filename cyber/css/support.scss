@@ -75,7 +75,7 @@
                 margin-right: 5px;
             }
         }
-        ul {
+        > ul {
             margin: 15px 0;
             border-top: 3px solid #2d2d2d;
             font-size: 18px;
@@ -101,6 +101,37 @@
                 background-color: #f1f6f9;
                 border-bottom: 1px solid #2d2d2d;
                 line-height: 30px;
+                .file {
+                    background-color: #fff;
+                    padding: 15px;    position: relative;    margin-bottom: 24px;
+                    span {
+                        background-color: #bedcf2;
+                        padding: 2px 10px;
+                        border-radius: 50px;
+                        font-size: 12px;
+                        vertical-align: middle;
+                        display: flex;
+                        align-items: center;
+                        width: 109px;
+                        position: absolute;
+                        top: 20px;
+                        left: 20px;
+                        margin-right: 30px;
+                        i {
+                            font-size: 16px;
+                            color: #fff;
+                            margin-left: 6px;
+                        }
+                    }
+                    ul {    padding-left: 130px;
+                        li {font-size: 14px;
+                            img {
+                                width: 15px;
+                                margin-right: 11px;
+                            }
+                        }
+                    }
+                }
             }
             #ContentView.q {
                 padding-left: 70px;
@@ -308,7 +339,7 @@
             background-color: #2d2d2d;
             color: #fff;
             padding: 13px;
-            font-weight: 500; 
+            font-weight: 500;
             width: 100%;
             display: inline-block;
         }

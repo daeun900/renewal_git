@@ -80,7 +80,7 @@ input[type="radio"]:checked{  background-color: #357AF2;
 .fwbold{font-weight: bold;}
 
 /*font-size*/
-.fs20{font-size: 20px;}
+.fs20{font-size: 20px !important;}
 
 /* padding margin */
 .pt1 {padding-top:1px !important} 
