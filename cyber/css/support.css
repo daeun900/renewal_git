@@ -43,8 +43,11 @@
   display: flex;
 }
 .category ul li {
-  padding: 20px;
   cursor: pointer;
+}
+.category ul li a {
+  padding: 20px;
+  display: block;
 }
 .category ul li.on {
   color: #333;

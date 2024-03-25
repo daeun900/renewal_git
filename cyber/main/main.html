@@ -292,12 +292,24 @@
         <div id="wrap">
             <div class="content1">
                 <div class="qna">
-                    <strong>자주하는 질문</strong>
+                    <strong>자주묻는 질문</strong>
                     <a href="../support/faq.html" class="more">전체보기 <i class="ph ph-caret-right"></i></a>
                     <ul>
-                        <li>회원가입은 어떻게 하나요?</li>
-                        <li>평가(시험)는 언제 진행할 수 있나요?</li>
-                        <li>학습은 모바일이나 PC 중 선택해서 진행하면 되나요?</li>
+                    	<?
+                        $i = 0;
+                        $SQL = "SELECT * FROM FaqCyber WHERE Del='N' AND UseYN='Y' ORDER BY RegDate DESC, idx DESC LIMIT 3";
+						$QUERY = mysqli_query($connect, $SQL);
+                        if($QUERY && mysqli_num_rows($QUERY)){
+                            while($ROW = mysqli_fetch_array($QUERY)){
+                                extract($ROW);
+                                $Title = strcut_utf8($Title,45);
+                        ?>
+                        <li><a href="../support/faq.html?idx=<?=$idx?>"><?=$Title?></a></li>
+                        <?
+                        	$i++;
+                            }
+                        }
+                        ?>
                     </ul>
                 </div>
                 <div class="notice">
@@ -307,8 +319,7 @@
                     	<?
                         $i = 0;
                         $SQL = "SELECT * FROM NoticeCyber WHERE Del='N' AND UseYN='Y' AND Notice='N' ORDER BY RegDate DESC, idx DESC LIMIT 3";
-						//echo $SQL;
-                        $QUERY = mysqli_query($connect, $SQL);
+						$QUERY = mysqli_query($connect, $SQL);
                         if($QUERY && mysqli_num_rows($QUERY)){
                             while($ROW = mysqli_fetch_array($QUERY)){
                                 extract($ROW);

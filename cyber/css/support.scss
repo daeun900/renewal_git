@@ -41,8 +41,11 @@
     ul {
         display: flex;
         li {
-            padding: 20px;
             cursor: pointer;
+            a{
+                padding: 20px;
+                display: block;
+            }
         }
         li.on {
             color: #333;
