@@ -219,6 +219,12 @@ header .top_header #wrap .logo img {
 #member_wrap .content .agree_box label {
   margin-left: 10px;
 }
+#member_wrap .content .agree_box em {
+  display: block;
+  font-size: 15px;
+  margin-left: 27px;
+  margin-top: 6px;
+}
 #member_wrap .content .more {
   position: absolute;
   right: 12px;
