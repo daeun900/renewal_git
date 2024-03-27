@@ -2,6 +2,7 @@
     max-width: 1320px;
     padding: 0 20px;
     margin: 0 auto;
+    position: relative;
 }
 
 header {
@@ -260,4 +261,13 @@ header {
 }
 .tbl_typeB td.on {
     background: #f5f5f5;
+}
+
+.phonenumber_input {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    input {
+        width: 30% 
+    }
 }

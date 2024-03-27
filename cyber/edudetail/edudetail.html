@@ -194,7 +194,7 @@
                 </div>
                 <div class="button_wrap">
                     <button class="course_save_btn modal-btn" href="#modal03"><img src="../img/edudetail/gray_heart.png" alt="관심과정">관심과정</button>
-                    <button class="enrolment_btn">수강신청</buutton>
+                    <button class="enrolment_btn" >수강신청</buutton>
                     <button class="enrolment_link_btn" onclick="window.open('https://www.hrd.go.kr/hrdp/ma/pmmao/newIndexRenewal.do')">HRD-NET 1회차 수강신청 바로가기</button>
                 </div>
             </div>
@@ -468,9 +468,11 @@ function TabBtnClick(tab) {
 
 <style> 
     .modal-bg {display:none;width:100%;height:100%;position:fixed;top:0;left:0;right:0;background: rgba(0, 0, 0, 0.6);z-index:999;}
-    .modal-wrap {display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#fff;z-index:1000;}
-    .modal-wrap .close-btn { position: absolute;cursor: pointer;}
+    .modal-wrap {display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#fff;z-index:1000; padding: 50px;border-radius: 40px;}
+    .modal-wrap .close-btn { position: absolute;cursor: pointer;right: 20px; top: 20px;}
     .modal-wrap .close-btn i {font-size: 35px;}
+    .modal-wrap h3{font-size: 24px;font-weight: bold; margin: 20px 0;}
+    .modal-wrap p{margin-bottom: 20px;}
 </style>
 <!--modal01-->
 <div class="modal-bg"></div>

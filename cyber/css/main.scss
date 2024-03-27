@@ -443,17 +443,6 @@
 }
 
 .modal-wrap {
-    padding: 50px;
-    border-radius: 30px;
-    .close-btn {
-        position: absolute;
-        top: 20px;
-        right: 20px;
-        cursor: pointer;
-        i {
-            font-size: 25px;
-        }
-    }
     .star {
         margin: 10px 0;
         i {
@@ -499,8 +488,5 @@
         .date {
             padding-left: 10px;
         }
-    }
-    p {
-        padding: 10px 0;
     }
 }

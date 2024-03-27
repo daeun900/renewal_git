@@ -1,0 +1,227 @@
+<? include "../include/header.html"; ?>
+
+<body>
+    <div class="payment_right_wrap">
+        <div class="payment_right">
+            <strong>환불 정보 확인</strong>
+            <div class="total">
+                <span>총판매금액</span>
+                <span><b>71,600</b>원</span>
+            </div>
+            <div class="support">
+                <span>정부지원금</span>
+                <span><b>39,080</b>원</span>
+            </div>
+            <div class="discount">
+                <span>추가할인</span>
+                <span><b>0</b>원</span>
+            </div>
+            <div class="expense">
+                <span>환불예정금액</span>
+                <span><b>31,980</b>원</span>
+            </div>
+            <div class="agree">
+                <input type="checkbox" name="agree" id="">
+                <label for="agree">결제조건 확인 및 개인정보 제공에 동의
+                    합니다.</label>
+            </div>
+            <button class="prev">
+                이전
+            </button>
+            <button class="pay" onclick="location.href='cancel_complete.html'" >
+                신청하기
+            </button>
+        </div>
+    </div>
+
+    <div class="payment_top_section">
+        <div id="wrap">
+            <h1>결제취소신청</h1>
+            <ol>
+                <li>과정선택<i class="ph-fill ph-fast-forward"></i></li>
+                <li><span class="fcred">환불 신청</span><i class="ph-fill ph-fast-forward"></i></li>
+                <li>환불신청 완료</li>
+            </ol>
+        </div>
+    </div>
+    <div id="wrap">
+        <div class="payment_left">
+            <!--주문정보-->
+            <div class="con order_info">
+                <div class="title">주문정보</div>
+                <table>
+                    <colgroup>
+                        <col width="15%">
+                        <col width="45%">
+                        <col width="10%">
+                        <col width="10%">
+                        <col width="10%">
+                        <col width="10%">
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th>주문번호 / 주문일</th>
+                            <th>과정명</th>
+                            <th>판매가</th>
+                            <th>정부지원금</th>
+                            <th>추가할인</th>
+                            <th>결제금액</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                12345 <br>
+                                2024-02-08
+                            </td>
+                            <td class="ac">NCS기반 회사의 꼼꼼한 살림꾼 알잘딱깔센 스마트워커</td>
+                            <td class="ac">71,000원</td>
+                            <td class="ac">31,000원</td>
+                            <td class="ac">10,000원</td>
+                            <td class="ac">30,000원</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="txt">
+                    <p><i>·</i>고객님께서 선택하신 상품입니다. 환불 할 상품이 맞는지 확인 해 주세요.</p>
+                    <p><i>·</i>전체취소 또는 전체반품이 아닌 경우 카드종류, 결제방식에 따라 카드 부분 취소가 불가능할 수도 있습니다.</p>
+                    <p><i>·</i>주문결제 시 사용한 결제 수단에 따라 환불 방법과 환불완료 소용기한이 차이가 있을 수 있습니다.</p>
+                </div>
+            </div>
+            <!--주문정보-->
+            <!--환불사유-->
+            <div class="con cancel_info">
+                <div class="title">환불사유</div>
+                <table>
+                    <colgroup>
+                        <col width="120px">
+                        <col>
+                    </colgroup>
+                    <tr>
+                        <th>환불 사유</th>
+                        <td>
+                            <select name="" id="">
+                                <option value="">환불하려는 이유를 선택하세요</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>환불 사유 상세</th>
+                        <td>
+                            <textarea name="" id="" cols="30" rows="10"></textarea>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <!--환불사유-->
+            <!--환불계좌 정보-->
+            <div class="con cancel_account_info">
+                <div class="title">환불계좌 정보</div>
+                <table>
+                    <colgroup>
+                        <col width="120px">
+                        <col>
+                        <col width="120px">
+                        <col>
+                        <col width="120px">
+                        <col>
+                    </colgroup>
+                    <tr>
+                        <th>
+                            <i class="fcred">*</i>
+                            은행명
+                        </th>
+                        <td>
+                            <input type="text">
+                        </td>
+                        <th>
+                            <i class="fcred">*</i>
+                            계좌번호
+                        </th>
+                        <td>
+                            <input type="text" class="account">
+                            <span class="fc999 fs12">(-없이 입력)</span>
+                        </td>
+                        <th>
+                            <i class="fcred">*</i>
+                            예금주
+                        </th>
+                        <td>
+                            <input type="text">
+                        </td>
+                    </tr>
+                </table>
+                <div class="txt">
+                    <p><i class="fcred">*</i>는 필수입력 값입니다. 환불정보를 정확히 입력하셔야 환불이 가능합니다.</p>
+                </div>
+            </div>
+            <!--환불계좌 정보-->
+
+            <!--회원정보-->
+            <div class="con member_info">
+                <div class="title">회원정보</div>
+                <table>
+                    <colgroup>
+                        <col width="120px">
+                        <col>
+                        <col width="120px">
+                        <col width="320px">
+                    </colgroup>
+                    <tr>
+                        <th>주문자</th>
+                        <td colspan="3">홍길동</td>
+                    </tr>
+                    <tr>
+                        <th>연락처(휴대폰)</th>
+                        <td>010-1234-5678 <button>변경</button></td>
+                        <th>이메일</th>
+                        <td>abcdefg@naver.com <button>변경</button></td>
+                    </tr>
+            </table>
+            </div>
+            <!--회원정보-->
+
+            <!--강의환불-->
+            <div class="con refund_info">
+                <div class="title">강의환불</div>
+                <div class="subtitle">
+                    환불규정
+                </div>
+                <table>
+                    <colgroup>
+                        <col width="120px">
+                        <col>
+                    </colgroup>
+                    <tr>
+                        <th>개별강의</th>
+                        <td>
+                            <p>수강기간의 50%이상 경과한 경우 환불 불가</p>
+                            <p> 환불 시 환불액 결제금액-(결제금액X(수강한 강 수/전체 강 수))-수수료(결제금액의 10%) <br>
+                                예) 15강으로 구성된 1과목(결제금액: 20,000원) 구매 후 3강을 수강하고 환불을 요청한 경우 환불액 <br>
+                                20,000원-((20,000원*(3/15))-(2000원)=14,000원</p>
+                        </td>
+                    </tr>
+                </table>
+                <div class="subtitle">
+                    환불이 불가능한 경우
+                </div>
+                <table>
+                    <colgroup>
+                        <col>
+                    </colgroup>
+                    <tr>
+                        <td>
+                            - 환불관련 수수료가 환불금액을 초과할 경우<br>
+                            - HRDe사이버연수원 회원을 탈퇴한 후, 환불을 요구할 경우<br>
+                            - 기타 정당한 환불 사유로 판명되지 않은 경우
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <!--회원정보-->
+        </div>
+        <!--paymentleft-->
+    </div>
+    <!--wrap-->
+</body>
+<? include "../include/footer.html"; ?>

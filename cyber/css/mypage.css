@@ -1,8 +1,4 @@
 @charset "UTF-8";
-#wrap {
-  position: relative;
-}
-
 .mypage_menu {
   position: absolute;
   top: 0;
@@ -1129,6 +1125,10 @@
 .memberinfo_wrap .Requiredinfo_area .Requiredinfo_row .content {
   margin-top: 10px;
   line-height: 26px;
+}
+
+.memberinfo_wrap .Requiredinfo_area .Requiredinfo_row .content em {
+  display: block;
 }
 
 .memberinfo_wrap .Requiredinfo_area .Requiredinfo_row .content input[type=checkbox] {
