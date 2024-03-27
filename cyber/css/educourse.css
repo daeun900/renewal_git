@@ -141,6 +141,7 @@ div[class*=lectureswiper] .course_tag span {
 }
 .course ul li {
   margin-bottom: 25px;
+  cursor: pointer;
 }
 .course ul li .course_img {
   width: 305px;

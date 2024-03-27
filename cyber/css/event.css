@@ -47,9 +47,13 @@
 .event_con .content1 .table > div .img {
   width: 290px;
   height: 190px;
+  overflow: hidden;
 }
 .event_con .content1 .table > div .img img {
   width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  height: 100%;
 }
 .event_con .content1 .table > div .txt {
   margin: 20px 0;

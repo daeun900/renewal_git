@@ -138,7 +138,7 @@ div[class*="lectureswiper"] {
         grid-template-columns: 1fr 1fr 1fr 1fr;
         gap: 25px;
         li {
-            margin-bottom: 25px;
+            margin-bottom: 25px;  cursor: pointer;
             .course_img {
                 width: 305px;
                 height: 180px;

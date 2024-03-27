@@ -331,6 +331,7 @@
   position: sticky;
   top: -170px;
   right: 0;
+  z-index: 10;
 }
 
 .payment_right {

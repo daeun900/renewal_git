@@ -45,9 +45,11 @@
                 .img {
                     width: 290px;
                     height: 190px;
-
+                    overflow: hidden;
                     img {
                         width: 100%;
+                        object-fit: cover;
+                        height: 100%;
                     }
                 }
                 .txt {
