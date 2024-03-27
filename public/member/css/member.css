@@ -1,4 +1,29 @@
 @charset "UTF-8";
+#wrap {
+  max-width: 1320px;
+  padding: 0 20px;
+  margin: 0 auto;
+  position: relative;
+}
+
+header .top_header {
+  background-color: whitesmoke;
+  font-size: 14px;
+}
+header .top_header #wrap {
+  height: 43px;
+}
+header .top_header #wrap .logo {
+  width: 110px;
+  position: absolute;
+  left: 50%;
+  margin-left: -74px;
+  cursor: pointer;
+}
+header .top_header #wrap .logo img {
+  width: 100%;
+}
+
 #member_wrap {
   width: 440px;
   padding: 50px 20px 100px 20px;
@@ -36,6 +61,40 @@
   padding: 10px 5px;
   margin-top: 10px;
   width: 100%;
+}
+#member_wrap .content .member_classify {
+  text-align: left;
+  margin-top: -10px;
+  margin-bottom: 10px;
+}
+#member_wrap .content .member_classify input {
+  margin-right: 10px;
+}
+#member_wrap .content .member_classify label {
+  margin-right: 10px;
+}
+#member_wrap .content .member_classify .bubble {
+  background-color: #437ECD;
+  color: #fff;
+  border-radius: 10px;
+  padding: 5px 0;
+  width: 100%;
+  position: relative;
+  margin-top: 14px;
+  font-size: 15px;
+  text-align: center;
+}
+#member_wrap .content .member_classify .bubble::before {
+  bottom: 100%;
+  left: 20px;
+  border: solid transparent;
+  content: "";
+  height: 0;
+  width: 0;
+  position: absolute;
+  border-color: rgba(60, 67, 221, 0);
+  border-bottom-color: #437ECD;
+  border-width: 8px;
 }
 #member_wrap .content .flex_box {
   display: flex;
@@ -130,7 +189,7 @@
   padding: 13px 0;
   border-radius: 35px;
   margin-top: 10px;
-  background-image: url(../img/common/kakao.png);
+  background-image: url("../img/kakao.png");
   background-repeat: no-repeat;
   background-size: 29px;
   background-position: 7% 50%;
@@ -142,7 +201,7 @@
   padding: 13px 0;
   border-radius: 35px;
   margin-top: 10px;
-  background-image: url(../img/common/naver.png);
+  background-image: url(../img/naver.png);
   background-repeat: no-repeat;
   background-size: 22px;
   background-position: 7% 50%;
@@ -228,7 +287,7 @@
   align-items: center;
 }
 .phonenumber_input input {
-  width: 30%;
+  width: 30% !important;
 }
 
 .recommendid_input {
@@ -251,10 +310,11 @@
   height: 60px;
   background-color: #357af2;
   color: #fff;
-  padding: 13px 0;
+  padding: 11px 0;
   border-radius: 50%;
   font-size: 32px;
   margin: 0 auto;
+  box-sizing: border-box;
 }
 
 .modal-wrap {

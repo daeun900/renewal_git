@@ -1,24 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HRDe사이버연수원</title>
-    <script type="text/javascript" src="../../common/js/jquery-2.1.4.js"></script>
-    <link rel="stylesheet" href="../../common/css/base.css?ver=2">
-    <link rel="stylesheet" href="../../common/css/common.css?ver=4">
-    <link rel="stylesheet" href="../css/common.css">
-    <link rel="stylesheet" href="../css/member.css">
-    <script src="https://kit.fontawesome.com/ebace215db.js" crossorigin="anonymous"></script>
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
-</head>
+<? include "include/header.html"; ?>
 
 <body>
     <div id="member_wrap">
         <div class="title">
-            <div class="logo">
-                <img src="../img/common/logo.png" alt="HRDe사이버연수원">
-            </div>
             <h1>LOGIN</h1>
         </div>
         <div class="content">
@@ -29,6 +13,13 @@
             <div class="input_box">
                 <label for="userpw">사용자 비밀번호</label>
                 <input type="text" placeholder="비밀번호를 입력해주세요">
+            </div>
+            <div class="member_classify">
+                <input type="radio" name="member" id="" checked><label for="">기업근로자 회원</label>
+                <input type="radio" name="member" id=""><label for="">국민내일배움카드</label>
+                <div class="bubble">
+                    기업 교육 학습자는 반드시 기업 근로자 회원에 체크해 주세요
+                </div>
             </div>
             <div class="flex_box">
                 <div>
@@ -44,10 +35,10 @@
             <div class="sns_box">
                 <span>SNS 계정으로 로그인</span>
                 <a class="naver" href="#">
-                    <img src="../img/common/naver.png" alt="네이버로그인">
+                    <img src="img/naver.png" alt="네이버로그인">
                 </a>
                 <a class="kakao" href="#">
-                    <img src="../img/common/kakao.png" alt="카카오로그인">
+                    <img src="img/kakao.png" alt="카카오로그인">
                 </a>
             </div>
             <button class="btn_white"  onclick="location.href='join.html'">회원가입</button>
@@ -58,4 +49,5 @@
 </body>
 
 
-<? include "../include/footer.html"; ?>
+
+<? include "include/footer.html"; ?>

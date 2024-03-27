@@ -1,14 +1,14 @@
-<? include "../include/header_member.html"; ?>
+<? include "include/header.html"; ?>
 
 <body>
     <div id="member_wrap">
         <div class="title">
-            <span>비밀번호 찾기</span>
-            <h1>FIND<br>PASSWORD</h1>
+            <span>아이디 찾기</span>
+            <h1>FIND ID</h1>
         </div>
         <div class="content">
             <div class="top_txt">
-                비밀번호를 잊으셨나요? <br>
+                아이디를 잊으셨나요? <br>
                 아래의 인증방법을 선택하시고 정보를 입력해주세요
             </div>
             <!--이메일로 찾기 table-->
@@ -23,10 +23,6 @@
                         <input type="radio" name="method" id="method1" oninput="ApplyTypeChange('A')" checked><label for="method1">이메일</label>
                         <input type="radio" name="method" id="method2" oninput="ApplyTypeChange('B')"><label for="method2">휴대폰번호</label>
                     </td>
-                </tr>
-                <tr>
-                    <th>아이디</th>
-                    <td><input type="text" name="" id=""></td>
                 </tr>
                 <tr>
                     <th>이름</th>
@@ -53,7 +49,7 @@
     <!--wrap-->
 </body>
 
-<? include "../include/footer.html"; ?>
+<? include "include/footer.html"; ?>
 
 
 <!--인증방법별 TABLE변경-->
@@ -111,30 +107,21 @@
     <div class="close-btn">
         <i class="ph-thin ph-x"></i>
     </div>
-    <span>비밀번호 찾기</span>
-    <p>
-        비밀번호를 분실하신 경우 개인정보보호를 위해 회원님께서 기재하신 메일 <br>
-        또는 휴대폰으로 임시 비밀번호를 발급하고 있습니다. <br>
-        임시 비밀번호를 발급 받으시면 즉시 로그인 하셔서 회원정보 수정에서 <br>
-        비밀번호를 회원님의 희망 비밀번호로 변경하시기 바랍니다.
-    </p>
-    <div class="flex_box">
-        <div>
-            <div class="img">
-                <img src="../img/common/mail.png" class="pt10" alt="이메일">
-            </div>
-            <p>가입 시 등록한 메일주소로 <br>임시번호 받기</p>
-            <span class="fcred">abc****@naver.com</span>
-            <button>재발급 받기</button>
-        </div>
-        <div>
-            <div class="img">
-                <img src="../img/common/phone.png" alt="휴대폰">
-            </div>
-            <p>가입 시 등록한 휴대폰으로 <br>임시번호 받기</p>
-            <span class="fcred">010-****-5678</span>
-            <button>재발급 받기</button>
-        </div>
-    </div>
+    <span>아이디 찾기</span>
+    <table>
+        <colgroup>
+            <col width="110px">
+            <col width="370px">
+        </colgroup>
+        <tr>
+            <th>성명</th>
+            <td>홍길동</td>
+        </tr>
+        <tr>
+            <th>아이디</th>
+            <td>abcd*******</td>
+        </tr>
+    </table>
+    <button class="btn_black" onclick="location.href='login.html'">로그인하기</button>
 </div>
 <!--modal01-->
