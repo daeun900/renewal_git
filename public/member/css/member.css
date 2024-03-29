@@ -250,6 +250,14 @@ header .top_header #wrap .logo img {
   font-size: 14px;
   margin-top: 10px;
 }
+#member_wrap .content .term table {
+  border: 1px solid #ccc;
+}
+#member_wrap .content .term table tr td {
+  font-size: 12px;
+  border-right: 1px solid #ccc;
+  text-align: center;
+}
 #member_wrap .content .term::-webkit-scrollbar {
   width: 6px;
 }

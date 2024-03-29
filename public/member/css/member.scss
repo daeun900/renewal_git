@@ -255,6 +255,14 @@ header {
             padding: 10px;
             font-size: 14px;
             margin-top: 10px;
+            table{
+                border: 1px solid #ccc;
+                tr{
+                    td{font-size: 12px; border-right: 1px solid #ccc;text-align: center;}
+                }
+            
+            }
+         
         }
         .term::-webkit-scrollbar {
             width: 6px;
