@@ -33,6 +33,11 @@ header .top_header #wrap .logo img {
   /*아이디비밀번호찾기*/
   /*회원가입*/
 }
+@media (max-width: 1200px) {
+  #member_wrap {
+    width: 90%;
+  }
+}
 #member_wrap .title {
   margin-bottom: 60px;
 }

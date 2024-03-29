@@ -5,6 +5,11 @@
   background-size: 640px;
   background-position: 75% -27%;
 }
+@media (max-width: 1100px) {
+  .vouch_con1 {
+    background-image: none;
+  }
+}
 .vouch_con1 h1 {
   font-size: 40px;
   font-weight: bold;
@@ -72,6 +77,11 @@
   padding: 13px;
   text-align: center;
   position: relative;
+}
+@media (max-width: 1100px) {
+  .vouch_con2 .content2 > div {
+    width: 100%;
+  }
 }
 .vouch_con2 .content2 > div span.step {
   font-size: 12px;

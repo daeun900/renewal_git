@@ -118,6 +118,12 @@
 .main_con4 .content .side {
   width: 25%;
 }
+@media (max-width: 1200px) {
+  .main_con2 .content .side,
+  .main_con4 .content .side {
+    display: none;
+  }
+}
 .main_con2 .content .lecture_box,
 .main_con4 .content .lecture_box {
   width: 75%;

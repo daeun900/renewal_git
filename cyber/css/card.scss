@@ -1,6 +1,9 @@
 .card_con1 {
     padding: 80px 0 120px 0;
     background-image: url(../img/card/illustration.png);
+    @media(max-width:1200px){
+        background-image: none;
+    }
     background-repeat: no-repeat;
     background-size: 500px;
     background-position: 80% 100%;
@@ -83,6 +86,9 @@
         grid-template-columns: 1fr 1fr 1fr 1fr;
         > div {
             width: 230px;
+                @media(max-width:1200px){
+                    width: 100%;
+                }
             height: 130px;
             box-shadow: 3px 3px 8px rgb(0 0 0 / 16%);
             background-color: #fff;

@@ -63,6 +63,11 @@ header .middle_header #wrap .left .logo {
 header .middle_header #wrap .left .logo img {
   width: 100%;
 }
+@media (max-width: 1100px) {
+  header .middle_header #wrap .left .search_box {
+    display: none;
+  }
+}
 header .middle_header #wrap .left h1 {
   font-size: 30px;
   font-weight: bold;

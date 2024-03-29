@@ -121,13 +121,19 @@
     }
 }
 
+
 .main_con2,
 .main_con4 {
     .content {
         display: flex;
         .side {
             width: 25%;
+            @media(max-width:1200px)
+            {
+                display: none;
+            }
         }
+       
         .lecture_box {
             width: 75%;
             .more {

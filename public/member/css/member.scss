@@ -27,6 +27,9 @@ header {
 
 #member_wrap {
     width: 440px;
+    @media(max-width:1200px){
+        width: 90%;
+    }
     padding: 50px 20px 100px 20px;
     margin: 0 auto;
     text-align: center;
