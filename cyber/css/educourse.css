@@ -157,6 +157,8 @@ div[class*=lectureswiper] .course_tag span {
   overflow: hidden;
   display: block;
   margin: 0 auto;
+  background-size: cover;
+  background-position: 50% 50%;
 }
 .course ul li .course_img span {
   position: absolute;
@@ -194,6 +196,13 @@ div[class*=lectureswiper] .course_tag span {
   background-color: #e8e8e8;
   padding: 3px 12px;
   border-radius: 6px;
+}
+.course > span {
+  text-align: center;
+  display: block;
+  font-size: 20px;
+  font-weight: 500;
+  margin-top: 15px;
 }
 
 .more_btn {

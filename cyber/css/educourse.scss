@@ -151,6 +151,8 @@ div[class*="lectureswiper"] {
                 overflow: hidden;
                 display: block;
                 margin: 0 auto;
+                background-size: cover;
+                background-position: 50% 50%;
                 span {
                     position: absolute;
                     left: 20px;
@@ -192,6 +194,13 @@ div[class*="lectureswiper"] {
                 }
             }
         }
+    }
+    > span{
+        text-align: center;
+        display: block;
+        font-size: 20px;
+        font-weight: 500;
+        margin-top: 15px;
     }
 }
 

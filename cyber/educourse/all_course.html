@@ -1,4 +1,18 @@
 <? include "../include/header.html"; ?>
+<?
+if($sw){
+	$where[] = "a.ContentsName LIKE '%$sw%'";
+}
+if($keyChkVal){
+	$where[] = "a.Keyword LIKE '%$keyChkVal%'";
+}
+$where[] = "a.PackageYN='N'";
+$where[] = "a.Del='N'";
+$where[] = "a.ctype='B'";
+
+$where = implode(" AND ",$where);
+if($where) $where = "WHERE $where";
+?>
 <body>
     <!--mainbanner-->
     <div class="main_banner_wrap">
@@ -15,450 +29,107 @@
         <div class="top_section">
             <div class="title">
                 <span>키워드에 따라 원하는 과정을 이용해보세요</span>
-                <div class="search_box">
-                    <input name="" id="" type="text" title="검색어 입력" placeholder="과정명을 입력해주세요"><span class="search_btn"><i class="ph ph-magnifying-glass"></i></span>
-                </div>
+                <form name="BoardSearchForm" action="<?=$_SERVER['PHP_SELF']?>" method="GET">
+	                <div class="search_box">
+	                    <input name="sw" id="sw" type="text" title="검색어 입력" <?if($sw){?>value="<?=$sw?>"<?}?> placeholder="과정명을 입력해주세요">
+	                    <span class="search_btn" onclick="Javascript:BoardSearch();"><i class="ph ph-magnifying-glass"></i></span>
+	                </div>
+				</form>
             </div>
             <div class="categorybtn_box">
-                <ul>
-                    <li class="on"><a href="#"># 인공지능 AI</a></li>
-                    <li><a href="#"># 챗 GPT</a></li>
-                    <li><a href="#"># IT 마케팅</a></li>
-                    <li><a href="#"># 사무행정</a></li>
-                    <li><a href="#"># 총무·인사</a></li>
-                    <li><a href="#"># 정보보안</a></li>
-                    <li><a href="#"># 경영기획</a></li>
-                    <li><a href="#"># 빅데이터</a></li>
-                    <li><a href="#"># 의사소통</a></li>
-                    <li><a href="#"># 리더십</a></li>
-                    <li><a href="#"># 팀워크</a></li>
-                    <li><a href="#"># 세무 · 회계</a></li>
-                    <li><a href="#"># 마케팅</a></li>
-                </ul>
+            	<form name="BoardSearchFormA" action="<?=$_SERVER['PHP_SELF']?>" method="GET">
+            		<input type="hidden" name="keyChkVal" id="keyChkVal" value="<?=$keyChkVal?>">
+					<ul>
+	                <?
+	                $Keyword_list = array();
+                
+					$i = 0;
+					$SQL = "SELECT a.Keyword FROM CourseCyber a  ORDER BY a.RegDate DESC, a.idx";
+					$QUERY = mysqli_query($connect, $SQL);
+					if($QUERY && mysqli_num_rows($QUERY)){
+						while($ROW = mysqli_fetch_array($QUERY)){
+							extract($ROW);
+							$Keyword = str_replace(' ', '', $Keyword);
+							$Keyword_array = explode('#',$Keyword);
+							while (list($key,$value)=each($Keyword_array)){
+								if($key > 0){
+									array_push($Keyword_list, $value);
+								}
+							}
+							$i++;
+						}
+					}
+					?>
+					<?
+					$Keyword_list2 = array_unique($Keyword_list);
+					while (list($key,$value)=each($Keyword_list2)){
+						if($key > 0){
+					?>
+						<li <?if($keyChk){?>class="on"<?}?> ><a id="keyChk<?=$key?>" href="Javascript:KeyBoardSearch(<?=$key?>);" value="<?=$value?>">#<?=$value?></a></li>
+					<?
+						}
+					}
+					?>	
+                	</ul>
+				</form>
             </div>
         </div>
         <!--topsection-->
         <div class="course">
-            <!--max20list-->
             <ul>
-                <li>
-                    <div class="course_img" style="background-image: url(../img/educourse/courseimg_ex.png);
-                     background-color: #e8ece7;" onclick="window.open('../edudetail/edudetail.html')" onclick="window.open('../edudetail/edudetail.html')">
-                        <span>ChatGPT</span>>
-                        <button class="course_save_btn">
-                            <img src="../img/educourse/white heart.png" alt="">
-                        </button>
-                    </div>
-                    <div class="course_title">
-                        ChatGPT로 10분만에 일잘러 되기: 기초부터 실무까지 사무행정의 모든것
-                    </div>
-                    <div class="course_tag">
-                        <span>챗GPT</span>
-                        <span>사무행정</span>
-                        <span>AI</span>
-                    </div>
-                </li>
-                <li>
-                    <div class="course_img" style="background-image: url(../img/educourse/courseimg_ex.png);" onclick="window.open('../edudetail/edudetail.html')">
-                        <span>ChatGPT</span>>
-                      <button class="course_save_btn">
-                            <img src="../img/educourse/white heart.png" alt="">
-                        </button>
-                    </div>
-                    <div class="course_title">
-                        ChatGPT로 10분만에 일잘러 되기: 기초부터 실무까지 사무행정의 모든것
-                    </div>
-                    <div class="course_tag">
-                        <span>챗GPT</span>
-                        <span>사무행정</span>
-                        <span>AI</span>
-                    </div>
-                </li>
-                <li>
-                    <div class="course_img" style="background-image: url(../img/educourse/courseimg_ex.png);" onclick="window.open('../edudetail/edudetail.html')">
-                        <span>ChatGPT</span>
-                      <button class="course_save_btn">
-                            <img src="../img/educourse/white heart.png" alt="">
-                        </button>
-                    </div>
-                    <div class="course_title">
-                        ChatGPT로 10분만에 일잘러 되기: 기초부터 실무까지 사무행정의 모든것
-                    </div>
-                    <div class="course_tag">
-                        <span>챗GPT</span>
-                        <span>사무행정</span>
-                        <span>AI</span>
-                    </div>
-                </li>
-                <li>
-                    <div class="course_img" style="background-image: url(../img/educourse/courseimg_ex.png);" onclick="window.open('../edudetail/edudetail.html')">
-                        <span>ChatGPT</span>
-                      <button class="course_save_btn">
-                            <img src="../img/educourse/white heart.png" alt="">
-                        </button>
-                    </div>
-                    <div class="course_title">
-                        ChatGPT로 10분만에 일잘러 되기: 기초부터 실무까지 사무행정의 모든것
-                    </div>
-                    <div class="course_tag">
-                        <span>챗GPT</span>
-                        <span>사무행정</span>
-                        <span>AI</span>
-                    </div>
-                </li>
-                <li>
-                    <div class="course_img" style="background-image: url(../img/educourse/courseimg_ex.png);" onclick="window.open('../edudetail/edudetail.html')">
-                        <span>ChatGPT</span>
-                      <button class="course_save_btn">
-                            <img src="../img/educourse/white heart.png" alt="">
-                        </button>
-                    </div>
-                    <div class="course_title">
-                        ChatGPT로 10분만에 일잘러 되기: 기초부터 실무까지 사무행정의 모든것
-                    </div>
-                    <div class="course_tag">
-                        <span>챗GPT</span>
-                        <span>사무행정</span>
-                        <span>AI</span>
-                    </div>
-                </li>
-                <li>
-                    <div class="course_img" style="background-image: url(../img/educourse/courseimg_ex.png);" onclick="window.open('../edudetail/edudetail.html')">
-                        <span>ChatGPT</span>
-                      <button class="course_save_btn">
-                            <img src="../img/educourse/white heart.png" alt="">
-                        </button>
-                    </div>
-                    <div class="course_title">
-                        ChatGPT로 10분만에 일잘러 되기: 기초부터 실무까지 사무행정의 모든것
-                    </div>
-                    <div class="course_tag">
-                        <span>챗GPT</span>
-                        <span>사무행정</span>
-                        <span>AI</span>
-                    </div>
-                </li>
-                <li>
-                    <div class="course_img" style="background-image: url(../img/educourse/courseimg_ex.png);" onclick="window.open('../edudetail/edudetail.html')">
-                        <span>ChatGPT</span>
-                      <button class="course_save_btn">
-                            <img src="../img/educourse/white heart.png" alt="">
-                        </button>
-                    </div>
-                    <div class="course_title">
-                        ChatGPT로 10분만에 일잘러 되기: 기초부터 실무까지 사무행정의 모든것
-                    </div>
-                    <div class="course_tag">
-                        <span>챗GPT</span>
-                        <span>사무행정</span>
-                        <span>AI</span>
-                    </div>
-                </li>
-                <li>
-                    <div class="course_img" style="background-image: url(../img/educourse/courseimg_ex.png);" onclick="window.open('../edudetail/edudetail.html')">
-                        <span>ChatGPT</span>
-                      <button class="course_save_btn">
-                            <img src="../img/educourse/white heart.png" alt="">
-                        </button>
-                    </div>
-                    <div class="course_title">
-                        ChatGPT로 10분만에 일잘러 되기: 기초부터 실무까지 사무행정의 모든것
-                    </div>
-                    <div class="course_tag">
-                        <span>챗GPT</span>
-                        <span>사무행정</span>
-                        <span>AI</span>
-                    </div>
-                </li>
-                <li>
-                    <div class="course_img" style="background-image: url(../img/educourse/courseimg_ex.png);" onclick="window.open('../edudetail/edudetail.html')">
-                        <span>ChatGPT</span>
-                      <button class="course_save_btn">
-                            <img src="../img/educourse/white heart.png" alt="">
-                        </button>
-                    </div>
-                    <div class="course_title">
-                        ChatGPT로 10분만에 일잘러 되기: 기초부터 실무까지 사무행정의 모든것
-                    </div>
-                    <div class="course_tag">
-                        <span>챗GPT</span>
-                        <span>사무행정</span>
-                        <span>AI</span>
-                    </div>
-                </li>
-                <li>
-                    <div class="course_img" style="background-image: url(../img/educourse/courseimg_ex.png);" onclick="window.open('../edudetail/edudetail.html')">
-                        <span>ChatGPT</span>
-                      <button class="course_save_btn">
-                            <img src="../img/educourse/white heart.png" alt="">
-                        </button>
-                    </div>
-                    <div class="course_title">
-                        ChatGPT로 10분만에 일잘러 되기: 기초부터 실무까지 사무행정의 모든것
-                    </div>
-                    <div class="course_tag">
-                        <span>챗GPT</span>
-                        <span>사무행정</span>
-                        <span>AI</span>
-                    </div>
-                </li>
-                <li>
-                    <div class="course_img" style="background-image: url(../img/educourse/courseimg_ex.png);" onclick="window.open('../edudetail/edudetail.html')">
-                        <span>ChatGPT</span>
-                      <button class="course_save_btn">
-                            <img src="../img/educourse/white heart.png" alt="">
-                        </button>
-                    </div>
-                    <div class="course_title">
-                        ChatGPT로 10분만에 일잘러 되기: 기초부터 실무까지 사무행정의 모든것
-                    </div>
-                    <div class="course_tag">
-                        <span>챗GPT</span>
-                        <span>사무행정</span>
-                        <span>AI</span>
-                    </div>
-                </li>
-                <li>
-                    <div class="course_img" style="background-image: url(../img/educourse/courseimg_ex.png);" onclick="window.open('../edudetail/edudetail.html')">
-                        <span>ChatGPT</span>
-                      <button class="course_save_btn">
-                            <img src="../img/educourse/white heart.png" alt="">
-                        </button>
-                    </div>
-                    <div class="course_title">
-                        ChatGPT로 10분만에 일잘러 되기: 기초부터 실무까지 사무행정의 모든것
-                    </div>
-                    <div class="course_tag">
-                        <span>챗GPT</span>
-                        <span>사무행정</span>
-                        <span>AI</span>
-                    </div>
-                </li>
-                <li>
-                    <div class="course_img" style="background-image: url(../img/educourse/courseimg_ex.png);" onclick="window.open('../edudetail/edudetail.html')">
-                        <span>ChatGPT</span>
-                      <button class="course_save_btn">
-                            <img src="../img/educourse/white heart.png" alt="">
-                        </button>
-                    </div>
-                    <div class="course_title">
-                        ChatGPT로 10분만에 일잘러 되기: 기초부터 실무까지 사무행정의 모든것
-                    </div>
-                    <div class="course_tag">
-                        <span>챗GPT</span>
-                        <span>사무행정</span>
-                        <span>AI</span>
-                    </div>
-                </li>
-                <li>
-                    <div class="course_img" style="background-image: url(../img/educourse/courseimg_ex.png);" onclick="window.open('../edudetail/edudetail.html')">
-                        <span>ChatGPT</span>
-                      <button class="course_save_btn">
-                            <img src="../img/educourse/white heart.png" alt="">
-                        </button>
-                    </div>
-                    <div class="course_title">
-                        ChatGPT로 10분만에 일잘러 되기: 기초부터 실무까지 사무행정의 모든것
-                    </div>
-                    <div class="course_tag">
-                        <span>챗GPT</span>
-                        <span>사무행정</span>
-                        <span>AI</span>
-                    </div>
-                </li>
-                <li>
-                    <div class="course_img" style="background-image: url(../img/educourse/courseimg_ex.png);" onclick="window.open('../edudetail/edudetail.html')">
-                        <span>ChatGPT</span>
-                      <button class="course_save_btn">
-                            <img src="../img/educourse/white heart.png" alt="">
-                        </button>
-                    </div>
-                    <div class="course_title">
-                        ChatGPT로 10분만에 일잘러 되기: 기초부터 실무까지 사무행정의 모든것
-                    </div>
-                    <div class="course_tag">
-                        <span>챗GPT</span>
-                        <span>사무행정</span>
-                        <span>AI</span>
-                    </div>
-                </li>
-                <li>
-                    <div class="course_img" style="background-image: url(../img/educourse/courseimg_ex.png);" onclick="window.open('../edudetail/edudetail.html')">
-                        <span>ChatGPT</span>
-                      <button class="course_save_btn">
-                            <img src="../img/educourse/white heart.png" alt="">
-                        </button>
-                    </div>
-                    <div class="course_title">
-                        ChatGPT로 10분만에 일잘러 되기: 기초부터 실무까지 사무행정의 모든것
-                    </div>
-                    <div class="course_tag">
-                        <span>챗GPT</span>
-                        <span>사무행정</span>
-                        <span>AI</span>
-                    </div>
-                </li>
-                <li>
-                    <div class="course_img" style="background-image: url(../img/educourse/courseimg_ex.png);" onclick="window.open('../edudetail/edudetail.html')">
-                        <span>ChatGPT</span>
-                      <button class="course_save_btn">
-                            <img src="../img/educourse/white heart.png" alt="">
-                        </button>
-                    </div>
-                    <div class="course_title">
-                        ChatGPT로 10분만에 일잘러 되기: 기초부터 실무까지 사무행정의 모든것
-                    </div>
-                    <div class="course_tag">
-                        <span>챗GPT</span>
-                        <span>사무행정</span>
-                        <span>AI</span>
-                    </div>
-                </li>
-                <li>
-                    <div class="course_img" style="background-image: url(../img/educourse/courseimg_ex.png);" onclick="window.open('../edudetail/edudetail.html')">
-                        <span>ChatGPT</span>
-                      <button class="course_save_btn">
-                            <img src="../img/educourse/white heart.png" alt="">
-                        </button>
-                    </div>
-                    <div class="course_title">
-                        ChatGPT로 10분만에 일잘러 되기: 기초부터 실무까지 사무행정의 모든것
-                    </div>
-                    <div class="course_tag">
-                        <span>챗GPT</span>
-                        <span>사무행정</span>
-                        <span>AI</span>
-                    </div>
-                </li>
-                <li>
-                    <div class="course_img" style="background-image: url(../img/educourse/courseimg_ex.png);" onclick="window.open('../edudetail/edudetail.html')">
-                        <span>ChatGPT</span>
-                      <button class="course_save_btn">
-                            <img src="../img/educourse/white heart.png" alt="">
-                        </button>
-                    </div>
-                    <div class="course_title">
-                        ChatGPT로 10분만에 일잘러 되기: 기초부터 실무까지 사무행정의 모든것
-                    </div>
-                    <div class="course_tag">
-                        <span>챗GPT</span>
-                        <span>사무행정</span>
-                        <span>AI</span>
-                    </div>
-                </li>
-                <li>
-                    <div class="course_img" style="background-image: url(../img/educourse/courseimg_ex.png);" onclick="window.open('../edudetail/edudetail.html')">
-                        <span>ChatGPT</span>
-                      <button class="course_save_btn">
-                            <img src="../img/educourse/white heart.png" alt="">
-                        </button>
-                    </div>
-                    <div class="course_title">
-                        ChatGPT로 10분만에 일잘러 되기: 기초부터 실무까지 사무행정의 모든것
-                    </div>
-                    <div class="course_tag">
-                        <span>챗GPT</span>
-                        <span>사무행정</span>
-                        <span>AI</span>
-                    </div>
-                </li>
-                <li>
-                    <div class="course_img" style="background-image: url(../img/educourse/courseimg_ex.png);" onclick="window.open('../edudetail/edudetail.html')">
-                        <span>ChatGPT</span>
-                      <button class="course_save_btn">
-                            <img src="../img/educourse/white heart.png" alt="">
-                        </button>
-                    </div>
-                    <div class="course_title">
-                        ChatGPT로 10분만에 일잘러 되기: 기초부터 실무까지 사무행정의 모든것
-                    </div>
-                    <div class="course_tag">
-                        <span>챗GPT</span>
-                        <span>사무행정</span>
-                        <span>AI</span>
-                    </div>
-                </li>
-                <li>
-                    <div class="course_img" style="background-image: url(../img/educourse/courseimg_ex.png);" onclick="window.open('../edudetail/edudetail.html')">
-                        <span>ChatGPT</span>
-                      <button class="course_save_btn">
-                            <img src="../img/educourse/white heart.png" alt="">
-                        </button>
-                    </div>
-                    <div class="course_title">
-                        ChatGPT로 10분만에 일잘러 되기: 기초부터 실무까지 사무행정의 모든것
-                    </div>
-                    <div class="course_tag">
-                        <span>챗GPT</span>
-                        <span>사무행정</span>
-                        <span>AI</span>
-                    </div>
-                </li>
-                <li>
-                    <div class="course_img" style="background-image: url(../img/educourse/courseimg_ex.png);" onclick="window.open('../edudetail/edudetail.html')">
-                        <span>ChatGPT</span>
-                      <button class="course_save_btn">
-                            <img src="../img/educourse/white heart.png" alt="">
-                        </button>
-                    </div>
-                    <div class="course_title">
-                        ChatGPT로 10분만에 일잘러 되기: 기초부터 실무까지 사무행정의 모든것
-                    </div>
-                    <div class="course_tag">
-                        <span>챗GPT</span>
-                        <span>사무행정</span>
-                        <span>AI</span>
-                    </div>
-                </li>
+            	<?
+				$i = 0;
+				$SQL = "SELECT a.* FROM CourseCyber a  $where  ORDER BY a.RegDate DESC, a.idx DESC LIMIT 0, 8";
+				$QUERY = mysqli_query($connect, $SQL);
+				if($QUERY && mysqli_num_rows($QUERY)){
+					while($ROW = mysqli_fetch_array($QUERY)){
+						extract($ROW);
+						$Keyword = str_replace(' ', '', $Keyword);
+						$Keyword_array = explode('#',$Keyword);
+						$ImgUrl = "/upload/Course/".$PreviewImage;
+				?>
+				<li>
+	            	<div class="course_img" style="background-image: url(<?=$ImgUrl?>); background-color: #e8ece7;" onclick="window.open('../edudetail/edudetail.html')" onclick="window.open('../edudetail/edudetail.html')">
+						<span><?=$Keyword_array[1]?></span>					
+						<button class="course_save_btn"><img src="../img/educourse/white heart.png" alt=""></button>
+					</div>
+					<div class="course_title"><?=$ContentsName?></div>
+					<div class="course_tag">
+					<? 
+					while (list($key,$value)=each($Keyword_array)){
+						if($key > 0){
+					?>
+					 	<span>#<?=$value?></span>
+					<?
+						}
+					}
+					?>
+					</div>
+				</li>
+				<?
+						$i++;
+					}
+				}
+				?>
             </ul>
-        <!--max20list-->
-    </div>
-    <div class="more_btn" id="load">
-        <button>+ 과정 더보기 </button>
-    </div>
+            <span style="display: none;">더이상 조회되는 컨텐츠가 없습니다.</span>
+        </div>
+	    <div class="more_btn" id="load">
+	        <button>+ 과정 더보기 </button>
+	    </div>
 </div>
 <!--wrap-->
 
-</body>
-    <!--플로팅배너-->
-    <ul class="float_banner">
-        <li><a href="https://pf.kakao.com/_kEcWxj/chat" target="_blank"><img src="../img/common/floating_kakao.png"></a></li>
-        <!--<li><a href="https://pf.kakao.com/_kEcWxj/chat" target="_blank"><img src="/images/common/floating_chatbot.png"></a></li>-->
-        <li><img src="../img/common/chatbot gif.gif" class="_chatbotBtns" style="width:70px;" /></li>
-        <li class="float_banner2"></li>
-    </ul>
-    <!--플로팅배너-->
-<footer>
-    <div class="btn">
-        <div id="wrap">
-            <div>
-                <a href="#">고용보험환급 안내</a>
-                <a href="#">이용약관</a>
-                <a href="#">개인정보처리방침</a>
-            </div>
-            <div>
-                <a href="#" class="point">교강사모듈</a>
-                <a href="#" class="point">관리자모듈</a>
-                <a href="#" class="point">우리끼리</a>
-            </div>
-        </div>
-    </div>
-    <div class="info">
-        <div id="wrap">
-            <strong>(주)HRDe 평생교육원</strong>
-            <ul>
-                <li>대표이사: 박병래</li><span class="bar"></span>
-                <li>사업자등록번호 : 591-87-02242</li><span class="bar"></span>
-                <li>통신판매업신고번호 : 제2022-용인기흥-1316호</li> <br>
-                <li>TEL : 1811-9530</li><span class="bar"></span>
-                <li>Email : hrde@hrde.co.kr</li> <br>
-                <li>address : 경기도 용인시 기흥구 흥덕1로 13 흥덕IT밸리 타워동 104, 105호</li><br>
-                <li>COPYRIGHT © (주)HRDE Inc. ALL RIGHTS RESERVED. 본 사이트 내의 컨텐츠는 저작권법 상의 보호를 받고 있습니다.</li>
-            </ul>
-        </div>
-    </div>
-    
-</footer>
+
+ <!--플로팅배너-->
+ <ul class="float_banner">
+     <li><a href="https://pf.kakao.com/_kEcWxj/chat" target="_blank"><img src="../img/common/floating_kakao.png"></a></li>
+     <!--<li><a href="https://pf.kakao.com/_kEcWxj/chat" target="_blank"><img src="/images/common/floating_chatbot.png"></a></li>-->
+     <li><img src="../img/common/chatbot gif.gif" class="_chatbotBtns" style="width:70px;" /></li>
+     <li class="float_banner2"></li>
+ </ul>
+ <!--플로팅배너-->
+<? include "../include/footer.html"; ?>
 
 <!--플로팅배너-->
 <script>
@@ -506,16 +177,33 @@
 </script>
 
 <!--more load-->
+<?
+$SQLA = "SELECT COUNT(*) FROM CourseCyber AS a $where ";
+$ResultA = mysqli_query($connect, $SQLA);
+$RowA = mysqli_fetch_array($ResultA);
+$TOT_NO = $RowA[0];
+mysqli_free_result($ResultA);
+?>
+
 <script>
 $(function(){
-    $('.course li').hide();
-    $(".course li").slice(0, 20).css("display", "block"); 
-    $("#load").click(function(e){
-        e.preventDefault();
-        $(".course li:hidden").slice(0, 20).fadeIn(200).css('display', 'block'); // 클릭시 more 갯수 지저정
-        if($(".course li:hidden").length == 0){ // 컨텐츠 남아있는지 확인
-            $('#load').fadeOut(100); // 컨텐츠 없을 시 버튼 사라짐
-        }
+	var clickNum = 1; //버튼을 클릭한 수
+	
+	$("#load").click(function(e){
+		var totNo = <?=$TOT_NO?>; //컨텐츠 총개수
+	   	var showNo = $(".course li").length; //현재 보여지는 컨텐츠 개수
+	   	var hiddenNo = totNo - showNo; //아직 보여지지 않은 컨텐츠 개수
+		
+		var pageStart = clickNum * 8;
+	   	
+	   	CourseAdd(totNo, showNo, hiddenNo, pageStart); //과정더보기		
+		clickNum ++;
+		
+		//컨텐츠가 없으면 버튼도 숨김처리
+		if(hiddenNo < 1){
+			$(".course span").show();
+			$('#load').fadeOut(100);
+	   	}
     });
 })
 </script>
