@@ -152,6 +152,9 @@
   justify-content: center;
   text-align: center;
   border-bottom: 1px solid;
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 .bottom_section .tab_btn_box .tab_btn {
   width: 33.3%;
@@ -180,12 +183,6 @@
 }
 .bottom_section .tab_btn_box .tab_btn:first-of-type::after {
   width: 0px;
-}
-.bottom_section .tab_btn_box.fixed {
-  position: fixed;
-  top: 0;
-  width: 1280px;
-  z-index: 10;
 }
 .bottom_section .content_wrap {
   margin: 10px 0 100px 0;

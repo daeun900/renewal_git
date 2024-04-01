@@ -1,0 +1,153 @@
+.group_tab_btn {
+  position: sticky;
+  top: 0;
+  border-bottom: 1px solid #ccc;
+  background-color: #fff;
+  z-index: 100;
+}
+.group_tab_btn ul {
+  display: flex;
+}
+.group_tab_btn ul li {
+  width: 100px;
+  text-align: center;
+}
+.group_tab_btn ul li a {
+  padding: 15px 0;
+  display: block;
+  font-size: 18px;
+  font-weight: bold;
+  color: #9c9c9c;
+}
+.group_tab_btn ul li.on {
+  border-bottom: 2px solid #222;
+}
+.group_tab_btn ul li.on a {
+  color: #222;
+}
+
+.group_con {
+  padding: 100px 0;
+}
+.group_con .title {
+  text-align: center;
+  margin-bottom: 50px;
+}
+.group_con .title strong {
+  display: block;
+  font-size: 40px;
+  line-height: 65px;
+  margin-bottom: 10px;
+}
+.group_con .title p {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.group_con.con1 .title {
+  margin-bottom: 80px;
+}
+.group_con.con1 .title span {
+  font-size: 30px;
+}
+.group_con.con1 .title strong {
+  font-weight: 400;
+}
+.group_con.con1 .title p {
+  font-weight: 400;
+}
+.group_con.con1 .content {
+  display: flex;
+  justify-content: space-around;
+}
+.group_con.con1 .content > div .img {
+  width: 130px;
+  height: 150px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+}
+.group_con.con1 .content > div .img img {
+  width: 100%;
+}
+.group_con.con1 .content > div .txt {
+  text-align: center;
+  margin-top: 30px;
+}
+.group_con.con1 .content > div .txt strong {
+  font-size: 20px;
+}
+.group_con.con1 .content > div .txt p {
+  margin-top: 15px;
+  line-height: 25px;
+}
+
+.group_con.con2 {
+  background-color: whitesmoke;
+}
+.group_con.con2 .title {
+  margin-bottom: 80px;
+}
+.group_con.con2 .content {
+  max-width: 1920px;
+  margin: 0 auto;
+}
+.group_con.con2 .content img {
+  width: 100%;
+}
+
+.group_con.con3 .content {
+  padding: 0 100px;
+}
+.group_con.con3 .content img {
+  width: 100%;
+}
+
+.group_con.con4 {
+  background-color: #f7f7f7;
+}
+.group_con.con4 .content {
+  padding: 0 130px;
+}
+.group_con.con4 .content img {
+  width: 100%;
+}
+
+.group_con.con5 .detail {
+  display: flex;
+  align-items: center;
+  padding: 15px 0;
+  border-bottom: 1px solid #ccc;
+}
+.group_con.con5 .detail .ttl {
+  font-size: 20px;
+  font-weight: bold;
+  width: 200px;
+}
+.group_con.con5 .detail .ttl img {
+  margin-right: 15px;
+}
+.group_con.con5 .detail ul {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  flex-grow: 1;
+}
+.group_con.con5 .detail ul li {
+  padding: 5px 20px;
+  border-right: 1px solid #ccc;
+}
+.group_con.con5 .detail ul li dt {
+  font-weight: bold;
+}
+.group_con.con5 .detail ul li dd {
+  line-height: 30px;
+}
+.group_con.con5 .detail ul li:last-of-type {
+  border-right: none;
+}
+.group_con.con5 .detail:last-of-type {
+  border-bottom: none;
+}
+.group_con.con5 .detail:last-of-type ul {
+  grid-template-columns: 3fr 1fr;
+}/*# sourceMappingURL=group.css.map */

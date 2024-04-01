@@ -75,7 +75,8 @@ input[type="radio"]:checked{  background-color: #357AF2;
 .fc222{color:#222;}
 .fc999{color: #999;}
 .fcred{color: #EF0000;}
-.fcblue{color: #2C5DB4;;}
+.fcblue{color: #2C5DB4;}
+.fcwhite{color: #fff;}
 
 /*font-weight*/
 .fwbold{font-weight: bold;}
@@ -84,6 +85,7 @@ input[type="radio"]:checked{  background-color: #357AF2;
 .fs12{font-size: 12px !important;}
 .fs14{font-size: 14px !important;}
 .fs20{font-size: 20px !important;}
+.fs30{font-size: 30px !important;}
 
 /* padding margin */
 .pt1 {padding-top:1px !important} 
@@ -124,6 +126,7 @@ input[type="radio"]:checked{  background-color: #357AF2;
 .pb70 {padding-bottom:70px !important;}
 .pb80 {padding-bottom:80px !important;}
 .pb100 {padding-bottom:100px !important;}
+.pb120 {padding-bottom:120px !important;}
 .pb150 {padding-bottom:150px !important;}
 .pb200 {padding-bottom:200px !important;}
 

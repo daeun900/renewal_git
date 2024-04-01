@@ -204,13 +204,13 @@
     <!--bottomsection-->
     <div class="bottom_section">
         <div class="tab_btn_box">
-            <div class="tab_btn" class="on" onclick="TabBtnClick(0)">
+            <div class="tab_btn tab01" class="on" onclick="TabBtnClick(0)">
                 <a href="#tab01">강의설명</a>
             </div>
-            <div class="tab_btn" onclick="TabBtnClick(1)">
+            <div class="tab_btn tab02" onclick="TabBtnClick(1)">
                 <a href="#tab02">강의목차</a>
             </div>
-            <div class="tab_btn" onclick="TabBtnClick(2)">
+            <div class="tab_btn tab03" onclick="TabBtnClick(2)">
                 <a href="#tab03">학습후기<span class="fcred">(4)</span></a>
             </div>
         </div>
@@ -233,7 +233,7 @@
             </div>
             <!--강의개요-->
             <!--학습목표-->
-            <div class="content" id="tab02">
+            <div class="content">
                 <span class="title">학습목표</span>
                 <p>
                     1. CX가 단순한 친절 및 서비스와 비교 시 무엇이 다른지 파악할 수 있다.<br>
@@ -246,7 +246,7 @@
             </div>
             <!--학습목표-->
             <!--강의목차-->
-            <div class="content">
+            <div class="content" id="tab02">
                 <span class="title">강의목차</span>
                 <p class="pl50">
                     <b><span>제 1장</span>요즘 기업이 열광하는 Customer Experience 한 번에 이해하기</b> <br>
@@ -420,19 +420,22 @@ $(document).ready(function() {
    $(window).on('scroll',function(){
         var scroll = $(window).scrollTop(); 
 
-        if(scroll>990){
-            $('.tab_btn_box').addClass('fixed')
-          }else{
-            $('.tab_btn_box').removeClass('fixed')     
+        if(scroll>$('#tab01').position().top){
+            $('.tab_btn').removeClass('on') 
+            $('.tab01').addClass('on') 
+        }
+        if(scroll>$('#tab02').position().top){
+            $('.tab_btn').removeClass('on') 
+            $('.tab02').addClass('on') 
+        }
+        if(scroll>$('#tab03').position().top - 30){
+            $('.tab_btn').removeClass('on') 
+            $('.tab03').addClass('on') 
         }
     });
 
   
 });
-function TabBtnClick(tab) {
-    $(".tab_btn").removeClass("on");
-    $(".tab_btn").eq(tab).addClass("on");
-    }
 </script>
 
 <!--modal-->
