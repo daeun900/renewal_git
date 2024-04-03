@@ -91,60 +91,38 @@
                 <strong>BEST</strong>
             </div>
             <div class="content">
-                <div class="side">
-                    <img src="../img/main/con2/side_1.png" alt="고용노동부" style="width: 163px;">
-                    <span>재직자</span>
-                    <p><span>국민내일배움카드</span> <br>
-                        원격훈련기관</p>
-                    <div class="img" onclick="location.href='../educourse/card_course.html'" >
-                        <img src="../img/main/con2/side_2.png" alt="일러스트">
-                        <span>내일배움카드 과정 보기 ▶</span>
-                    </div>
-                </div>
                 <div class="lecture_box">
                     <div class="more">
-                        <a href="#">더보기 <i class="ph ph-caret-right"></i></a>
+                        <a href="/cyber/educourse/all_course.html">더보기 <i class="ph ph-caret-right"></i></a>
                     </div>
-                    <ul>
+                     <ul>
+                     	<?
+                        $i = 0;
+						$SQL = "SELECT a.*, b.ServiceType, b.ContentsName, b.ctype, b.Del, b.UseYN , b.Keyword , b.PreviewImage
+                        		FROM BestContentsList AS a 
+								LEFT OUTER JOIN CourseCyber AS b ON a.LectureCode=b.LectureCode 
+								WHERE b.PackageYN='N' AND b.Del='N' AND a.gubun='0'
+								ORDER BY a.OrderByNum ASC, a.idx ASC LIMIT 4";
+						$QUERY = mysqli_query($connect, $SQL);
+                        if($QUERY && mysqli_num_rows($QUERY)){
+                            while($ROW = mysqli_fetch_array($QUERY)){
+                                extract($ROW);
+								$ImgUrl = "/upload/Course/".$PreviewImage;
+                        ?>
                         <li onclick="window.open('../edudetail/edudetail.html')">
                             <div class="img">
-                                <img src="" alt="">
+                                <img src="<?=$ImgUrl?>" alt="">
                             </div>
                             <div class="ttl">
-                                <span>명쾌하고 논리적으로 기획하는 </span>
-                                <p>일잘러 생각정리스킬</p>
+                                <!-- <span>명쾌하고 논리적으로 기획하는 </span>  -->
+                                <p><?=$ContentsName?></p>
                             </div>
                         </li>
-                        <li onclick="window.open('../edudetail/edudetail.html')">
-                            <div class="img">
-                                <img src="" alt="">
-                            </div>
-                            <div class="ttl">
-                                <span>CS실무자에게 필요한 CX스킬</span>
-                                <p>지금은 고객경험의 시대!
-                                    CX Accelerate</p>
-                            </div>
-                        </li>
-                        <li onclick="window.open('../edudetail/edudetail.html')">
-                            <div class="img">
-                                <img src="" alt="">
-                            </div>
-                            <div class="ttl">
-                                <span>왕초보 환영! 실무 SQL 입</span>
-                                <p>엑셀보다 쉽게 배우는 데이터
-                                    분석(feat. SQL)</p>
-                            </div>
-                        </li>
-                        <li onclick="window.open('../edudetail/edudetail.html')">
-                            <div class="img">
-                                <img src="" alt="">
-                            </div>
-                            <div class="ttl">
-                                <span>CS실무자에게 필요한 CX스킬</span>
-                                <p>지금은 고객경험의 시대!
-                                    CX Accelerate</p>
-                            </div>
-                        </li>
+                        <?
+                        	$i++;
+                            }
+                        }
+                        ?>
                      </ul>
                 </div>
                 <!--lecturebox-->
@@ -161,19 +139,23 @@
                 <span>키워드에 따라 클래스를 발견해보세요</span>
             </div>
             <ul class="keyword_list">
-                <li><a href="#">인공지능 AI</a></li>
-                <li><a href="#">빅데이터</a></li>
-                <li><a href="#">챗GPT</a></li>
-                <li><a href="#">IT 마케팅</a></li>
-                <li><a href="#">정보보안</a></li>
-                <li><a href="#">사무행정</a></li>
-                <li><a href="#">총무·인사</a></li>
-                <li><a href="#">경영기획</a></li>
-                <li><a href="#">마케팅</a></li>
-                <li><a href="#">세무 · 회계</a></li>
-                <li><a href="#">의사소통</a></li>
-                <li><a href="#">리더십</a></li>
-                <li><a href="#">팀워크</a></li>
+				<?
+				$i = 0;
+                $SQL = "SELECT Keyword, row_number() over(order by OrderByNum desc) AS Num
+						FROM ContentsKeyword
+						WHERE Del = 'N' AND UseYN = 'Y' AND Category = 0
+						ORDER BY OrderByNum LIMIT 0, 15";
+				$QUERY = mysqli_query($connect, $SQL);
+                if($QUERY && mysqli_num_rows($QUERY)){
+                	while($ROW = mysqli_fetch_array($QUERY)){
+                    	extract($ROW);
+				?>
+				<li <?if($keyChkVal == $Keyword){?>class="on"<?}?> ><a id="keyChk<?=$Num?>" href="/cyber/educourse/all_course.html?keyChkVal=<?=$Keyword?>" value="<?=$Keyword?>"><?=$Keyword?></a></li>
+				<?
+					$i++;
+					}
+				}
+				?>
             </ul>
         </div>
         <!--wrap-->
@@ -185,56 +167,38 @@
                 <strong>NEW</strong>
             </div>
             <div class="content">
-                <div class="side">
-                    <strong>WHY HRDE?</strong>
-                    <p><span>100% 자체개발</span> 교육품질보장</p>
-                    <p>보유과정 90%이상 <br>
-                        <span>국가직무능력표준(NCS)기반</span>설계</p>
-                </div>
                 <div class="lecture_box">
                     <div class="more">
-                        <a href="#">더보기 <i class="ph ph-caret-right"></i></a>
+                        <a href="/cyber/educourse/all_course.html">더보기 <i class="ph ph-caret-right"></i></a>
                     </div>
                      <ul>
+                        <?
+                        $i = 0;
+						$SQL = "SELECT a.*, b.ServiceType, b.ContentsName, b.ctype, b.Del, b.UseYN , b.Keyword , b.PreviewImage
+                        		FROM NewContentsList AS a 
+								LEFT OUTER JOIN CourseCyber AS b ON a.LectureCode=b.LectureCode 
+								WHERE b.PackageYN='N' AND b.Del='N' AND a.gubun='0'
+								ORDER BY a.OrderByNum ASC, a.idx ASC LIMIT 4";
+						$QUERY = mysqli_query($connect, $SQL);
+                        if($QUERY && mysqli_num_rows($QUERY)){
+                            while($ROW = mysqli_fetch_array($QUERY)){
+                                extract($ROW);
+								$ImgUrl = "/upload/Course/".$PreviewImage;
+                        ?>
                         <li onclick="window.open('../edudetail/edudetail.html')">
                             <div class="img">
-                                <img src="" alt="">
+                                <img src="<?=$ImgUrl?>" alt="">
                             </div>
                             <div class="ttl">
-                                <span>명쾌하고 논리적으로 기획하는 </span>
-                                <p>일잘러 생각정리스킬</p>
+                                <!-- <span>명쾌하고 논리적으로 기획하는 </span>  -->
+                                <p><?=$ContentsName?></p>
                             </div>
                         </li>
-                        <li onclick="window.open('../edudetail/edudetail.html')">
-                            <div class="img">
-                                <img src="" alt="">
-                            </div>
-                            <div class="ttl">
-                                <span>CS실무자에게 필요한 CX스킬</span>
-                                <p>지금은 고객경험의 시대!
-                                    CX Accelerate</p>
-                            </div>
-                        </li>
-                        <li onclick="window.open('../edudetail/edudetail.html')">
-                            <div class="img">
-                                <img src="" alt="">
-                            </div>
-                            <div class="ttl">
-                                <span>왕초보 환영! 실무 SQL 입</span>
-                                <p>엑셀보다 쉽게 배우는 데이터
-                                    분석(feat. SQL)</p>
-                            </div>
-                        </li>
-                        <li onclick="window.open('../edudetail/edudetail.html')">
-                            <div class="img">
-                                <img src="" alt="">
-                            </div>
-                            <div class="ttl">
-                                <span>CS실무자에게 필요한 CX스킬</span>
-                                <p>지금은 고객경험의 시대!
-                                    CX Accelerate</p>
-                            </div>
-                        </li>
+                        <?
+                        	$i++;
+                            }
+                        }
+                        ?>
                      </ul>
                 </div>
                 <!--lecturebox-->

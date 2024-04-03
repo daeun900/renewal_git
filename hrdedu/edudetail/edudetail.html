@@ -131,7 +131,7 @@
             $('html').css({overflow: 'hidden'});
         });
 
-        $('.close-btn').on('click', function() {
+        $('[class*=close-btn]').on('click', function() {
             $('.modal-bg').fadeOut();
             $(modalID).hide();
             $(modalID).removeAttr('style');
@@ -229,6 +229,6 @@
         </table>
     </div>
     <div class="submit_btn">
-        <button class="modal-btn">확인</button>
+        <button class="close-btn2">확인</button>
     </div>
 </div>

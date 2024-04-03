@@ -1,4 +1,4 @@
-<? include "../include/header.html"; ?>
+<? include '../include/header.html'; ?>
 <body>
 <div id="wrap">
     <div class="top_section">
@@ -193,7 +193,7 @@
                     <!--고용보험환급 테이블-->
                 </div>
                 <div class="button_wrap">
-                    <button class="course_save_btn modal-btn" href="#modal03"><img src="../img/edudetail/gray_heart.png" alt="관심과정">관심과정</button>
+                    <button class="course_save_btn" href="#modal03"><img src="../img/edudetail/gray_heart.png" alt="관심과정">관심과정</button>
                     <button class="enrolment_btn"  onclick="window.open('../payment/card_payment.html')">수강신청</buutton>
                     <button class="enrolment_link_btn" onclick="window.open('https://www.hrd.go.kr/hrdp/ma/pmmao/newIndexRenewal.do')">HRD-NET 1회차 수강신청 바로가기</button>
                 </div>
@@ -307,7 +307,7 @@
             </div>
             <!--학습방법-->
             <!--수료기준-->
-             <div class="content" style="border-bottom: none;">
+            <div class="content" style="border-bottom: none;">
                 <span class="title">수료기준</span>
                 <table>
                     <colgroup>
@@ -403,12 +403,45 @@
 }
 </script>
 
-<!--관심강의 하트-->
+<!--관심강의 버튼 toggle-->
 <script>
 $(document).ready(function() {
-$(".course_save_btn").click(function(){
-  $(".course_save_btn img").attr("src", "../img/edudetail/red_heart.png");
-});
+
+    (function($) {
+    $.fn.clickToggle = function(func1, func2) {
+        var funcs = [func1, func2];
+        this.data('toggleclicked', 0);
+        this.click(function() {
+            var data = $(this).data();
+            var tc = data.toggleclicked;
+            $.proxy(funcs[tc], this)();
+            data.toggleclicked = (tc + 1) % 2;
+        });
+        return this;
+    };
+}(jQuery));
+
+$(".course_save_btn").clickToggle(
+    function(){
+        $(".course_save_btn img").attr("src", "../img/edudetail/red_heart.png");
+
+        $('.modal-bg').fadeIn();
+        $('.modal-wrap').hide();
+        $('#modal03').show();
+        $('html').css({overflow: 'hidden'});
+
+            $('.close-btn').on('click', function() {
+            $('.modal-bg').fadeOut();
+            $('#modal03').hide();
+            $('#modal03').removeAttr('style');
+
+            $('html').removeAttr('style');
+            });
+        },
+    function(){
+        $(".course_save_btn img").attr("src", "../img/edudetail/gray_heart.png");
+    }
+    )
 });
 </script>
 

@@ -103,12 +103,17 @@
 
 <!--답변여닫기-->
 <script>
-    function ContentView(i) {
-	$($("div[id='ContentElement']")).not("div[id='ContentElement']:eq(" + i + ')').hide();
-	$("div[id='ContentElement']:eq(" + i + ')').show();
+    $(document).ready(function(){
+        $('ul li #ContentView').click(function(){
+            if($(this).next($('#ContentElement')).is(":visible")){
+                $(this).find('i').toggleClass("ph-caret-up ph-caret-down");
+                $(this).next($('#ContentElement')).slideUp();
+            }else{
 
-    $($("div[id='ContentView']")).not("div[id='ContentView']:eq(" + i + ')').find('.ph-caret-down').attr('class','ph-caret-up ph-bold');
-    $("div[id='ContentView']:eq(" + i + ')').find('.ph-caret-up').attr('class','ph-caret-down ph-bold');
-}
+                $(this).find('i').toggleClass("ph-caret-down ph-caret-up");
+                $(this).next($('#ContentElement')).slideDown();
+            }
+        });
+    });
 
 </script>

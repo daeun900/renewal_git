@@ -11,8 +11,8 @@ include $_SERVER['DOCUMENT_ROOT'] . "/include/include_function.php"; //DB연결 
     <link rel="stylesheet" href="../../common/css/base.css?ver=240328">
     <link rel="stylesheet" href="../../common/css/common.css?ver=240328">
     <link rel="stylesheet" href="../css/common.css?ver=240328">
-    <link rel="stylesheet" href="../css/main.css?ver=240328">
-    <link rel="stylesheet" href="../css/educourse.css?ver=240328-2">
+    <link rel="stylesheet" href="../css/main.css?ver=240403">
+    <link rel="stylesheet" href="../css/educourse.css?ver=240401-2">
     <link rel="stylesheet" href="../css/edudetail.css?ver=240329">
     <link rel="stylesheet" href="../css/mypage.css?ver=240328">
     <link rel="stylesheet" href="../css/card.css?ver=240328-2">
@@ -33,11 +33,16 @@ include $_SERVER['DOCUMENT_ROOT'] . "/include/include_function.php"; //DB연결 
         <!--wrap-->
         <div id="wrap">
             <ul>
-                <li><a href="#">평생교육원</a></li>
+                <li><a href="../../hrdedu/main/main.html">평생교육원</a></li>
                 <li class="on"><a href="../main/main.html">사이버연수원</a></li>
             </ul>
             <div class="btn">
                 <a href="../../public/member/login.html?path=C">로그인</a>
+                <?
+                if(isset($_SESSION['LoginMemberID'])){ ?>
+                <a href="../../public/member/logout.php">로그아웃1</a>
+                <?}?>
+                 <a href="../../public/member/logout.php">로그아웃2</a>
                 <a href="../../public/member/join.html">회원가입</a>
                 <a href="../support/ask.html">1:1 상담</a>
             </div>
@@ -82,10 +87,10 @@ include $_SERVER['DOCUMENT_ROOT'] . "/include/include_function.php"; //DB연결 
                 </ul></li>
             <li class="menu"><a href="../educourse/skillup_course.html">직무스킬업</a>
                 <ul class="sub_menu">
-                    <li><a href="../educourse/skillup_course.html">NCS 직업교육</a></li>
-                    <li><a href="../educourse/skillup_course.html">직장인 핵심스킬</a></li>
-                    <!-- <li><a href="#">OA 달인</a></li>
-                    <li><a href="#">자격증</a></li>-->
+                    <li><a href="../educourse/skillup_course.html?CategoryC=1">NCS 직업교육</a></li>
+                    <li><a href="../educourse/skillup_course.html?CategoryC=2">직장인 핵심스킬</a></li>
+                    <!-- <li><a href="../educourse/skillup_course.html?CategoryC=3">OA 달인</a></li>
+                    <li><a href="../educourse/skillup_course.html?CategoryC=4">자격증</a></li>-->
                 </ul>
             </li>
         </ul>

@@ -114,20 +114,6 @@
 .main_con4 .content {
   display: flex;
 }
-.main_con2 .content .side,
-.main_con4 .content .side {
-  width: 25%;
-}
-@media (max-width: 1200px) {
-  .main_con2 .content .side,
-  .main_con4 .content .side {
-    display: none;
-  }
-}
-.main_con2 .content .lecture_box,
-.main_con4 .content .lecture_box {
-  width: 75%;
-}
 .main_con2 .content .lecture_box .more,
 .main_con4 .content .lecture_box .more {
   text-align: right;
@@ -151,18 +137,24 @@
 }
 .main_con2 .content .lecture_box ul li .img,
 .main_con4 .content .lecture_box ul li .img {
-  width: 222.5px;
-  height: 222.5px;
+  width: 305px;
+  height: 180px;
   background-color: #e3e3e3;
+  border-radius: 20px;
+  overflow: hidden;
 }
-.main_con2 .content .lecture_box ul li .ttl span,
-.main_con4 .content .lecture_box ul li .ttl span {
-  color: #9c9c9c;
-  line-height: 35px;
+.main_con2 .content .lecture_box ul li .img img,
+.main_con4 .content .lecture_box ul li .img img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .main_con2 .content .lecture_box ul li .ttl p,
 .main_con4 .content .lecture_box ul li .ttl p {
   font-weight: 400;
+  line-height: 24px;
+  margin-top: 10px;
 }
 
 .main_con3 {
