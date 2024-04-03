@@ -34,7 +34,7 @@ header {
     margin: 0 auto;
     text-align: center;
     .title {
-        margin-bottom: 60px;
+        margin-bottom: 55px;
         .logo {
             width: 180px;
             margin: 0 auto;
@@ -360,6 +360,11 @@ header {
         text-align: left;
         line-height: 25px;
         font-size: 15px;
+    }
+    > em{
+        display: block;
+        font-size: 18px;
+        padding: 20px 20px 10px 20px;
     }
     table {
         border-top: 1px solid;

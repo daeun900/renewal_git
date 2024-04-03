@@ -39,7 +39,7 @@ header .top_header #wrap .logo img {
   }
 }
 #member_wrap .title {
-  margin-bottom: 60px;
+  margin-bottom: 55px;
 }
 #member_wrap .title .logo {
   width: 180px;
@@ -353,6 +353,11 @@ header .top_header #wrap .logo img {
   text-align: left;
   line-height: 25px;
   font-size: 15px;
+}
+.modal-wrap > em {
+  display: block;
+  font-size: 18px;
+  padding: 20px 20px 10px 20px;
 }
 .modal-wrap table {
   border-top: 1px solid;
