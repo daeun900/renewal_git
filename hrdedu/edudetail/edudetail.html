@@ -1,0 +1,234 @@
+<? include '../include/header.html'; ?>
+
+<body>
+    <div id="wrap">
+        <div class="edudetail_top">
+            <div class="lecture_title">
+                <span class="pc">PC</span>
+                <span class="mobile">모바일</span>
+                <span class="refund">사업주 환급</span>
+                <strong>NCS가 제시하는 적정진료 관리 및 보험급여 심사청구 실무_기업직업훈련</strong>
+            </div>
+            <div class="flex_box">
+                <div class="left">
+                    <div class="lecture_img">
+                        <img src="../img/educourse/courseimg_ex.png" alt="과정이미지">
+                    </div>
+                    <button>과정 맛보기</button>
+                </div>
+                <!--left-->
+                <div class="right">
+                    <div class="lecture_detail">
+                        <p><span>교육대상</span>사무행정분야에 대한 직무능력향상을 필요로 하는 고용 보험 가입 사업장의 근로자 및 채용예정자</p>
+                        <p><span>교육시간</span>31차시 / 32시간</p>
+                    </div>
+                    <div class="button_wrap">
+                        <button class="apply modal-btn" href="#modal02">학습신청</button>
+                        <button class="modal-btn" href="#modal01">간편문의</button>
+                    </div>
+                </div>
+                <!--rigt-->
+            </div>
+            <!--flexbox-->
+        </div>  
+        <!--top-->
+        <div class="edudetail_bottom">
+            <div>
+                <div class="title">학습과정</div>
+                <div class="content">
+                    <img src="../img/edudetail/edu_progress.png" alt="인트로>학습>돌발퀴즈>학습>아웃트로">
+                </div>
+            </div>
+            <div>
+                <div class="title">학습목표</div>
+                <div class="content">
+                    <p>1. 영유아의 행동 관찰을 통해 영유아의 특성과 문제를 파악하고 관찰자료를 평가하여 영유아 지도에 필요한 사항을 도출하는 능력을 함양할 수 있다.</p>
+                    <p>2. 발달적으로 어려움이 있는 영유아의 행동 사례를 관찰, 분석, 선별하고, 사례별 발달지원 계획과 지원, 부모상담과 전문가를 연계할 수 있는 능력을 함양할 수 있다.</p>
+                    <p>3. 발달적으로 어려움이 있는 장애아를 위해 지도 및 상담의 내용과 방법을 계획·결정하여 지원하는 능력을 함양할 수 있다.</p>
+                </div>
+            </div>
+            <div>
+                <div class="title">수료기준</div>
+                <div class="content">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>항목</th>
+                                <th>진도율</th>
+                                <th>진행단계평가</th>
+                                <th>최종평가</th>
+                                <th>과제형 평가</th>
+                                <th>수료기준</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>평가비율</td>
+                                <td>0%</td>
+                                <td>10%</td>
+                                <td>80%</td>
+                                <td>10%</td>
+                                <td rowspan="2">60 이상</td>
+                            </tr>
+                            <tr>
+                                <td>수료기준</td>
+                                <td>80% 이상</td>
+                                <td>있음 (총 100점)</td>
+                                <td>있음 (총 100점)</td>
+                                <td class="br">있음 (총 100점)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div>
+                <div class="title">교육비</div>
+                <div class="content">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>총비용</th>
+                                <th colspan="6">환급비</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>147,840 원</td>
+                                <th>우선지원기업</th>
+                                <td>147,840 원</td>
+                                <th>대규모(1,000인 미만)</th>
+                                <td>0 원</td>
+                                <th class="br">대규모(10,000인 이상)</th>
+                                <td>0 원</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--wrap-->
+</body>
+
+
+<? include "../include/footer.html"; ?>
+
+<!--모달팝업-->
+
+<script>
+        jQuery(document).ready(function() {
+    $('.modal-btn').each(function() {
+        var modalID = $(this).attr('href');
+    
+        $(this).on('click', function(e) {
+            e.preventDefault();
+
+            $('.modal-bg').fadeIn();
+            
+            $('.modal-wrap').hide();
+            $(modalID).show();
+
+            $('html').css({overflow: 'hidden'});
+        });
+
+        $('.close-btn').on('click', function() {
+            $('.modal-bg').fadeOut();
+            $(modalID).hide();
+            $(modalID).removeAttr('style');
+
+            $('html').removeAttr('style');
+        });
+    });
+});
+</script>
+<style> 
+    .modal-bg {display:none;width:100%;height:100%;position:fixed;top:0;left:0;right:0;background: rgba(0, 0, 0, 0.6);z-index:999;}
+    .modal-wrap {display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#fff;z-index:1000;  padding: 50px;}
+    .modal-wrap h2{ font-size: 30px; font-weight: bold; line-height: 50px;}
+    .modal-wrap .close-btn { position: absolute;cursor: pointer;  top: 50px; right: 50px;}
+    .modal-wrap .close-btn i {font-size: 35px;}
+</style>
+<!--modal01-->
+<!--간편문의 팝업-->
+<div class="modal-bg"></div>
+<div id="modal01" class="modal-wrap">
+    <div class="close-btn">
+        <i class="ph-thin ph-x"></i>
+    </div>
+    <h2>간편문의</h2>
+    <div class="input_wrap mt50">
+        <p class="title">이름</p>
+        <div class="input_box">
+            <input type="text">
+        </div>
+    </div>
+    <div class="input_wrap">
+        <p class="title">전화번호</p>
+        <div class="input_box">
+            <div class="phonenumber_input">
+                <input type="text" name="" id="Mobile01" maxlength="3" > - <input type="text" name="" id="Mobile02" maxlength="4"> - <input type="text" name="" id="Mobile03" maxlength="4" > 
+            </div>
+        </div>
+    </div>
+    <div class="input_wrap">
+        <div class="input_wrap">
+            <p class="title">이메일</p>
+            <div class="input_box">
+                <input type="text">
+            </div>
+        </div>
+    </div>
+    <div class="input_wrap">
+        <div class="input_wrap">
+            <p class="title">문의내용</p>
+            <div class="input_box">
+                <textarea name="" id="" cols="30" rows="10" placeholder="내용을 입력해 주세요" class="input-content "></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="input_wrap mt20">
+        <p class="title">보안 코드</p>
+        <div class="input_box captcha_box">
+            <div class="captcha"><img src="../img/support/captcha_ex.PNG" alt=""></div>
+            <input type="text" placeholder="왼쪽의 보안코드를 입력해주세요." class="input-title">
+        </div>
+    </div>
+    <div class="agree_wrap">
+        <input type="checkbox" name="agree" id="">
+        <label for="agree">개인정보수집방침에 동의합니다.</label>
+        <button>내용보기</button>
+    </div>
+    <div class="submit_btn">
+        <button class="modal-btn">등록</button>
+    </div>
+    
+</div>
+<!--modal01-->
+
+<!--modal02-->
+<!--학습신청 팝업-->
+<div class="modal-bg"></div>
+<div id="modal02" class="modal-wrap">
+    <div class="close-btn">
+        <i class="ph-thin ph-x"></i>
+    </div>
+    <h2>학습신청</h2>
+    <div class="tableTypeA">
+        <table>
+            <colgroup>
+                <col width="620px">
+            </colgroup>
+            <tr>
+                <th> 산업안전보건교육_무재해사업장_기타사업분야_작업낸용변경근로자</th>
+            </tr>
+            <tr>
+                <td class="pt40 pb40">
+                    <b>신청 가능한 교육 기간이 없습니다.</b>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="submit_btn">
+        <button class="modal-btn">확인</button>
+    </div>
+</div>

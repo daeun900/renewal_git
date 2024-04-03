@@ -47,6 +47,50 @@ header {
             }
         }
     }
+    /*학습지원센터 헤더*/
+    .middle_header {
+        #wrap {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            .left {
+                display: flex;
+                align-items: center;
+                .logo {
+                    width: 250px;
+                    margin-right: 30px;
+                    cursor: pointer;
+                    img {
+                        width: 100%;
+                    }
+                }
+                h1 {
+                    font-size: 30px;
+                    font-weight: bold;
+                    line-height: 60px;
+                }
+            }
+            .right {
+                font-weight: 400;
+                a {
+                    padding: 0 15px;
+                }
+                a:hover,a.on{
+                    color:#3A87EF;
+                }
+                .point {
+                    color: #fff;
+                    background-color: #3252a3;
+                    padding: 5px 14px;
+                    border-radius: 20px;
+                }
+                i {
+                    margin-right: 9px;
+                }
+            }
+        }
+    }
 }
 
 .header {
@@ -261,5 +305,74 @@ header {
         border-bottom: 8px solid transparent;
         border-top: 8px solid #fff;
         border-right: 5px solid transparent;
+    }
+}
+
+/*페이지 넘버*/
+.pagination {
+    padding: 20px 0;
+    ol {
+        display: flex;
+        justify-content: center;
+        li {
+            margin: 6px;
+            width: 25px;
+            height: 25px;
+            text-align: center;
+            cursor: pointer;
+        }
+        li.on {
+            color: #fff;
+            background-color: #2d2d2d;
+            border-radius: 50%;
+        }
+    }
+}
+
+/*공지사항,학습자료실 게시판*/
+.tableTypeA_top{
+    .title{
+        font-size: 24px;
+        font-weight: 600;
+        span{margin-right: 10px;}
+    }
+    .detail{
+        overflow: hidden;
+        margin: 20px 0;
+        > div{float: left;
+            font-size: 13px;
+            span{margin-right: 10px;font-weight: 500;}
+        }
+        .date{margin-right: 30px;}
+        .view{margin-left: 30px;}
+    }
+}
+.tableTypeA{
+    margin-top: 20px;
+    margin-bottom: 40px;
+    table{width: 100%;
+        border-top: 2px solid;
+        tr{border-bottom: 1px solid ;}
+        th,td{padding: 20px 0; text-align: center;}
+        th{background-color: whitesmoke;}
+        td{a{
+            display: block;
+        }}
+        img.download{width: 26px;}
+        img.download_view{width: 20px; margin-right: 20px;}
+        .content{
+            padding: 20px 0;
+            text-align: left;
+        }
+    }
+}
+
+/*전화번호 input*/
+.phonenumber_input {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    input {
+        width: 30% 
     }
 }
