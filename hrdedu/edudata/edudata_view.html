@@ -1,0 +1,177 @@
+<? include '../include/header.html'; ?>
+
+<body>
+    <!-- 메인배너 -->
+    <div class="mainbanner_wrap mb30">
+        <div class="mainbanner fcwhite" style="background-image: url(../img/edudata/banner.jpg); height:460px;">
+            <div id="wrap">
+                <span class="top">학습에 필요한 자료 모음집</span>
+                <strong>학습자료실</strong>
+                <span class="bottom mt10">모든 자료가 PDF형식으로 구성되어 언제 어디서나 활용 가능! <br>
+                    HRDe 평생교육원은 검증된 자료만을 제공합니다.</span>
+            </div>
+        </div>
+        <ul class="sub_gnb edudata">
+            <li class="on"><a href="#">경영·사무</a></li>
+            <li><a href="#">보건·의료</a></li>
+            <li><a href="#">보육</a></li>
+            <li><a href="#">4차 산업</a></li>
+            <li><a href="#">법정의무·기타</a></li>
+        </ul>
+    </div>
+    <!-- 메인배너 -->
+    <div class="edudata_content">
+        <div id="wrap">
+            <div class="tableTypeA_top">
+                <div class="title">
+                    <미래로 가는 버스_메타버스를 모르면 바보가 된다> 학습자료
+                </div>
+                <div class="detail">
+                    <div class="date">
+                        <span>등록일</span>
+                        2023-05-19
+                    </div>
+                    <div class="bar"></div>
+                    <div class="view">
+                        <span>조회</span>
+                        797
+                    </div>
+                </div>
+            </div>
+            <div class="tableTypeA">
+                <table>
+                    <colgroup>
+                        <col width="200px">
+                        <col width="">
+                    </colgroup>
+                    <tr>
+                        <th>첨부파일 다운로드</th>
+                        <td class="al pl20">
+                            <a href=""><img src="../img/edudata/icon_black.png" alt="파일아이콘" class="download_view">HRDE평생교육원 이용약관, 개인정보처리방침, 마케팅 안내 동의</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="content">
+                            <span class="fcskyblue">공지</span>"미래로 가는 버스_메타버스를 모르면 바보가 된다" 학습 자료 입니다. <br>
+                            <br>
+                            학습 자료를 활용하시어 교육에 도움 되시길 바랍니다. ^-^<br>
+                            <br>
+                            <br>
+                            ★ 학습 자료 키워드 검색 방법 ★<br>
+                            <br>
+                                - ​수강 중이신 학습 자료 다운<br>
+                                <br>
+                                - 학습 자료 안에서 Ctrl+F 동시 클릭 후 키워드 검색<br>
+                                <br>
+                                <br>
+                            아래 이미지 사진(예시용) <br>
+                            <br>
+                            검색 키워드 ex : 메타버스, 증강현실, 원격교육
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="button_wrap">
+                <button class="save modal-btn" href="#modal01">학습자료 찜하기</button>
+                <button onclick="location.href='edudata.html'">목록</button>
+            </div>
+        </div>
+        <!--wrap-->
+    </div>
+   
+</body>
+<? include "../include/footer.html"; ?>
+
+<!--관심강의 버튼 toggle-->
+<script>
+    $(document).ready(function() {
+    
+        (function($) {
+        $.fn.clickToggle = function(func1, func2) {
+            var funcs = [func1, func2];
+            this.data('toggleclicked', 0);
+            this.click(function() {
+                var data = $(this).data();
+                var tc = data.toggleclicked;
+                $.proxy(funcs[tc], this)();
+                data.toggleclicked = (tc + 1) % 2;
+            });
+            return this;
+        };
+    }(jQuery));
+    
+    $(".modal-btn").clickToggle(
+        function(){
+            $(".modal-btn").text("학습자료 찜 취소하기");
+    
+            $('.modal-bg').fadeIn();
+            $('.modal-wrap').hide();
+            $('#modal01').show();
+            $('html').css({overflow: 'hidden'});
+    
+                $('.close-btn').on('click', function() {
+                $('.modal-bg').fadeOut();
+                $('#modal01').hide();
+                $('#modal01').removeAttr('style');
+    
+                $('html').removeAttr('style');
+                });
+            },
+        function(){
+            $(".modal-btn").text("학습자료 찜하기");
+
+            $('.modal-bg').fadeIn();
+            $('.modal-wrap').hide();
+            $('#modal02').show();
+            $('html').css({overflow: 'hidden'});
+    
+                $('[class*=close-btn]').on('click', function() {
+                $('.modal-bg').fadeOut();
+                $('#modal02').hide();
+                $('#modal02').removeAttr('style');
+    
+                $('html').removeAttr('style');
+                });
+            },
+        )
+    });
+</script>
+
+<style> 
+    .modal-bg {display:none;width:100%;height:100%;position:fixed;top:0;left:0;right:0;background: rgba(0, 0, 0, 0.6);z-index:999;}
+    .modal-wrap {display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#fff;z-index:1000;}
+    .modal-wrap .close-btn { position: absolute;cursor: pointer;}
+    .modal-wrap .close-btn i {font-size: 35px;}
+</style>
+
+<!--학습자료찜하기 팝업-->
+<div class="modal-bg"></div>
+<div id="modal01" class="modal-wrap complete_popup">
+    <div class="close-btn">
+        <i class="ph-thin ph-x"></i>
+    </div>
+    <div class="complete_inner">
+        <i class="ph-fill ph-check-circle"></i>
+        <strong>학습자료 찜하기 완료</strong>
+        <p>학습자료 찜하기가 완료되었습니다. <br>
+            온라인학습실 > 자료/상담관리에서 확인하실 수 있습니다.</p>
+    </div>
+    <div class="btn">
+        <a href="#">온라인 학습실 바로가기</a>
+    </div>
+</div>
+
+<div class="modal-bg"></div>
+<div id="modal02" class="modal-wrap complete_popup">
+    <div class="close-btn">
+        <i class="ph-thin ph-x"></i>
+    </div>
+    <div class="complete_inner">
+        <i class="ph-fill ph-check-circle"></i>
+        <strong>학습자료 찜 취소하기 완료</strong>
+        <p>학습자료 찜 취소하기가 완료되었습니다.</p>
+    </div>
+    <div class="btn">
+        <a class="close-btn2">확인</a>
+    </div>
+</div>

@@ -1,0 +1,77 @@
+<? include '../include/header.html'; ?>
+
+<body>
+    <!-- 메인배너 -->
+    <div class="mainbanner_wrap mb30">
+        <div class="mainbanner fcwhite" style="background-image: url(../img/edudata/banner.jpg); height:460px;">
+            <div id="wrap">
+                <span class="top">학습에 필요한 자료 모음집</span>
+                <strong>학습자료실</strong>
+                <span class="bottom mt10">모든 자료가 PDF형식으로 구성되어 언제 어디서나 활용 가능! <br>
+                    HRDe 평생교육원은 검증된 자료만을 제공합니다.</span>
+            </div>
+        </div>
+        <ul class="sub_gnb edudata">
+            <li class="on"><a href="#">경영·사무</a></li>
+            <li><a href="#">보건·의료</a></li>
+            <li><a href="#">보육</a></li>
+            <li><a href="#">4차 산업</a></li>
+            <li><a href="#">법정의무·기타</a></li>
+        </ul>
+    </div>
+    <!-- 메인배너 -->
+    <div class="edudata_content">
+        <div id="wrap">
+            <div class="edudata_top">
+                <div class="search_box">
+                    <input name="sw" id="sw" type="text" title="검색어 입력" placeholder="검색어를 입력해주세요">
+                    <span class="search_btn" onclick="Javascript:BoardSearch();"><i class="ph ph-magnifying-glass"></i></span>
+                </div>
+                <div class="count">총 <span>2</span>건</div>
+            </div>
+            <div class="tableTypeA">
+                <table>
+                    <colgroup>
+                        <col width="10%">
+                        <col width="">
+                        <col width="10%">
+                        <col width="15%">
+                        <col width="10%">
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th>번호</th>
+                            <th>제목</th>
+                            <th>파일</th>
+                            <th>등록일</th>
+                            <th>조회</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td class="al"><a href="edudata_view.html"> NCS기반 회사의 꼼꼼한 살림꾼 알잘딱깔센 스마트워커</a></td>
+                            <td><img class="download"  src="../img/edudata/icon_gray.png" alt="파일아이콘"></td>
+                            <td>2024-02-24</td>
+                            <td>45</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td class="al"><a href="edudata_view.html"> NCS기반 회사의 꼼꼼한 살림꾼 알잘딱깔센 스마트워커</a></td>
+                            <td><img class="download" src="../img/edudata/icon_gray.png" alt="파일아이콘"></td>
+                            <td>2024-02-24</td>
+                            <td>45</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="pagination">
+                <ol>
+                    <li class="on"><a href="javascript:pageRun(1);" style="color: white;">1</a></li>
+                </ol>
+            </div>
+        </div>
+        <!--wrap-->
+    </div>
+</body>
+<? include "../include/footer.html"; ?>
