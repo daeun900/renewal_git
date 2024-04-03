@@ -1,99 +1,4 @@
-<?php
-include $_SERVER['DOCUMENT_ROOT'] . "/include/include_function.php"; //DB연결 및 각종 함수 정의
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
-    <title>HRDe평생교육원</title>
-    <script type="text/javascript" src="../../common/js/jquery-2.1.4.js"></script>
-    <script src="../js/menu.js?ver=20231207"></script>
-    <link rel="stylesheet" href="../../common/css/base.css?ver=2">
-    <link rel="stylesheet" href="../../common/css/common.css?ver=4">
-    <link rel="stylesheet" href="../css/common.css">
-    <link rel="stylesheet" href="../css/main.css">
-    <link rel="stylesheet" href="../css/group.css">
-    <link rel="stylesheet" href="../css/educourse.css">
-    <script src="https://kit.fontawesome.com/ebace215db.js" crossorigin="anonymous"></script>
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
-</head>
-<header>
-    <div class="top_header">
-        <!--wrap-->
-        <div id="wrap">
-            <ul>
-                <li class="on"><a href="../main/main.html">평생교육원</a></li>
-                <li ><a href="#">사이버연수원</a></li>
-            </ul>
-            <div class="btn">
-                <a href="../../public/member/login.html?path=C">로그인</a>
-                <a href="../../public/member/join.html">회원가입</a>
-                <a href="../support/ask.html">1:1 상담</a>
-            </div>
-        </div>
-        <!--wrap-->
-    </div>
-    <div class="header">
-        <div id="wrap">
-            <div class="logo"><a href="/new/main/main.html"><img src="../img/common/logo.png" alt="회사로고"></a></div>
-            <div class="gnb">
-                <ul class="dropdownmenu">
-                    <li class="menu"><a href="#" class="depth1">교육원소개</a>
-                        <ul>
-                            <li><a href="#">교육원 소개</a></li>
-                        </ul>
-                    </li>
-                    <li class="menu"><a href="#" class="depth1">법정의무교육</a>
-                        <ul>
-                            <li><a href="#">전체</a></li>
-                            <li><a href="#">법정의무교육</a></li>
-                            <li><a href="#">산업안전보건교육</a></li>
-                            <li><a href="#">중대재해처벌법</a></li>
-                            <li><a href="#">의료기관</a></li>
-                        </ul>
-                    </li>
-                    <li class="menu"><a href="#" class="depth1">직무능력향상교육</a>
-                        <ul>
-                            <li><a href="#">디지털융합훈련</a></li>
-                            <li><a href="#">보건</a></li>
-                            <li><a href="#">보육</a></li>
-                            <li><a href="#">일반기업</a></li>
-                        </ul>
-                    </li>
-                    <li class="menu"><a href="#" class="depth1">학습지원센터</a>
-                        <ul>
-                            <li><a href="#">공지사항</a></li>
-                            <li><a href="#">자주묻는 질문</a></li>
-                            <li><a href="#">1:1 문의 </a></li>
-                            <li><a href="#">PC원격지원</a></li>
-                        </ul>
-                    </li>
-                    <li class="menu"><a href="#" class="depth1">학습자료실</a>
-                        <ul>
-                            <li><a href="#">경영·사무</a></li>
-                            <li><a href="#">보건·의료</a></li>
-                            <li><a href="#">보육</a></li>
-                            <li><a href="#">4차산업</a></li>
-                            <li><a href="#">법정의무·기타</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-            <div class="button">
-                <a href="#" class="point"><i class="ph ph-sign-out"></i>나의 학습실</a>
-            </div>
-        </div>
-        <!--wrap-->
-        <div class="nav_back"></div>
-    </div>
-    <!--header-->
-</header>
+<? include '../include/header.html'; ?>
 
 <body>
 <!-- 메인배너 -->
@@ -316,6 +221,8 @@ include $_SERVER['DOCUMENT_ROOT'] . "/include/include_function.php"; //DB연결 
     <button>+ 과정 더보기 </button>
     </div>
 </div>
+
+<? include "../include/footer.html"; ?>
 
 <!--more load-->
 <script>

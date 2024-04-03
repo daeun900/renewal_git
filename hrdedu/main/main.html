@@ -1,97 +1,4 @@
-<?php
-include $_SERVER['DOCUMENT_ROOT'] . "/include/include_function.php"; //DB연결 및 각종 함수 정의
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
-    <title>HRDe평생교육원</title>
-    <script type="text/javascript" src="../../common/js/jquery-2.1.4.js"></script>
-    <script src="../js/menu.js?ver=20231207"></script>
-    <link rel="stylesheet" href="../../common/css/base.css?ver=2">
-    <link rel="stylesheet" href="../../common/css/common.css?ver=4">
-    <link rel="stylesheet" href="../css/common.css">
-    <link rel="stylesheet" href="../css/main.css">
-    <script src="https://kit.fontawesome.com/ebace215db.js" crossorigin="anonymous"></script>
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
-</head>
-<header>
-    <div class="top_header">
-        <!--wrap-->
-        <div id="wrap">
-            <ul>
-                <li class="on"><a href="../main/main.html">평생교육원</a></li>
-                <li ><a href="#">사이버연수원</a></li>
-            </ul>
-            <div class="btn">
-                <a href="../../public/member/login.html?path=C">로그인</a>
-                <a href="../../public/member/join.html">회원가입</a>
-                <a href="../support/ask.html">1:1 상담</a>
-            </div>
-        </div>
-        <!--wrap-->
-    </div>
-    <div class="header">
-        <div id="wrap">
-            <div class="logo"><a href="/new/main/main.html"><img src="../img/common/logo.png" alt="회사로고"></a></div>
-            <div class="gnb">
-                <ul class="dropdownmenu">
-                    <li class="menu"><a href="#" class="depth1">교육원소개</a>
-                        <ul>
-                            <li><a href="#">교육원 소개</a></li>
-                        </ul>
-                    </li>
-                    <li class="menu"><a href="#" class="depth1">법정의무교육</a>
-                        <ul>
-                            <li><a href="#">전체</a></li>
-                            <li><a href="#">법정의무교육</a></li>
-                            <li><a href="#">산업안전보건교육</a></li>
-                            <li><a href="#">중대재해처벌법</a></li>
-                            <li><a href="#">의료기관</a></li>
-                        </ul>
-                    </li>
-                    <li class="menu"><a href="#" class="depth1">직무능력향상교육</a>
-                        <ul>
-                            <li><a href="#">디지털융합훈련</a></li>
-                            <li><a href="#">보건</a></li>
-                            <li><a href="#">보육</a></li>
-                            <li><a href="#">일반기업</a></li>
-                        </ul>
-                    </li>
-                    <li class="menu"><a href="#" class="depth1">학습지원센터</a>
-                        <ul>
-                            <li><a href="#">공지사항</a></li>
-                            <li><a href="#">자주묻는 질문</a></li>
-                            <li><a href="#">1:1 문의 </a></li>
-                            <li><a href="#">PC원격지원</a></li>
-                        </ul>
-                    </li>
-                    <li class="menu"><a href="#" class="depth1">학습자료실</a>
-                        <ul>
-                            <li><a href="#">경영·사무</a></li>
-                            <li><a href="#">보건·의료</a></li>
-                            <li><a href="#">보육</a></li>
-                            <li><a href="#">4차산업</a></li>
-                            <li><a href="#">법정의무·기타</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-            <div class="button">
-                <a href="#" class="point"><i class="ph ph-sign-out"></i>나의 학습실</a>
-            </div>
-        </div>
-        <!--wrap-->
-        <div class="nav_back"></div>
-    </div>
-    <!--header-->
-</header>
+<? include '../include/header.html'; ?>
 
 <body>
     <!-- 메인배너 -->
@@ -105,7 +12,7 @@ include $_SERVER['DOCUMENT_ROOT'] . "/include/include_function.php"; //DB연결 
                             <span class="top">풀애니메이션으로 더욱 재미있게 볼 수 있는</span>
                             <strong>법정의무교육</strong>
                             <span class="bottom">모든 콘텐츠 고용노동부 인정 A등급</span>
-                            <button style="margin: 0 auto;background-color: #F27979;">법정의무교육 과정 보기</button>
+                            <button style="margin: 0 auto;background-color: #F27979;" onclick="location.href='../educourse/law_course.html'">법정의무교육 과정 보기</button>
                         </div>
                     </div>
                 </div>
@@ -116,7 +23,7 @@ include $_SERVER['DOCUMENT_ROOT'] . "/include/include_function.php"; //DB연결 
                             <strong>기업직업훈련카드</strong>
                             <span class="bottom">직급별 교육, 직무교육, 트렌디한 교육도 자부담금 없이 무료로 해결하세요 <br>
                                 재직자의 직무능력 향상을 위해 기업당 최대 500만 원까지 훈련바우처 지원 </span>
-                            <button style="background-color: #4D42DE;">기업직업훈련카드 안내</button>
+                            <button style="background-color: #4D42DE;" onclick="location.href='../etc/card.html'">기업직업훈련카드 안내</button>
                         </div>
                     </div>
                 </div>
@@ -137,7 +44,7 @@ include $_SERVER['DOCUMENT_ROOT'] . "/include/include_function.php"; //DB연결 
                             <strong>직무능력향상교육</strong>
                             <span class="bottom">끊임 없이 계속해서 배워 나가며 발전하는 것이 무엇보다 중요합니다. <br>
                                 HRDe 평생교육원에는 역량 향상에 좋은 기회가 되는 여러 강의들이 준비되어 있습니다.</span>
-                            <button style="background-color: #E36F51;">직무능력향상교육 과정 보기</button>
+                            <button style="background-color: #E36F51;" onclick="location.href='../educourse/job_course.html'">직무능력향상교육 과정 보기</button>
                         </div>
                     </div>
                 </div>
@@ -454,7 +361,7 @@ include $_SERVER['DOCUMENT_ROOT'] . "/include/include_function.php"; //DB연결 
                 </div>
                 <div class="txt">
                     <span>고용보험환급교육</span>
-                    <button style="background-color:#00D1E2;">자세히보기</button>
+                    <button style="background-color:#00D1E2;" onclick="location.href='../etc/refund.html'">자세히보기</button>
                 </div>
             </div>
             <div class="content">
@@ -463,7 +370,7 @@ include $_SERVER['DOCUMENT_ROOT'] . "/include/include_function.php"; //DB연결 
                 </div>
                 <div class="txt">
                     <span>기업직업훈련카드</span>
-                    <button style="background-color:#2C6CBF;">자세히보기</button>
+                    <button style="background-color:#2C6CBF;" onclick="location.href='../etc/card.html'">자세히보기</button>
                 </div>
             </div>
             <div class="content">
@@ -472,7 +379,7 @@ include $_SERVER['DOCUMENT_ROOT'] . "/include/include_function.php"; //DB연결 
                 </div>
                 <div class="txt">
                     <span>내일배움카드</span>
-                    <button style="background-color:#8265BE;">자세히보기</button>
+                    <button style="background-color:#8265BE;" onclick="location.href='../../cyber/card/card.html'">자세히보기</button>
                 </div>
             </div>
         </div>
@@ -481,92 +388,7 @@ include $_SERVER['DOCUMENT_ROOT'] . "/include/include_function.php"; //DB연결 
 
 </body>
 
-    <!--플로팅배너-->
-    <ul class="float_banner">
-        <li><a href="https://pf.kakao.com/_kEcWxj/chat" target="_blank"><img src="../img/common/floating_kakao.png"></a></li>
-        <!--<li><a href="https://pf.kakao.com/_kEcWxj/chat" target="_blank"><img src="/images/common/floating_chatbot.png"></a></li>-->
-        <li><img src="../img/common/chatbot gif.gif" class="_chatbotBtns" style="width:70px;" /></li>
-        <li class="float_banner2"></li>
-    </ul>
-    <!--플로팅배너-->
-<footer>
-    <div class="btn">
-        <div id="wrap">
-            <div>
-                <a href="#">고용보험환급 안내</a>
-                <a href="../../public/etc/agreement.html" target="_blank">이용약관</a>
-                <a href="../../public/etc/privacy.html">개인정보처리방침</a>
-            </div>
-            <div>
-                <a href="#" class="point">교강사모듈</a>
-                <a href="#" class="point">관리자모듈</a>
-                <a href="#" class="point">우리끼리</a>
-            </div>
-        </div>
-    </div>
-    <div class="info">
-        <div id="wrap">
-            <strong>(주)HRDe 평생교육원</strong>
-            <ul>
-                <li>대표이사: 박병래</li><span class="bar"></span>
-                <li>사업자등록번호 : 591-87-02242</li><span class="bar"></span>
-                <li>통신판매업신고번호 : 제2022-용인기흥-1316호</li> <br>
-                <li>TEL : 1811-9530</li><span class="bar"></span>
-                <li>Email : hrde@hrde.co.kr</li> <br>
-                <li>address : 경기도 용인시 기흥구 흥덕1로 13 흥덕IT밸리 타워동 104, 105호</li><br>
-                <li>COPYRIGHT © (주)HRDE Inc. ALL RIGHTS RESERVED. 본 사이트 내의 컨텐츠는 저작권법 상의 보호를 받고 있습니다.</li>
-            </ul>
-        </div>
-    </div>
-    
-</footer>
-
-<!--플로팅배너-->
-<script>
-    $(document).ready(function() {
-    // hide #back-top first
-    $(".float_banner2").hide();
-
-    // fade in #back-top
-    $(function() {
-        $(window).scroll(function() {
-            if ($(this).scrollTop() > 100) {
-                $('.float_banner2').fadeIn();
-            } else {
-                $('.float_banner2').fadeOut();
-            }
-        });
-
-        // scroll body to 0px on click
-        $('.float_banner2').click(function() {
-            $('body,html').animate({
-                scrollTop: 0
-            }, 800);
-            return false;
-        });
-    });
-	
-	$("._chatbotBtns").on("click",function(){
-		$("#_chatbot").toggle();
-		initChat();
-	});
-});
-</script>
-
-<!--메뉴-->
-<script>
-    $(function(){
-        $('.gnb > ul > li.menu').mouseover(function(){
-            $(this).find('.sub_menu').stop().slideDown();
-
-        })
-        $('.gnb > ul > li.menu').mouseout(function(){
-            $(this).find('.sub_menu').stop().slideUp()
-        })
-    })
-
-</script>
-
+<? include "../include/footer.html"; ?>
 
 
 <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
@@ -601,3 +423,4 @@ var swiper = new Swiper(".maincon1-swiper", {
     }
 });
 </script>
+
