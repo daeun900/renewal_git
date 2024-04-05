@@ -21,9 +21,11 @@
   margin: 30px 0 80px 0;
 }
 .top_section .detail_wrap .left .lecture_image {
-  width: 400px;
+  width: 440px;
   height: 255px;
   border-radius: 20px;
+  background-size: cover;
+  background-position: 50% 50%;
 }
 .top_section .detail_wrap .left .lecture_detail {
   background-color: whitesmoke;

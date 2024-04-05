@@ -113,49 +113,6 @@
 
 <? include "../include/footer.html"; ?>
 
-<!--관심강의 버튼 toggle-->
-<script>
-    $(document).ready(function() {
-    
-        (function($) {
-        $.fn.clickToggle = function(func1, func2) {
-            var funcs = [func1, func2];
-            this.data('toggleclicked', 0);
-            this.click(function() {
-                var data = $(this).data();
-                var tc = data.toggleclicked;
-                $.proxy(funcs[tc], this)();
-                data.toggleclicked = (tc + 1) % 2;
-            });
-            return this;
-        };
-    }(jQuery));
-    
-    $(".course_save_btn").clickToggle(
-        function(){
-            $(".course_save_btn img").attr("src", "../img/edudetail/red_heart.png");
-    
-            $('.modal-bg').fadeIn();
-            $('.modal-wrap').hide();
-            $('#modal03').show();
-            $('html').css({overflow: 'hidden'});
-    
-                $('.close-btn').on('click', function() {
-                $('.modal-bg').fadeOut();
-                $('#modal03').hide();
-                $('#modal03').removeAttr('style');
-    
-                $('html').removeAttr('style');
-                });
-            },
-        function(){
-            $(".course_save_btn img").attr("src", "../img/edudetail/gray_heart.png");
-        }
-        )
-    });
-    </script>
-
-
 <!--모달팝업-->
 
 <script>
@@ -174,7 +131,7 @@
             $('html').css({overflow: 'hidden'});
         });
 
-        $('[class*=close-btn]').on('click', function() {
+        $('.close-btn').on('click', function() {
             $('.modal-bg').fadeOut();
             $(modalID).hide();
             $(modalID).removeAttr('style');
@@ -236,18 +193,6 @@
             <input type="text" placeholder="왼쪽의 보안코드를 입력해주세요." class="input-title">
         </div>
     </div>
-    <div class="notice_box">
-        <p class="title">답변<br>알림</p>
-        <div>
-            <ul>
-                <li>010-1234-5678</li>
-                <span class="bar"></span>
-                <li>abcdefg@naver.com</li>
-            </ul>
-            <p>- 수신 거부 상태이면 답변 알림을 받을 수 없습니다.</p>
-            <p>- 기재한 메일 주소와 연락처는 회원님의 의견 답변을 위한 용도로만 이용됩니다.</p>
-        </div>
-    </div>
     <div class="agree_wrap">
         <input type="checkbox" name="agree" id="">
         <label for="agree">개인정보수집방침에 동의합니다.</label>
@@ -284,6 +229,6 @@
         </table>
     </div>
     <div class="submit_btn">
-        <button class="close-btn2">확인</button>
+        <button class="modal-btn">확인</button>
     </div>
 </div>

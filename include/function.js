@@ -866,7 +866,7 @@ function ID_Find() {
 
 	$("div[id='SysBg_Black']")
 		.css({
-			width: body_width,
+			width: '100%',
 			height: body_height,
 			opacity: '0.4',
 			position: 'absolute',
@@ -908,6 +908,7 @@ function ID_Find() {
 
 //비밀번호 찾기
 function PWD_Find() {
+/*	
 	var checked_value = $(":radio[name='MemberType2']:checked").val();
 
 	if (checked_value == undefined) {
@@ -918,52 +919,52 @@ function PWD_Find() {
 		alert('회원구분을 선택하세요.');
 		return;
 	}
-
-	if ($('#Name2').val() == '') {
-		alert('이름을 입력하세요.');
-		$('#Name2').focus();
-		return;
-	}
-
+*/
 	if ($('#ID').val() == '') {
 		alert('아이디를 입력하세요.');
 		$('#ID').focus();
 		return;
 	}
+	
+	if ($('#Name').val() == '') {
+		alert('이름을 입력하세요.');
+		$('#Name').focus();
+		return;
+	}
 
-	if ($('#Mobile02_1').val() == '') {
+	if ($('#Mobile01').val() == '') {
 		alert('휴대전화번호를 입력하세요.');
-		$('#Mobile02_1').focus();
+		$('#Mobile01').focus();
 		return;
 	}
 
-	if ($('#Mobile02_2').val() == '') {
+	if ($('#Mobile02').val() == '') {
 		alert('휴대전화번호를 입력하세요.');
-		$('#Mobile02_2').focus();
+		$('#Mobile02').focus();
 		return;
 	}
 
-	if ($('#Mobile02_3').val() == '') {
+	if ($('#Mobile03').val() == '') {
 		alert('휴대전화번호를 입력하세요.');
-		$('#Mobile02_3').focus();
+		$('#Mobile03').focus();
 		return;
 	}
 
-	if (IsNumber($('#Mobile02_1').val()) == false) {
+	if (IsNumber($('#Mobile01').val()) == false) {
 		alert('휴대전화번호는 숫자만 입력하세요.');
-		$('#Mobile02_1').focus();
+		$('#Mobile01').focus();
 		return;
 	}
 
-	if (IsNumber($('#Mobile02_2').val()) == false) {
+	if (IsNumber($('#Mobile02').val()) == false) {
 		alert('휴대전화번호는 숫자만 입력하세요.');
-		$('#Mobile02_2').focus();
+		$('#Mobile02').focus();
 		return;
 	}
 
-	if (IsNumber($('#Mobile02_3').val()) == false) {
+	if (IsNumber($('#Mobile03').val()) == false) {
 		alert('휴대전화번호는 숫자만 입력하세요.');
-		$('#Mobile02_3').focus();
+		$('#Mobile03').focus();
 		return;
 	}
 
@@ -974,7 +975,7 @@ function PWD_Find() {
 
 	$("div[id='SysBg_Black']")
 		.css({
-			width: body_width,
+			width: '100%',
 			height: body_height,
 			opacity: '0.4',
 			position: 'absolute',
@@ -993,14 +994,13 @@ function PWD_Find() {
 		.show();
 
 	$('#DataResult').load(
-		'/member/search_pw_result.php',
+		'/public/member/search_pw_result.php',
 		{
 			ID: $('#ID').val(),
-			MemberType: checked_value,
-			Name: $('#Name2').val(),
-			Mobile01: $('#Mobile02_1').val(),
-			Mobile02: $('#Mobile02_2').val(),
-			Mobile03: $('#Mobile02_3').val(),
+			Name: $('#Name').val(),
+			Mobile01: $('#Mobile01').val(),
+			Mobile02: $('#Mobile02').val(),
+			Mobile03: $('#Mobile03').val(),
 		},
 		function () {
 			$("div[id='Roading']").hide();

@@ -6,14 +6,24 @@ if($sw){
 if($keyChkVal){
 	$where[] = "a.Keyword LIKE '%$keyChkVal%'";
 }
+if($CategoryB){
+	$where[] = "a.Category2 LIKE '%$CategoryB%'";
+}
 $where[] = "a.PackageYN='N'";
 $where[] = "a.Del='N'";
 $where[] = "a.ctype='B'";
 
 $where = implode(" AND ",$where);
 if($where) $where = "WHERE $where";
+
+$SQLA = "SELECT COUNT(*) FROM CourseCyber AS a $where ";
+$ResultA = mysqli_query($connect, $SQLA);
+$RowA = mysqli_fetch_array($ResultA);
+$TOT_NO = $RowA[0];
+mysqli_free_result($ResultA);
 ?>
 <body>
+	<input type="hidden" name="CategoryB" id="CategoryB" value="<?=$CategoryB?>">
     <!--mainbanner-->
     <div class="main_banner_wrap">
         <div class="main_banner active" style="background-image: url(../img/educourse/banner/banner.jpg); background-color: #4476db;">
@@ -44,8 +54,8 @@ if($where) $where = "WHERE $where";
 					$i = 0;
                     $SQL = "SELECT Keyword, row_number() over(order by OrderByNum desc) AS Num
 							FROM ContentsKeyword
-							WHERE Del = 'N' AND UseYN = 'Y'  
-							ORDER BY OrderByNum LIMIT 1, 14";
+							WHERE Del = 'N' AND UseYN = 'Y' AND Category = 0
+							ORDER BY OrderByNum LIMIT 0, 14";
 					$QUERY = mysqli_query($connect, $SQL);
                     if($QUERY && mysqli_num_rows($QUERY)){
                     	while($ROW = mysqli_fetch_array($QUERY)){
@@ -57,7 +67,7 @@ if($where) $where = "WHERE $where";
 						}
 					}
 					?>
-						<!-- 강제로 키워드 삽입해야할 경우 : 상단 array_slice를 14→13으로 변경 후, 아래주석제거및value값 넣기 -->
+						<!-- 강제로 키워드 삽입해야할 경우 : 쿼리의 Limit를 14→13으로 변경 후, 아래주석제거 및 value값 넣기 -->
 						<!-- <li <?if($keyChkVal == '4차산업'){?>class="on"<?}?> ><a id="keyChk13" href="Javascript:KeywordSearch('13');" value="4차산업">#4차산업</a></li>  -->
                 	</ul>
 				</form>
@@ -103,9 +113,21 @@ if($where) $where = "WHERE $where";
             </ul>
             <span style="display: none;">더이상 조회되는 컨텐츠가 없습니다.</span>
         </div>
-	    <div class="more_btn" id="load">
-	        <button>+ 과정 더보기 </button>
-	    </div>
+	    <? 
+   		if($TOT_NO > 0){
+			if($TOT_NO > 8){
+   		?>
+    	<div class="more_btn" id="load">
+        	<button>+ 과정 더보기 </button>
+    	</div>
+    	<?
+    		}
+    	}else{
+    	?>
+    	<div class="more_btn" id="load">
+        	<span>조회되는 컨텐츠가 없습니다.</span>
+    	</div>
+    	<?}?>
 	</div>
 	<!--wrap-->
 	
@@ -166,20 +188,13 @@ if($where) $where = "WHERE $where";
 </script>
 
 <!--more load-->
-<?
-$SQLA = "SELECT COUNT(*) FROM CourseCyber AS a $where ";
-$ResultA = mysqli_query($connect, $SQLA);
-$RowA = mysqli_fetch_array($ResultA);
-$TOT_NO = $RowA[0];
-mysqli_free_result($ResultA);
-?>
-
 <script>
 $(function(){
 	var clickNum = 1; //버튼을 클릭한 수
 	
 	$("#load").click(function(e){
 		var Category = "all";
+		var CategoryB = $("#CategoryB").val();
 		
 		var totNo = <?=$TOT_NO?>; //컨텐츠 총개수
 	   	var showNo = $(".course li").length; //현재 보여지는 컨텐츠 개수
@@ -187,7 +202,7 @@ $(function(){
 		
 		var pageStart = clickNum * 8;
 	   	
-	   	CourseAdd(totNo, showNo, hiddenNo, pageStart, Category); //과정더보기		
+	   	CourseAdd(totNo, showNo, hiddenNo, pageStart, Category, CategoryB); //과정더보기		
 		clickNum ++;
 		
 		//컨텐츠가 없으면 버튼도 숨김처리

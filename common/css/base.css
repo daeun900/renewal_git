@@ -62,15 +62,12 @@ input[type="radio"]:checked{  background-color: #357AF2;
     right: 0px;
     top: 6px;
 }
-
-/*dot*/
-p.dot{padding-left: 25px; position: relative;}
-p.dot::before{position: absolute;content: ''; width: 4px; height: 4px; background-color: #222; top: 13px; left: 7px; border-radius: 50%;}
-
 /* Default Align */
+.c_box{display: flex; justify-content: center;}
+.sa_box{display: flex;justify-content: space-around;}
+
 .al{text-align:left !important}
 .ac{text-align:center !important}
-
 .ar{text-align:right !important}
 .vt{vertical-align:top !important}
 .vm{vertical-align:middle !important}

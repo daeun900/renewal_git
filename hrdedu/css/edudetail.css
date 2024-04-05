@@ -215,6 +215,30 @@
   color: #999;
   margin-top: 13px;
 }
+#modal01 .notice_box {
+  display: flex;
+  margin-top: 50px;
+  background-color: whitesmoke;
+  padding: 20px;
+}
+#modal01 .notice_box .title {
+  font-size: 17px;
+  width: 116px;
+  line-height: 26px;
+  padding: 10px;
+}
+#modal01 .notice_box ul {
+  margin-bottom: 20px;
+}
+#modal01 .notice_box ul li {
+  display: inline;
+}
+#modal01 .notice_box ul .bar {
+  margin: 0 30px;
+}
+#modal01 .notice_box p {
+  font-size: 14px;
+}
 #modal01 .agree_wrap {
   display: flex;
   margin-top: 20px;
