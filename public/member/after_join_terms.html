@@ -6,7 +6,9 @@
             <h1>동의항목</h1>
         </div>
         <div class="content">
-	        <form action="term_state_update.php?path=<?= $path ?>&pwchg=<?= $pwchg ?>" method="GET">
+	        <form action="term_state_update.php" method="GET">
+	        	<input type="hidden" name="path" value="<?=$path?>">
+	        	<input type="hidden" name="pwchg" value="<?=$pwchg?>">
 	            <div class="agree_box">
 	                <input type="checkbox" name="chkAll" id="chkAll">
 	                <label for=""> <b>모두 동의(선택 정보 포함)</b> </label>
@@ -65,7 +67,7 @@
 </body>
 
 
-<? include "include/footer.html"; ?>
+<? include "../../common/include/footer.html";  ?>
 
 <!--약관여닫기-->
 <script>
@@ -116,4 +118,4 @@ $(document).ready(function(){
 	
 		
 	});
-</script>
+		</script>

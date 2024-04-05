@@ -14,7 +14,7 @@ header .top_header #wrap {
   height: 43px;
 }
 header .top_header #wrap .logo {
-  width: 110px;
+  width: 148px;
   position: absolute;
   left: 50%;
   margin-left: -74px;
@@ -115,6 +115,9 @@ header .top_header #wrap .logo img {
 }
 #member_wrap .content .flex_box .bar {
   margin: 0 10px;
+}
+#member_wrap .content .sa_box a {
+  width: 100px;
 }
 #member_wrap .content .sns_box {
   display: flex;

@@ -1,4 +1,32 @@
-<? include "include/header.html"; ?>
+<? include "include/header.html"; 
+//로그인 여부 체크
+include $_SERVER['DOCUMENT_ROOT']."/include/login_not_check.php";
+if($Mobile==''){
+?>
+    <script type="text/javascript">
+	<!--
+		alert("휴대폰인증이 완료되지 않았습니다.");
+		top.location.href="/public/member/join_terms.html"; 
+	//-->
+	</script>
+<?
+}
+
+$Mailling = Replace_Check($Mailling);
+$Marketing = Replace_Check($Marketing);
+$Name = Replace_Check($Name);
+$BirthDay = Replace_Check($BirthDay);
+$Gender = Replace_Check($Gender);
+$Mobile = Replace_Check($Mobile);
+
+if($Mobile) {
+	$Mobile_Arrary = explode("-",$Mobile);
+	$Mobile01 = $Mobile_Arrary[0];
+	$Mobile02 = $Mobile_Arrary[1];
+	$Mobile03 = $Mobile_Arrary[2];
+}
+
+?>
 
 <body>
     <div id="member_wrap">
@@ -54,4 +82,4 @@
     <!--wrap-->
 </body>
 
-<? include "include/footer.html"; ?>
+<? include "../../common/include/footer.html";  ?>

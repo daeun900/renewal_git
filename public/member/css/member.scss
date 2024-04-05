@@ -12,7 +12,7 @@ header {
         #wrap {
             height: 43px;
             .logo {
-                width: 110px;
+                width: 148px;
                 position: absolute;
                 left: 50%;
                 margin-left: -74px;
@@ -112,6 +112,9 @@ header {
             .bar {
                 margin: 0 10px;
             }
+        }
+        .sa_box{
+            a{width: 100px;}
         }
         .sns_box {
             display: flex;
