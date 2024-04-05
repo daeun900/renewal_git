@@ -9,7 +9,6 @@
                 </div>
             </div>
             <div class="navi">
-                <div class="navi">
                     <i class="ph-light ph-house-line"></i>&nbsp;<i class="ph ph-caret-right"></i>&nbsp;학습지원센터<i class="ph ph-caret-right"></i>&nbsp; 학습자료실
             </div>
         </div>
@@ -97,3 +96,97 @@
         $('.middle_header .edudata').addClass("on");
     });
 </script>
+
+<!--관심강의 버튼 toggle-->
+<script>
+    $(document).ready(function() {
+    
+        (function($) {
+        $.fn.clickToggle = function(func1, func2) {
+            var funcs = [func1, func2];
+            this.data('toggleclicked', 0);
+            this.click(function() {
+                var data = $(this).data();
+                var tc = data.toggleclicked;
+                $.proxy(funcs[tc], this)();
+                data.toggleclicked = (tc + 1) % 2;
+            });
+            return this;
+        };
+    }(jQuery));
+    
+    $(".modal-btn").clickToggle(
+        function(){
+            $(".modal-btn").text("학습자료 찜 취소하기");
+    
+            $('.modal-bg').fadeIn();
+            $('.modal-wrap').hide();
+            $('#modal01').show();
+            $('html').css({overflow: 'hidden'});
+    
+                $('.close-btn').on('click', function() {
+                $('.modal-bg').fadeOut();
+                $('#modal01').hide();
+                $('#modal01').removeAttr('style');
+    
+                $('html').removeAttr('style');
+                });
+            },
+        function(){
+            $(".modal-btn").text("학습자료 찜하기");
+
+            $('.modal-bg').fadeIn();
+            $('.modal-wrap').hide();
+            $('#modal02').show();
+            $('html').css({overflow: 'hidden'});
+    
+                $('[class*=close-btn]').on('click', function() {
+                $('.modal-bg').fadeOut();
+                $('#modal02').hide();
+                $('#modal02').removeAttr('style');
+    
+                $('html').removeAttr('style');
+                });
+            },
+        )
+    });
+</script>
+
+<style> 
+    .modal-bg {display:none;width:100%;height:100%;position:fixed;top:0;left:0;right:0;background: rgba(0, 0, 0, 0.6);z-index:999;}
+    .modal-wrap {display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#fff;z-index:1000;}
+    .modal-wrap .close-btn { position: absolute;cursor: pointer;}
+    .modal-wrap .close-btn i {font-size: 35px;}
+</style>
+
+<!--학습자료찜하기 팝업-->
+<div class="modal-bg"></div>
+<div id="modal01" class="modal-wrap complete_popup">
+    <div class="close-btn">
+        <i class="ph-thin ph-x"></i>
+    </div>
+    <div class="complete_inner">
+        <i class="ph-fill ph-check-circle"></i>
+        <strong>학습자료 찜하기 완료</strong>
+        <p>학습자료 찜하기가 완료되었습니다. <br>
+            온라인학습실 > 자료/상담관리에서 확인하실 수 있습니다.</p>
+    </div>
+    <div class="btn">
+        <a href="#">온라인 학습실 바로가기</a>
+    </div>
+</div>
+
+<div class="modal-bg"></div>
+<div id="modal02" class="modal-wrap complete_popup">
+    <div class="close-btn">
+        <i class="ph-thin ph-x"></i>
+    </div>
+    <div class="complete_inner">
+        <i class="ph-fill ph-check-circle"></i>
+        <strong>학습자료 찜 취소하기 완료</strong>
+        <p>학습자료 찜 취소하기가 완료되었습니다.</p>
+    </div>
+    <div class="btn">
+        <a class="close-btn2">확인</a>
+    </div>
+</div>
