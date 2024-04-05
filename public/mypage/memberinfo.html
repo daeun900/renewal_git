@@ -1,28 +1,4 @@
-<? include "../include/header.html"; ?>
-<body>
-    <div id="wrap">
-        <div class="mypage_menu">
-            <h1>나의 학습실</h1>
-            <div class="top_point">
-                <div>
-                    <span class="icon">
-                        <img src="../img/mypage/graduationcap.png" alt="학사모아이콘">
-                    </span>
-                    <span class="name">
-                        <b><?=$_SESSION['LoginName']?></b>님
-                    </span>
-                </div>
-                <p>새로운 도전을 <br> 응원합니다.</p>
-            </div>
-            <ul>
-                <li><a href="lecture_status.html">학습현황</a></li>
-                <li><a href="lecture_history.html">학습이력</a></li>
-                <li class="on"><a href="memberinfo.html">회원정보</a></li>
-                <li><a href="lecture_save.html">관심강의</a></li>
-                <li><a href="lecture_payment.html">결제내역</a></li>
-                <li><a href="coupon.html">혜택관리</a></li>
-            </ul>
-        </div>
+<? include "include/header.html"; ?>
 <?       
 $Sql = "SELECT MemberType, ID, Name, Gender, 
 AES_DECRYPT(UNHEX(BirthDay),'$DB_Enc_Key') AS BirthDay, 
@@ -79,9 +55,9 @@ if($Row) {
 }else{
 ?>
 <script type="text/javascript">
-<!--
-    alert("회원정보에 문제가 있습니다.\n\n관리자에게 문의하세요.");
-    location.href="/member/logout.php";
+// <!--
+//     alert("회원정보에 문제가 있습니다.\n\n관리자에게 문의하세요.");
+//     location.href="/member/logout.php";
 //-->
 </script>
 <?
@@ -102,16 +78,19 @@ function ZipcodeFind() {
 }
 //-->
 </script>
-    <form name="EditForm" method="POST" action="/public/member/mypage/myinfo_ok.php">
-	    <input type="hidden" name="CompanyCode" id="CompanyCode" value="<?=$CompanyCode?>">
-	    <input type="hidden" name="MemberType" id="MemberType" value="<?=$MemberType?>">
-	    <input type="hidden" name="path" id="path" value="<?=$path?>">
-        <div class="mypage_content">
+    <div class="mypage_content">
+        <div class="sb_box">
+            <h1>회원관리</h1>
             <div class="navi">
-                나의 학습실 > 회원정보
+                <i class="ph-light ph-house-line"></i>&nbsp;<i class="ph ph-caret-right"></i>&nbsp;나의학습실<i class="ph ph-caret-right"></i>&nbsp;회원관리
             </div>
-            <div class="content">
-            	<h2>회원정보</h2>
+        </div>
+        <div class="content">
+            <h2>회원정보</h2>
+            <form name="EditForm" method="POST" action="/public/member/mypage/myinfo_ok.php">
+                <input type="hidden" name="CompanyCode" id="CompanyCode" value="<?=$CompanyCode?>">
+                <input type="hidden" name="MemberType" id="MemberType" value="<?=$MemberType?>">
+                <input type="hidden" name="path" id="path" value="<?=$path?>">
             	<div class="memberinfo_wrap">
                 	<div class="Requiredinfo_area">
                     	<h3>필수정보</h3>
@@ -414,4 +393,10 @@ if ($sEncData == -9)
 ?>
 </body>
 
-<? include "../include/footer.html"; ?>
+<? include "../../common/include/footer.html"; ?>
+
+<script>
+    $(document).ready(function(){
+        $('.mypage_menu .memberinfo').addClass("on");
+    });
+</script>

@@ -1,31 +1,10 @@
-<? include "../include/header.html"; ?>
-<body>
-    <div id="wrap">
-        <div class="mypage_menu">
-            <h1>나의 학습실</h1>
-            <div class="top_point">
-                <div>
-                    <span class="icon">
-                        <img src="../img/mypage/graduationcap.png" alt="학사모아이콘">
-                    </span>
-                    <span class="name">
-                        <b>홍길동</b>님
-                    </span>
-                </div>
-                <p>새로운 도전을 <br> 응원합니다.</p>
-            </div>
-            <ul>
-                <li class="on"><a href="lecture_status.html">학습현황</a></li>
-                <li><a href="lecture_history.html">학습이력</a></li>
-                <li><a href="memberinfo.html">회원정보</a></li>
-                <li><a href="lecture_save.html">관심강의</a></li>
-                <li><a href="lecture_payment.html">결제내역</a></li>
-                <li><a href="coupon.html">혜택관리</a></li>
-            </ul>
-        </div>
+<? include "include/header.html"; ?>
         <div class="mypage_content">
-            <div class="navi">
-                나의 학습실 > 학습현황
+            <div class="sb_box">
+                <h1>학습현황</h1>
+                <div class="navi">
+                    <i class="ph-light ph-house-line"></i>&nbsp;<i class="ph ph-caret-right"></i>&nbsp;나의학습실<i class="ph ph-caret-right"></i>&nbsp;학습현황
+            </div>
             </div>
             <div class="content">
                 <h2 style="border-bottom: 1px solid #707070;">학습중인과정</h2>
@@ -252,10 +231,17 @@
     </div>
     <!--wrap-->
 </body>
-<? include "../include/footer.html"; ?>
+<? include "../../common/include/footer.html"; ?>
 
 <script>
     function lecture_list_show(seq) {
         $(".lecture_list.list_"+seq).css("display","block");
     }
+</script>
+
+<!--menu class-->
+<script>
+    $(document).ready(function(){
+        $('.mypage_menu .lecture_status').addClass("on");
+    });
 </script>

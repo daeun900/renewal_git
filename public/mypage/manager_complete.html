@@ -1,0 +1,68 @@
+<? include "include/header.html"; ?>
+        <div class="mypage_content">
+            <div class="sb_box">
+                <h1>교육담당자</h1>
+                <div class="navi">
+                    <i class="ph-light ph-house-line"></i>&nbsp;<i class="ph ph-caret-right"></i>&nbsp;나의학습실<i class="ph ph-caret-right"></i>&nbsp;교육담당자
+                </div>
+            </div>
+            <div class="content">
+                <h2>자사수강생 리스트</h2>
+                <ul class="studentlst">
+                    <select name="SearchYear" id="SearchYear" style="width: 150px;margin-bottom: -28px;">
+                        <option value="">년도 검색</option>
+                        <option value="<?=$i?>"><?=$i?>년</option>
+                       </select>
+                    <!-- List -->
+                    <li id="changeList">
+                        <!-- info list -->
+                        <ul class="classdate">
+                            <li class="left"><?=$LectureStart?>2022-02-01 ~ <?=$LectureEnd?>2022-03-01 개강</li>
+                            <!--<li class="right mr5"><a href="Javascript:CertificatePrintMulti('<?=$CompanyCode?>','<?=$LectureStart?>','<?=$LectureEnd?>','','Y','<?=$CertificatePrintOK?>');">전체 환급과정 수료증PDF</a></li>
+                            <li class="right"><a href="Javascript:CertificatePrintMulti('<?=$CompanyCode?>','<?=$LectureStart?>','<?=$LectureEnd?>','','N','<?=$CertificatePrintOK?>');">전체 비환급과정 수료증PDF</a></li>-->
+                        </ul>
+                        <table width="100%" class="tbl_typeD mt15" border="0" cellspacing="0" summary="">
+                            <caption></caption>
+                            <colgroup>
+                            <col width=""><col width="15%"><col width="15%">
+                            </colgroup>
+                            <tbody>
+                                <tr>
+                                    <td rowspan="2">
+                                        <ul class="baseinfo">
+                                            <li class="subname">법정의무교육</li>
+                                            <li class="name">2024_퇴직연금교육</li>
+                                            <li class="refund">일반(비환급)</span></li>
+                                        </ul>
+                                    </td>
+                                    <td>
+                                        <div>수료인원: <span class="font_red"><?=$StudyCount?>명</span></div>
+                                        <div class="mt5">전체인원: <?=$StudySum?>명</div>
+                                    </td>
+                                    <td>
+                                        <div><button type="button" class="btn_02" onclick="CertificatePrintMulti('<?=$CompanyCode?>','<?=$LectureStart?>','<?=$LectureEnd?>','<?=$LectureCode?>','<?=$ServiceTypeYN?>','<?=$CertificatePrintOK?>')">수료증 PDF</button></div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>	
+                        <!-- info list // -->
+                        </li>
+                    <!-- List // -->
+                                
+                </ul>
+            </div>
+            <!--content-->
+        </div>
+        <!--mypage_content-->
+    </div>
+    <!--wrap-->
+</body>
+<? include "../../common/include/footer.html"; ?>
+<script>
+    $(document).ready(function(){
+        $('.mypage_menu .manager').addClass("on");
+        $('.mypage_menu .manager ul').css('display','block');
+        $('.mypage_menu .manager ul .complete').addClass("on");
+        $('.mypage_menu .manager a').find('i').toggleClass("ph-caret-up ph-caret-down");
+    });
+</script>

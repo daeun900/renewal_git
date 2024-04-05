@@ -1,0 +1,71 @@
+<? include "include/header.html"; ?>
+        <div class="mypage_content">
+            <div class="sb_box">
+                <h1>교육담당자</h1>
+                <div class="navi">
+                    <i class="ph-light ph-house-line"></i>&nbsp;<i class="ph ph-caret-right"></i>&nbsp;나의학습실<i class="ph ph-caret-right"></i>&nbsp;교육담당자
+                </div>
+            </div>
+            <div class="content">
+                <h2>자사수강생 리스트</h2>
+                <ul class="studentlst">
+                    <select name="SearchYear" id="SearchYear" style="width: 150px;margin-bottom: -28px;">
+                        <option value="">년도 검색</option>
+                        <option value="<?=$i?>"><?=$i?>년</option>
+                       </select>
+                    <!-- List -->
+                    <li>
+                        <!-- info list -->
+    
+                            <ul class="classdate">
+                                <li class="left">2022-01-01 ~ 2022-02-01개강</li>
+                                <li class="right"><a href="/mypage/manager_trainee_excel.php?LectureStart=<?=$LectureStart?>&LectureEnd=<?=$LectureEnd?>&CompanyCode=<?=$CompanyCode?>" target="_blank">개강전체 엑셀출력</a></li>
+                            </ul>
+                    
+                        
+                        <table width="100%" class="tbl_typeD mt15" border="0" cellspacing="0" summary="">
+                            <caption></caption>
+                            <colgroup>
+                            <col width=""><col width="20%"><col width="15%">
+                            </colgroup>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <ul class="baseinfo">
+                                        <li class="subname">법정의무교육</li>
+                                        <li class="name">2024_퇴직연금교육</li>
+                                        <li class="refund">일반(비환급)</span></li>
+                                        </ul>
+                                    </td>
+                                    <td>
+                                    <div>수료인원: <span class="font_red"><?=$StudyCount?>명</span></div>
+                                    <div class="mt5">전체인원: <?=$StudySum?>명</div>
+                                    </td>
+                                    <td>
+                                        <a href="Javascript:ManagerCourseCheck('<?=$LectureStart?>','<?=$LectureEnd?>','<?=$LectureCode?>');"><div class="mb5"><img src="img/icon_bullets.svg" width="35"></div>
+                                        <div>상세보기</div></a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <!-- info list // -->
+                    </li>
+                    <!-- List // -->
+                                
+                </ul>
+            </div>
+            <!--content-->
+        </div>
+        <!--mypage_content-->
+    </div>
+    <!--wrap-->
+</body>
+<? include "../../common/include/footer.html"; ?>
+<script>
+    $(document).ready(function(){
+        $('.mypage_menu .manager').addClass("on");
+        $('.mypage_menu .manager ul').css('display','block');
+        $('.mypage_menu .manager ul .trainee').addClass("on");
+        $('.mypage_menu .manager a').find('i').toggleClass("ph-caret-up ph-caret-down");
+    });
+</script>

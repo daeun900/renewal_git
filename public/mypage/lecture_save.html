@@ -1,34 +1,12 @@
-<? include "../include/header.html"; ?>
-<body>
-    <div id="wrap">
-        <div class="mypage_menu">
-            <h1>나의 학습실</h1>
-            <div class="top_point">
-                <div>
-                    <span class="icon">
-                        <img src="../img/mypage/graduationcap.png" alt="학사모아이콘">
-                    </span>
-                    <span class="name">
-                        <b>홍길동</b>님
-                    </span>
-                </div>
-                <p>새로운 도전을 <br> 응원합니다.</p>
-            </div>
-            <ul>
-                <li><a href="lecture_status.html">학습현황</a></li>
-                <li><a href="lecture_history.html">학습이력</a></li>
-                <li><a href="memberinfo.html">회원정보</a></li>
-                <li class="on"><a href="lecture_save.html">관심강의</a></li>
-                <li><a href="lecture_payment.html">결제내역</a></li>
-                <li><a href="coupon.html">혜택관리</a></li>
-            </ul>
-        </div>
+<? include "include/header.html"; ?>
         <div class="mypage_content">
-            <div class="navi">
-                나의 학습실 > 관심강의
+            <div class="sb_box">
+                <h1>관심강의</h1>
+                <div class="navi">
+                    <i class="ph-light ph-house-line"></i>&nbsp;<i class="ph ph-caret-right"></i>&nbsp;나의학습실<i class="ph ph-caret-right"></i>&nbsp;관심강의
+                </div>
             </div>
             <div class="content">
-                <h2>관심강의</h2>
                 <div class="top_button">
                     <div class="left">
                         <input type="checkbox" id="cbx_chkAll" name="chkAll">
@@ -48,7 +26,7 @@
                         <input type="checkbox" name="chk">
                         <div class="left">
                             <div class="lecture_img">
-                                <img src="../img/educourse/courseimg_ex.png" alt="과정이미지">
+                                <img src="img/courseimg_ex.png" alt="과정이미지">
                             </div>
                             <button>강의맛보기</button>
                         </div>
@@ -73,7 +51,7 @@
                         <input type="checkbox" name="chk">
                         <div class="left">
                             <div class="lecture_img">
-                                <img src="../img/educourse/courseimg_ex.png" alt="과정이미지">
+                                <img src="img/courseimg_ex.png" alt="과정이미지">
                             </div>
                             <button>강의맛보기</button>
                         </div>
@@ -131,7 +109,13 @@
     <!--wrap-->
 </body>
 
-<? include "../include/footer.html"; ?>
+<? include "../../common/include/footer.html"; ?>
+
+<script>
+    $(document).ready(function(){
+        $('.mypage_menu .lecture_save').addClass("on");
+    });
+</script>
 
 <!--check all-->
 <script>

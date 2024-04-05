@@ -1,5 +1,84 @@
+#wrap {
+    max-width: 1360px;
+    padding: 0 20px;
+    margin: 0 auto;
+    position: relative;
+}
+/*나의학습실 헤더*/
+.top_header {
+    background-color: whitesmoke;
+    font-size: 14px;
+    #wrap {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        .btn {
+            a {
+                display: inline-block;
+                margin-left: 15px;
+                padding: 10px 0;
+            }
+        }
+        .logo {
+            width: 148px;
+            position: absolute;
+            left: 50%;
+            margin-left: -74px;
+            cursor: pointer;
+            img {
+                width: 100%;
+            }
+        }
+    }
+}
+.middle_header {
+    padding: 20px 0;
+    border-bottom: 1px solid #ccc;
+    #wrap {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px;
+        .left {
+            display: flex;
+            align-items: center;
+            .logo {
+                width: 250px;
+                margin-right: 30px;
+                cursor: pointer;
+                img {
+                    width: 100%;
+                }
+            }
+            h1 {
+                font-size: 30px;
+                font-weight: bold;
+                line-height: 60px;
+            }
+        }
+        .right {
+            font-weight: 400;
+            a {
+                padding: 0 15px;
+                font-size: 17px;
+            }
+            a:hover,a.on{
+                color:#3A87EF;
+            }
+            .point {
+                color: #fff;
+                background-color: #3252a3;
+                padding: 5px 14px;
+                border-radius: 20px;
+            }
+            i {
+                margin-right: 9px;
+            }
+        }
+    }
+}
 
-
+/*나의학습실 메뉴*/
 .mypage_menu {
     position: absolute;
     top: 0;
@@ -20,6 +99,7 @@
         padding: 20px;
         color: #fff;
         border-radius: 22px;
+        margin-top: 50px;
         > div {
             display: flex;
             align-items: center;
@@ -56,6 +136,13 @@
             > a {
                 padding: 15px 0;
                 display: block;
+                position: relative;
+                i{
+                    position: absolute;
+                    right: 10px;
+                    top: 50%;
+                    margin-top: -8px;
+                }
             }
         }
         > li:first-of-type {
@@ -63,25 +150,20 @@
         }
         > li.on {
             background-color: #3a87ef;
-            border-bottom: none;
             > a {
                 color: #fff;
-                position: relative;
-                i {
-                    position: absolute;
-                    right: 17px;
-                    top: 19px;
-                }
             }
             /*depth2*/
             > ul {
                 background-color: whitesmoke;
                 text-align: left;
-                padding-left: 60px;
+                padding-left: 40px;
+                padding-bottom: 20px;
+                padding-top: 5px;
                 li {
                     a {
                         display: block;
-                        padding-top: 10px;
+                        padding-top: 7px;
                         font-size: 14px;
                         i {
                             font-weight: 900;
@@ -91,7 +173,7 @@
                 }
                 li.on {
                     a {
-                        font-weight: 500;
+                        font-weight: 600;
                         color: #2c5db4;
                     }
                 }
@@ -103,8 +185,13 @@
 .mypage_content {
     padding-left: 270px;
     min-height: 800px;
+    h1 {
+        font-size: 30px;
+        font-weight: bold;
+        margin: 50px 0 35px 0;
+    }
     .navi {
-        padding-top: 64px;
+        padding-top:70px;
         color: #767676;
         font-size: 14px;
         padding-bottom: 20px;
@@ -123,6 +210,7 @@
             display: flex;
             align-items: center;
             margin-bottom: 20px;
+            margin-top: 10px;
             .tab_btn {
                 margin-left: 20px;
                 button {
@@ -182,6 +270,7 @@
                             border: 0.5px solid #707070;
                             padding: 3px 10px;
                         }
+                        img{width: 26px;}
                     }
                 }
             }
@@ -190,8 +279,10 @@
         .top_button {
             display: flex;
             justify-content: space-between;
-            padding-bottom: 10px;
-            border-bottom: 0.3px solid #707070;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #ccc;
+            padding-top: 15px;
+            border-top: 1px solid #ccc;
             .left {
                 input {
                     appearance: auto;
@@ -224,7 +315,7 @@
         }
         ul.saved_lecture_list {
             li {
-                border-bottom: 0.3px solid #707070;
+                border-bottom: 1px solid #ccc;
                 display: flex;
                 position: relative;
                 padding: 35px 0;
@@ -254,6 +345,25 @@
                     margin-top: 10px;
                     border-radius: 5px;
                     background-color: #ededed;
+                    position: relative;
+                    padding-left: 24px;
+                }
+                button::before{
+                    position: absolute;
+                    top: 16px;
+                    left: 80px;
+                    width: 15px;
+                    height: 12px;
+                    background-image: url(../img/gray_video.png);
+                    background-size: contain;
+                    content: '';
+                }
+                button:hover{
+                    background-color:#3A87EF ;
+                    color: #fff;
+                }
+                button:hover::before{
+                    background-image: url(../img/white_video.png);   
                 }
             }
             .right {
@@ -615,7 +725,7 @@
     padding: 14px 0px;
     border: 1px solid #d4d4d4;
     border-radius: 5px;
-    font-size: 18px;
+    font-size: 16px;
     background-color: #f5f5f5;
     color: #222222;
     text-decoration: none !important;
@@ -723,7 +833,7 @@
     display: flex;
     align-items: center;
     flex-grow: 1;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 400;
 }
 
@@ -766,7 +876,7 @@
 
 .lecture_detail .lecture_detail_left > div {
     display: flex;
-    font-size: 18px;
+    font-size: 16px;
     line-height: 28px;
     font-weight: 300;
 }
@@ -842,7 +952,6 @@
     display: flex;
     align-items: center;
     margin-top: 40px;
-    padding: 0px 10px;
     height: 30px;
 }
 
@@ -850,7 +959,7 @@
     display: flex;
     align-items: center;
     flex-grow: 1;
-    font-size: 22px;
+    font-size: 18px;
     font-weight: 400;
 }
 
@@ -1114,3 +1223,15 @@
     background-color: #dfdfdf;
     color: #222222;
 }
+
+
+/*교육담당자*/
+/* table  */
+.tbl_typeD,.tbl_typeD th,.tbl_typeD td{border:1px solid #e2e2e4;}
+.tbl_typeD{width:100%;}
+.tbl_typeD td{padding:20px 20px 20px 20px;text-align:center;font-weight:300;vertical-align: middle;}
+.tbl_typeD .baseinfo{padding-left: 10px;}
+.tbl_typeD .baseinfo li{display: block;margin-top: 10px;text-align:left;}
+.tbl_typeD .baseinfo .subname{margin-top: 0px;}
+.tbl_typeD .baseinfo .name{font-size: 18px;font-weight: 500;}
+.tbl_typeD .baseinfo .refund{color:#4ca4d4;margin-top: 20px;font-weight: 400;}

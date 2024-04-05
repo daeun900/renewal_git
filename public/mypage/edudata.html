@@ -1,0 +1,53 @@
+<? include "include/header.html"; ?>
+        <div class="mypage_content">
+            <div class="sb_box">
+                <h1>자료관리</h1>
+                <div class="navi">
+                    <i class="ph-light ph-house-line"></i>&nbsp;<i class="ph ph-caret-right"></i>&nbsp;나의학습실<i class="ph ph-caret-right"></i>&nbsp;자료관리
+                </div>
+            </div>
+            <div class="content">
+                <h2>찜한 학습자료</h2>
+                <table>
+                    <colgroup>
+                        <col width="10%">
+                        <col width="50%">
+                        <col width="10%">
+                        <col width="20%">
+                        <col width="10%">
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th>번호</th>
+                            <th>과정명</th>
+                            <th>파일</th>
+                            <th>등록일</th>
+                            <th>조회</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>NCS기반 회사의 꼼꼼한 살림꾼 알잘딱깔센 스마트워커</td>
+                            <td><img class="download"  src="img/icon_blue.png" alt="파일아이콘"></td>
+                            <td>2024-02-24</td>
+                            <td>45</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!--content-->
+        </div>
+        <!--mypage_content-->
+    </div>
+    <!--wrap-->
+</body>
+<? include "../../common/include/footer.html"; ?>
+<script>
+    $(document).ready(function(){
+        $('.mypage_menu .data').addClass("on");
+        $('.mypage_menu .data ul').css('display','block');
+        $('.mypage_menu .data ul .edudata').addClass("on");
+        $('.mypage_menu .data a').find('i').toggleClass("ph-caret-up ph-caret-down");
+    });
+</script>
