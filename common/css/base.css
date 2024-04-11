@@ -50,6 +50,16 @@ input[type="radio"]:checked{  background-color: #357AF2;
 	border: 2px solid white; 
 	box-shadow: 0 0 0 1px #357AF2}
 
+#LectureStart,#LectureEnd{
+	border: 1px solid #9c9c9c;
+	padding: 4px 10px;
+	border-radius: 5px;
+	width: 120px;
+}
+
+.ui-datepicker select.ui-datepicker-month, .ui-datepicker select.ui-datepicker-year {
+    width: 40% !important; 
+}
 /*bar*/
 .bar {position: relative;}
 

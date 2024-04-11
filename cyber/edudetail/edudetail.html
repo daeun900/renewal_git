@@ -1,6 +1,5 @@
 <? include '../include/header.html'; ?>
 <?
-$LectureCode = "C06012315";
 
 $Sql = "SELECT * FROM CourseCyber WHERE LectureCode = '$LectureCode' AND Del='N' AND UseYN = 'Y'";
 
@@ -16,7 +15,14 @@ if($Row) {
 	$Intro = nl2br($Row['Intro']); //과정소개
 	$EduTarget = nl2br($Row['EduTarget']); //교육대상
 	$EduGoal = nl2br($Row['EduGoal']); //교육목표
-	
+	$MidRate = $Row['MidRate']; //반영비율 중간평가 
+	$TestRate = $Row['TestRate']; //반영비율 최종평가 
+	$ReportRate = $Row['ReportRate']; //반영비율 과제
+	$Mid01EA = $Row['Mid01EA']; //중간평가 객관식 문항수
+	$Test01EA = $Row['Test01EA']; //최종평가 객관식 문항수
+	$Report03EA = $Row['Report03EA']; //과제 서술형 문항수	
+	$Price = $Row['Price']; //교육비용 일반
+	$Price01 = $Row['Price01']; //자부담 교육비용 우선지원 
 }
 //키워드
 $Keyword_array = explode('#',$Keyword);
@@ -25,6 +31,8 @@ $Keyword_arrayA = array_slice($Keyword_array, 1, 3);
 if($PreviewImage) {
 	$PreviewImageView = "/upload/Course/".$PreviewImage;
 }
+//실제결제금액
+$RealPrice = $Price - $Price01;
 ?>
 <body>
 <div id="wrap">
@@ -53,13 +61,10 @@ if($PreviewImage) {
                         <a href="#" class="fcblue fwbold">80건  <i class="ph ph-caret-right"></i></a>
                     </div>
                 </div>
-                <button class="preview">
-                    강의 미리보기
-                </button>
+                <button class="preview">강의 미리보기</button>
             </div>
             <div class="right">
                 <div class="select_detail">
-                    <!--국민내일배움카드 테이블-->
                     <table id="ApplyTypeResult1">
                         <colgroup>
                             <col width="170">
@@ -82,9 +87,7 @@ if($PreviewImage) {
                         <tr class="period">
                             <th>학습기간</th>
                             <td>
-                                <select name="" id="">
-                                    <option value="" selected>2024.03.01~2024.03.31(1회차)</option>
-                                </select>
+                                <input name="LectureStart" id="LectureStart" type="text" size="12" value="" autocomplete='off'>  ~  <input name="LectureEnd" id="LectureEnd" type="text" size="12" value="" autocomplete='off'>
                                 <strong class="fcred">마감까지 D-3</strong>
                                 <span>학습기간 30일 + 무료 학습기간 12개월</span>
                             </td>
@@ -107,129 +110,28 @@ if($PreviewImage) {
                         </tr>
                         <tr class="regular_price">
                             <th>교육비정가</th>
-                            <td><strong>71,060원</strong></td>
+                            <td><strong><?=number_format($Price,0)?> 원</strong></td>
                         </tr>
-                        <tr class="support_price">
+                        <tr class="support_price" id="priceM">
                             <th>정부지원금</th>
-                            <td class="fcblue">-39,080원(즉시 차감)</td>
+                            <td class="fcblue"><?=number_format($Price01,0)?> 원(즉시 차감)</td>
                         </tr>
                         <tr class="actual_price">
                             <th class="fcred">실결제금액</th>
-                            <td><strong class="fcred">31,980원</strong></td>
+                            <td id="priceA" style="display:none;"><strong class="fcred"><?=number_format($Price,0)?> 원</strong></td>
+                            <td id="priceB"><strong class="fcred"><?=number_format($RealPrice,0)?> 원</strong></td>
                         </tr>
                     </table>
-                    <!--국민내일배움카드 테이블-->
-                    <!--일반(수시) 테이블-->
-                    <table id="ApplyTypeResult2" style="display: none;">
-                        <colgroup>
-                            <col width="170">
-                            <col>
-                        </colgroup>
-                        <tr class="NCS_code">
-                            <th>NCS 코드 / 인증여부</th>
-                            <td>20010105:빅데이터 분석 <span class="bar"></span> 수료증에 분류코드 <span class="fcred">포함</span></td>
-                        </tr>
-                        <tr class="apply_type">
-                            <th>신청유형 <button class="modal-btn" href="#modal01">?</button></th>
-                            <td>
-                                <select name="" id="" onchange="ApplyTypeChange(this.value)">
-                                    <option value="A" selected id="ApplyType1">국민내일배움카드 (재직자)</option>
-                                    <option value="B" id="ApplyType2">일반(수시) </option>
-                                    <option value="C" id="ApplyType3">고용보험환급</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr class="period">
-                            <th>학습기간</th>
-                            <td>
-                                <select name="" id="">
-                                    <option value="" selected>2024.03.01~2024.03.31(1회차)</option>
-                                </select>
-                                <strong class="fcred">마감까지 D-3</strong>
-                                <span>학습기간 30일 + 무료 학습기간 12개월</span>
-                            </td>
-                        </tr>
-                        <tr class="complete">
-                            <th>수료기준</th>
-                            <td>
-                                <b>진도 80%</b> 이상, <b>시험 50%</b> 이상, <b>과제 50%</b>, 과제제출 필수
-                                <button>상세</button>
-                                <span>내일배움카드로 강의 수강시, 반드시 HRD-NET에서 먼저 수강신청 후 HRDe웹사이트에서 수강신청을 해야합니다.</span>
-                            </td>
-                        </tr>
-                        <tr class="regular_price">
-                            <th>교육비정가</th>
-                            <td><strong>71,060원</strong></td>
-                        </tr> 
-                        <tr class="actual_price">
-                            <th class="fcred">실결제금액</th>
-                            <td><strong class="fcred">31,980원</strong></td>
-                        </tr>
-                    </table>
-                    <!--일반(수시) 테이블-->
-                    <!--고용보험환급 테이블-->
-                    <table id="ApplyTypeResult3" style="display: none;">
-                        <colgroup>
-                            <col width="170">
-                            <col>
-                        </colgroup>
-                        <tr class="NCS_code">
-                            <th>NCS 코드 / 인증여부</th>
-                            <td>20010105:빅데이터 분석 <span class="bar"></span> 수료증에 분류코드 <span class="fcred">포함</span></td>
-                        </tr>
-                        <tr class="apply_type">
-                            <th>신청유형<button class="modal-btn" href="#modal01">?</button></th>
-                            <td>
-                                <select name="" id="" onchange="ApplyTypeChange(this.value)">
-                                    <option value="A" selected id="ApplyType1">국민내일배움카드 (재직자)</option>
-                                    <option value="B" id="ApplyType2">일반(수시)</option>
-                                    <option value="C" id="ApplyType3">고용보험환급</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr class="period">
-                            <th>학습기간</th>
-                            <td>
-                                <select name="" id="">
-                                    <option value="" selected>2024.03.01~2024.03.31(1회차)</option>
-                                </select>
-                                <strong class="fcred">마감까지 D-3</strong>
-                                <span>학습기간 30일 + 무료 학습기간 12개월</span>
-                            </td>
-                        </tr>
-                        <tr class="complete">
-                            <th>수료기준</th>
-                            <td>
-                                <b>진도 80%</b> 이상, <b>시험 50%</b> 이상, <b>과제 50%</b>, 과제제출 필수
-                                <button>상세</button>
-                                <span>내일배움카드로 강의 수강시, 반드시 HRD-NET에서 먼저 수강신청 후 HRDe웹사이트에서 수강신청을 해야합니다.</span>
-                            </td>
-                        </tr>
-                        <tr class="regular_price">
-                            <th>교육비정가</th>
-                            <td><strong>71,060원</strong></td>
-                        </tr>
-                        <tr class="support_price">
-                            <th>정부지원금</th>
-                            <td>-39,080원(즉시 차감)</td>
-                        </tr>
-                        <tr class="actual_price">
-                            <th class="fcred">실결제금액</th>
-                            <td><strong class="fcred">31,980원</strong></td>
-                        </tr>
-                    </table>
-                    <!--고용보험환급 테이블-->
                 </div>
                 <div class="button_wrap">
                     <button class="course_save_btn" href="#modal03"><img src="../img/edudetail/gray_heart.png" alt="관심과정">관심과정</button>
                     <button class="enrolment_btn"  onclick="window.open('../payment/card_payment.html')">수강신청</buutton>
-                    <button class="enrolment_link_btn" onclick="window.open('https://www.hrd.go.kr/hrdp/ma/pmmao/newIndexRenewal.do')">HRD-NET 1회차 수강신청 바로가기</button>
+                    <button class="enrolment_link_btn" onclick="window.open('https://www.hrd.go.kr/hrdp/ma/pmmao/newIndexRenewal.do')">HRD-NET 수강신청 바로가기</button>
                 </div>
             </div>
         </div>
     </div>
-    <!--topsection-->
-    <!--bottomsection-->
+    
     <div class="bottom_section">
         <div class="tab_btn_box">
             <div class="tab_btn tab01" class="on" onclick="TabBtnClick(0)">
@@ -243,45 +145,49 @@ if($PreviewImage) {
             </div>
         </div>
         <div class="content_wrap">
-            <!--강의개요-->
             <div class="content" id="tab01">
                 <span class="title">강의개요</span>
                 <p><?=$Intro?></p>
             </div>
-            <!--강의개요-->
-            <!--학습목표-->
             <div class="content">
                 <span class="title">학습목표</span>
                 <p><?=$EduGoal?></p>
             </div>
-            <!--학습목표-->
-            <!--강의목차-->
             <div class="content" id="tab02">
                 <span class="title">강의목차</span>
                 <p class="pl50">
-                    <b><span>제 1장</span>요즘 기업이 열광하는 Customer Experience 한 번에 이해하기</b> <br>
-                    <span>제1절</span>요즘 떠오르는 키워드 '고객경험'<br>
-                    <span>제2절</span>'고객경험 관리'는 곧 '감정 관리'이다<br>
-                    <span>제3절</span>고객경험 관리에 필요한 'VOC 문해력'<br>
-                    <br>
-                    <b><span>제2장</span>Customer Experience 관리방법</b><br>
-                    <span>제1절</span>고객경험을 제대로 관리하는 방법<br>
-                    <span>제2절</span>VOC 문해력 향상을 통한 문제해결<br>
-                    <br>
-                    <b><span>제3장</span>나도 한 번 해보자 Customer Experience역량 키우기</b><br>
-                    <span>제1절</span>CS가 아닌 CX 마인드의 전환<br>
-                    <span>제2절</span>고객경험의 시작 CX역량<br>
-                    <span>제3절</span>고객경험 관리를 통한 스트레스 해결 방법<br>
+                	<?
+					$SQL = "SELECT a.Seq AS Chapter_seq, a.ChapterType, a.OrderByNum, a.Sub_idx, b.Gubun AS ContentGubun, b.ContentsTitle, 
+									(SELECT COUNT(Seq) FROM ContentsDetail WHERE Contents_idx=a.Sub_idx) AS ContentsCount 
+							FROM Chapter AS a 
+        					LEFT OUTER JOIN Contents AS b ON a.Sub_idx=b.idx 
+							WHERE a.LectureCode='$LectureCode' ORDER BY a.OrderByNum ASC";
+					//echo $SQL;
+					$QUERY = mysqli_query($connect, $SQL);
+					if($QUERY && mysqli_num_rows($QUERY)){
+						while($ROW = mysqli_fetch_array($QUERY)){
+							extract($ROW);
+							if($ChapterType=="B"){
+								$ContentsTitle = "중간평가";
+							}else if($ChapterType=="C"){
+								$ContentsTitle = "최종평가";
+							}else if($ChapterType=="D"){
+								$ContentsTitle = "과제";
+							}
+					?>
+					<span>제<?=$OrderByNum?>절</span>&nbsp;&nbsp;&nbsp;<?=$ContentsTitle?><br>
+					<?
+						}
+					}
+					?>
                 </p>
             </div>
-            <!--강의목차-->
-            <!--교육대상-->
             <div class="content">
                 <span class="title">교육대상</span>
                 <p><?=$EduTarget?></p>
             </div>
-            <!--교육대상-->
-            <!--교수소개-->
+            <!--  별도 개발이 필요. 개발이 완료되면 오픈할 에정. -->
+            <!-- 
             <div class="content">
                 <span class="title">교수소개</span>
                 <div class="professor">
@@ -303,14 +209,11 @@ if($PreviewImage) {
                     </div>
                 </div>
             </div>
-            <!--교육대상-->
-            <!--학습방법-->
+             -->
             <div class="content">
                 <span class="title">학습방법</span>
                 <p>동영상(Web+Mobile)</p>
             </div>
-            <!--학습방법-->
-            <!--수료기준-->
             <div class="content" style="border-bottom: none;">
                 <span class="title">수료기준</span>
                 <table>
@@ -336,24 +239,22 @@ if($PreviewImage) {
                         <tr>
                             <td>평가비율</td>
                             <td>0%</td>
-                            <td>0%</td>
-                            <td>100%</td>
-                            <td>0%</td>
+                            <td><?=$MidRate?>%</td>
+                            <td><?=$TestRate?>%</td>
+                            <td><?=$ReportRate?>%</td>
                             <td rowspan="2">60이상</td>
                         </tr>
                         <tr>
                             <td>수료기준</td>
                             <td>80% 이상</td>
-                            <td>N</td>
-                            <td>Y</td> 
-                            <td>N</td>
+                            <td><?if($Mid01EA > 0) echo "Y"; else echo "N";?></td>
+                            <td><?if($Test01EA > 0) echo "Y"; else echo "N";?></td> 
+                            <td><?if($Report03EA > 0) echo "Y"; else echo "N";?></td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-            <!--수료기준-->
-            <!--학습후기-->
-            <div class="content_review" id="tab03">
+            <div class="content_review pb30" id="tab03">
                 <div class="title">
                     학습후기
                     <span class="fcred">
@@ -375,34 +276,24 @@ if($PreviewImage) {
                     </li>
                 </ul>
             </div>
-            <!--학습후기-->
         </div>
     </div>
-    <!--bottomsection-->
 </div>
 <!--wrap-->
 </body>
 <? include "../include/footer.html"; ?>
 
-<!--신청유형별 TABLE변경-->
 <script>
-    
-    function ApplyTypeChange(str) {
-
-	if (str == 'A') {
-		$('#ApplyTypeResult1').show();
-		$('#ApplyTypeResult2').hide();
-        $('#ApplyTypeResult3').hide();
-	}
+<!--신청유형 선택에 따라 show/hide -->
+function ApplyTypeChange(str) {	
 	if (str == 'B') {
-		$('#ApplyTypeResult1').hide();
-		$('#ApplyTypeResult2').show();
-        $('#ApplyTypeResult3').hide();
-	}
-    if (str == 'C') {
-		$('#ApplyTypeResult1').hide();
-		$('#ApplyTypeResult2').hide();
-        $('#ApplyTypeResult3').show();
+		$("#priceA").show();
+		$("#priceB").hide();
+		$('#priceM').hide();
+	}else{
+		$("#priceA").hide();
+		$("#priceB").show();
+		$('#priceM').show();
 	}
 }
 </script>
@@ -410,16 +301,15 @@ if($PreviewImage) {
 <!--관심강의 버튼 toggle-->
 <script>
 $(document).ready(function() {
-
     (function($) {
-    $.fn.clickToggle = function(func1, func2) {
-        var funcs = [func1, func2];
-        this.data('toggleclicked', 0);
-        this.click(function() {
-            var data = $(this).data();
-            var tc = data.toggleclicked;
-            $.proxy(funcs[tc], this)();
-            data.toggleclicked = (tc + 1) % 2;
+    	$.fn.clickToggle = function(func1, func2) {
+	        var funcs = [func1, func2];
+	        this.data('toggleclicked', 0);
+	        this.click(function() {
+	            var data = $(this).data();
+	            var tc = data.toggleclicked;
+	            $.proxy(funcs[tc], this)();
+	            data.toggleclicked = (tc + 1) % 2;
         });
         return this;
     };
@@ -450,10 +340,8 @@ $(".course_save_btn").clickToggle(
 </script>
 
 <!--tab button-->
-
 <script>
 $(document).ready(function() {
-
    $(window).on('scroll',function(){
         var scroll = $(window).scrollTop(); 
 
@@ -465,22 +353,17 @@ $(document).ready(function() {
             $('.tab_btn').removeClass('on') 
             $('.tab02').addClass('on') 
         }
-        if(scroll>$('#tab03').position().top - 30){
+        if(scroll>$('#tab03').position().top - 40){
             $('.tab_btn').removeClass('on') 
             $('.tab03').addClass('on') 
         }
-    });
-
-  
+    });  
 });
 </script>
 
-<!--modal-->
-
-<!--모달팝업-->
-
+<!--신청유형/지원유형 안내팝업-->
 <script>
-        jQuery(document).ready(function() {
+jQuery(document).ready(function() {
     $('.modal-btn').each(function() {
         var modalID = $(this).attr('href');
     
@@ -514,7 +397,8 @@ $(document).ready(function() {
     .modal-wrap h3{font-size: 24px;font-weight: bold; margin: 20px 0;}
     .modal-wrap p{margin-bottom: 20px;}
 </style>
-<!--modal01-->
+
+<!-- 신청유형 안내 팝업 -->
 <div class="modal-bg"></div>
 <div id="modal01" class="modal-wrap">
     <div class="close-btn">
@@ -534,9 +418,7 @@ $(document).ready(function() {
         </thead>
         <tbody>
             <tr>
-                <th>
-                    <b>국민내일배움카드 <br> (재직자-구직자)</b>
-                </th>
+                <th><b>국민내일배움카드 <br> (재직자-구직자)</b></th>
                 <td>
                     <span class="fcred">지원금액이 즉시 차감</span>되어 결제금액에 반영되는 유형<br>
                     <br>
@@ -546,9 +428,7 @@ $(document).ready(function() {
                 </td>
             </tr>
             <tr>
-                <th>
-                    <b>고용보험환급</b>
-                </th>
+                <th><b>고용보험환급</b></th>
                 <td>
                     <span class="fcred">교육비 정가를 선 결제 후</span> 기업규모에 따라 <span class="fcred">추후 환급</span>되는 유형<br>
                     <br>
@@ -558,9 +438,7 @@ $(document).ready(function() {
                 </td>
             </tr>
             <tr>
-                <th>
-                    <b>일반(수시) · 비환급</b>
-                </th>
+                <th><b>일반(수시) · 비환급</b></th>
                 <td>
                     지원/환급 없이 <span class="fcred">본인이 전액 부담</span>하는 일반 유형<br>
                     <br>
@@ -569,9 +447,7 @@ $(document).ready(function() {
                 </td>
             </tr>
             <tr>
-                <th>
-                    <b>평생교육바우처</b>
-                </th>
+                <th><b>평생교육바우처</b></th>
                 <td>
                     <span class="fcred">바우처를 통해 결제</span>하는 유형<br>
                     <br>
@@ -583,18 +459,16 @@ $(document).ready(function() {
         </tbody>
     </table>
 </div>
-<!--modal01-->
+<!-- //신청유형 안내 팝업 -->
 
-<!--modal02-->
+<!-- 지원유형 안내 팝업 -->
 <div class="modal-bg"></div>
 <div id="modal02" class="modal-wrap">
     <div class="close-btn">
         <i class="ph-thin ph-x"></i>
     </div> 
     <h3>지원유형 안내</h3>
-    <p>
-        국민내일배움카드 발급이 가능한 자 중 아래 우대 대상에 따라 지원유형을 선택하여 결제해 주세요.
-    </p>
+    <p>국민내일배움카드 발급이 가능한 자 중 아래 우대 대상에 따라 지원유형을 선택하여 결제해 주세요.</p>
     <table>
         <colgroup>
             <col width="200px">
@@ -608,10 +482,7 @@ $(document).ready(function() {
         </thead>
         <tbody>
             <tr>
-                <th>
-                    <b>국민취업제도I<br>
-                        (취성패I 유형)</b>
-                </th>
+                <th><b>국민취업제도I<br>(취성패I 유형)</b></th>
                 <td style="text-align: center; line-height: 30px;">
                     II유형 중 저소득층(특정계층 포함)<br>
                     고용위기 지역ㆍ특별 고용 지원업종<br>
@@ -628,9 +499,9 @@ $(document).ready(function() {
         </tbody>
     </table>
 </div>
-<!--modal02-->
+<!-- //지원유형 안내 팝업 -->
 
-<!--modal03-->
+<!-- 관심과정 팝업 -->
 <div class="modal-bg"></div>
 <div id="modal03" class="modal-wrap">
     <div class="close-btn">
@@ -647,4 +518,24 @@ $(document).ready(function() {
         <button>관심강의 리스트로 이동</button>
     </div>
 </div>
-<!--modal03-->
+<!-- //관심과정 팝업 -->
+
+
+<!--datepicker-->
+<script type="text/javascript" src="/include/jquery.ui.datepicker-ko.js"></script>
+<script type="text/javascript">
+    <!--
+    $(document).ready(function(){
+        $("#LectureStart, #LectureEnd").datepicker({
+            changeMonth: true,
+            changeYear: true,
+            showButtonPanel: true,
+            showOn: "both", //이미지로 사용 , both : 엘리먼트와 이미지 동시사용
+            buttonImage: "../img/common/calendar-blank.png", //이미지 주소
+            buttonImageOnly: true //이미지만 보이기
+        });
+        $("#LectureStart, #LectureEnd").val("");
+        $("img.ui-datepicker-trigger").attr("style","margin-left:5px; vertical-align:top; cursor:pointer;"); //이미지 버튼 style적용
+    });
+    //-->
+    </script>
