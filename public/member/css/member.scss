@@ -11,6 +11,8 @@ header {
         font-size: 14px;
         #wrap {
             height: 43px;
+            display: flex;
+            align-items: center;
             .logo {
                 width: 148px;
                 position: absolute;

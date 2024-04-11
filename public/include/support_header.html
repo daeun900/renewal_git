@@ -30,7 +30,11 @@ include $_SERVER['DOCUMENT_ROOT'] . "/include/include_function.php"; //DB연결 
                 </a>
             </div> 
             <div class="btn">
-                <a href="../member/login.html">로그인</a>
+            	<? if(empty($_SESSION['LoginMemberID'])) { ?>
+                <a href="../member/logout.html?path=<?=$path?>">로그인</a>
+                <?}else{?>
+                <a href="../member/login.html?path=<?=$path?>">로그인</a>
+                <?}?>
                 <a href="../member/join.html">회원가입</a>
             </div>
         </div>

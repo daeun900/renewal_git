@@ -12,6 +12,8 @@ header .top_header {
 }
 header .top_header #wrap {
   height: 43px;
+  display: flex;
+  align-items: center;
 }
 header .top_header #wrap .logo {
   width: 148px;

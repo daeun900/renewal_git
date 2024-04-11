@@ -1,4 +1,4 @@
-<? include "include/header.html"; ?>
+<? include "../include/mypage_header.html"; ?>
 <?       
 $Sql = "SELECT MemberType, ID, Name, Gender, 
 AES_DECRYPT(UNHEX(BirthDay),'$DB_Enc_Key') AS BirthDay, 

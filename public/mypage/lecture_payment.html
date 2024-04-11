@@ -1,4 +1,5 @@
-<? include "include/header.html"; ?>
+<? include "../include/mypage_header.html"; ?>
+<? include "../../include/login_check.php"; ?>
         <div class="mypage_content">
             <div class="sb_box">
                 <h1>수강신청/결제내역</h1>
@@ -17,7 +18,7 @@
                         <button>6개월</button>
                     </div>
                     <div class="date_input">
-                        <input type="text" id="DatePicker" class="input-date"> - <input type="text" id="DatePicker2"class="input-date">
+                        <input type="text" id="DateStart" class="input-date"> - <input type="text" id="DateEnd"class="input-date">
                         <button><i class="ph ph-magnifying-glass"></i></button>
                     </div>
                 </div>
@@ -74,7 +75,7 @@
                         <button>6개월</button>
                     </div>
                     <div class="date_input">
-                        <input type="text" id="DatePicker" class="input-date"> - <input type="text" id="DatePicker2"class="input-date">
+                        <input type="text" id="DateStart" class="input-date"> - <input type="text" id="DateEnd"class="input-date">
                         <button><i class="ph ph-magnifying-glass"></i></button>
                     </div>
                 </div>
@@ -113,15 +114,28 @@
 </body>
 <? include "../../common/include/footer.html"; ?>
 
-<script>
-    $(function(){
-       $('#DatePicker').datepicker();
-       $('#DatePicker2').datepicker();
-    })
-</script>
 
 <script>
     $(document).ready(function(){
         $('.mypage_menu .lecture_payment').addClass("on");
     });
 </script>
+
+<!--datepicker-->
+<script type="text/javascript" src="/include/jquery.ui.datepicker-ko.js"></script>
+<script type="text/javascript">
+    <!--
+    $(document).ready(function(){
+        $("#DateStart, #DateEnd").datepicker({
+            changeMonth: true,
+            changeYear: true,
+            showButtonPanel: true,
+            showOn: "both", //이미지로 사용 , both : 엘리먼트와 이미지 동시사용
+            buttonImage: "../../common/img/calendar-blank.png", //이미지 주소
+            buttonImageOnly: true //이미지만 보이기
+        });
+        $("#DateStart, #DateEnd").val("");
+        $("img.ui-datepicker-trigger").attr("style","margin-left:5px; vertical-align:top; cursor:pointer;"); //이미지 버튼 style적용
+    });
+    //-->
+    </script>

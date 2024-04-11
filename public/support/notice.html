@@ -2,7 +2,7 @@
 $list_page = "notice.html";
 $read_page = "notice_view.html";
 ?>
-<? include "include/header.html"; ?>
+<? include "../include/support_header.html"; ?>
 <body>
     <?
 	$idxA = Replace_Check($idx);
@@ -33,7 +33,7 @@ $read_page = "notice_view.html";
     }
 
     ##-- 검색 등록수
-    $Sql = "SELECT COUNT(*) FROM NoticeCyber $where";
+    $Sql = "SELECT COUNT(*) FROM Notice $where";
     $Result = mysqli_query($connect, $Sql);
     $Row = mysqli_fetch_array($Result);
     $TOT_NO = $Row[0];
@@ -88,7 +88,7 @@ $read_page = "notice_view.html";
                     <tbody>
                         <?
                         $i = 0;
-                        $SQL = "SELECT * FROM NoticeCyber WHERE Del='N' AND UseYN='Y' AND Notice='Y' ORDER BY RegDate DESC, idx DESC";
+                        $SQL = "SELECT * FROM Notice WHERE Del='N' AND UseYN='Y' AND Notice='Y' ORDER BY RegDate DESC, idx DESC";
                         $QUERY = mysqli_query($connect, $SQL);
                         if($QUERY && mysqli_num_rows($QUERY)){
                             while($ROW = mysqli_fetch_array($QUERY)){
@@ -98,7 +98,7 @@ $read_page = "notice_view.html";
                     ?>
                         <tr>
                             <td><span class="fcskyblue">공지</span></td>
-                            <td class="al"><a href="notice_view.html"><?=$Title?></a></td>
+                            <td class="al"><a href="notice_view.html?idx=<?=$idx?>"><?=$Title?></a></td>
                             <td><?if($FileName1) {?><img class="download"  src="img/icon_gray.png" alt="파일아이콘"><?}?></td>
                             <td><?=substr($RegDate,0,10)?></td>
                             <td><?=$ViewCount?></td>
@@ -110,7 +110,7 @@ $read_page = "notice_view.html";
                         ?>
                         <?
                             $i = 0;
-                            $SQL = "SELECT * FROM NoticeCyber $where  AND Notice='N'  $str_orderby LIMIT $PAGE_CLASS->page_start, $page_size";
+                            $SQL = "SELECT * FROM Notice $where  AND Notice='N'  $str_orderby LIMIT $PAGE_CLASS->page_start, $page_size";
                             $QUERY = mysqli_query($connect, $SQL);
                             if($QUERY && mysqli_num_rows($QUERY)){
                                 while($ROW = mysqli_fetch_array($QUERY)){
@@ -120,7 +120,7 @@ $read_page = "notice_view.html";
                         ?>
                         <tr>
                             <td><?=$PAGE_UNCOUNT--?></td>
-                            <td class="al"><a href="notice_view.html"><?=$Title?></a></td>
+                            <td class="al"><a href="notice_view.html?idx=<?=$idx?>"><?=$Title?></a></td>
                             <td><?if($FileName1) {?><img class="download"  src="img/icon_gray.png" alt="파일아이콘"><?}?></td>
                             <td><?=substr($RegDate,0,10)?></td>
                             <td><?=$ViewCount?></td>
