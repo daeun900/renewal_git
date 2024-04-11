@@ -62,8 +62,9 @@
                 padding: 0 15px;
                 font-size: 17px;
             }
-            a:hover,a.on{
-                color:#3A87EF;
+            a:hover,
+            a.on {
+                color: #3a87ef;
             }
             .point {
                 color: #fff;
@@ -137,7 +138,7 @@
                 padding: 15px 0;
                 display: block;
                 position: relative;
-                i{
+                i {
                     position: absolute;
                     right: 10px;
                     top: 50%;
@@ -191,7 +192,7 @@
         margin: 50px 0 35px 0;
     }
     .navi {
-        padding-top:70px;
+        padding-top: 70px;
         color: #767676;
         font-size: 14px;
         padding-bottom: 20px;
@@ -228,19 +229,17 @@
             }
             .date_input {
                 margin-left: 10px;
-                input#DatePicker {
-                    background: url(../img/common/calendar-blank.png) no-repeat 94% 50%;
-                    background-size: 20px;
+                input#DateStart {
                     height: 26px;
                     border: 0.3px solid #676767;
                     width: 130px;
+                    margin-top: 3px;
                 }
-                input#DatePicker2 {
-                    background: url(../img/common/calendar-blank.png) no-repeat 94% 50%;
-                    background-size: 20px;
+                input#DateEnd {
                     height: 26px;
                     border: 0.3px solid #676767;
                     width: 130px;
+                    margin-top: 3px;
                 }
                 button {
                     background-color: #676767;
@@ -270,7 +269,9 @@
                             border: 0.5px solid #707070;
                             padding: 3px 10px;
                         }
-                        img{width: 26px;}
+                        img {
+                            width: 26px;
+                        }
                     }
                 }
             }
@@ -348,7 +349,7 @@
                     position: relative;
                     padding-left: 24px;
                 }
-                button::before{
+                button::before {
                     position: absolute;
                     top: 16px;
                     left: 80px;
@@ -356,14 +357,14 @@
                     height: 12px;
                     background-image: url(../img/gray_video.png);
                     background-size: contain;
-                    content: '';
+                    content: "";
                 }
-                button:hover{
-                    background-color:#3A87EF ;
+                button:hover {
+                    background-color: #3a87ef;
                     color: #fff;
                 }
-                button:hover::before{
-                    background-image: url(../img/white_video.png);   
+                button:hover::before {
+                    background-image: url(../img/white_video.png);
                 }
             }
             .right {
@@ -413,6 +414,91 @@
         background-color: #fff;
         border: 1px solid;
     }
+    /*토론방*/
+    .topic {
+        margin-bottom: 30px;
+
+        .top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-top: 1px solid;
+            .left {
+                .title {
+                    font-size: 18px;
+                    font-weight: bold;
+                    line-height: 30px;
+                    cursor: pointer;
+                }
+                .detail {
+                    font-size: 14px;
+                    margin-top: 5px;
+                    i {
+                        margin: 0 10px;
+                    }
+                }
+            }
+            .right {
+                button {
+                    font-size: 16px;
+                    font-weight: bold;
+                    color: #fff;
+                    background-color: #c80000;
+                    padding: 5px 10px;
+                    border-radius: 22px;
+                }
+            }
+        }
+        .bottom {
+            padding: 15px 0;
+            border-top: 1px solid #ccc;
+            strong {
+                font-size: 18px;
+                font-weight: bold;
+                line-height: 30px;
+            }
+            .content {
+                padding: 20px;
+                background-color: whitesmoke;
+                font-size: 16px;
+                margin: 10px 0;
+                line-height: 28px;
+                cursor: pointer;
+            }
+        }
+        .answer{
+            line-height: 25px;
+            padding: 5px;
+            margin-bottom: 30px;
+        }
+        .comment {
+            padding: 20px;
+            background-color: whitesmoke;
+            position: relative;
+            .detail {
+                font-size: 13px;
+                color: #777;
+                margin-bottom: 6px;
+                i {
+                    margin: 0 10px;
+                }
+            }
+            span {
+                background-color: #5ea8d9;
+                color: #fff;
+                padding: 0px 9px;
+                font-size: 14px;
+                border-radius: 30px;
+                position: absolute;
+                top: 49px;
+            }
+            p {
+                padding-left: 52px;
+            }
+        }
+    }
+
     /*쿠폰함*/
     .coupon_box {
         display: flex;
@@ -527,7 +613,7 @@
             border-top: 1px solid;
             border-bottom: 1px solid #ccc;
             padding: 13px 0;
-            span{
+            span {
                 margin-left: 17px;
                 font-size: 14px;
             }
@@ -562,7 +648,7 @@
             margin-top: 20px;
             padding: 10px;
         }
-        .q{
+        .q {
             display: flex;
             padding: 10px;
             justify-content: space-between;
@@ -1188,7 +1274,7 @@
     line-height: 26px;
 }
 
-.memberinfo_wrap .Requiredinfo_area .Requiredinfo_row .content em{
+.memberinfo_wrap .Requiredinfo_area .Requiredinfo_row .content em {
     display: block;
 }
 
@@ -1224,14 +1310,39 @@
     color: #222222;
 }
 
-
 /*교육담당자*/
 /* table  */
-.tbl_typeD,.tbl_typeD th,.tbl_typeD td{border:1px solid #e2e2e4;}
-.tbl_typeD{width:100%;}
-.tbl_typeD td{padding:20px 20px 20px 20px;text-align:center;font-weight:300;vertical-align: middle;}
-.tbl_typeD .baseinfo{padding-left: 10px;}
-.tbl_typeD .baseinfo li{display: block;margin-top: 10px;text-align:left;}
-.tbl_typeD .baseinfo .subname{margin-top: 0px;}
-.tbl_typeD .baseinfo .name{font-size: 18px;font-weight: 500;}
-.tbl_typeD .baseinfo .refund{color:#4ca4d4;margin-top: 20px;font-weight: 400;}
+.tbl_typeD,
+.tbl_typeD th,
+.tbl_typeD td {
+    border: 1px solid #e2e2e4;
+}
+.tbl_typeD {
+    width: 100%;
+}
+.tbl_typeD td {
+    padding: 20px 20px 20px 20px;
+    text-align: center;
+    font-weight: 300;
+    vertical-align: middle;
+}
+.tbl_typeD .baseinfo {
+    padding-left: 10px;
+}
+.tbl_typeD .baseinfo li {
+    display: block;
+    margin-top: 10px;
+    text-align: left;
+}
+.tbl_typeD .baseinfo .subname {
+    margin-top: 0px;
+}
+.tbl_typeD .baseinfo .name {
+    font-size: 18px;
+    font-weight: 500;
+}
+.tbl_typeD .baseinfo .refund {
+    color: #4ca4d4;
+    margin-top: 20px;
+    font-weight: 400;
+}

@@ -66,8 +66,9 @@
   padding: 0 15px;
   font-size: 17px;
 }
-.middle_header #wrap .right a:hover, .middle_header #wrap .right a.on {
-  color: #3A87EF;
+.middle_header #wrap .right a:hover,
+.middle_header #wrap .right a.on {
+  color: #3a87ef;
 }
 .middle_header #wrap .right .point {
   color: #fff;
@@ -179,6 +180,7 @@
 .mypage_content {
   padding-left: 270px;
   min-height: 800px;
+  /*토론방*/
   /*쿠폰함*/
 }
 .mypage_content h1 {
@@ -227,19 +229,17 @@
 .mypage_content > .content .search_box .date_input {
   margin-left: 10px;
 }
-.mypage_content > .content .search_box .date_input input#DatePicker {
-  background: url(../img/common/calendar-blank.png) no-repeat 94% 50%;
-  background-size: 20px;
+.mypage_content > .content .search_box .date_input input#DateStart {
   height: 26px;
   border: 0.3px solid #676767;
   width: 130px;
+  margin-top: 3px;
 }
-.mypage_content > .content .search_box .date_input input#DatePicker2 {
-  background: url(../img/common/calendar-blank.png) no-repeat 94% 50%;
-  background-size: 20px;
+.mypage_content > .content .search_box .date_input input#DateEnd {
   height: 26px;
   border: 0.3px solid #676767;
   width: 130px;
+  margin-top: 3px;
 }
 .mypage_content > .content .search_box .date_input button {
   background-color: #676767;
@@ -355,7 +355,7 @@
   content: "";
 }
 .mypage_content > .content ul.saved_lecture_list .left button:hover {
-  background-color: #3A87EF;
+  background-color: #3a87ef;
   color: #fff;
 }
 .mypage_content > .content ul.saved_lecture_list .left button:hover::before {
@@ -401,6 +401,84 @@
   padding: 12px 0;
   background-color: #fff;
   border: 1px solid;
+}
+.mypage_content .topic {
+  margin-bottom: 30px;
+}
+.mypage_content .topic .top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-top: 1px solid;
+}
+.mypage_content .topic .top .left .title {
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 30px;
+  cursor: pointer;
+}
+.mypage_content .topic .top .left .detail {
+  font-size: 14px;
+  margin-top: 5px;
+}
+.mypage_content .topic .top .left .detail i {
+  margin: 0 10px;
+}
+.mypage_content .topic .top .right button {
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #c80000;
+  padding: 5px 10px;
+  border-radius: 22px;
+}
+.mypage_content .topic .bottom {
+  padding: 15px 0;
+  border-top: 1px solid #ccc;
+}
+.mypage_content .topic .bottom strong {
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 30px;
+}
+.mypage_content .topic .bottom .content {
+  padding: 20px;
+  background-color: whitesmoke;
+  font-size: 16px;
+  margin: 10px 0;
+  line-height: 28px;
+  cursor: pointer;
+}
+.mypage_content .topic .answer {
+  line-height: 25px;
+  padding: 5px;
+  margin-bottom: 30px;
+}
+.mypage_content .topic .comment {
+  padding: 20px;
+  background-color: whitesmoke;
+  position: relative;
+}
+.mypage_content .topic .comment .detail {
+  font-size: 13px;
+  color: #777;
+  margin-bottom: 6px;
+}
+.mypage_content .topic .comment .detail i {
+  margin: 0 10px;
+}
+.mypage_content .topic .comment span {
+  background-color: #5ea8d9;
+  color: #fff;
+  padding: 0px 9px;
+  font-size: 14px;
+  border-radius: 30px;
+  position: absolute;
+  top: 49px;
+}
+.mypage_content .topic .comment p {
+  padding-left: 52px;
 }
 .mypage_content .coupon_box {
   display: flex;
@@ -1282,7 +1360,9 @@
 
 /*교육담당자*/
 /* table  */
-.tbl_typeD, .tbl_typeD th, .tbl_typeD td {
+.tbl_typeD,
+.tbl_typeD th,
+.tbl_typeD td {
   border: 1px solid #e2e2e4;
 }
 
