@@ -31,66 +31,70 @@ include $_SERVER['DOCUMENT_ROOT'] . "/include/include_function.php"; //DB연결 
         <!--wrap-->
         <div id="wrap">
             <ul>
-                <li class="on"><a href="../main/main.html">사업주훈련</a></li>
-                <li ><a href="../../cyber/main/main.html">내일배움카드</a></li>
+                <li class="on"><a href="/hrdedu/main/main.html">사업주훈련</a></li>
+                <li ><a href="/cyber/main/main.html">내일배움카드</a></li>
             </ul>
             <div class="btn">
-                <a href="../../public/member/login.html?path=A">로그인</a>
-                <a href="../../public/member/join.html">회원가입</a>
-                <a href="../../public/support/ask.html">1:1 상담</a>
+            	<? if(empty($_SESSION['LoginMemberID'])) { ?>
+                <a href="/public/member/login.html">로그인</a>
+                <a href="/public/member/join.html">회원가입</a>
+                <?}else{?>
+                <a href="/public/member/logout.php">로그아웃</a>
+                <?}?>
+                <a href="/public/support/ask.html">1:1 상담</a>
             </div>
         </div>
         <!--wrap-->
     </div>
     <div class="header">
         <div id="wrap">
-            <div class="logo"><a href="../main/main.html"><img src="../../common/img/logo.png" alt="회사로고"></a></div>
+            <div class="logo"><a href="/hrdedu/main/main.html"><img src="/common/img/logo.png" alt="회사로고"></a></div>
             <div class="gnb">
                 <ul class="dropdownmenu">
-                    <li class="menu"><a href="../group/introduce.html" class="depth1">교육원소개</a>
+                    <li class="menu"><a href="/hrdedu/group/introduce.html" class="depth1">교육원소개</a>
                         <ul>
-                            <li><a href="../group/introduce.html">교육원 소개</a></li>
+                            <li><a href="/hrdedu/group/introduce.html">교육원 소개</a></li>
                         </ul>
                     </li>
-                    <li class="menu"><a href="../educourse/law_course.html" class="depth1">법정의무교육</a>
+                    <li class="menu"><a href="/hrdedu/educourse/law_course.html" class="depth1">법정의무교육</a>
                         <ul>
-                            <li><a href="../educourse/law_course.html" >전체</a></li>
-                            <li><a href="../educourse/law_course.html" >법정의무교육</a></li>
-                            <li><a href="../educourse/law_course.html" >산업안전보건교육</a></li>
-                            <li><a href="../educourse/law_course.html" >중대재해처벌법</a></li>
-                            <li><a href="../educourse/law_course.html" >의료기관</a></li>
+                            <li><a href="/hrdedu/educourse/law_course.html" >전체</a></li>
+                            <li><a href="/hrdedu/educourse/law_course.html" >법정의무교육</a></li>
+                            <li><a href="/hrdedu/educourse/law_course.html" >산업안전보건교육</a></li>
+                            <li><a href="/hrdedu/educourse/law_course.html" >중대재해처벌법</a></li>
+                            <li><a href="/hrdedu/educourse/law_course.html" >의료기관</a></li>
                         </ul>
                     </li>
-                    <li class="menu"><a href="../educourse/job_course.html" class="depth1">직무능력향상교육</a>
+                    <li class="menu"><a href="/hrdedu/educourse/job_course.html" class="depth1">직무능력향상교육</a>
                         <ul>
-                            <li><a href="../educourse/job_course.html">전체</a></li>
-                            <li><a href="../educourse/job_course.html">디지털융합훈련</a></li>
-                            <li><a href="../educourse/job_course.html">보건</a></li>
-                            <li><a href="../educourse/job_course.html">보육</a></li>
-                            <li><a href="../educourse/job_course.html">일반기업</a></li>
+                            <li><a href="/hrdedu/educourse/job_course.html">전체</a></li>
+                            <li><a href="/hrdedu/educourse/job_course.html">디지털융합훈련</a></li>
+                            <li><a href="/hrdedu/educourse/job_course.html">보건</a></li>
+                            <li><a href="/hrdedu/educourse/job_course.html">보육</a></li>
+                            <li><a href="/hrdedu/educourse/job_course.html">일반기업</a></li>
                         </ul>
                     </li>
-                    <li class="menu"><a href="../../public/support/notice.html" class="depth1">학습지원센터</a>
+                    <li class="menu"><a href="/public/support/notice.html" class="depth1">학습지원센터</a>
                         <ul>
-                            <li><a href="../../public/support/notice.html">공지사항</a></li>
-                            <li><a href="../../public/support/faq.html">자주묻는 질문</a></li>
-                            <li><a href="../../public/support/ask.html">1:1 상담 </a></li>
-                            <li><a href="../../public/support/remote.html">PC원격지원</a></li>
+                            <li><a href="/public/support/notice.html">공지사항</a></li>
+                            <li><a href="/public/support/faq.html">자주묻는 질문</a></li>
+                            <li><a href="/public/support/ask.html">1:1 상담 </a></li>
+                            <li><a href="/public/support/remote.html">PC원격지원</a></li>
                         </ul>
                     </li>
-                    <li class="menu"><a href="../../public/support/edudata.html" class="depth1">학습자료실</a>
+                    <li class="menu"><a href="/public/support/edudata.html" class="depth1">학습자료실</a>
                         <ul>
-                            <li><a href="../../public/support/edudata.html" >경영·사무</a></li>
-                            <li><a href="../../public/support/edudata.html">보건·의료</a></li>
-                            <li><a href="../../public/support/edudata.html">보육</a></li>
-                            <li><a href="../../public/support/edudata.html">4차산업</a></li>
-                            <li><a href="../../public/support/edudata.html">법정의무·기타</a></li>
+                            <li><a href="/public/support/edudata.html" >경영·사무</a></li>
+                            <li><a href="/public/support/edudata.html">보건·의료</a></li>
+                            <li><a href="/public/support/edudata.html">보육</a></li>
+                            <li><a href="/public/support/edudata.html">4차산업</a></li>
+                            <li><a href="/public/support/edudata.html">법정의무·기타</a></li>
                         </ul>
                     </li>
                 </ul>
             </div>
             <div class="button">
-                <a href="../../public/mypage/lecture_status.html" class="point"><i class="ph ph-sign-out"></i>나의 학습실</a>
+                <a href="/public/mypage/lecture_status.html" class="point"><i class="ph ph-sign-out"></i>나의 학습실</a>
             </div>
         </div>
         <!--wrap-->

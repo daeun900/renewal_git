@@ -1,13 +1,12 @@
-<?
-if(empty($_SESSION['LoginMemberID'])) {
+<? 
+if(empty($_SESSION['LoginMemberID'])) { 
 ?>
 <script type="text/javascript">
 <!--
-	//top.location.href="/member/login.php";
-	top.location.href="/new/member/login.html";
+	top.location.href="/public/member/login.html";
 //-->
 </script>
 <?
-exit;
+    exit;
 }
 ?>

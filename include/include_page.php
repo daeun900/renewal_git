@@ -39,12 +39,12 @@ class Page
 	function blockList()
 	{
 		$b_start = $this->block_start;
-		$block_str = '<div class="pageArea">';
+		$block_str = '<div class="pagination"><ol>';
 		//-- 이전 블럭
 		if($this->block != 1)
 		{
 			$temp = $this->block_start - 1;
-			$block_str .= '<span><a href="javascript:pageRun(' . $temp . ');" title="이전 ' . $this->block_size . '" class="prev">이전</a></span>';
+			$block_str .= '<li><a href="javascript:pageRun(' . $temp . ');" title="이전 ' . $this->block_size . '" ><i class="ph ph-caret-left"></i></a></li>';
 		}
 		else
 		{
@@ -62,11 +62,11 @@ class Page
 		{
 			if($this->pg != $arrBlock[$i])
 			{
-				$block_str .= '<span><a href="javascript:pageRun('. $arrBlock[$i] . ');" >' . $arrBlock[$i] . '</a></span>';
+				$block_str .= '<li><a href="javascript:pageRun('. $arrBlock[$i] . ');" >' . $arrBlock[$i] . '</a></li>';
 			}
 			else
 			{
-				$block_str .= '<span><a href="javascript:pageRun('. $arrBlock[$i] . ');" class="show">' . $arrBlock[$i] . '</a></span>';
+				$block_str .= '<li class="on"><a href="javascript:pageRun('. $arrBlock[$i] . ');" style="color:white">' . $arrBlock[$i] . '</a></li>';
 			}
 			if($i < (count($arrBlock) - 1) ) $block_str .= "  ";
 		}
@@ -75,14 +75,14 @@ class Page
 		//다음 블럭
 		if($this->block != $this->block_count && $this->tot_no != 0){
 			$temp = $this->block_end + 1;
-			$block_str .= '<span><a href="javascript:pageRun(' . $temp . ')" title="다음 ' . $this->block_size . '" class="next">다음</a></span>';
+			$block_str .= '<li><a href="javascript:pageRun(' . $temp . ')" title="다음 ' . $this->block_size . '"><i class="ph ph-caret-right"></i></a></li>';
 		}
 		else
 		{
 			$block_str .= '';
 		}
 
-		$block_str .= '</div>';
+		$block_str .= '</ol></div>';
 
 		return $block_str;
 	}

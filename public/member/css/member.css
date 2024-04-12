@@ -314,15 +314,16 @@ header .top_header #wrap .logo img {
   width: 30% !important;
 }
 
-.recommendid_input {
+.flex_input {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
+  margin-bottom: 5px;
 }
-.recommendid_input input {
+.flex_input input {
   width: 66% !important;
 }
-.recommendid_input button {
+.flex_input button {
   width: 122px;
   background-color: #fff;
   border: 1px solid;

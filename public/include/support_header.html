@@ -10,7 +10,7 @@ include $_SERVER['DOCUMENT_ROOT'] . "/include/include_function.php"; //DB연결 
     <script type="text/javascript" src="../../common/js/jquery-2.1.4.js"></script>
     <link rel="stylesheet" href="../../common/css/base.css?ver=2">
     <link rel="stylesheet" href="../../common/css/common.css?ver=4">
-    <link rel="stylesheet" href="css/support.css">
+    <link rel="stylesheet" href="css/support.css?ver=240411">
     <script src="https://kit.fontawesome.com/ebace215db.js" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
@@ -25,17 +25,21 @@ include $_SERVER['DOCUMENT_ROOT'] . "/include/include_function.php"; //DB연결 
         <!--wrap-->
         <div id="wrap">
             <div class="logo" >
-                <a href="../../hrdedu/main/main.html">
-                    <img src="../../common/img/logo.png" alt="HRD평생교육원">
-                </a>
+            <?if($_SESSION["SiteCode"] == "B"){?>
+            	<a href="/cyber/main/main.html">
+            <?}else{?>
+            	<a href="/hrdedu/main/main.html">
+            <?}?>
+	           		<img src="/common/img/logo.png" alt="HRD평생교육원">
+	           	</a>
             </div> 
             <div class="btn">
             	<? if(empty($_SESSION['LoginMemberID'])) { ?>
-                <a href="../member/logout.html?path=<?=$path?>">로그인</a>
+                <a href="/public/member/login.html">로그인</a>
+                <a href="/public/member/join.html">회원가입</a>
                 <?}else{?>
-                <a href="../member/login.html?path=<?=$path?>">로그인</a>
+                <a href="/public/member/logout.html">로그아웃</a>
                 <?}?>
-                <a href="../member/join.html">회원가입</a>
             </div>
         </div>
         <!--wrap-->
@@ -50,7 +54,7 @@ include $_SERVER['DOCUMENT_ROOT'] . "/include/include_function.php"; //DB연결 
                 <a href="notice.html" class="notice">공지사항</a>
                 <a href="faq.html" class="faq">자주 묻는 질문</a>
                 <a href="ask.html" class="ask">1:1 상담</a>
-                <a href="edudata.html" class="edudata">학습자료실</a>
+                <a href="edudata.html?EduCate=A" class="edudata">학습자료실</a>
                 <a href="event.html" class="event">이벤트</a>
                 <a href="remote.html" class="remote">PC 원격지원</a>
             </div>

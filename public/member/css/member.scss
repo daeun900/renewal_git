@@ -322,10 +322,11 @@ header {
     }
 }
 
-.recommendid_input {
+.flex_input {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
+    margin-bottom: 5px;
     input {
         width: 66% !important;
     }

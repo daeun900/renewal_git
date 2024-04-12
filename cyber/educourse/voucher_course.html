@@ -8,6 +8,7 @@ if($keyChkVal){
 }
 $where[] = "a.PackageYN='N'";
 $where[] = "a.Del='N'";
+$where[] = "a.UseYN='Y'";
 $where[] = "a.ctype='B'";
 $where[] = "a.Category1 like '%2%'";
 
@@ -106,7 +107,7 @@ mysqli_free_result($ResultA);
 						$ImgUrl = "/upload/Course/".$PreviewImage;
 				?>
 				<div class="swiper-slide">
-                    <div class="course_img" style="background-image: url(<?=$ImgUrl?>);" onclick="window.open('../edudetail/edudetail.html')"></div>
+                    <div class="course_img" style="background-image: url(<?=$ImgUrl?>);" onclick="window.open('../edudetail/edudetail.html?LectureCode=<?=$LectureCode?>')"></div>
                     <div class="course_tag">
                         <?while (list($key,$value)=each($Keyword_arrayA)){?>
 					 	<span>#<?=$value?></span>
@@ -148,7 +149,7 @@ mysqli_free_result($ResultA);
 						$ImgUrl = "/upload/Course/".$PreviewImage;
 				?>
 				<div class="swiper-slide">
-            		<div class="course_img" style="background-image: url(<?=$ImgUrl?>);" onclick="window.open('../edudetail/edudetail.html')"></div>
+            		<div class="course_img" style="background-image: url(<?=$ImgUrl?>);" onclick="window.open('../edudetail/edudetail.html?LectureCode=<?=$LectureCode?>')"></div>
                 		<div class="course_tag">
                     	<?while (list($key,$value)=each($Keyword_arrayA)){?>
 							<span>#<?=$value?></span>
@@ -185,7 +186,7 @@ mysqli_free_result($ResultA);
 					$ImgUrl = "/upload/Course/".$PreviewImage;
 			?>
 				<li>
-		           	<div class="course_img" style="background-image: url(<?=$ImgUrl?>); background-color: #e8ece7;" onclick="window.open('../edudetail/edudetail.html')" >
+		           	<div class="course_img" style="background-image: url(<?=$ImgUrl?>); background-color: #e8ece7;" onclick="window.open('../edudetail/edudetail.html?LectureCode=<?=$LectureCode?>')" >
 						<span><?=$Keyword_array[1]?></span>					
 						<button class="course_save_btn"><img src="../img/educourse/white heart.png" alt=""></button>
 					</div>

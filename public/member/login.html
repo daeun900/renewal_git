@@ -1,21 +1,31 @@
 <? include "../include/member_header.html";?>
-
 <?
 //로그인 여부 체크
 include $_SERVER['DOCUMENT_ROOT'] . "/include/login_not_check.php";
 ?>
-<body>
+
+<script type="text/javascript">
+//엔터키로 로그
+function onEnterLogin(){
+	var keyCode = window.event.keyCode;
+	
+	if (keyCode == 13) {
+		LoginSubmit();
+	}
+}
+</script>
+
+<body onkeydown="javascript:onEnterLogin();">
     <div id="member_wrap">
         <div class="title">
             <h1>LOGIN</h1>
         </div>
         <div class="content">
-        	<form name="LoginForm"  autocomplete="off">
+        	<form name="LoginForm" autocomplete="off">
             	<input type="hidden" name="MemberType">
-            	<input type="hidden" name="path" value="<?=$path?>">
 	            <div class="input_box">
 	                <label for="userid">사용자 ID</label>
-	                <input type="text" name="ID" id="ID1" value="<?if (isset($_COOKIE['MemberSavedID'])) { echo $_COOKIE['MemberSavedID'];}?>" placeholder="아이디를 입력해주세요">
+	                <input type="text" name="ID" id="ID1" placeholder="아이디를 입력해주세요." value="<?if (isset($_COOKIE["MemberSavedID"])) { echo $_COOKIE["MemberSavedID"];}?>">
 	            </div>
 	            <div class="input_box">
 	                <label for="userpw">사용자 비밀번호</label>
@@ -24,13 +34,11 @@ include $_SERVER['DOCUMENT_ROOT'] . "/include/login_not_check.php";
 	            <div class="member_classify" style="display:none;">
 	                <input type="radio" name="MemberType1" id="MemberType" value="A" checked><label for="">기업근로자 회원</label>
 	                <input type="radio" name="MemberType1" id="MemberType" value="B"><label for="">국민내일배움카드</label>
-	                <div class="bubble">
-	                    기업 교육 학습자는 반드시 기업 근로자 회원에 체크해 주세요
-	                </div>
+	                <div class="bubble">기업 교육 학습자는 반드시 기업 근로자 회원에 체크해 주세요</div>
 	            </div>
 	            <div class="flex_box">
 	                <div>
-	                    <input type="checkbox" name="ID_Save" id=""> <label for="idsave">아이디 저장</label>
+	                    <input type="checkbox" name="idSave" id="idSave" <?if (isset($_COOKIE["MemberSavedID"])){?> checked<?}?>> <label for="idsave">아이디 저장</label>
 	                </div>
 	                <div>
 	                    <a href="find_id.html">아이디 찾기</a>
@@ -55,7 +63,4 @@ include $_SERVER['DOCUMENT_ROOT'] . "/include/login_not_check.php";
     </div>
     <!--wrap-->
 </body>
-
-
-
 <? include "../../common/include/footer.html";  ?>

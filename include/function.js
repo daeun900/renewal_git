@@ -298,54 +298,53 @@ function LogoutTimeCheck() {
 //전체 선택
 function JoinAgreeAllCheck() {
 	if ($('#AllCheck').is(':checked') == true) {
-		$('#Agree01_01').prop('checked', true);
-		$('#Agree01_02').prop('checked', false);
-		//$('#Agree02_01').prop('checked',true);
-		//$('#Agree02_02').prop('checked',false);
-		$('#Agree03_01').prop('checked', true);
-		$('#Agree03_02').prop('checked', false);
-		$('#Agree04_01').prop('checked', true);
-		$('#Agree04_02').prop('checked', false);
-		$('#ACS').prop('checked', true);
-		$('#Marketing').prop('checked', true);
-	} else {
-		$('#Agree01_01').prop('checked', false);
-		$('#Agree01_02').prop('checked', false);
-		//$('#Agree02_01').prop('checked',false);
-		//$('#Agree02_02').prop('checked',false);
-		$('#Agree03_01').prop('checked', false);
-		$('#Agree03_02').prop('checked', false);
-		$('#Agree04_01').prop('checked', false);
-		$('#Agree04_02').prop('checked', false);
-		$('#ACS').prop('checked', false);
-		$('#Marketing').prop('checked', false);
-	}
-}
-
-function JoinAgreeAllCheck2() {	
-	if ($('#AllCheck').is(':checked') == true) {
 		$('#Agree01').prop('checked', true);
 		$('#Agree02').prop('checked', true);
 		$('#Agree03').prop('checked', true);
 		$('#Mailling').prop('checked', true);
 		$('#Marketing').prop('checked', true);
+		$('#chk5Email').prop('checked', true);
+		$('#chk5Sms').prop('checked', true);
 	} else {
 		$('#Agree01').prop('checked', false);
 		$('#Agree02').prop('checked', false);
 		$('#Agree03').prop('checked', false);
 		$('#Mailling').prop('checked', false);
 		$('#Marketing').prop('checked', false);
+		$('#chk5Email').prop('checked', false);
+		$('#chk5Sms').prop('checked', false);
 	}
 }
 
+//동의여부 체크
 function JoinAgreeCheck() {	
 	if(($('#Agree01').is(':checked') == false)||($('#Agree02').is(':checked') == false)||($('#Agree03').is(':checked') == false)||($('#Mailling').is(':checked') == false)||($('#Marketing').is(':checked') == false)){
 		$('#AllCheck').prop('checked', false);
+		if(($('#Marketing').is(':checked') == false)){
+			$('#chk5Email').prop('checked', false);
+			$('#chk5Sms').prop('checked', false);
+		}
 	}else{
 		$('#AllCheck').prop('checked', true);
+		if(($('#Marketing').is(':checked') == true)){
+			$('#chk5Email').prop('checked', true);
+			$('#chk5Sms').prop('checked', true);
+		}
 	}
 }
 
+//동의여부 체크 - 이메일/SMS
+function JoinAgreeCheckA() {	
+	if(($('#chk5Sms').is(':checked') == true)||($('#chk5Email').is(':checked') == true)){
+		$('#Marketing').prop('checked', true);
+		if(($('#Agree01').is(':checked') == true)||($('#Agree02').is(':checked') == true)||($('#Agree03').is(':checked') == true)||($('#Mailling').is(':checked') == true)||($('#Marketing').is(':checked') == true)){
+			$('#AllCheck').prop('checked', true);
+		}
+	}else{
+		$('#Marketing').prop('checked', false);
+		$('#AllCheck').prop('checked', false);
+	}
+}
 
 //이용약관
 function JoinAgree01Check(str) {
@@ -403,10 +402,12 @@ function JoinStep(){
 		return false;
 	}
 	
+	/*
 	if ($('#Mailling').is(':checked') == false) {
 		alert('수강확인 SMS/알림톡/메일 발송에 동의하여야 회원가입이 가능합니다.');
 		return false;
 	}
+	*/
 	
 	/*if ($('#Marketing').is(':checked') == false) {
 		alert('마케팅 안내에 동의하여야 회원가입이 가능합니다.');
@@ -549,12 +550,31 @@ function IDCheck() {
 	if (ID_Validity(ID) == false) {
 		return;
 	}
-
-	$("div[id='id_check_msg']").load('/member/id_check.php', { ID: ID }, function () {
+	$("#id_check_msg").load('/public/member/id_check.php', { ID: ID }, function () {
 		if ($('#ID_Check').val() == 'Y') {
 			alert('사용 가능한 아이디입니다.');
 		} else {
 			alert('이미 사용중인 아이디입니다.');
+			$('#ID').val('');
+		}
+	});
+}
+
+//추천인 아이디 확인
+function RecomIDCheck() {
+	var RecomID = $('#RecomID').val();
+	
+	if(RecomID == ''){
+		alert('추천인 ID를 입력하세요.');
+		return;
+	}
+	
+	$("#recomid_check_msg").load('/public/member/recomid_check.php', { RecomID: RecomID }, function () {
+		if ($('#RecomID_Check').val() == 'Y') {
+			alert('입력하신 추천인 ID 확인완료되었습니다.');
+		} else {
+			alert('입력하신 추천인 ID가 없습니다.');
+			$('#RecomID').val('');
 		}
 	});
 }
@@ -588,7 +608,6 @@ function JoinCompanySearchSelect() {
 
 //회원가입
 function MemberJoin() {
-	
 	if ($('#Name').val() == '') {
 		alert('이름을 입력하세요.');
 		$('#Name').focus();
@@ -674,6 +693,13 @@ function MemberJoin() {
 	if (chkEmail($('#Email').val()) == false) {
 		alert('이메일을 정확하게 입력하세요.');
 		return;
+	}
+	
+	if ($('#RecomID').val() != '') {
+		if ($('#RecomID_Check').val() == 'N') {
+			alert('추천인 ID 확인을 하세요.');
+			return;
+		}
 	}
 
 	if ($('#SecurityCode').val() == '') {

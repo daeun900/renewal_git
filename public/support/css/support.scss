@@ -467,7 +467,7 @@
             display: block;
         }}
         img.download{width: 26px;}
-        img.download_view{width: 20px; margin-right: 20px;}
+        img.download_view{width: 20px; margin-right: 10px;}
         .content{
             padding: 20px 0;
             text-align: left;
@@ -716,6 +716,7 @@
         flex-direction: column;
         align-items: center;
         text-align: center;
+        width: 400px;
         i {
             font-size: 80px;
             color: #2c5db4;
@@ -730,7 +731,8 @@
     }
     .btn {
         text-align: center;
-        margin: 35px 0;
+        margin: 35px 0 10px 0;
+        width: 100%;
         a {
             text-align: center;
             background-color: #2d2d2d;

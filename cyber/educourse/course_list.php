@@ -21,6 +21,7 @@ if($CategoryB){
 }
 $where[] = "a.PackageYN='N'";
 $where[] = "a.Del='N'";
+$where[] = "a.UseYN='Y'";
 $where[] = "a.ctype='B'";
 
 $where = implode(" AND ",$where);
@@ -38,7 +39,7 @@ if($QUERY && mysqli_num_rows($QUERY)){
         $ImgUrl = "/upload/Course/".$PreviewImage;
 ?>
 <li>
-	<div class="course_img" style="background-image: url(<?=$ImgUrl?>); background-color: #e8ece7;" onclick="window.open('../edudetail/edudetail.html')" onclick="window.open('../edudetail/edudetail.html')">
+	<div class="course_img" style="background-image: url(<?=$ImgUrl?>); background-color: #e8ece7;" onclick="window.open('../edudetail/edudetail.html?LectureCode=<?=$LectureCode?>')" onclick="window.open('../edudetail/edudetail.html')">
 		<span><?=$Keyword_array[1]?></span>					
 		<button class="course_save_btn"><img src="../img/educourse/white heart.png" alt=""></button>
 	</div>

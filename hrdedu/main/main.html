@@ -1,5 +1,9 @@
 <? include '../include/header.html'; ?>
-
+<?
+//사이트정보 세션에 담기
+unset($_SESSION["SiteCode"]);
+$_SESSION["SiteCode"] = "A";
+?>
 <body>
     <!-- 메인배너 -->
     <div class="mainbanner_wrap">

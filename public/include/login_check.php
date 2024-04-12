@@ -3,7 +3,8 @@ if(empty($_SESSION['LoginMemberID'])) {
 ?>
 <script type="text/javascript">
 <!--
-	top.location.href="/new/member/login.html";
+	//alert("<?= "LOGIN_OK_SESSION2-".	$_SESSION["LoginMemberID"] ?>");
+	top.location.href="/public/member/login.html";
 //-->
 </script>
 <?

@@ -1,5 +1,5 @@
 <?
-include "../include/include_function.php"; //DB연결 및 각종 함수 정의
+include "./include_function.php"; //DB연결 및 각종 함수 정의
 
 function textToImage($text, $fname, $fsize) { 
     $text = iconv("EUC-KR", "UTF-8", $text); // 한글지원 

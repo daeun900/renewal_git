@@ -1,4 +1,42 @@
-<? include "../include/support_header.html"; ?>
+<? include "../include/support_header.html"; 
+
+$idx = Replace_Check($idx);
+
+$Sql = "UPDATE StudyPDS SET ViewCount = ViewCount + 1 WHERE idx=$idx";
+$Result = mysqli_query($connect, $Sql);
+
+$Sql = "SELECT * FROM StudyPDS WHERE idx=$idx AND UseYN='Y' AND Del='N'";
+$Result = mysqli_query($connect, $Sql);
+$Row = mysqli_fetch_array($Result);
+
+if($Row) {
+    $Category = $Row['Category'];
+    $Title = $Row['Title'];
+    $Content = stripslashes($Row['Content']);
+    $FileName1 = $Row['FileName1'];
+    $RealFileName1 = $Row['RealFileName1'];
+    $FileName2 = $Row['FileName2'];
+    $RealFileName2 = $Row['RealFileName2'];
+    $FileName3 = $Row['FileName3'];
+    $RealFileName3 = $Row['RealFileName3'];
+    $FileName4 = $Row['FileName4'];
+    $RealFileName4 = $Row['RealFileName4'];
+    $FileName5 = $Row['FileName5'];
+    $RealFileName5 = $Row['RealFileName5'];
+    $ViewCount = $Row['ViewCount'];
+    $RegDate = $Row['RegDate'];
+}else{
+?>
+<script type="text/javascript">
+<!--
+    location.href="edudata.html?EduCate=<?=$Category?>";
+//-->
+</script>
+<?
+exit;
+}
+
+?>
 <body>
     <div class="top_section">
         <div id="wrap">
@@ -18,11 +56,9 @@
     <div class="category">
         <div id="wrap">
             <ul>
-                <li class="on"><a href="#">경영·사무</a></li>
-                <li><a href="#">보건·의료</a></li>
-                <li><a href="#">보육</a></li>
-                <li><a href="#">4차 산업</a></li>
-                <li><a href="#">법정의무·기타</a></li>
+	            <?while (list($key,$value)=each($Edudata_array)) {?>
+	            	<li class="<?if($Category==$key) {?>on<?}?>"><a href="edudata.html?EduCate=<?=$key?>"><?=$value?></a></li>
+	            <?}?>
             </ul>
         </div>
     </div>
@@ -30,17 +66,17 @@
         <div id="wrap">
             <div class="tableTypeA_top">
                 <div class="title">
-                    <미래로 가는 버스_메타버스를 모르면 바보가 된다> 학습자료
+                    <?=$Title?>
                 </div>
                 <div class="detail">
                     <div class="date">
                         <span>등록일</span>
-                        2023-05-19
+                        <?=substr($RegDate,0,10)?>
                     </div>
                     <div class="bar"></div>
                     <div class="view">
                         <span>조회</span>
-                        797
+                        <?=$ViewCount?>
                     </div>
                 </div>
             </div>
@@ -53,33 +89,43 @@
                     <tr>
                         <th>첨부파일 다운로드</th>
                         <td class="al pl20">
-                            <a href=""><img src="img/icon_black.png" alt="파일아이콘" class="download_view">HRDE평생교육원 이용약관, 개인정보처리방침, 마케팅 안내 동의</a>
-                        </td>
+                        	<?if($FileName1) { ?><a href="../../include/download.php?idx=<?=$idx?>&code=StudyPDS&file=1"><img src="img/icon_black.png" alt="파일아이콘" class="download_view"><?=$RealFileName1?></a><?}?>
+                            <?if($FileName2) { ?><a href="../../include/download.php?idx=<?=$idx?>&code=StudyPDS&file=2"><img src="img/icon_black.png" alt="파일아이콘" class="download_view"><?=$RealFileName2?></a><?}?>
+                            <?if($FileName3) { ?><a href="../../include/download.php?idx=<?=$idx?>&code=StudyPDS&file=3"><img src="img/icon_black.png" alt="파일아이콘" class="download_view"><?=$RealFileName3?></a><?}?>
+			                <?if($FileName4) { ?><a href="../../include/download.php?idx=<?=$idx?>&code=StudyPDS&file=4"><img src="img/icon_black.png" alt="파일아이콘" class="download_view"><?=$RealFileName4?></a><?}?>
+			                <?if($FileName5) { ?><a href="../../include/download.php?idx=<?=$idx?>&code=StudyPDS&file=5"><img src="img/icon_black.png" alt="파일아이콘" class="download_view"><?=$RealFileName5?></a><?}?>                        
+			            </td>
                     </tr>
                     <tr>
                         <td colspan="2" class="content">
-                            "미래로 가는 버스_메타버스를 모르면 바보가 된다" 학습 자료 입니다. <br>
-                            <br>
-                            학습 자료를 활용하시어 교육에 도움 되시길 바랍니다. ^-^<br>
-                            <br>
-                            <br>
-                            ★ 학습 자료 키워드 검색 방법 ★<br>
-                            <br>
-                                - ​수강 중이신 학습 자료 다운<br>
-                                <br>
-                                - 학습 자료 안에서 Ctrl+F 동시 클릭 후 키워드 검색<br>
-                                <br>
-                                <br>
-                            아래 이미지 사진(예시용) <br>
-                            <br>
-                            검색 키워드 ex : 메타버스, 증강현실, 원격교육
+							<?=$Content?>
                         </td>
                     </tr>
                 </table>
             </div>
             <div class="button_wrap">
-                <button class="save modal-btn" href="#modal01">학습자료 찜하기</button>
-                <button onclick="location.href='edudata.html'">목록</button>
+<!--                 <button type="button" class="save modal-btn" onclick="location.href='save_learning_material.php?idx=<?=$idx?>'">학습자료 찜하기</button> href="#modal01" -->
+            <?
+	            if($LoginMemberID) {
+					$Sql = "SELECT COUNT(*) FROM StudyPDS_Scrap WHERE idx=$idx AND ID='$LoginMemberID'";
+					$Result = mysqli_query($connect, $Sql);
+					$Row = mysqli_fetch_array($Result);
+
+					$ScrapCount = $Row[0];
+            ?>
+		            <?if($ScrapCount<1) {?>
+		                <button type="button" class="btn_01" onclick="Javascript:StudyPDS_Scrap(<?=$idx?>,'Regist');">학습자료 찜하기</button>
+		            <?}else{?>
+		                <button type="button" class="btn_01" onclick="Javascript:StudyPDS_Scrap(<?=$idx?>,'Delete');">학습자료 찜 취소하기</button>
+		            <?}?>
+	            <?
+	            }else{
+	            ?>
+	                <button type="button" class="btn_01" onclick="Javascript:LoginCheck">학습자료 찜하기</button>
+	            <?
+	            }
+            ?>
+                <button onclick="location.href='edudata.html?EduCate=<?=$Category?>'">목록</button>
             </div>
         </div>
         <!--wrap-->
@@ -153,40 +199,8 @@
 </script>
 
 <style> 
-    .modal-bg {display:none;width:100%;height:100%;position:fixed;top:0;left:0;right:0;background: rgba(0, 0, 0, 0.6);z-index:999;}
-    .modal-wrap {display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#fff;z-index:1000;}
+    .modal-bg {width:100%;height:100%;position:fixed;top:0;left:0;right:0;background: rgba(0, 0, 0, 0.6);z-index:999;}
+    .modal-wrap {position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#fff;z-index:1000;}
     .modal-wrap .close-btn { position: absolute;cursor: pointer;}
     .modal-wrap .close-btn i {font-size: 35px;}
 </style>
-
-<!--학습자료찜하기 팝업-->
-<div class="modal-bg"></div>
-<div id="modal01" class="modal-wrap complete_popup">
-    <div class="close-btn">
-        <i class="ph-thin ph-x"></i>
-    </div>
-    <div class="complete_inner">
-        <i class="ph-fill ph-check-circle"></i>
-        <strong>학습자료 찜하기 완료</strong>
-        <p>학습자료 찜하기가 완료되었습니다. <br>
-            온라인학습실 > 자료/상담관리에서 확인하실 수 있습니다.</p>
-    </div>
-    <div class="btn">
-        <a href="#">온라인 학습실 바로가기</a>
-    </div>
-</div>
-
-<div class="modal-bg"></div>
-<div id="modal02" class="modal-wrap complete_popup">
-    <div class="close-btn">
-        <i class="ph-thin ph-x"></i>
-    </div>
-    <div class="complete_inner">
-        <i class="ph-fill ph-check-circle"></i>
-        <strong>학습자료 찜 취소하기 완료</strong>
-        <p>학습자료 찜 취소하기가 완료되었습니다.</p>
-    </div>
-    <div class="btn">
-        <a class="close-btn2">확인</a>
-    </div>
-</div>

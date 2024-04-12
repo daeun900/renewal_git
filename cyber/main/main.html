@@ -1,4 +1,9 @@
 <? include '../include/header.html'; ?>
+<?
+//사이트정보 세션에 담기
+unset($_SESSION["SiteCode"]);
+$_SESSION["SiteCode"] = "B";
+?>
 <body>
     <!--mainbanner-->
     <div class="main_banner_wrap">
@@ -43,7 +48,7 @@
                 <strong>나에게 필요한 과정을 찾아보세요</strong>
             </div>
             <ul>
-                <li onclick="location.href='/cyber/educourse/all_course.html?CategoryB=1'">
+                <li onclick="location.href='/cyber/educourse/main_course.html?CategoryB=1'">
                     <div class="img">
                         <img src="../img/main/con1/icon1.png" alt="아이콘">
                     </div>
@@ -52,7 +57,7 @@
                         <span>#공기업취뽀 #프로이직러</span>
                     </div>
                 </li>
-                <li onclick="location.href='/cyber/educourse/all_course.html?CategoryB=2'">
+                <li onclick="location.href='/cyber/educourse/main_course.html?CategoryB=2'">
                     <div class="img">
                         <img src="../img/main/con1/icon2.png" alt="아이콘">
                     </div>
@@ -61,7 +66,7 @@
                         <span>#소통 #사무행정 #인사 #총무</span>
                     </div>
                 </li>
-                <li onclick="location.href='/cyber/educourse/all_course.html?CategoryB=3'">
+                <li onclick="location.href='/cyber/educourse/main_course.html?CategoryB=3'">
                     <div class="img">
                         <img src="../img/main/con1/icon3.png" alt="아이콘">
                     </div>
@@ -70,7 +75,7 @@
                         <span>#AI #빅데이터 #챗GPT</span>
                     </div>
                 </li>
-                <li onclick="location.href='/cyber/educourse/all_course.html?CategoryB=4'">
+                <li onclick="location.href='/cyber/educourse/main_course.html?CategoryB=4'">
                     <div class="img">
                         <img src="../img/main/con1/icon4.png" alt="아이콘">
                     </div>
@@ -109,7 +114,7 @@
                                 extract($ROW);
 								$ImgUrl = "/upload/Course/".$PreviewImage;
                         ?>
-                        <li onclick="window.open('../edudetail/edudetail.html')">
+                        <li onclick="window.open('../edudetail/edudetail.html?LectureCode=<?=$LectureCode?>')">
                             <div class="img">
                                 <img src="<?=$ImgUrl?>" alt="">
                             </div>
@@ -185,7 +190,7 @@
                                 extract($ROW);
 								$ImgUrl = "/upload/Course/".$PreviewImage;
                         ?>
-                        <li onclick="window.open('../edudetail/edudetail.html')">
+                        <li onclick="window.open('../edudetail/edudetail.html?LectureCode=<?=$LectureCode?>')">
                             <div class="img">
                                 <img src="<?=$ImgUrl?>" alt="">
                             </div>
@@ -257,11 +262,11 @@
             <div class="content1">
                 <div class="qna">
                     <strong>자주묻는 질문</strong>
-                    <a href="../support/faq.html" class="more">전체보기 <i class="ph ph-caret-right"></i></a>
+                    <a href="../../public/support/faq.html" class="more">전체보기 <i class="ph ph-caret-right"></i></a>
                     <ul>
                     	<?
                         $i = 0;
-                        $SQL = "SELECT * FROM FaqCyber WHERE Del='N' AND UseYN='Y' ORDER BY RegDate DESC, idx DESC LIMIT 3";
+                        $SQL = "SELECT * FROM NewFaq WHERE Del='N' AND UseYN='Y' ORDER BY RegDate DESC, idx DESC LIMIT 3";
 						$QUERY = mysqli_query($connect, $SQL);
                         if($QUERY && mysqli_num_rows($QUERY)){
                             while($ROW = mysqli_fetch_array($QUERY)){
@@ -278,11 +283,11 @@
                 </div>
                 <div class="notice">
                     <strong>공지사항</strong>
-                    <a href="../support/notice.html" class="more">전체보기 <i class="ph ph-caret-right"></i></a>
+                    <a href="../../public/support/notice.html" class="more">전체보기 <i class="ph ph-caret-right"></i></a>
                     <ul>
                     	<?
                         $i = 0;
-                        $SQL = "SELECT * FROM NoticeCyber WHERE Del='N' AND UseYN='Y' AND Notice='N' ORDER BY RegDate DESC, idx DESC LIMIT 3";
+                        $SQL = "SELECT * FROM Notice WHERE Del='N' AND UseYN='Y' AND Notice='N' ORDER BY RegDate DESC, idx DESC LIMIT 3";
 						$QUERY = mysqli_query($connect, $SQL);
                         if($QUERY && mysqli_num_rows($QUERY)){
                             while($ROW = mysqli_fetch_array($QUERY)){

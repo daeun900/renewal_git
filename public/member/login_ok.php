@@ -3,9 +3,8 @@ include $_SERVER['DOCUMENT_ROOT'] . "/include/include_function.php"; //DB연결 
 
 require_once ('../../include/KISA_SHA256.php');
 
-$path = Replace_Check_XSS2($path); //사이트 구분값
 $MemberType = Replace_Check_XSS2($MemberType);
-$ID_Save = Replace_Check_XSS2($ID_Save); //아이디 저장여부
+$idSave = Replace_Check_XSS2($idSave); //아이디 저장여부
 $ID = Replace_Check_XSS2($ID); //아이디
 $Pwd = Replace_Check_XSS2($Pwd); //비밀번호
 
@@ -53,16 +52,16 @@ if($Row) {
 	
 	//비밀번호를 변경해야 하는 경우
 	if($Row['PassChange']=="N") {
-	    $url = "/public/mypage/memberinfo.html?path=$path";
+	    $url = "/public/mypage/memberinfo.html";
 	    $TopLogin="N";
 	//테스트용아디이일 경우, 강의페이지로 이동
 	} else if ($Row['TestID']=="Y") {
-	    $url = "/public/mypage/lecture_status.html?path=$path";
+	    $url = "/public/mypage/lecture_status.html";
     //교육담당자는 결제관리페이지로 이동
 	} else if ($Row['EduManager']=="Y") { 
-	    $url = "/public/mypage/manager_payment.html?path=$path";
+	    $url = "/public/mypage/manager_payment.html";
 	} else {
-	    $url = "/public/mypage/lecture_status.html?path=$path";
+	    $url = "/public/mypage/lecture_status.html";
 	}
 	
 	//최종로그인 날짜, IP 등록
@@ -112,7 +111,7 @@ if($Row) {
 */
 	
 	//아이디 저장 체크시 쿠키에 저장
-	if($ID_Save=="Y") {
+	if($idSave=="on") {
 		setCookie("MemberSavedID",$Row['ID'],time()+15768000,"/");
 	}else{
 		setCookie("MemberSavedID","",0,"/");
@@ -140,6 +139,7 @@ if($Row) {
 	}else{
 	?>
 		//alert("<?= "LOGIN_OK_SESSION2-".	$_SESSION["LoginMemberID"]."-".$url?>");
+		//alert("<?= "ID SAVE    ".$idSave?>");
 		top.location.href="<?=$url?>";
 	<?
 	}

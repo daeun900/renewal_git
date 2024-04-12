@@ -25,18 +25,22 @@ include $_SERVER['DOCUMENT_ROOT'] . "/include/include_function.php"; //DB연결 
         <!--wrap-->
         <div id="wrap">
             <div class="logo" >
-                <a href="../../hrdedu/main/main.html">
-                    <img src="../../common/img/logo.png" alt="HRD평생교육원">
-                </a>
+            <?if($_SESSION["SiteCode"] == "B"){?>
+            	<a href="/cyber/main/main.html">
+            <?}else{?>
+            	<a href="/hrdedu/main/main.html">
+            <?}?>
+	           		<img src="/common/img/logo.png" alt="HRD평생교육원">
+	           	</a>
             </div> 
             <div class="btn">
             	<? if(empty($_SESSION['LoginMemberID'])) { ?>
-                <a href="../../public/member/login.html?path=<?=$path?>">로그인</a>
+                <a href="/public/member/login.html">로그인</a>
+                <a href="/public/member/join.html">회원가입</a>
                 <?}else{?>
-                <a href="../../public/member/logout.php?path=<?=$path?>">로그아웃</a>
-                <?}?>                
-                <a href="../member/join.html">회원가입</a>
-                <a href="../support/ask.html">1:1상담</a>
+                <a href="/public/member/logout.php">로그아웃</a>
+                <?}?>
+                <a href="/public/support/ask.html">1:1상담</a>
             </div>
         </div>
         <!--wrap-->
@@ -65,7 +69,7 @@ include $_SERVER['DOCUMENT_ROOT'] . "/include/include_function.php"; //DB연결 
                         <img src="img/graduationcap.png" alt="학사모아이콘">
                     </span>
                     <span class="name">
-                        <b>홍길동</b>님
+                        <b><?=$_SESSION["LoginName"]?></b>님
                     </span>
                 </div>
                 <p>새로운 도전을 <br> 응원합니다.</p>

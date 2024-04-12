@@ -14,6 +14,6 @@ unset($_SESSION["IsPlaying"]); // Brad (2021.11.27)
 ?>
 <SCRIPT LANGUAGE="JavaScript">
 <!--
-	location.href="/";
+	location.href="/hrdedu/main/main.html";
 //-->
 </SCRIPT>
