@@ -154,7 +154,7 @@ if($Row) {
 ?>
 <script type="text/javascript">
 <!--
-	top.location.href="/public/member/join_complete.html?site=<?=$site?>";
+	top.location.href="/public/member/join_complete.html";
 //-->
 </script>
 <?

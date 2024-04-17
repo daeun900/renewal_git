@@ -1,14 +1,16 @@
 .header .menuicon{display: none;}
 
 @media(max-width:1000px){
-    .header a{display: none;}
-    .header .menuicon{flex-grow: 1; justify-content: right; display: flex; font-size: 22px; padding: 20px 0;}
+    .header > a{display: none;}
+    .header .right a{display: none;}
+    .header .menuicon{flex-grow: 1; justify-content: right; display: flex !important; font-size: 22px; padding:0 !important;}
+    .header .menuicon i{margin-right: 0 !important;}
     .gnb,.header .button{display: none;}
     .middle_header{height: 134px;}
 }
 
 
-.navArea_m{width: 100%; background: #fff; position: fixed;top: 0;right: -100%;opacity: 0;z-index: 50;}
+.navArea_m{width: 100%; background: #fff; position: fixed;top: 0;right: -100%;opacity: 0;z-index: 50; padding: 10px;}
 
 @media(max-width:1000px){
     .navArea{display: none;}
@@ -67,6 +69,15 @@ footer .btn {
 footer .btn #wrap {
     display: flex;
     justify-content: space-between;
+    
+}
+
+@media(max-width:720px){
+    footer #wrap{padding: 0 10px;}
+    footer .btn #wrap{
+        display: inherit;
+    }
+    footer .btn #wrap a.point{margin-top: 15px; display: inline-block;}            
 }
 
 footer .btn a {
@@ -74,6 +85,10 @@ footer .btn a {
     color: #000;
     margin-right: 15px;
     font-weight: 400;
+}
+@media(max-width:500px){
+    footer .btn a {
+        font-size: 14px;}
 }
 
 footer .btn a.point {
@@ -120,6 +135,10 @@ footer .info .bar:after {
     bottom: 20px;
     width: 100px;
     z-index: 100;
+    
+}
+@media(max-width:1000px){
+    .float_banner{width: auto;}
 }
 
 .float_banner>li {
@@ -127,6 +146,7 @@ footer .info .bar:after {
     justify-content: center;
     margin-top: 13px;
 }
+
 
 .float_banner .float_banner2 {
     margin-left: 15px;
@@ -141,5 +161,14 @@ footer .info .bar:after {
     -webkit-transition: 1s;
     -moz-transition: 1s;
     transition: 1s;
+}
+
+@media(max-width:1000px){
+    .float_banner>li{width: 50px; height: 50px;
+    img{width: 100% !important;}}
+    .float_banner .float_banner2{
+        width: 50px; height: 50px;
+        margin-left: 0px;
+    }
 }
 

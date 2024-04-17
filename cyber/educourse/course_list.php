@@ -1,6 +1,22 @@
 <?
 include "../../include/include_function.php"; //DB연결 및 각종 함수 정의
 
+$ID = $_SESSION['LoginMemberID'];
+
+$RedHeart = "/cyber/img/educourse/red heart.png";
+$WhiteHeart = "/cyber/img/educourse/white heart.png";
+
+//컨텐츠좋아요 list
+$Like_list = array();
+$SQLB = "SELECT * from CourseLike WHERE ID = '$ID'";
+$QUERYB = mysqli_query($connect, $SQLB);
+if($QUERYB && mysqli_num_rows($QUERYB)){
+    while($ROWB = mysqli_fetch_array($QUERYB)){
+        extract($ROWB);
+        $Like_list[$LectureCode] = $LectureCode;
+    }
+}
+
 $pageStart = Replace_Check_XSS2($pageStart);
 $sw  = Replace_Check_XSS2($sw);
 $keyChkVal = Replace_Check_XSS2($keyChkVal);
@@ -41,7 +57,9 @@ if($QUERY && mysqli_num_rows($QUERY)){
 <li>
 	<div class="course_img" style="background-image: url(<?=$ImgUrl?>); background-color: #e8ece7;" onclick="window.open('../edudetail/edudetail.html?LectureCode=<?=$LectureCode?>')" onclick="window.open('../edudetail/edudetail.html')">
 		<span><?=$Keyword_array[1]?></span>					
-		<button class="course_save_btn"><img src="../img/educourse/white heart.png" alt=""></button>
+		<button class="course_save_btn">
+			<img onclick="CourseLike(this,'<?=$LectureCode?>', '<?=$ID?>')" name="courseLike" id="like_<?=$idx?>" <? if($Like_list[$LectureCode] == $LectureCode){ ?> src="<?=$RedHeart?>" <?}else{?> src="<?=$WhiteHeart?>" <?}?>" >
+		</button>
 	</div>
 	<div class="course_title"><?=$ContentsName?></div>
 	<div class="course_tag">

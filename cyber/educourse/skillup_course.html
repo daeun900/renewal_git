@@ -1,5 +1,10 @@
 <? include "../include/header.html"; ?>
 <?
+$ID = $_SESSION['LoginMemberID'];
+
+$RedHeart = "/cyber/img/educourse/red heart.png";
+$WhiteHeart = "/cyber/img/educourse/white heart.png";
+
 if($sw){
 	$where[] = "a.ContentsName LIKE '%$sw%'";
 }
@@ -23,6 +28,17 @@ $ResultA = mysqli_query($connect, $SQLA);
 $RowA = mysqli_fetch_array($ResultA);
 $TOT_NO = $RowA[0];
 mysqli_free_result($ResultA);
+
+//컨텐츠좋아요 list
+$Like_list = array();
+$SQLB = "SELECT * from CourseLike WHERE ID = '$ID'";
+$QUERYB = mysqli_query($connect, $SQLB);
+if($QUERYB && mysqli_num_rows($QUERYB)){
+    while($ROWB = mysqli_fetch_array($QUERYB)){
+        extract($ROWB);
+		$Like_list[$LectureCode] = $LectureCode;
+	}
+}
 ?>
 <script>
     $(document).ready(function() {
@@ -208,7 +224,9 @@ mysqli_free_result($ResultA);
 			<li>
 	           	<div class="course_img" style="background-image: url(<?=$ImgUrl?>); background-color: #e8ece7;" onclick="window.open('../edudetail/edudetail.html?LectureCode=<?=$LectureCode?>')" >
 					<span><?=$Keyword_array[1]?></span>					
-					<button class="course_save_btn"><img src="../img/educourse/white heart.png" alt=""></button>
+					<button class="course_save_btn">
+						<img onclick="CourseLike(this,'<?=$LectureCode?>', '<?=$ID?>')" name="courseLike" id="like_<?=$idx?>" <? if($Like_list[$LectureCode] == $LectureCode){ ?> src="<?=$RedHeart?>" <?}else{?> src="<?=$WhiteHeart?>" <?}?>" >
+					</button>
 				</div>
 				<div class="course_title"><?=$ContentsName?></div>
 				<div class="course_tag">
@@ -258,7 +276,7 @@ $(function(){
 		
 		var pageStart = clickNum * 8;
 	   	
-	   	CourseAdd(totNo, showNo, hiddenNo, pageStart, Category); //과정더보기		
+		CourseCyberAdd(totNo, showNo, hiddenNo, pageStart, Category); //과정더보기		
 		clickNum ++;
 		
 		//컨텐츠가 없으면 버튼도 숨김처리

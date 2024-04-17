@@ -4,6 +4,10 @@
     margin: 0 auto;
 }
 
+@media(max-width:540px){
+    #wrap{padding: 0 10px;}        
+}
+
 .video_box {
     width: 100%;
     height: 100%;
@@ -32,7 +36,7 @@
 .video_box header .menu .point i{margin-right: 9px;}
 
 @media(max-width:1000px){
-    .video_box header .logo img{width: 120px;}
+    .video_box header .logo img{width: 177px;}
     .video_box header .menu .login{margin-right: 10px;}
     .video_box header .menu .point{display: none;}
 }
@@ -88,7 +92,10 @@
 .con1{background-color: #f7f7f7; padding: 50px 0;}
 .con1 .title{padding: 30px 0; text-align: center; font-size: 30px; letter-spacing: -.5px;}
 .con1 .title strong{display: block;font-size: 40px; line-height: 65px;}
-
+@media(max-width:1000px){
+    .con1 .title{padding: 20px 0;font-size: 20px; }
+.con1 .title strong{font-size: 30px; line-height: 45px;}
+}
 
 .swiper {width: 100%; padding-top: 50px;padding-bottom: 50px;}
 .swiper-slide {background-position: center;background-size: cover;width: 33%; opacity: .5; padding: 17px;}
@@ -101,7 +108,10 @@
 
 .swiper-button-prev{left: 31.5%; width: 55px; height: 55px; border-radius: 50%; box-shadow: 0px 0px 13px #ccc; padding: 11px 15px; background-color: #fff; transition: all .3s ease;}
 .swiper-button-next{right: 31.5%; width: 55px; height: 55px; border-radius: 50%; box-shadow: 0px 0px 13px #ccc; padding: 11px 15px; background-color: #fff;transition: all .3s ease;}
-
+@media(max-width:1000px){
+    .swiper-button-next{right: -0.5% !important;}
+    .swiper-button-prev{left: -0.5% !important;}
+}
 
 
 .swiper-button-prev:after, .swiper-rtl .swiper-button-next:after {font-size: 27px; font-weight: bold; color: #777;}
@@ -113,12 +123,32 @@
 .con2 .title{display: flex; flex-direction: column; justify-content: center;}
 .con2 .title strong{font-size: 40px; line-height: 60px;}
 .con2 .title p{font-weight: 400; line-height: 35px; margin-top: 20px;}
+@media(max-width:1000px){
+    .con2 #wrap{margin-top: 30px;display: inherit;} 
+    .con2 .title strong{font-size: 30px; line-height: 45px;}  
+    .con2 .title p{line-height: 25px;}        
+}
 
 .con2 .step{padding: 50px 0 150px 0; position: relative;}
 .con2 .step dl{margin-top: 30px; background-color: #f7f7f7; padding: 20px 80px 20px 40px; position: relative; margin-right: 100px;}
 .con2 .step dl dt{position: absolute; right: -65px; font-size: 30px; font-weight: 500; top: 50%; margin-top: -15px; color: #e8e8e8;}
 .con2 .step dl dd span{font-size: 25px; font-weight: 500; color: #777; line-height: 50px; position: relative;}
 .con2 .step dl dd p{font-size: 16px;}
+
+@media(max-width:1000px){
+    .con2 .step{    padding: 25px 0 50px 0;}
+    .con2 .step dl dt{left: -65px;color: #3252a3;}
+    .con2 .step dl{margin-left: 100px; margin-right: 0px; padding: 20px;}
+    .con2 .step dl dd span{font-size: 22px; line-height: 40px;}
+    .con2 .step dl dd p{font-size: 14px;
+        line-height: 25px;}
+}
+
+@media(max-width:500px){
+    .con2 .step dl dt{left: -52px;}
+    .con2 .step dl{margin-left: 50px;}
+    .con2 .step dl dd span{font-size: 20px;}
+}
 
 /*선*/
 .con2 .step::before{position: absolute; top: 0; right: 98px; width: 4px; height: 100%; background-color: #e8e8e8; content: ''; z-index: 1;}
@@ -149,3 +179,7 @@
 .con2 .step dl.step2 dd span:after{transition-delay: 1s; content: '교육 실시 계획서 작성';}
 .con2 .step dl.step3 dd span:after{transition-delay: 1.3s; content: '교육 진행 보고서 작성';}
 .con2 .step dl.step4 dd span:after{transition-delay: 1.7s; content: '교육 결과 보고서 작성';}
+
+@media(max-width:1000px){
+    .con2 .step::before,.con2 .step::after,.con2 .step dl:before,.con2 .step dl:after,.con2 .step dl dt:after,.con2 .step dl dd span:after{display: none;}
+}

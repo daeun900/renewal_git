@@ -2,28 +2,58 @@
 
 .main_con {
     padding: 60px 0 90px 0;
+    @media(max-width:1000px){
+            padding: 30px 0 60px 0;
+    }
+    @media(max-width:500px){
+        padding: 20px 0 40px 0;
+    }
     .title {
         padding: 20px 0;
+        @media(max-width:1000px){
+            padding: 10px 0;
+        }
+        @media(max-width:500px){
+            padding: 0;
+        }
         text-align: center;
         span {
             font-size: 20px;
             color: #777;
             display: block;
             line-height: 35px;
+            @media(max-width:1000px){
+                font-size: 17px;
+                line-height: 35px;
+            }
         }
         strong {
             font-size: 40px;
             line-height: 70px;
             display: block;
+            @media(max-width:1000px){
+                font-size: 24px;
+                line-height: 40px;
+            }
         }
     }
 }
 
 .main_con1 {
     border-bottom: 1px dashed #777;
+    @media(max-width:1000px){
+        padding-top: 0px;
+    }
+    @media(max-width:500px){
+        margin-top: -20px;
+    }
     ul {
         display: flex;
         justify-content: space-between;
+        @media(max-width:1000px){
+            flex-direction: column;
+            margin-top: 10px;
+        }
         li {
             width: 24%;
             display: flex;
@@ -36,6 +66,11 @@
             text-align: center;
             cursor: pointer;
             transition: all 0.3s ease;
+            @media(max-width:1000px){
+                width: 100%;
+                padding: 20px 25px;
+                margin-bottom: 10px;
+            }
             .img {
                 width: 35px;
                 img {
@@ -45,6 +80,9 @@
             .txt {
                 strong {
                     font-size: 20px;
+                    @media(max-width:1000px){
+                        font-size: 18px;
+                    }
                 }
                 span {
                     display: block;
@@ -125,11 +163,13 @@
 .main_con2,
 .main_con4 {
     .content {
-        display: flex;
         .lecture_box {
             .more {
                 text-align: right;
                 padding: 10px 0;
+                @media(max-width:1000px){
+                    padding: 5px 0;
+                }
                 a {
                     padding: 10px 0;
                     display: block;
@@ -138,6 +178,12 @@
             ul {
                 display: grid;
                 grid-template-columns: 1fr 1fr 1fr 1fr;
+                @media(max-width:1000px){
+                    grid-template-columns: 1fr 1fr;
+                }
+                @media(max-width:400px){
+                    grid-template-columns: 1fr;
+                }
                 gap: 20px;
                 li {
                     position: relative;
@@ -148,6 +194,9 @@
                         background-color: #e3e3e3;
                         border-radius: 20px;
                         overflow: hidden;
+                        @media(max-width:1300px){
+                            width: 100%;
+                        }
                         img{
                             width: 100%;
                             height: 100%;
@@ -161,6 +210,9 @@
                             margin-top: 10px;
                         }
                     }
+                }
+                @media(max-width:400px){
+                    li:nth-of-type(3),li:nth-of-type(4){display: none;}   
                 }
             }
         }
@@ -181,10 +233,17 @@
             background-color: #fff;
             border: 1px solid #777;
             border-radius: 50px;
+            @media(max-width:1000px){
+                width: 31%;
+            }
             a {
                 font-size: 20px;
                 padding: 10px 0;
                 display: block;
+                @media(max-width:1000px){
+                    font-size: 16px;
+                    padding: 10px 4px;
+                }
             }
         }
         li:hover {
@@ -234,23 +293,46 @@
     background-color: #f5f5f5;
     .content {
         display: flex;
+        @media(max-width:1000px){
+            flex-direction: column;
+        }
         .side {
             width: 428px;
             strong {
                 font-size: 40px;
                 line-height: 60px;
+                @media(max-width:1000px){
+                    font-size: 24px;
+                    line-height: 26px;
+                }
             }
             p {
                 font-weight: 400;
                 padding: 10px 0;
                 max-width: 228px;
                 line-height: 25px;
+                @media(max-width:1000px){
+                    font-size: 14px;
+                }
+            }
+            @media(max-width:1000px){
+             img{display: none;}       
             }
         }
         ul {
             display: flex;
+            @media(max-width:1000px){
+                    flex-wrap: wrap;
+            }
             li {
                 width: 23.5%;
+                @media(max-width:770px){
+                    width: 48.5%;
+                    margin-top: 10px;
+                }
+                @media(max-width:400px){
+                    width: 100%;
+                }
                 margin-left: 1.5%;
                 background-color: #fff;
                 padding: 20px;
@@ -305,6 +387,9 @@
                     -webkit-box-orient: vertical;
                 }
             }
+            @media(max-width:400px){
+                li:nth-of-type(3),li:nth-of-type(4){display: none;}       
+            }
         }
     }
 }
@@ -313,6 +398,9 @@
     .content1 {
         display: grid;
         grid-template-columns: 1fr 1fr;
+        @media(max-width:800px){
+            grid-template-columns: 1fr;
+        }
         gap: 40px;
         div {
             position: relative;
@@ -365,6 +453,9 @@
                 li {
                     padding-left: 10px;
                     position: relative;
+                    @media(max-width:1200px){
+                        padding-right: 92px;
+                    }
                     span {
                         position: absolute;
                         right: 0;
@@ -377,17 +468,26 @@
     .content2 {
         display: grid;
         grid-template-columns: 1fr 1fr;
+        @media(max-width:1000px){
+            grid-template-columns: 1fr;
+        }
         gap: 40px;
         margin-top: 40px;
         > .left {
             display: grid;
             grid-template-columns: 1fr 1fr;
+            @media(max-width:500px){
+                grid-template-columns: 1fr;
+            }
             gap: 20px;
             > div {
                 color: #fff;
                 border-radius: 30px;
                 padding: 20px 10px;
                 text-align: center;
+                @media(max-width:1000px){
+                    padding: 10px;   
+                }
                 span {
                     font-size: 20px;
                     font-weight: 400;
@@ -397,6 +497,10 @@
                 p {
                     font-size: 15px;
                     margin: 10px 0 15px 0;
+                }
+                @media(max-width:1000px){
+                    .img{padding: 0 38%;
+                    img{width: 100%;}}   
                 }
             }
             .chatbot {
@@ -408,13 +512,23 @@
         }
         > .right {
             display: flex;
+            justify-content: space-around;
             background-color: #ddedf8;
             padding: 40px 20px 0 30px;
             border-radius: 30px;
+            @media(max-width:500px){
+                padding: 10px;
+                flex-direction: column;       
+            }
             span {
                 font-size: 20px;
                 font-weight: 400;
                 margin-left: 14px;
+                @media(max-width:1000px){
+                 font-size: 17px;
+                 font-weight: 400;
+                 margin-left: 0;   
+                }
             }
             .point {
                 font-size: 14px;
@@ -426,14 +540,30 @@
                 margin: 11px 0;
                 font-weight: 400;
                 display: inline-block;
+                @media(max-width:500px){
+                    margin: 8px 0;   
+                }
             }
             p {
                 font-size: 15px;
                 font-weight: 400;
                 margin: 3px 0;
+                @media(max-width:500px){
+                    font-size: 13px;
+                    line-height: 14px;
+                }
             }
             strong {
                 font-size: 40px;
+                line-height: 60px;
+                @media(max-width:500px){
+                    font-size: 30px;
+                    line-height: 50px;   
+                }
+            }
+            @media(max-width:500px){
+            .img{padding: 10px;
+            img{width: 100%;}}       
             }
             > .right {
                 display: flex;

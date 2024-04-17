@@ -230,13 +230,13 @@
             }
             .date_input {
                 margin-left: 10px;
-                input#DateStart {
+                input[id*='DateStart'] {
                     height: 26px;
                     border: 0.3px solid #676767;
                     width: 130px;
                     margin-top: 3px;
                 }
-                input#DateEnd {
+                input[id*='DateEnd'] {
                     height: 26px;
                     border: 0.3px solid #676767;
                     width: 130px;
@@ -265,7 +265,7 @@
                     border-bottom: 1px solid #bcbcbc;
                     td {
                         padding: 15px 0;
-                        button {
+                        button.small {
                             background-color: #fff;
                             border: 0.5px solid #707070;
                             padding: 3px 10px;
@@ -591,6 +591,8 @@
     max-width: 1060px;
     margin: 0 auto;
     padding-bottom: 150px;
+    padding-left: 220px;
+    min-height: 800px;
     .top {
         text-align: center;
         margin: 50px 0 70px 0;
@@ -632,11 +634,12 @@
             }
         }
         .input_box.bg {
-            background-image: url(../img/mypage/survey.png);
-            width: 1060px;
+            background-image: url(../img/survey.png);
+            width: 830px;
             height: 120px;
             background-repeat: no-repeat;
             background-position: 8% 99%;
+            background-size: contain;
             display: flex;
             align-items: flex-end;
             justify-content: center;
@@ -653,6 +656,46 @@
             display: flex;
             padding: 10px;
             justify-content: space-between;
+        }
+     
+    }
+    .btn_black {
+        margin: 0 auto;
+        display: block;
+        padding: 13px 60px;
+        background-color: #2d2d2d;
+        color: #fff;
+        font-weight: bold;
+      }
+      .complete_wrap {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        padding: 150px 0 50px 0;
+        .check_icon {
+            margin-bottom: 35px;
+            width: 60px;
+            height: 60px;
+            background-color: #357af2;
+            color: #fff;
+            padding: 13px 0;
+            border-radius: 50%;
+            font-size: 32px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        span {
+            font-size: 20px;
+        }
+        strong {
+            font-size: 40px;
+            line-height: 80px;
+        }
+        p {
+            line-height: 30px;
+        }
+        button {
+            margin-top: 40px;
         }
     }
 }
@@ -692,7 +735,7 @@
     font-weight: 300;
 }
 .tbl_typeA .down_ico {
-    background: url(/new/images/common/filedown.png) no-repeat;
+    background: url(/images/common/filedown.png) no-repeat;
     width: 31px;
     height: 35px;
     background-position: center;
@@ -716,7 +759,8 @@
     display: inline-block;
     padding: 8px 25px;
     border-radius: 3px;
-    background-color: #d6d6d6;
+    background-color: #d6d6d6 !important;
+    border: #d6d6d6 !important;
     color: #fff;
     text-decoration: none !important;
     line-height: normal;
@@ -864,7 +908,7 @@
     display: inline-block;
     width: 34px;
     height: 34px;
-    background: url(../img/common/icon_play_on.svg) no-repeat;
+    background: url(../img/icon_play_on.svg) no-repeat;
     background-size: cover;
     cursor: pointer;
 }
@@ -872,7 +916,7 @@
     display: inline-block;
     width: 34px;
     height: 34px;
-    background: url(../img/common/icon_play_off.svg) no-repeat;
+    background: url(../img/icon_play_off.svg) no-repeat;
     background-size: cover;
 }
 
@@ -906,6 +950,10 @@
 }
 .graph_bg_05 {
     background-color: #2e3092;
+}
+
+.lecture_header{
+    margin-bottom: 80px;
 }
 
 .lecture_title {
@@ -947,7 +995,7 @@
 
 .lecture_title .right > span {
     padding-left: 25px;
-    background: url(/new/images/common/icon_down.svg) no-repeat;
+    background: url(/images/common/icon_down.svg) no-repeat;
     background-size: contain;
 }
 
@@ -1004,7 +1052,7 @@
     left: 0;
     top: -30px;
     padding-left: 8px;
-    background: url(/new/images/common/arrow_right_dot.png) no-repeat;
+    background: url(/images/common/arrow_right_dot.png) no-repeat;
     background-position: 0 50%;
 }
 
@@ -1073,7 +1121,7 @@
 
 .classdate .right > span {
     padding-left: 25px;
-    background: url(/new/images/common/icon_down.svg) no-repeat;
+    background: url(/images/common/icon_down.svg) no-repeat;
     background-size: contain;
 }
 

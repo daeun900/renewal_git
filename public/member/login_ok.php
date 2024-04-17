@@ -50,11 +50,15 @@ if($Row) {
 	   exit;
 	}	
 	
+	//필수동의여부 체크를 안한 경우
+	if($Row['Mandatory']=="N") {
+	    $pwchg = $Row['PassChange'];
+	    $url = "/public/member/after_join_terms.html?pwchg=$pwchg";
 	//비밀번호를 변경해야 하는 경우
-	if($Row['PassChange']=="N") {
+	}else if($Row['PassChange']=="N") {
 	    $url = "/public/mypage/memberinfo.html";
 	    $TopLogin="N";
-	//테스트용아디이일 경우, 강의페이지로 이동
+	//테스트용 아디이일 경우, 강의페이지로 이동
 	} else if ($Row['TestID']=="Y") {
 	    $url = "/public/mypage/lecture_status.html";
     //교육담당자는 결제관리페이지로 이동

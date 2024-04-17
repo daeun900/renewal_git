@@ -293,24 +293,44 @@ $_SESSION["SiteCode"] = "A";
             <div class="content1">
                 <div class="qna">
                     <strong>자주묻는 질문</strong>
-                    <a href="../support/faq.html" class="more">전체보기 <i class="ph ph-caret-right"></i></a>
+                    <a href="../../public/support/faq.html" class="more">전체보기 <i class="ph ph-caret-right"></i></a>
                     <ul>
-                        <li><a href="../support/faq.html?idx=<?=$idx?>">회원가입은 어떻게 하나요?</a></li>
-                        <li><a href="../support/faq.html?idx=<?=$idx?>">회원가입은 어떻게 하나요?</a></li>
-                        <li><a href="../support/faq.html?idx=<?=$idx?>">회원가입은 어떻게 하나요?</a></li>
-                        <li><a href="../support/faq.html?idx=<?=$idx?>">회원가입은 어떻게 하나요?</a></li>
-                        <li><a href="../support/faq.html?idx=<?=$idx?>">회원가입은 어떻게 하나요?</a></li>
+                    	<?
+                        $i = 0;
+                        $SQL = "SELECT * FROM NewFaq WHERE Del='N' AND UseYN='Y' ORDER BY OrderByNum ASC, RegDate ASC LIMIT 3";
+						$QUERY = mysqli_query($connect, $SQL);
+                        if($QUERY && mysqli_num_rows($QUERY)){
+                            while($ROW = mysqli_fetch_array($QUERY)){
+                                extract($ROW);
+                                $Title = strcut_utf8($Title,45);
+                        ?>
+                        <li><a href="../../public/support/faq.html?MainSend=Y&view_num=<?=$i?>&idx=<?=$idx?>"><?=$Title?></a></li>
+                        <?
+                        	$i++;
+                            }
+                        }
+                        ?>
                     </ul>
                 </div>
                 <div class="notice">
                     <strong>공지사항</strong>
-                    <a href="../support/notice.html" class="more">전체보기 <i class="ph ph-caret-right"></i></a>
+                    <a href="../../public/support/notice.html" class="more">전체보기 <i class="ph ph-caret-right"></i></a>
                     <ul>
-                        <li><a href="../support/notice.html?idx=<?=$idx?>">[공지] HRDe 평생교육원 이용약관, 개인정보처리방침, 마케팅 안내</a> <span>2023. 07. 18</span></li>
-                        <li><a href="../support/notice.html?idx=<?=$idx?>">[공지] HRDe 평생교육원 이용약관, 개인정보처리방침, 마케팅 안내</a> <span>2023. 07. 18</span></li>
-                        <li><a href="../support/notice.html?idx=<?=$idx?>">[공지] HRDe 평생교육원 이용약관, 개인정보처리방침, 마케팅 안내</a> <span>2023. 07. 18</span></li>
-                        <li><a href="../support/notice.html?idx=<?=$idx?>">[공지] HRDe 평생교육원 이용약관, 개인정보처리방침, 마케팅 안내</a> <span>2023. 07. 18</span></li>
-                        <li><a href="../support/notice.html?idx=<?=$idx?>">[공지] HRDe 평생교육원 이용약관, 개인정보처리방침, 마케팅 안내</a> <span>2023. 07. 18</span></li>
+                    	<?
+                        $i = 0;
+                        $SQL = "SELECT * FROM Notice WHERE Del='N' AND UseYN='Y' AND Notice='N' ORDER BY RegDate DESC, idx DESC LIMIT 3";
+						$QUERY = mysqli_query($connect, $SQL);
+                        if($QUERY && mysqli_num_rows($QUERY)){
+                            while($ROW = mysqli_fetch_array($QUERY)){
+                                extract($ROW);
+                                $Title = strcut_utf8($Title,45);
+                        ?>
+                        <li><a href="../../public/support/notice_view.html?idx=<?=$idx?>"><?=$Title?></a> <span><?=substr($RegDate,0,10)?></span></li>
+                        <?
+                        	$i++;
+                            }
+                        }
+                        ?>
                     </ul>
                 </div>
             </div>
@@ -424,7 +444,21 @@ var swiper = new Swiper(".maincon1-swiper", {
     navigation: {
         nextEl: ".maincon1-btn-next",
         prevEl: ".maincon1-btn-prev",
-    }
+    },
+    breakpoints: {
+            930: {
+                slidesPerView: 3,
+                spaceBetween: 20
+            },
+            640: {
+                slidesPerView: 2,
+                spaceBetween: 10
+            },
+            320: {
+                slidesPerView: 1,
+                spaceBetween: 10
+            }
+        }
 });
 </script>
 

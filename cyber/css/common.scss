@@ -3,7 +3,11 @@
     padding: 0 20px;
     margin: 0 auto;
     position: relative;
+    @media(max-width:540px){
+        padding: 0 10px;
+    }
 }
+
 
 header {
     .top_header {
@@ -14,6 +18,9 @@ header {
             justify-content: space-between;
             align-items: center;
             position: relative;
+            @media(max-width:600px){
+                padding: 0;
+            }
             ul {
                 display: flex;
                 font-weight: 400;
@@ -34,6 +41,9 @@ header {
                     display: inline-block;
                     margin-left: 15px;
                 }
+                @media(max-width:600px){
+                    display: none;
+                }
             }
             .logo {
                 width: 148px;
@@ -48,11 +58,17 @@ header {
         }
     }
     .middle_header {
+        @media(max-width:1000px){
+            height: 107px !important;
+        }
         #wrap {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 20px;
+            @media(max-width:1000px){
+                padding: 10px;
+            }
             .left {
                 display: flex;
                 align-items: center;
@@ -60,6 +76,9 @@ header {
                     width: 250px;
                     margin-right: 30px;
                     cursor: pointer;
+                    @media(max-width:1000px){
+                        width: 177px;
+                    }
                     img {
                         width: 100%;
                     }
@@ -154,20 +173,34 @@ header {
         width: 100%;
         background-repeat: no-repeat;
         background-position: 50% 50%;
+        @media(max-width:1000px){
+            background-position: 61%;
+        }
         #wrap {
             display: flex;
             height: 100%;
             flex-direction: column;
             justify-content: center;
             color: #fff;
+            @media(max-width:1000px){
+                color: #333;
+            }
             span {
                 font-size: 28px;
                 font-weight: 400;
                 line-height: 45px;
+                @media(max-width:1000px){
+                    font-size: 18px;
+                    line-height: 34px;
+                }
             }
             strong {
                 font-size: 50px;
                 line-height: 70px;
+                @media(max-width:1000px){
+                    font-size: 24px !important;
+                    line-height: 30px !important;
+                }
             }
             strong.fs40 {
                 font-size: 40px;
@@ -177,6 +210,10 @@ header {
                 font-size: 20px;
                 line-height: 30px;
                 margin-top: 13px;
+                @media(max-width:1000px){
+                    font-size: 12px;
+                    line-height: 20px;
+                }
             }
             a {
                 display: inline-block;

@@ -1,38 +1,94 @@
 <? include "../include/header.html"; ?>
+<?
+$Sql = "SELECT * FROM CourseCyber WHERE LectureCode = '$LectureCode' AND Del='N' AND UseYN = 'Y'";
 
+$Result = mysqli_query($connect, $Sql);
+$Row = mysqli_fetch_array($Result);
+
+if($Row) {
+	$idx = $Row['idx'];
+	$LectureCode = $Row['LectureCode']; //강의코드
+	$Keyword = str_replace(' ', '', $Row['Keyword']); //키워드
+	$ContentsName = html_quote($Row['ContentsName']); //과정명	
+	$Price = $Row['Price']; //교육비용 일반
+	$Price01 = $Row['Price01']; //자부담 교육비용 우선지원
+	$BookImage = html_quote($Row['BookImage']); //교재 이미지
+}
+
+//자비부담금
+$RealPrice = $Price - $Price01;
+
+//신청유형
+$applyTypeVal;
+if($applyType == "A"){
+	$applyTypeVal = "국민내일배움카드(재직자)";
+}else if($applyType == "B"){
+	$applyTypeVal = "일반(수시)";
+}else if($applyType == "C"){
+	$applyTypeVal = "고용보험환급";
+}
+
+//지원유형
+$supportTypeVal;
+if($supportType == "A"){
+	$supportTypeVal = "재직자 일반";
+}
+
+//학습기간
+$LectureTermVal;
+if($LectureStart && $LectureEnd){
+	$LectureStartA = new DateTime($LectureStart);
+	$LectureEndA = new DateTime($LectureEnd);
+	$term = date_diff($LectureStartA,$LectureEndA );
+	$y = $term->format('%y');
+	$m = $term->format('%m');
+	$LectureTermA = $y*12 + $m;
+	$LectureTermB = $term -> days;
+	if($LectureTermA == 0){
+		$LectureTermVal = $LectureTermB."일";
+	}else{
+		$LectureTermVal = $LectureTermA."개월";
+	}
+}
+
+//교재여부
+$BookVal;
+if($BookImage){
+	$BookVal = "있음";
+}else{
+	$BookVal = "없음";
+}
+?>
 <body>
+	<!-- 주문확인 -->
     <div class="payment_right_wrap">
         <div class="payment_right">
             <strong>주문확인</strong>
             <div class="total">
                 <span>총판매금액</span>
-                <span><b>71,600</b>원</span>
+                <span><b><?=number_format($Price,0)?></b>원</span>
             </div>
             <div class="support">
                 <span>정부지원금</span>
-                <span><b>39,080</b>원</span>
+                <span><b><?=number_format($Price01,0)?></b>원</span>
             </div>
             <div class="discount">
                 <span>추가할인</span>
-                <span><b>0</b>원</span>
+                <span><b id="TotalSalePrice"></b>원</span>
             </div>
             <div class="expense">
                 <span>자비부담금</span>
-                <span><b>31,980</b>원</span>
+                <span><b id="RealPrice"></b>원</span>
             </div>
             <div class="agree">
                 <input type="checkbox" name="agree" id="">
-                <label for="agree">결제조건 확인 및 개인정보 제공에 동의
-                    합니다.</label>
+                <label for="agree">결제조건 확인 및 개인정보 제공에 동의합니다.</label>
             </div>
-            <button class="prev">
-                이전
-            </button>
-            <button class="pay" onclick="location.href='payment_complete.html'">
-                결제하기
-            </button>
+            <button class="prev" onclick="javascript:history.back();">이전</button>
+            <button class="pay" onclick="location.href='payment_complete.html'">결제하기</button>
         </div>
     </div>
+    <!-- //주문확인 -->
     <div></div>
     <div class="payment_top_section">
         <div id="wrap">
@@ -74,26 +130,29 @@
                     <tbody>
                         <tr>
                             <td>
-                                <strong>NCS기반 총무업무 실무 마스터 과정 직원들이 만족하는 회사 만들기</strong> <button>새창<i class="ph-fill ph-caret-right"></i></button>
-                                <select name="" id="">
-                                    <option value="">국민내일배움카드(재직자) / 2024-03-20</option>
+                                <strong><?=$ContentsName?></strong>
+                                <button onclick="javascript:history.back();">새창<i class="ph-fill ph-caret-right"></i></button><br>
+                                <select name="applyType" id="applyType">
+                                    <option value="A">국민내일배움카드(재직자) / <?=$LectureStart?></option>
+                                    <option value="B">일반(수시) / <?=$LectureStart?></option>
+                                    <option value="C">고용보험환급 / <?=$LectureStart?></option>
                                 </select>
                                 <span class="fc999">
-                                    * 선택된 지원유형: 재직자(일반) <br>
+                                    * 선택된 지원유형: <?=$supportTypeVal?> <br>
                                     * 국민내일배움카드로 결제 시 본인의 국민내일배움카드 한도 내에서 정부지원금은 <br>
                                     자동으로 차감됩니다.
                                 </span>
                             </td>
-                            <td class="ac">1개월</td>
-                            <td class="ac">없음</td>
-                            <td class="ac"><b>71,060</b>원</td>
-                            <td class="ac">39,020 원</td>
-                            <td class="fcred ac"><b>31,980</b>원</td>
+                            <td class="ac"><?=$LectureTermVal?></td>
+                            <td class="ac"><?=$BookVal?></td>
+                            <td class="ac"><b><?=number_format($Price,0)?></b>원</td>
+                            <td class="ac"><?=number_format($Price01,0)?>원</td>
+                            <td class="fcred ac"><b><?=number_format($RealPrice,0)?></b>원</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-            <!--주문정보-->
+            <!--//주문정보-->
             <!--결제정보-->
             <div class="con pay_info">
                 <div class="title">결제정보</div>
@@ -108,31 +167,34 @@
                     </colgroup>
                     <tr>
                         <th colspan="2">정부지원금</th>
-                        <td><b>39,080</b>원</td>
+                        <td><b><?=number_format($Price01,0)?></b>원</td>
                         <th>할인금액</th>
-                        <td class="ar">0원</td>
+                        <td class="ar"><?=number_format($Price01,0)?>원</td>
                     </tr>
                     <tr>
                         <th rowspan="2">추가할인</th>
                         <th>지식쿠폰</th>
                         <td>
-                            <input type="number" placeholder="0">원 <button class="red modal-btn" href="#modal01">쿠폰적용</button><span>*사용가능쿠폰: 0개</span>
+                        	<input type="number" id="couponPrice" name="couponPrice" value="" placeholder="0">원
+                        	<button class="red modal-btn" href="#modal01">쿠폰적용</button>
+                        	<span>*사용가능쿠폰: 1개</span>
                         </td>
                         <th>할인금액</th>
-                        <td class="ar">0원</td>
+                        <td class="ar" id="TotalCouponPrice"></td>
                     </tr>
                     <tr>
-                        <th>지식쿠폰</th>
+                        <th>학습포인트</th>
                         <td>
-                            <input type="number" placeholder="0">원 <button class="grey">최대사용</button><span>*보유 포인트: <b>20,000</b>원 <br> *최대 사용가능 포인트: <b>20,000</b>원 </span>
+                            <input type="number" placeholder="0" id="pointVal" name="pointVal" value="">원 <button class="grey" onclick="maxPoint()">최대사용</button>
+                            <span>*보유 포인트: <b id="myPoint"></b>원<br>*최대 사용가능 포인트: <b>20,000</b>원</span>
                             <em>(결제금액의 50%까지 사용가능)</em>
                         </td>
                         <th>할인금액</th>
-                        <td class="ar">0원</td>
+                        <td class="ar" id="TotalPointPrice"></td>
                     </tr>
                 </table>
             </div>
-            <!--결제정보-->
+            <!--//결제정보-->
             <!--결제방법-->
             <div class="con pay_method">
                 <div class="title">결제방법</div>
@@ -142,12 +204,12 @@
                     <span class="fcred ml40">*자비부담금은 반드시 발급받으신 내일배움카드(NH/신한)로만 결제하셔야 합니다.</span>
                 </div>
             </div>
-            <!--결제방법-->
+            <!--//결제방법-->
             <!--재직자확인-->
             <div class="con confirm">
                 <div class="title">재직자확인</div>
                 <div class="content">
-                    <span class="subtitle">결제수단선택</span> 
+                    <span class="subtitle">대상자확인</span> 
                     <input type="radio" name="" id=""><label for="">개강일 기준 재직자, 자영업자, 특수고용직에 해당됩니다.</label> 
                 </div>
                 <div class="content pt25 pb25">
@@ -157,14 +219,12 @@
                         *특수고용근로자는 산재보험 가입이력 또는 재직증명서 등의 증빙이 가능하여야 합니다.</span>
                 </div>
             </div>
-            <!--재직자확인-->
+            <!--//재직자확인-->
             <!--안내사항-->
             <div class="con notice">
                 <div class="title">안내사항</div>
                 <div class="content">
-                    <span>
-                        본 과정은 국민 평생 직업능력 개발훈련 지원규정 개정으로 인해 추후 지원내용이 변경될 수 있습니다.
-                    </span>
+                    <span>본 과정은 국민 평생 직업능력 개발훈련 지원규정 개정으로 인해 추후 지원내용이 변경될 수 있습니다.</span>
                 </div>
                 <div class="content grid_box">
                     <div class="left">
@@ -173,10 +233,7 @@
                             <p>정부지원 과정의 경우 과목별 최초 수강 진행 시 본인인증(휴대폰 또는 아이핀)이 필수 항목이며, 본인인증이 불가능 할 경우 학습 진행이 불가합니다.</p>
                             <p>휴대폰 인증의 경우 본인명의 휴대폰으로만 인증가능하며 해외 근무자는 로밍 이용자에 한하여 인증 가능합니다.</p>
                         </div>
-                        <div>
-                            2. 수료기준 <br>
-                            정부지원 과정은 훈련과정의 학습시간 변경, 평가, 과제 등 수료기준의 변경이 불가하오니 신청 과정의 수료기준을 반드시 확인하시고 신청하시기 바랍니다.
-                        </div>
+                        <div>2. 수료기준 <br>정부지원 과정은 훈련과정의 학습시간 변경, 평가, 과제 등 수료기준의 변경이 불가하오니 신청 과정의 수료기준을 반드시 확인하시고 신청하시기 바랍니다.</div>
                         <div>
                             3. 결제 및 수강취소 유의사항
                             <p>본인 명의로 발급받은 국민내일배움카드(NH/신한)로 결제하셔야 합니다.</p>
@@ -195,8 +252,7 @@
                                     <th>차감액</th>
                                 </tr>
                                 <tr>
-                                    <td rowspan="3">1. 질병ㆍ사고, 훈련기관 사정, 천재지변 등  <br>
-                                        불가피한 사유 없이 중도에  훈련 수강을 그만둔 경우</td>
+                                    <td rowspan="3">1. 질병ㆍ사고, 훈련기관 사정, 천재지변 등  <br>불가피한 사유 없이 중도에  훈련 수강을 그만둔 경우</td>
                                     <td>1회</td>
                                     <td>20만 원</td>
                                 </tr>
@@ -212,10 +268,7 @@
                         </div>
                     </div>
                     <div class="right">
-                        <div>
-                            5. 국민내일배움카드 수강신청 시 유의사항 <br>
-                            소득세법 제59조의4, 국민 평생 직업능력 개발법 제2조에 따라 HRDe의 교육비 자부담금은 교육비 항목으로 공제 불가합니다.
-                        </div>
+                        <div>5. 국민내일배움카드 수강신청 시 유의사항 <br>소득세법 제59조의4, 국민 평생 직업능력 개발법 제2조에 따라 HRDe의 교육비 자부담금은 교육비 항목으로 공제 불가합니다.</div>
                         <div>
                             6. 개인정보 수집 및 제3자 제공에 관한 동의
                             <p>제공받는자 : 한국산업인력공단, 고용노동부</p>
@@ -234,40 +287,96 @@
                     <label for="">상기 내용을 정확히 숙지하고 이에 동의합니다. </label>
                 </div>
             </div>
-            <!--안내사항-->
+            <!--//안내사항-->
         </div>
      
     </div>
 </body>
 <? include "../include/footer.html"; ?>
 
-<!--모달팝업-->
-
+<!-- 지식쿠폰 팝업 -->
 <script>
-        jQuery(document).ready(function() {
-    $('.modal-btn').each(function() {
-        var modalID = $(this).attr('href');
-    
-        $(this).on('click', function(e) {
+jQuery(document).ready(function() {
+    $('.modal-btn').each(function() {    
+    	//쿠폰적용 버튼 클릭시 팝업띄우기
+    	$(this).on('click', function(e) {
             e.preventDefault();
 
-            $('.modal-bg').fadeIn();
-            
-            $(modalID).show();
-
+            $('.modal-bg').fadeIn();            
+            $('#modal01').show();
             $('html').css({overflow: 'hidden'});
         });
-
-        $('.close-btn').on('click', function() {
+        //쿠폰적용
+        $('.apply').on('click', function() {
+        	$('.modal-bg').fadeOut();
+            $("#modal01").hide();
+            $("#modal01").removeAttr('style');
+            $('html').removeAttr('style');
+            
+            //쿠폰값 설정 -- 임시용
+            var salePrice = "5000";
+            var salePriceA = "5,000";
+            $("#couponPrice").val(salePrice); //지식쿠폰 선택한 값에 맞게 설정
+            $("#TotalCouponPrice").text(salePriceA+"원"); //지식쿠폰 할인금액 설정
+        });
+		//닫기기능
+        $('.close-btn, .cancel').on('click', function() {
             $('.modal-bg').fadeOut();
-            $(modalID).hide();
-            $(modalID).removeAttr('style');
-
+            $("#modal01").hide();
+            $("#modal01").removeAttr('style');
             $('html').removeAttr('style');
         });
     });
 });
 </script>
+
+
+<script>
+$(document).ready(function(){
+	var pointVal = $("#pointVal").val(); //입력한 학습포인트
+	var pointValA = pointVal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	var myPoint = $("#myPoint").text(); //보유포인트
+	var totalPrice = <?=$Price?>; //총판매금액
+	var subPrice = <?=$Price01?>; //정부지원금
+		
+	$("#TotalCouponPrice").text("0원"); //지식쿠폰 할인금액 초기값 설정
+	$("#myPoint").text("20000"); //보유포인트 설정 --임시용
+	$("#TotalPointPrice").text("0원"); //학습포인트 할인금액 초기값 설정
+	$("#TotalSalePrice").text("0"); //주문확인 추가할인 금액 초기값 설정
+	
+	//주문확인 자비부담금 초기값 설정
+	var totalCoupon = $("#TotalCouponPrice").text(); //지식쿠폰 할인금액
+	var totalCouponA = totalCoupon.substring(0, totalCoupon.length-1);
+	var totalPoint = $("#TotalPointPrice").text(); //학습포인트 할인금액
+	var totalPointA = totalPoint.substring(0, totalPoint.length-1);
+	
+	var realPrice = totalPrice - subPrice - totalCouponA - totalPointA;
+	var realPriceA = realPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");	
+	$("#RealPrice").text(realPriceA);
+	
+	//입력한 학습포인트의 값이 변경될 경우
+	$('#pointVal').change( function() {
+		//입력한 포인트가 보유포인트보다 클 경우 제한
+		if(pointVal > myPoint){
+			alert('포인트는 보유하고있는 포인트보다 크게 입력할수없습니다.');
+			$("#pointVal").val("");
+			$("#TotalPointPrice").text("0원");
+		}else{
+			var nowPoint = $("#pointVal").val().toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+			$("#TotalPointPrice").text(nowPoint+"원");
+		}
+	 });
+});
+//최대사용
+function maxPoint(){
+	var myPoint = $("#myPoint").text();
+	var myPointA = myPoint.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	
+	$("#pointVal").val(myPoint);
+	$("#TotalPointPrice").text(myPointA+"원");
+}
+</script>
+
 <style> 
     .modal-bg {display:none;width:100%;height:100%;position:fixed;top:0;left:0;right:0;background: rgba(0, 0, 0, 0.8);z-index:999;}
     .modal-wrap {display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#fff;z-index:1000;padding: 50px; width: 800px;}
@@ -290,9 +399,7 @@
     <select name="" id="">
         <option value="">회원가입 축하 5% 할인쿠폰(최대할인 5,000원) (~2023-4-13)</option>
     </select>
-    <div class="discount_amount">
-        =총 쿠폰할인 금액: <strong>5,000</strong>원
-    </div>
+    <div class="discount_amount">=총 쿠폰할인 금액: <strong>5,000</strong>원</div>
     <div class="button_wrap">
         <button class="apply">쿠폰 적용하기</button>
         <button class="cancel">적용 취소하기</button>

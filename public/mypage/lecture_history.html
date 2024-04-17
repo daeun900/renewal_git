@@ -1,5 +1,6 @@
 <? include "../include/mypage_header.html"; ?>
 <? include "../include/login_check.php"; ?>
+
         <div class="mypage_content">
             <div class="sb_box">
                 <h1>학습이력</h1>
@@ -27,15 +28,32 @@
                         </tr>
                     </thead>
                     <tbody>
+                    
+                    <?
+                    $i = 1;
+					$sql = "SELECT a.*, b.ContentsName 
+							FROM Study AS a
+							LEFT OUTER JOIN Course AS b ON a.LectureCode=b.LectureCode
+							WHERE ID='$LoginMemberID' AND StudyEnd='Y'";
+					$query = mysqli_query($connect, $sql);
+					if($query && mysqli_num_rows($query)){
+						while($row = mysqli_fetch_array($query)){
+							extract($row);
+					?>
                         <tr>
-                            <td>1</td>
-                            <td>NCS기반 회사의 꼼꼼한 살림꾼 알잘딱깔센 스마트워커</td>
-                            <td>24/3/1 ~ 24/3/10</td>
-                            <td>수료</td>
+                            <td><?=$i?></td>
+                            <td><?=$ContentsName?></td>
+                            <td><?=$LectureStart?> ~ <?=$LectureEnd?></td>
+                            <td><?if($PassOK == 'Y'){?>수료<?}else{?>미수료<?}?></td>
                             <td>
-                                <button>출력</button>
+                                <button class="small" onclick="Javascript:CertificatePrint(<?=$Seq?>);">출력</button>
                             </td>
                         </tr>
+                        <?
+                        $i++;
+                        }
+                    }
+                    ?>
                     </tbody>
                 </table>
             </div>

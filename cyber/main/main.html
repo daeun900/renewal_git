@@ -266,14 +266,14 @@ $_SESSION["SiteCode"] = "B";
                     <ul>
                     	<?
                         $i = 0;
-                        $SQL = "SELECT * FROM NewFaq WHERE Del='N' AND UseYN='Y' ORDER BY RegDate DESC, idx DESC LIMIT 3";
+                        $SQL = "SELECT * FROM NewFaq WHERE Del='N' AND UseYN='Y' ORDER BY OrderByNum ASC, RegDate ASC LIMIT 3";
 						$QUERY = mysqli_query($connect, $SQL);
                         if($QUERY && mysqli_num_rows($QUERY)){
                             while($ROW = mysqli_fetch_array($QUERY)){
                                 extract($ROW);
                                 $Title = strcut_utf8($Title,45);
                         ?>
-                        <li><a href="../support/faq.html?idx=<?=$idx?>"><?=$Title?></a></li>
+                        <li><a href="../../public/support/faq.html?MainSend=Y&view_num=<?=$i?>&idx=<?=$idx?>"><?=$Title?></a></li>
                         <?
                         	$i++;
                             }
@@ -294,7 +294,7 @@ $_SESSION["SiteCode"] = "B";
                                 extract($ROW);
                                 $Title = strcut_utf8($Title,45);
                         ?>
-                        <li><a href="../support/notice.html?idx=<?=$idx?>"><?=$Title?></a> <span><?=substr($RegDate,0,10)?></span></li>
+                        <li><a href="../../public/support/notice_view.html?idx=<?=$idx?>"><?=$Title?></a> <span><?=substr($RegDate,0,10)?></span></li>
                         <?
                         	$i++;
                             }

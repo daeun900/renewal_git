@@ -42,7 +42,7 @@ mysqli_free_result($ResultA);
 				$SQL = "SELECT a.* 
 						FROM CourseCyber a
 						LEFT JOIN CourseLike b on a.LectureCode = b.LectureCode
-						$where  ORDER BY a.RegDate DESC, a.idx DESC Limit 0, 4";
+						$where  ORDER BY b.RegDate DESC, b.idx DESC Limit 0, 4";
 				//echo $SQL;
 				$QUERY = mysqli_query($connect, $SQL);
 				if($QUERY && mysqli_num_rows($QUERY)){
@@ -58,7 +58,7 @@ mysqli_free_result($ResultA);
                         <input type="checkbox" name="chk" value="<?=$idx?>">
                         <div class="left">
                             <div class="lecture_img"><img src="<?=$ImgUrl?>" alt="과정이미지"></div>
-                            <button>강의맛보기</button>
+                            <button onclick="Javascript:CoursePreview('<?=$LectureCode?>', 'B');">강의맛보기</button>
                         </div>
                         <div class="right">
                             <div class="top">

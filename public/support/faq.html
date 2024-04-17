@@ -58,6 +58,8 @@
     $PAGE_CLASS = new Page($pg,$TOT_NO,$page_size,$block_size); ##-- 페이지 클래스
     $BLOCK_LIST = $PAGE_CLASS->blockList(); ##-- 페이지 이동관련
     $PAGE_UNCOUNT = $PAGE_CLASS->page_uncount; ##-- 게시물 번호 한개씩 감소
+
+
 ?>
     <div class="top_section">
         <div id="wrap">
@@ -101,7 +103,7 @@
 				?>
                 <li>
                 	<div class="q" id="ContentView"><span class="fcred">[<?=$Faq_cyber_array[$Category]?>]</span>&nbsp;<?=$Title?><i class="ph-bold ph-caret-up"></i></div>
-                	<div class="a" id="ContentElement" <?if($idxA!=$idx){?> style="display: none;" <?}?>  ><?=$Content?></div>
+                	<div class='a' id='ContentElement' <? if($idxA!=$idx){ ?> style='display: none;' <? } ?>  ><?=$Content?></div>
                 </li>
                 <?
                 	$i++;

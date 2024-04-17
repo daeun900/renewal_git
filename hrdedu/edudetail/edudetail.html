@@ -1,5 +1,7 @@
 <? include '../include/header.html'; ?>
 <?
+$ID = $_SESSION['LoginMemberID'];
+
 $where = array();
 
 $where[] = "Del='N'";
@@ -123,7 +125,7 @@ if($ctype=="B") {
                         <p><span>교육시간</span><?=$Chapter?>차시 / <?=$ContentsTime?>시간</p>
                     </div>
                     <div class="button_wrap">
-                        <button class="apply modal-btn" href="#modal02">학습신청</button>
+                        <button class="apply" onclick="Javascript:LectureRequest('<?=$LectureCode?>','<?=$Price?>', '<?=$ID?>');">학습신청</button>
                         <button class="modal-btn" href="#modal01">간편문의</button>
                     </div>
                 </div>
@@ -204,68 +206,21 @@ if($ctype=="B") {
     </div>
     <!--wrap-->
 </body>
-
-
 <? include "../include/footer.html"; ?>
-
-<!--관심강의 버튼 toggle-->
-<script>
-    $(document).ready(function() {
-    
-        (function($) {
-        $.fn.clickToggle = function(func1, func2) {
-            var funcs = [func1, func2];
-            this.data('toggleclicked', 0);
-            this.click(function() {
-                var data = $(this).data();
-                var tc = data.toggleclicked;
-                $.proxy(funcs[tc], this)();
-                data.toggleclicked = (tc + 1) % 2;
-            });
-            return this;
-        };
-    }(jQuery));
-    
-    $(".course_save_btn").clickToggle(
-        function(){
-            $(".course_save_btn img").attr("src", "../img/edudetail/red_heart.png");
-    
-            $('.modal-bg').fadeIn();
-            $('.modal-wrap').hide();
-            $('#modal03').show();
-            $('html').css({overflow: 'hidden'});
-    
-                $('.close-btn').on('click', function() {
-                $('.modal-bg').fadeOut();
-                $('#modal03').hide();
-                $('#modal03').removeAttr('style');
-    
-                $('html').removeAttr('style');
-                });
-            },
-        function(){
-            $(".course_save_btn img").attr("src", "../img/edudetail/gray_heart.png");
-        }
-        )
-    });
-    </script>
 
 
 <!--모달팝업-->
-
 <script>
-        jQuery(document).ready(function() {
+jQuery(document).ready(function() {
     $('.modal-btn').each(function() {
         var modalID = $(this).attr('href');
     
         $(this).on('click', function(e) {
             e.preventDefault();
 
-            $('.modal-bg').fadeIn();
-            
+            $('.modal-bg').fadeIn();            
             $('.modal-wrap').hide();
             $(modalID).show();
-
             $('html').css({overflow: 'hidden'});
         });
 
@@ -286,6 +241,7 @@ if($ctype=="B") {
     .modal-wrap .close-btn { position: absolute;cursor: pointer;  top: 50px; right: 50px;}
     .modal-wrap .close-btn i {font-size: 35px;}
 </style>
+
 <!--modal01-->
 <!--간편문의 팝업-->
 <div class="modal-bg"></div>
@@ -349,9 +305,7 @@ if($ctype=="B") {
     </div>
     
 </div>
-<!--modal01-->
 
-<!--modal02-->
 <!--학습신청 팝업-->
 <div class="modal-bg"></div>
 <div id="modal02" class="modal-wrap">
@@ -364,17 +318,13 @@ if($ctype=="B") {
             <colgroup>
                 <col width="620px">
             </colgroup>
+            <tr><th><?=$ContentsName?></th></tr>
             <tr>
-                <th> 산업안전보건교육_무재해사업장_기타사업분야_작업낸용변경근로자</th>
-            </tr>
-            <tr>
-                <td class="pt40 pb40">
-                    <b>신청 가능한 교육 기간이 없습니다.</b>
-                </td>
+                <td class="pt40 pb40" id="DateList"></td>
             </tr>
         </table>
     </div>
     <div class="submit_btn">
-        <button class="close-btn2">확인</button>
+        <button onclick="Javascript:LectureRequestSubmitOk('<?=$LectureCode?>', '<?=$Price?>');">확인</button>
     </div>
 </div>

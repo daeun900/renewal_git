@@ -1,12 +1,43 @@
 <? include "../include/mypage_header.html"; ?>
 <? include "../include/login_check.php"; ?>
+<?
+$sessionID = $_SESSION['LoginMemberID'];
+
+//수강신청 조건문
+if($dateData == "1"){
+	$where[] = "a.RegDate < DATE_ADD(NOW(), INTERVAL - 30 DAY) ";	
+}else if($dateData == "3"){
+	$where[] = "a.RegDate < DATE_ADD(NOW(), INTERVAL - 90 DAY) ";	
+}else if($dateData == "6"){
+	$where[] = "a.RegDate < DATE_ADD(NOW(), INTERVAL - 180 DAY) ";	
+}
+
+if($DateStartB && $DateEndB){
+	//mysql에서 두개의 날짜로 조회를 할 때, 입력한 날짜는 해당되지 않고 조회가 됨.
+	//그래서 날짜를 -1Day/+1Day	해서 조회 해야함.
+	$str_dateStartB = strtotime($DateStartB.'-1 days'); 
+	$str_dateEndB = strtotime($DateEndB.'+1 days');
+	//날짜형식으로 변환
+	$str_dateStartB = date('y-m-d', $str_dateStartB);
+	$str_dateEndB = date('y-m-d', $str_dateEndB);
+
+	$where[] = "a.RegDate BETWEEN  '$str_dateStartB' and '$str_dateEndB'";
+}
+$where[] = "a.Del='N'";
+$where[] = "a.ID = '$sessionID'";
+
+$where = implode(" AND ",$where);
+if($where) $where = "WHERE $where";
+?>
+
         <div class="mypage_content">
-            <div class="sb_box">
+        	<div class="sb_box">
                 <h1>수강신청/결제내역</h1>
                 <div class="navi">
                     <i class="ph-light ph-house-line"></i>&nbsp;<i class="ph ph-caret-right"></i>&nbsp;나의학습실<i class="ph ph-caret-right"></i>&nbsp;수강신청/결제내역
                 </div>
             </div>
+            <!-- 내일배움카드에서 신청한 내역 -->
             <div class="content">
                 <h2>결제내역</h2>
                 <div class="search_box">
@@ -18,7 +49,8 @@
                         <button>6개월</button>
                     </div>
                     <div class="date_input">
-                        <input type="text" id="DateStart" class="input-date"> - <input type="text" id="DateEnd"class="input-date">
+                        <input type="text" id="DateStartA" name="DateStartA" class="input-date"> - 
+                        <input type="text" id="DateEndA" name="DateEndA" class="input-date">
                         <button><i class="ph ph-magnifying-glass"></i></button>
                     </div>
                 </div>
@@ -47,7 +79,7 @@
                             <td>3,2000원</td>
                             <td>결제완료</td>
                             <td>
-                                <button onclick="location.href='../payment/cancel.html'">취소신청</button>
+                                <button class="small" onclick="location.href='../payment/cancel.html'">취소신청</button>
                             </td>
                         </tr>
                         <tr>
@@ -57,28 +89,32 @@
                             <td>3,2000원</td>
                             <td>결제완료</td>
                             <td>
-                                <button onclick="location.href='../payment/cancel.html'">취소신청</button>
+                                <button class="small" onclick="location.href='../payment/cancel.html'">취소신청</button>
                             </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-            <!--content-->
+            <!-- 사업주훈련에서 신청한 내역 -->            
             <div class="content">
                 <h2>수강신청 내역</h2>
-                <div class="search_box">
-                    <span>조회기간</span>
-                    <div class="tab_btn">
-                        <button class="on">전체</button>
-                        <button>1개월</button>
-                        <button>3개월</button>
-                        <button>6개월</button>
-                    </div>
-                    <div class="date_input">
-                        <input type="text" id="DateStart" class="input-date"> - <input type="text" id="DateEnd"class="input-date">
-                        <button><i class="ph ph-magnifying-glass"></i></button>
-                    </div>
-                </div>
+				<form name="dateSearchForm" action="<?=$_SERVER['PHP_SELF']?>" method="GET">
+					<input type="hidden" name="dateData" id="dateData" value="<?=$dateData?>">
+	                <div class="search_box">
+	                    <span>조회기간</span>
+	                    <div class="tab_btn">
+	                        <button type="button" <?if($dateData == "0" || $dateData == ""){?> class="on" <?}?> onclick="Javascript:dateSearch('0');">전체</button>
+	                        <button type="button"<?if($dateData == "1"){?> class="on" <?}?> onclick="Javascript:dateSearch('1');">1개월</button>
+	                        <button type="button"<?if($dateData == "3"){?> class="on" <?}?> onclick="Javascript:dateSearch('3');">3개월</button>
+	                        <button type="button" <?if($dateData == "6"){?> class="on" <?}?> onclick="Javascript:dateSearch('6');">6개월</button>
+	                    </div>
+	                    <div class="date_input">
+	                        <input type="text" id="DateStartB" name="DateStartB" <?if($DateStartB){?>value="<?=$DateStartB?>"<?}?> class="input-date"> - 
+	                        <input type="text" id="DateEndB" name="DateEndB" <?if($DateEndB){?>value="<?=$DateEndB?>"<?}?> class="input-date">
+	                        <button type="button" onclick="dateSearch('')"><i class="ph ph-magnifying-glass"></i></button>
+	                    </div>
+	                </div>
+                </form>
                 <table>
                     <colgroup>
                         <col width="15%">
@@ -95,18 +131,32 @@
                         </tr>
                     </thead>
                     <tbody>
+                    <?
+                    $SQL = "SELECT b.ContentsName, a.* 
+							FROM LectureRequest AS a 
+							LEFT OUTER JOIN Course AS b ON a.LectureCode=b.LectureCode
+							$where
+							ORDER BY a.RegDate DESC, a.idx DESC LIMIT 0, 30";
+					//echo $SQL;
+					$QUERY = mysqli_query($connect, $SQL);
+					if($QUERY && mysqli_num_rows($QUERY)){
+						while($ROW = mysqli_fetch_array($QUERY)){
+							extract($ROW);
+							$RegDate = date("Y-m-d", strtotime($RegDate));
+					?>
                         <tr>
-                            <td>2024-02-08</td>
-                            <td>2024_개인정보보호교육</td>
-                            <td>2024-04-09 ~ 2024-05-08</td>
-                            <td>
-                                <button>취소신청</button>
-                            </td>
+                            <td><?=$RegDate?></td>
+                            <td><?=$ContentsName?></td>
+                            <td><?=$LectureStart?> ~ <?=$LectureEnd?></td>
+                            <td><button class="small" onclick="Javascript:LectureRequestCancel('<?=$idx?>');">취소신청</button></td>
                         </tr>
+                    <?
+                    	}
+                   	}
+                    ?>
                     </tbody>
                 </table>
             </div>
-            <!--content-->
         </div>
         <!--mypage_content-->
     </div>
@@ -124,9 +174,8 @@
 <!--datepicker-->
 <script type="text/javascript" src="/include/jquery.ui.datepicker-ko.js"></script>
 <script type="text/javascript">
-    <!--
     $(document).ready(function(){
-        $("#DateStart, #DateEnd").datepicker({
+        $("#DateStartA, #DateEndA").datepicker({
             changeMonth: true,
             changeYear: true,
             showButtonPanel: true,
@@ -134,8 +183,20 @@
             buttonImage: "../../common/img/calendar-blank.png", //이미지 주소
             buttonImageOnly: true //이미지만 보이기
         });
-        $("#DateStart, #DateEnd").val("");
+        //$("#DateStartA, #DateEndA").val("");
         $("img.ui-datepicker-trigger").attr("style","margin-left:5px; vertical-align:top; cursor:pointer;"); //이미지 버튼 style적용
     });
-    //-->
-    </script>
+
+    $(document).ready(function(){
+        $("#DateStartB, #DateEndB").datepicker({
+            changeMonth: true,
+            changeYear: true,
+            showButtonPanel: true,
+            showOn: "both", //이미지로 사용 , both : 엘리먼트와 이미지 동시사용
+            buttonImage: "../../common/img/calendar-blank.png", //이미지 주소
+            buttonImageOnly: true //이미지만 보이기
+        });
+        //$("#DateStartB, #DateEndB").val("");
+        $("img.ui-datepicker-trigger").attr("style","margin-left:5px; vertical-align:top; cursor:pointer;"); //이미지 버튼 style적용
+    });
+</script>

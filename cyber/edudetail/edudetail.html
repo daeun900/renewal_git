@@ -1,12 +1,13 @@
 <? include '../include/header.html'; ?>
 <?
-
 $Sql = "SELECT * FROM CourseCyber WHERE LectureCode = '$LectureCode' AND Del='N' AND UseYN = 'Y'";
 
 $Result = mysqli_query($connect, $Sql);
 $Row = mysqli_fetch_array($Result);
 
 if($Row) {
+	$idx = $Row['idx'];
+	$LectureCode = $Row['LectureCode']; //강의코드
 	$Keyword = str_replace(' ', '', $Row['Keyword']); //키워드
 	$ContentsName = html_quote($Row['ContentsName']); //과정명
 	$ContentsTime = $Row['ContentsTime']; //교육시간
@@ -22,7 +23,14 @@ if($Row) {
 	$Test01EA = $Row['Test01EA']; //최종평가 객관식 문항수
 	$Report03EA = $Row['Report03EA']; //과제 서술형 문항수	
 	$Price = $Row['Price']; //교육비용 일반
-	$Price01 = $Row['Price01']; //자부담 교육비용 우선지원 
+	$Price01 = $Row['Price01']; //자부담 교육비용 우선지원
+	$PassProgress = $Row['PassProgress']; //진도율  
+	$TotalPassMid = $Row['TotalPassMid']; //중간평가 : 총점
+	$TotalPassTest = $Row['TotalPassTest']; //최종평가 : 총점
+	$PassTest = $Row['PassTest']; //최종평가 : 득점
+	$TotalPassReport = $Row['TotalPassReport']; //과제 : 총점
+	$PassReport = $Row['PassReport']; //과제 : 득점
+	$PassScore = $Row['PassScore']; //반영비율을 적용한 총점
 }
 //키워드
 $Keyword_array = explode('#',$Keyword);
@@ -31,8 +39,13 @@ $Keyword_arrayA = array_slice($Keyword_array, 1, 3);
 if($PreviewImage) {
 	$PreviewImageView = "/upload/Course/".$PreviewImage;
 }
-//실제결제금액
+//자비부담금
 $RealPrice = $Price - $Price01;
+
+//수료기준-시험
+$StandardTest = ($PassTest/($TotalPassMid+$TotalPassTest))*100;
+//수료기준-과제
+$StandardReprot = ($PassReport/$TotalPassReport)*100;
 ?>
 <body>
 <div id="wrap">
@@ -61,7 +74,7 @@ $RealPrice = $Price - $Price01;
                         <a href="#" class="fcblue fwbold">80건  <i class="ph ph-caret-right"></i></a>
                     </div>
                 </div>
-                <button class="preview">강의 미리보기</button>
+                <button class="preview" onclick="Javascript:CoursePreview('<?=$LectureCode?>', 'B');">강의 미리보기</button>
             </div>
             <div class="right">
                 <div class="select_detail">
@@ -77,7 +90,7 @@ $RealPrice = $Price - $Price01;
                         <tr class="apply_type">
                             <th>신청유형 <button class="modal-btn" href="#modal01">?</button></th>
                             <td>
-                                <select name="" id="" onchange="ApplyTypeChange(this.value)">
+                                <select name="applyType" id="applyType" onchange="ApplyTypeChange(this.value)">
                                     <option value="A" selected id="ApplyType1">국민내일배움카드 (재직자)</option>
                                     <option value="B" id="ApplyType2">일반(수시) </option>
                                     <option value="C" id="ApplyType3">고용보험환급</option>
@@ -88,23 +101,21 @@ $RealPrice = $Price - $Price01;
                             <th>학습기간</th>
                             <td>
                                 <input name="LectureStart" id="LectureStart" type="text" size="12" value="" autocomplete='off'>  ~  <input name="LectureEnd" id="LectureEnd" type="text" size="12" value="" autocomplete='off'>
-                                <strong class="fcred">마감까지 D-3</strong>
                                 <span>학습기간 30일 + 무료 학습기간 12개월</span>
                             </td>
                         </tr>
                         <tr class="complete">
                             <th>수료기준</th>
                             <td>
-                                <b>진도 80%</b> 이상, <b>시험 50%</b> 이상, <b>과제 50%</b>, 과제제출 필수
-                                <button class="fcblue">상세</button>
+                                <b>진도 <?=$PassProgress?>%</b> 이상, <b>시험 <?=$StandardTest?>%</b> 이상, <b>과제 <?=$StandardReprot?>%</b>, 과제제출 필수
                                 <span>내일배움카드로 강의 수강시, 반드시 HRD-NET에서 먼저 수강신청 후 HRDe웹사이트에서 수강신청을 해야합니다.</span>
                             </td>
                         </tr>
                         <tr class="support_type">
                             <th>지원유형 <button class="modal-btn" href="#modal02">?</button></th> 
                             <td>   
-                                <select name="" id="">
-                                    <option value="" selected>재직자 일반</option>
+                                <select name="supportType" id="supportType">
+                                    <option value="A" selected>재직자 일반</option>
                                 </select>
                             </td>
                         </tr>
@@ -124,8 +135,29 @@ $RealPrice = $Price - $Price01;
                     </table>
                 </div>
                 <div class="button_wrap">
-                    <button class="course_save_btn" href="#modal03"><img src="../img/edudetail/gray_heart.png" alt="관심과정">관심과정</button>
-                    <button class="enrolment_btn"  onclick="window.open('../payment/card_payment.html')">수강신청</buutton>
+                    <button class="course_save_btn">
+                    <?
+                    $ID = $_SESSION['LoginMemberID'];
+
+					$RedHeart = "/cyber/img/edudetail/red_heart.png";
+					$GrayHeart = "/cyber/img/edudetail/gray_heart.png";
+                    
+					//컨텐츠좋아요 list
+					$Like_list = array();
+					$SQLB = "SELECT LectureCode from CourseLike WHERE ID = '$ID'";
+					$QUERYB = mysqli_query($connect, $SQLB);
+					if($QUERYB && mysqli_num_rows($QUERYB)){
+    					while($ROWB = mysqli_fetch_array($QUERYB)){
+							if($Row) {
+								$LectureCodeA = $ROWB['LectureCode'];
+        					}
+							$Like_list[$LectureCodeA] = $LectureCodeA;
+						}
+					}
+					?>
+                    	<img onclick="CourseViewLike('<?=$LectureCode?>', '<?=$ID?>')" name="courseLike" alt="관심과정" <? if($Like_list[$LectureCode] == $LectureCode){ ?> src="<?=$RedHeart?>" <?}else{?> src="<?=$GrayHeart?>" <?}?>"  >관심과정
+					</button>
+					<button class="enrolment_btn"  onclick="CourseRequest('<?=$LectureCode?>', '<?=$ID?>')">수강신청</buutton>
                     <button class="enrolment_link_btn" onclick="window.open('https://www.hrd.go.kr/hrdp/ma/pmmao/newIndexRenewal.do')">HRD-NET 수강신청 바로가기</button>
                 </div>
             </div>
@@ -296,47 +328,6 @@ function ApplyTypeChange(str) {
 		$('#priceM').show();
 	}
 }
-</script>
-
-<!--관심강의 버튼 toggle-->
-<script>
-$(document).ready(function() {
-    (function($) {
-    	$.fn.clickToggle = function(func1, func2) {
-	        var funcs = [func1, func2];
-	        this.data('toggleclicked', 0);
-	        this.click(function() {
-	            var data = $(this).data();
-	            var tc = data.toggleclicked;
-	            $.proxy(funcs[tc], this)();
-	            data.toggleclicked = (tc + 1) % 2;
-        });
-        return this;
-    };
-}(jQuery));
-
-$(".course_save_btn").clickToggle(
-    function(){
-        $(".course_save_btn img").attr("src", "../img/edudetail/red_heart.png");
-
-        $('.modal-bg').fadeIn();
-        $('.modal-wrap').hide();
-        $('#modal03').show();
-        $('html').css({overflow: 'hidden'});
-
-            $('.close-btn').on('click', function() {
-            $('.modal-bg').fadeOut();
-            $('#modal03').hide();
-            $('#modal03').removeAttr('style');
-
-            $('html').removeAttr('style');
-            });
-        },
-    function(){
-        $(".course_save_btn img").attr("src", "../img/edudetail/gray_heart.png");
-    }
-    )
-});
 </script>
 
 <!--tab button-->
@@ -514,8 +505,8 @@ jQuery(document).ready(function() {
         관심강의 리스트로 이동하시겠습니까?
     </p>
     <div class="button_wrap">
-        <button>과정 계속 보기</button>
-        <button>관심강의 리스트로 이동</button>
+        <button id="close">과정 계속 보기</button>
+        <button onclick="location.href='/public/mypage/lecture_save.html'">관심강의 리스트로 이동</button>
     </div>
 </div>
 <!-- //관심과정 팝업 -->

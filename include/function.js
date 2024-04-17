@@ -284,7 +284,7 @@ function LogoutTimeCheck() {
 		oldTimeValue = document.TimeCheckForm.NowTime.value;
 
 		if (document.TimeCheckForm.NowTime.value > 7200) {
-			location.href = '/member/logout.php';
+			location.href = '/public/member/logout.php';
 		} else {
 			document.TimeCheckForm.NowTime.value = parseInt(document.TimeCheckForm.NowTime.value) + 1;
 			// LogOutTimeView(); Brad : (필요 없는 부분 주석 처리)
@@ -720,6 +720,29 @@ function MemberJoin() {
 
 //로그인 및 아이디/비번찾기, 휴면계정 복구, 회원정보 수정-----------------------------------------------------------------------------
 
+//필수동의여부 체크하지 않은경우, 동의여부 체크
+function termsAgree() {
+	var pwchg_value = $("#pwchg").val();
+	
+	if ($('#Agree01').is(':checked') == false) {
+		alert('이용약관에 동의하여야 회원가입이 가능합니다.');
+		return false;
+	}	
+	if ($('#Agree02').is(':checked') == false) {
+		alert('개인정보 수집 및 이용에 동의하여야 회원가입이 가능합니다.');
+		return false;
+	}
+	if ($('#Agree03').is(':checked') == false) {
+		alert('개인정보의 제3자 제공에 동의하여야 회원가입이 가능합니다.');
+		return false;
+	}
+	
+	document.AfterAgreeForm.pwchg.value = pwchg_value;
+	document.AfterAgreeForm.action = '/public/member/term_state_update.php';
+	document.AfterAgreeForm.submit();
+}
+
+//로그인
 function LoginSubmit() {
 	var checked_value = $(":radio[name='MemberType1']:checked").val();
 
@@ -825,7 +848,7 @@ function TopLoginSubmit() {
 		})
 		.show();
 
-	document.TopLoginForm.action = '/member/login_ok.php';
+	document.TopLoginForm.action = '/public/member/login_ok.php';
 	document.TopLoginForm.submit();
 }
 
@@ -1131,9 +1154,9 @@ function MemberEdit() {
 
 //로그인 및 아이디/비번찾기, 휴면계정 복구, 회원정보 수정-----------------------------------------------------------------------------
 
-//사이버연수원 - 컨텐츠 관련---------------------------------------------------------------------------------------------------
-//과정 더보기
-function CourseAdd(totNo, showNo, hiddenNo, pageStart, Category, CategoryB) {
+//컨텐츠 관련---------------------------------------------------------------------------------------------------
+//내일배움카드 - 과정 더보기
+function CourseCyberAdd(totNo, showNo, hiddenNo, pageStart, Category, CategoryB) {
 	var sw = $("#sw").val();
 	var keyChkVal = $("#keyChkVal").val();
 	
@@ -1156,19 +1179,212 @@ function CourseAdd(totNo, showNo, hiddenNo, pageStart, Category, CategoryB) {
 	);
 }
 
-//사이버연수원 - 키워드로 검색
+//사업주훈련 - 과정더보기
+function CourseAdd(hiddenNo, pageStart, PCategory, Category) {
+	$.post(
+		'/hrdedu/educourse/course_list.php', 
+		{
+			pageStart: pageStart,
+			PCategory: PCategory,
+			Category: Category,
+		},
+		function(data, stauts){
+			//컨텐츠가 없을 때는 append 하지 않음
+			if(hiddenNo > 0){
+				$(".course ul").append(data);
+			}
+			
+		}
+	);
+}
+
+//내일배움카드 - 키워드로 검색
 function KeywordSearch(Num) {
 	var keyChk = $("#keyChk"+Num).attr('value');
 	$("#keyChkVal").val(keyChk);
 	BoardSearchFormA.submit();
 }
 
-//사이버연수원 - 직무스킬업 하위메뉴이동
+//내일배움카드 - 직무스킬업 하위메뉴이동
 function CategorySearch(key) {
 	$("#CategoryC").val(key);
 	BoardSearchFormB.submit();
 }
-//사이버연수원 - 컨텐츠 관련---------------------------------------------------------------------------------------------------
+
+//내일배움카드 - 컨텐츠 list 관심과정 기능
+function CourseLike(data, LectureCode, ID){
+	//event.stopPropagation(); //상단 div의 click이벤트 막기
+	
+	//로그인한경우만 사용가능
+	if(ID){
+		var clickID = $(data).attr('id'); //클릭한 강의의 id값 구하기
+		
+		var src = $("img[id='"+clickID+"']").attr("src");
+		var imgurlA = "/cyber/img/educourse/white heart.png";
+		var imgurlB = "/cyber/img/educourse/red heart.png";
+		var clickVal = "";
+		
+		//좋아요 완료
+		if(src == imgurlA){
+			$("img[id='"+clickID+"']").attr("src", imgurlB);
+			clickVal = "like";
+		//좋아요 취소
+		}else{
+			$("img[id='"+clickID+"']").attr("src", imgurlA);
+			clickVal = "unlike";
+		}
+		
+		$.post('/cyber/educourse/course_like.php', { LectureCode: LectureCode, clickVal: clickVal }, function (data) {
+			if (data == 'like') {
+				alert('나의학습실의 관심강의에서 확인하실수 있습니다.');
+			}
+		});
+	}else{
+		alert('관심강의는 로그인 후 이용가능합니다.');
+	}
+}
+
+//내일배움카드 - 컨텐츠상세 관심과정 기능
+function CourseViewLike(LectureCode, ID){	
+	//로그인한경우만 사용가능
+	if(ID){
+		var src = $(".course_save_btn img").attr("src");
+		var imgurlA = "/cyber/img/edudetail/gray_heart.png";
+		var imgurlB = "/cyber/img/edudetail/red_heart.png";
+		var clickVal = "";
+		
+		//좋아요 완료
+		if(src == imgurlA){
+			$(".course_save_btn img").attr("src", "/cyber/img/edudetail/red_heart.png");
+			clickVal = "like";
+		//좋아요 취소
+		}else{
+			$(".course_save_btn img").attr("src", "/cyber/img/edudetail/gray_heart.png");
+			clickVal = "unlike";
+		}
+		
+		$.post('/cyber/educourse/course_like.php', { LectureCode: LectureCode, clickVal: clickVal }, function (data) {
+			if (data == 'like') {
+				$('.modal-bg').fadeIn();
+		        $('.modal-wrap').hide();
+		        $('#modal03').show();
+		        $('html').css({overflow: 'hidden'});
+		        
+		        //닫기 버튼
+		        $('.close-btn').on('click', function() {
+		            $('.modal-bg').fadeOut();
+		            $('#modal03').hide();
+		            $('#modal03').removeAttr('style');
+		
+		            $('html').removeAttr('style');
+	            });
+		        //과정계속보기 버튼
+	            $('#close').on('click', function() {
+		            $('.modal-bg').fadeOut();
+		            $('#modal03').hide();
+		            $('#modal03').removeAttr('style');
+		
+		            $('html').removeAttr('style');
+	            });
+			}
+		});
+	}else{
+		alert('관심강의는 로그인 후 이용가능합니다.');
+	}
+}
+
+//사업주훈련 - 학습신청 팝업창
+function LectureRequest(LectureCode, Price, ID) {
+	//로그인한경우만 사용가능
+	if(ID){		
+		$('#DateList').load('/hrdedu/edudetail/date_list.php', { LectureCode: LectureCode, Price: Price, ID: ID }, function () {
+			$('.modal-bg').fadeIn();
+	        $('.modal-wrap').hide();
+	        $('#modal02').show();
+	        $('html').css({overflow: 'hidden'});
+	        
+	        //닫기 버튼
+	        $('.close-btn').on('click', function() {
+	            $('.modal-bg').fadeOut();
+	            $('#modal02').hide();
+	            $('#modal02').removeAttr('style');
+	
+	            $('html').removeAttr('style');
+            });
+		});
+	}else{
+		alert('학습신청은 로그인 후 이용가능합니다.');
+	}
+}
+
+//사업주훈련 - 학습신청 등록
+function LectureRequestSubmitOk(LectureCode, Price) {
+	var checked_value = $(':radio[name="LectureDate"]:checked').val();
+	var checked_length = $(':radio[name="LectureDate"]').length;
+
+	if(checked_length==0) {
+		$('.modal-bg').fadeOut();
+        $('#modal02').hide();
+        $('#modal02').removeAttr('style');
+
+        $('html').removeAttr('style');
+        
+        return;
+	}
+	if(checked_value==undefined) {
+		alert("교육기간을 선택하세요.");
+		return;
+	}
+	
+	Yes = confirm("신청하시겠습니까?");
+	if(Yes==true) {
+		$.post('/hrdedu/edudetail/lecture_request_ok.php', { LectureCode: LectureCode, Price: Price, LectureDate: checked_value }, function (data) {
+			if (data == 'Y') {
+				alert("신청이 완료되었습니다.");
+				
+				$('.modal-bg').fadeOut();
+	            $('#modal02').hide();
+	            $('#modal02').removeAttr('style');
+	
+	            $('html').removeAttr('style');
+			}else if(data == "exist"){
+				alert("이미 신청내역이 존재합니다.");
+			}else{
+				alert("신청중 오류가 발생했습니다.");
+			}
+		});
+	}
+
+}
+
+//내일배움카드 - 수강신청
+function CourseRequest(LectureCode, sessionID) {
+	var applyType = $("#applyType").val(); //신청유형 (A:국민내일배움카드(재직자)/B:일반(수시)/C:고용보험환급)
+	var LectureStart = $("#LectureStart").val(); //학습기간 시작일자
+	var LectureEnd = $("#LectureEnd").val(); //학습기간 종료일자
+	var supportType = $("#supportType").val(); //지원유형 (A:재직자 일반)
+	
+	if(!sessionID){
+		alert('로그인 후 사용 가능합니다.');
+		return;
+	}
+	if(applyType == ""){
+		alert('신청유형을 선택해주세요.');
+		return;
+	}
+	if(LectureStart == "" || LectureEnd == ""){
+		alert('학습기간을 선택해주세요.');
+		return;
+	}
+	if(supportType == ""){
+		alert('지원유형을 선택해주세요.');
+		return;
+	}
+	
+	location.href = "/cyber/payment/card_payment.html?LectureCode="+LectureCode+"&applyType="+applyType+"&LectureStart="+LectureStart+"&LectureEnd="+LectureEnd+"&supportType="+supportType;
+}
+
+//컨텐츠 관련---------------------------------------------------------------------------------------------------
 
 
 //게시판 관련---------------------------------------------------------------------------------------------------------------
@@ -1268,6 +1484,63 @@ function CounselStudySubmit() {
 	}
 }
 //게시판 관련----------------------------------------------------------------------------------------------------------------------
+
+//나의학습실 관련-------------------------------------------------------------------------------------------------------------------
+//관심강의 더보기
+function CourseLikeAdd(totNo, showNo, hiddenNo, pageStart) {	
+	$.post(
+		'/public/mypage/lecture_save_list.php', 
+		{
+			pageStart: pageStart,
+		},
+		function(data, stauts){
+			//컨텐츠가 없을 때는 append 하지 않음
+			if(hiddenNo > 0){
+				$(".saved_lecture_list").append(data);
+			}
+			
+		}
+	);
+}
+
+//수강신청/결제내역 - 수강신청내역 조회
+function dateSearch(data) {
+	var DateStartB = $("#DateStartB").val();
+	var DateEndB = $("#DateEndB").val();
+	
+	$("#dateData").val(data);
+	
+	if($("#dateData").val() == ""){
+		if(DateStartB == "" || DateEndB == ""){
+			alert('조회 기간을 모두 선택해주세요.');
+			return;
+		}
+	}
+	
+	dateSearchForm.submit();
+}
+
+//수강신청/결제내역 - 수강신청 취소신청
+function LectureRequestCancel(idx) {
+	Yes = confirm('수강 신청을 취소하시겠습니까?');
+	if (Yes == true) {
+		$.post('/public/mypage/lecture_request_cancel.php', { idx: idx }, function (data) {
+			if (data == 'Login') {
+				LoginYes = confirm('로그인후에 수강신청이 가능합니다.\n\n로그인 하시겠습니까?');
+				if (LoginYes == true) {
+					location.href = '/public/member/login.html';
+				}
+			} else if (data == 'Success') {
+				alert('수강 신청 취소가 완료되었습니다.');
+				location.reload();
+			} else {
+				alert('수강 신청 취소중 오류가 발생했습니다.');
+			}
+		});
+	}
+}
+
+//나의학습실 관련-------------------------------------------------------------------------------------------------------------------
 
 //나의 강의실 강의 상세정보 확장하기
 function LectureDetailToggle(i, OpenNotice) {
@@ -1543,7 +1816,7 @@ function RePlay(Chapter_Number, LectureCode, Study_Seq, Chapter_Seq, Contents_id
 }
 
 //강의 미리보기
-function CoursePreview(LectureCode) {
+function CoursePreview(LectureCode, data) {
 	var currentWidth = $(window).width();
 	var LocWidth = currentWidth / 2;
 	var body_width = screen.width - 20;
@@ -1570,7 +1843,7 @@ function CoursePreview(LectureCode) {
 		})
 		.show();
 
-	$('#DataResult').load('/player/preview_layer.php', { LectureCode: LectureCode }, function () {
+	$('#DataResult').load('/player/preview_layer.php', { LectureCode: LectureCode  , data: data}, function () {
 		$('html, body').animate({ scrollTop: ScrollPosition + 100 }, 500);
 
 		$("div[id='DataResult']")
@@ -2530,71 +2803,6 @@ function ReviewSubmitOk() {
 	}
 }
 
-function LectureRequest(LectureCode, Price) {
-	var currentWidth = $(window).width();
-	var LocWidth = currentWidth / 2;
-	var body_width = screen.width - 20;
-	var body_height = $('html body').height() + 500;
-	var ScrollPosition = $(window).scrollTop();
-
-	$("div[id='SysBg_Black']")
-		.css({
-			width: body_width,
-			height: body_height,
-			opacity: '0.4',
-			position: 'absolute',
-			'z-index': '99',
-		})
-		.show();
-
-	$("div[id='Roading']")
-		.css({
-			top: '350px',
-			left: LocWidth,
-			opacity: '0.6',
-			position: 'absolute',
-			'z-index': '200',
-		})
-		.show();
-
-	$('#DataResult').load('/include/lecture_request.php', { LectureCode: LectureCode, Price: Price }, function () {
-		$("div[id='Roading']").hide();
-
-		$('html, body').animate({ scrollTop: 0 }, 500);
-		$("div[id='DataResult']")
-			.css({
-				top: ScrollPosition + 200,
-				left: body_width / 2 - 20,
-				opacity: '1.0',
-				position: 'absolute',
-				'z-index': '1000',
-			})
-			.show();
-
-		$('html').css('overflow', 'hidden');
-	});
-}
-
-function LectureRequestCancel(idx) {
-	Yes = confirm('수강 신청을 취소하시겠습니까?');
-	if (Yes == true) {
-		$.post('/mypage/lecture_request_cancel.php', { idx: idx }, function (data) {
-			if (data == 'Login') {
-				LoginYes = confirm('로그인후에 수강신청이 가능합니다.\n\n로그인 하시겠습니까?');
-				if (LoginYes == true) {
-					//location.href = '/member/login.php';
-					location.href = '/new/member/login.html';
-				}
-			} else if (data == 'Success') {
-				alert('수강 신청 취소가 완료되었습니다.');
-				location.reload();
-			} else {
-				alert('수강 신청 취소중 오류가 발생했습니다.');
-			}
-		});
-	}
-}
-
 function LectureRequestChange(idx, LectureCode) {
 	var currentWidth = $(window).width();
 	var LocWidth = currentWidth / 2;
@@ -2639,18 +2847,18 @@ function LectureRequestChange(idx, LectureCode) {
 
 function LogInCheck() {
 	$.post(
-		'/member/login_check.php',
+		'/public/member/login_check.php',
 		{
 			t: '1',
 		},
 		function (data, status) {
 			if (data == 'O') {
 				alert('세션이 만료되어 로그아웃 처리됩니다.');
-				location.href = '/member/logout.php';
+				location.href = '/public/member/logout.php';
 			}
 			if (data == 'N') {
 				alert('다른 기기에서 로그인하여 로그아웃 처리됩니다.');
-				location.href = '/member/logout.php';
+				location.href = '/public/member/logout.php';
 			}
 		}
 	);
@@ -2658,14 +2866,14 @@ function LogInCheck() {
 
 function LogInCheckStudy() {
 	$.post(
-		'/member/login_check.php',
+		'/public/member/login_check.php',
 		{
 			t: '1',
 		},
 		function (data, status) {
 			if (data != 'Y') {
 				alert('세션이 만료되어 로그아웃 처리됩니다.');
-				location.href = '/member/logout.php';
+				location.href = '/public/member/logout.php';
 			}
 		}
 	);
@@ -2818,7 +3026,7 @@ function CertificatePrint(Seq) {
 		})
 		.show();
 
-	$('#DataResult').load('/mypage/certificate_layer.php', { Seq: Seq }, function () {
+	$('#DataResult').load('/public/mypage/certificate_layer.php', { Seq: Seq }, function () {
 		$('html, body').animate({ scrollTop: ScrollPosition + 100 }, 300);
 
 		$("div[id='DataResult']")
@@ -3550,10 +3758,12 @@ function StudyPDS_Scrap(idx, mode) {
 	var LocWidth = currentWidth / 2;
 	var body_width = screen.width - 20;
 	var body_height = $('html body').height();
-
-	if (mode == 'Regist') {
+	if(mode == 'Guest'){
+		alert('로그인 후 이용해주세요.');
+		location.href = "/public/member/login.html";
+	}else if (mode == 'Regist') {
 		msg = '현재 학습자료를 찜 하시겠습니까?';
-	} else {
+	}else if(mode == 'Delete'){
 		msg = '현재 학습자료를 찜 취소 하시겠습니까?';
 	}
 
@@ -3579,7 +3789,7 @@ function StudyPDS_Scrap(idx, mode) {
 			})
 			.show();
 
-		$('#DataResult').load('/support/edudata_scrap.php', { idx: idx, mode: mode }, function () {
+		$('#DataResult').load('/public/support/edudata_scrap.php', { idx: idx, mode: mode }, function () {
 			$("div[id='Roading']").hide();
 
 			$('html, body').animate({ scrollTop: 0 }, 500);
