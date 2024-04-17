@@ -486,6 +486,11 @@
 .tableTypeA table th {
   background-color: whitesmoke;
 }
+.tableTypeA table th i {
+  color: #b5cff0;
+  font-size: 22px;
+  margin-left: 3px;
+}
 .tableTypeA table td a {
   display: block;
 }

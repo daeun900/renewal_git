@@ -1,37 +1,134 @@
 <? include '../include/header.html'; ?>
+<?
+$where = array();
 
+$where[] = "Del='N'";
+$where[] = "UseYN='Y'";
+$where[] = "PackageYN='N'";
+$where[] = "LectureCode='$LectureCode'";
+
+$where = implode(" AND ",$where);
+if($where) $where = "WHERE $where";
+
+$Sql = "SELECT * FROM Course $where";
+//echo $Sql;
+$Result = mysqli_query($connect, $Sql);
+$Row = mysqli_fetch_array($Result);
+if($Row) {
+    $ctype = $Row['ctype']; //A 사업주과정, B 내일배움카드
+    $ClassGrade = $Row['ClassGrade']; //등급
+    $LectureCode = $Row['LectureCode']; //과정코드
+    $UseYN = $Row['UseYN']; //사이트 노출
+    $PassCode = $Row['PassCode']; //심사코드
+    $HrdCode = $Row['HrdCode']; //HRD-NET 과정코드
+    $Category1 = $Row['Category1']; //과정분류 대분류
+    $Category2 = $Row['Category2']; //과정분류 소분류
+    $ServiceType = $Row['ServiceType']; //서비스 구분
+    $ContentsName = html_quote($Row['ContentsName']); //과정명
+    $CompleteTime = $Row['CompleteTime']; //진도시간 기준
+    $ProgressCheck = $Row['ProgressCheck']; //진도체크방식
+    $Chapter = $Row['Chapter']; //차시수
+    $ContentsTime = $Row['ContentsTime']; //교육시간
+    $Price = $Row['Price']; //교육비용 일반
+    $Price01View = $Row['Price01View']; //교육비용 우선지원 
+    $Price02View = $Row['Price02View']; //교육비용 대규모 1000인 미만 
+    $Price03View = $Row['Price03View']; //교육비용 대규모 1000인 이상 
+    $Price01 = $Row['Price01']; //자부담금 교육비용 우선지원 
+    $Price02 = $Row['Price02']; //자부담금 교육비용 대규모 1000인 미만 
+    $Price03 = $Row['Price03']; //자부담금 교육비용 대규모 1000인 이상 
+    $Professor = $Row['Professor']; //내용전문가 
+    $Limited = $Row['Limited']; //학급정원
+    $ContentsPeriod = substr($Row['ContentsPeriod'],0,10); //컨텐츠 유효기간
+    $ContentsAccredit = substr($Row['ContentsAccredit'],0,10); //인정만료일 시작일
+    $ContentsExpire = substr($Row['ContentsExpire'],0,10); //인정만료일 종료일
+    $Cp = html_quote($Row['Cp']); //cp사
+    $Commission = $Row['Commission']; //cp 수수료
+    $Mobile = $Row['Mobile']; //모바일 지원
+    $BookPrice = $Row['BookPrice']; //교재비
+    $BookIntro = html_quote($Row['BookIntro']); //참고도서설명
+    $attachFile = html_quote($Row['attachFile']); //학습자료
+    $PreviewImage = html_quote($Row['PreviewImage']); //과정 이미지
+    $BookImage = html_quote($Row['BookImage']); //교재 이미지
+    $Mid01EA = $Row['Mid01EA']; //중간평가 객관식 문항수
+    $Mid01Score = $Row['Mid01Score']; //중간평가 객관식 배점
+    $Mid02EA = $Row['Mid02EA']; //중간평가 주관식 문항수
+    $Mid02Score = $Row['Mid02Score']; //중간평가 주관식 배점
+    $Test01EA = $Row['Test01EA']; //최종평가 객관식 문항수
+    $Test01Score = $Row['Test01Score']; //최종평가 객관식 배점
+    $Test02EA = $Row['Test02EA']; //최종평가 주관식 문항수
+    $Test02Score = $Row['Test02Score']; //최종평가 주관식 배점
+    $ReportEA = $Row['ReportEA']; //과제 문항수
+    $ReportScore = $Row['ReportScore']; //과제 배점
+    $TestTime = $Row['TestTime']; //시험제한시간
+    $MidRate = $Row['MidRate']; //반영비율 중간평가 
+    $TestRate = $Row['TestRate']; //반영비율 최종평가 
+    $ReportRate = $Row['ReportRate']; //반영비율 과제
+    $PassProgress = $Row['PassProgress']; //진도율  
+    $TotalPassMid = $Row['TotalPassMid']; //중간평가 : 총점
+    $TotalPassTest = $Row['TotalPassTest']; //최종평가 : 총점
+    $PassTest = $Row['PassTest']; //최종평가 : 득점
+    $TotalPassReport = $Row['TotalPassReport']; //과제 : 총점
+    $PassReport = $Row['PassReport']; //과제 : 득점
+    $PassScore = $Row['PassScore']; //반영비율을 적용한 총점
+    $Intro = nl2br($Row['Intro']); //과정소개
+    $EduTarget = nl2br($Row['EduTarget']); //교육대상
+    $EduGoal = nl2br($Row['EduGoal']); //교육목표
+    $EduGoalArr = explode("<br />",$EduGoal);
+    $Hit = $Row['Hit']; //인기 강의
+}
+
+if($PreviewImage) {
+    $PreviewImageView = "/upload/Course/".$PreviewImage;
+}else{
+    $PreviewImageView = "/common/img/img-ready.png";
+}
+
+if($IE8Compat=="Y") {
+	//$PreviewFun = "CoursePreviewPopup";
+    $PreviewFun = "CoursePreview";
+}else{
+    $PreviewFun = "CoursePreview";
+}
+
+if($ctype=="A") {
+    $CompanyScaleTitle01 = "우선지원 기업";
+    $CompanyScaleTitle02 = "대규모(1,000인 미만)";
+    $CompanyScaleTitle03 = "대규모(10,000인 이상)";
+}
+
+if($ctype=="B") {
+    $CompanyScaleTitle01 = "일반훈련생";
+    $CompanyScaleTitle02 = "취업성공패키지";
+    $CompanyScaleTitle03 = "근로장려금";
+}
+?>
 <body>
     <div id="wrap">
         <div class="edudetail_top">
             <div class="lecture_title">
                 <span class="pc">PC</span>
-                <span class="mobile">모바일</span>
-                <span class="refund">사업주 환급</span>
-                <strong>NCS가 제시하는 적정진료 관리 및 보험급여 심사청구 실무_기업직업훈련</strong>
+                <?if($Mobile=="Y") {?><span class="mobile">모바일</span><?}?>
+                <?if($ServiceType=="1") {?><span class="refund">사업주 환급</span><?}?>
+                <strong><?=$ContentsName?></strong>
             </div>
             <div class="flex_box">
                 <div class="left">
-                    <div class="lecture_img">
-                        <img src="../img/educourse/courseimg_ex.png" alt="과정이미지">
-                    </div>
-                    <button>과정 맛보기</button>
+                    <div class="lecture_img"><img src="<?=$PreviewImageView?>" alt="과정이미지"></div>
+                    <button onclick="Javascript:<?=$PreviewFun?>('<?=$LectureCode?>', 'A');">과정 맛보기</button>
                 </div>
                 <!--left-->
-                <div class="right">
+                <div class="right" style="width:100%;">
                     <div class="lecture_detail">
-                        <p><span>교육대상</span>사무행정분야에 대한 직무능력향상을 필요로 하는 고용 보험 가입 사업장의 근로자 및 채용예정자</p>
-                        <p><span>교육시간</span>31차시 / 32시간</p>
+                        <p><span>교육대상</span><?=$EduTarget?></p>
+                        <p><span>교육시간</span><?=$Chapter?>차시 / <?=$ContentsTime?>시간</p>
                     </div>
                     <div class="button_wrap">
                         <button class="apply modal-btn" href="#modal02">학습신청</button>
                         <button class="modal-btn" href="#modal01">간편문의</button>
                     </div>
                 </div>
-                <!--rigt-->
             </div>
-            <!--flexbox-->
         </div>  
-        <!--top-->
         <div class="edudetail_bottom">
             <div>
                 <div class="title">학습과정</div>
@@ -42,9 +139,7 @@
             <div>
                 <div class="title">학습목표</div>
                 <div class="content">
-                    <p>1. 영유아의 행동 관찰을 통해 영유아의 특성과 문제를 파악하고 관찰자료를 평가하여 영유아 지도에 필요한 사항을 도출하는 능력을 함양할 수 있다.</p>
-                    <p>2. 발달적으로 어려움이 있는 영유아의 행동 사례를 관찰, 분석, 선별하고, 사례별 발달지원 계획과 지원, 부모상담과 전문가를 연계할 수 있는 능력을 함양할 수 있다.</p>
-                    <p>3. 발달적으로 어려움이 있는 장애아를 위해 지도 및 상담의 내용과 방법을 계획·결정하여 지원하는 능력을 함양할 수 있다.</p>
+                	<p><?=$EduGoal?></p>
                 </div>
             </div>
             <div>
@@ -65,17 +160,17 @@
                             <tr>
                                 <td>평가비율</td>
                                 <td>0%</td>
-                                <td>10%</td>
-                                <td>80%</td>
-                                <td>10%</td>
-                                <td rowspan="2">60 이상</td>
+                                <td><?=$MidRate?>%</td>
+                                <td><?=$TestRate?>%</td>
+                                <td><?=$ReportRate?>%</td>
+                                <td rowspan="2"><?=$PassScore?> 이상</td>
                             </tr>
                             <tr>
                                 <td>수료기준</td>
-                                <td>80% 이상</td>
-                                <td>있음 (총 100점)</td>
-                                <td>있음 (총 100점)</td>
-                                <td class="br">있음 (총 100점)</td>
+                                <td><?=$PassProgress?>% 이상</td>
+                                <td>있음 (총 <?=$TotalPassMid?>점)</td>
+                                <td>있음 (총 <?=$TotalPassTest?>점)</td>
+                                <td class="br">있음 (총 <?=$TotalPassReport?>점)</td>
                             </tr>
                         </tbody>
                     </table>
@@ -93,13 +188,13 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td>147,840 원</td>
-                                <th>우선지원기업</th>
-                                <td>147,840 원</td>
-                                <th>대규모(1,000인 미만)</th>
-                                <td>0 원</td>
-                                <th class="br">대규모(10,000인 이상)</th>
-                                <td>0 원</td>
+                                <td><?=number_format($Price,0)?> 원</td>
+                                <th><?=$CompanyScaleTitle01?></th>
+                                <td><?=number_format($Price01View,0)?> 원</td>
+                                <th><?=$CompanyScaleTitle02?></th>
+                                <td><?=number_format($Price02View,0)?> 원</td>
+                                <th class="br"><?=$CompanyScaleTitle03?></th>
+                                <td><?=number_format($Price03View,0)?> 원</td>
                             </tr>
                         </tbody>
                     </table>
@@ -196,7 +291,7 @@
 <div class="modal-bg"></div>
 <div id="modal01" class="modal-wrap">
     <div class="close-btn">
-        <i class="ph-thin ph-x"></i>
+        <i class="fa-solid fa-xmark"></i>
     </div>
     <h2>간편문의</h2>
     <div class="input_wrap mt50">
@@ -232,7 +327,7 @@
     <div class="input_wrap mt20">
         <p class="title">보안 코드</p>
         <div class="input_box captcha_box">
-            <div class="captcha"><img src="../img/support/captcha_ex.PNG" alt=""></div>
+            <div class="captcha"><img src="/public/support/img/captcha_ex.PNG" alt=""></div>
             <input type="text" placeholder="왼쪽의 보안코드를 입력해주세요." class="input-title">
         </div>
     </div>
@@ -261,7 +356,7 @@
 <div class="modal-bg"></div>
 <div id="modal02" class="modal-wrap">
     <div class="close-btn">
-        <i class="ph-thin ph-x"></i>
+        <i class="fa-solid fa-xmark"></i>
     </div>
     <h2>학습신청</h2>
     <div class="tableTypeA">

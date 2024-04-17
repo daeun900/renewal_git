@@ -1,3 +1,61 @@
+.header .menuicon{display: none;}
+
+@media(max-width:1000px){
+    .header a{display: none;}
+    .header .menuicon{flex-grow: 1; justify-content: right; display: flex; font-size: 22px; padding: 20px 0;}
+    .gnb,.header .button{display: none;}
+    .middle_header{height: 134px;}
+}
+
+
+.navArea_m{width: 100%; background: #fff; position: fixed;top: 0;right: -100%;opacity: 0;z-index: 50;}
+
+@media(max-width:1000px){
+    .navArea{display: none;}
+}
+.dropdownmenu_m .depth1 ul{display: none;}
+
+.navArea_m .menuicon{display: block; font-size: 24px; color: #333;padding: 15px;float: right;}
+
+.navArea_m .topmenu{margin-top: 40px; display: flex; justify-content: center; width: 100%; padding: 0 5%;    gap: 5%;}
+.navArea_m .topmenu .member{border: 1px solid #265ec2; border-radius: 10px; width: 50%; padding: 2%; text-align: center;}
+.navArea_m .topmenu .member a{font-size: 20px;}
+.navArea_m .topmenu .point{background-color:  #265ec2; border-radius: 10px; width: 50%; padding: 2%; text-align: center;}
+.navArea_m .topmenu .point a{font-size: 20px; color: #fff;}
+
+.navArea_m .topmenu2 ul{display: flex; justify-content: center; width: 100%; padding: 0 5%;margin: 25px 0;}
+.navArea_m .topmenu2 ul li{width: 33.3%;}
+.navArea_m .topmenu2 ul li i{font-size: 25px; color: #265ec2;padding-bottom: 10px;}
+.navArea_m .topmenu2 ul li a{font-size: 18px; color: #265ec2 ; display: flex; flex-direction: column; align-items: center;}
+
+.dropdownmenu_m {padding: 0 10%;}
+.dropdownmenu_m li{margin-bottom: 30px;}
+.dropdownmenu_m li a{font-size: 20px; font-weight: 400;display: block;width: 100%;}
+.dropdownmenu_m li a span{float: right;}
+
+.dropdownmenu_m li ul{background-color: aliceblue; margin-top: 12px; padding:20px 5%;}
+.dropdownmenu_m li ul li a{font-size: 18px; ;}
+.dropdownmenu_m li ul li:last-of-type{margin-bottom: 0;}
+
+
+.dropdownmenu_m .sns{margin-top: 35px;}
+.dropdownmenu_m .sns ol{display: flex; justify-content: center; background-color: white;}
+.dropdownmenu_m .sns ol li{background-color: #265ec2; border-radius: 50px; padding: 3px; width: 36px; height: 35px; margin: 0 10px; margin-bottom: 20px;}
+.dropdownmenu_m .sns ol li img{width: 100%;}
+
+@media(max-width:640px){
+    .navArea_m .topmenu .member a{font-size: 16px;}
+    .navArea_m .topmenu .point a{font-size: 16px;}
+
+    .navArea_m .topmenu2 ul li a{font-size: 16px}
+
+    .dropdownmenu_m li a{font-size: 18px;}
+
+    .dropdownmenu_m li ul li a{font-size: 16px; ;}
+}
+
+
+
 footer {
     border-top: 2px solid #777;
 }

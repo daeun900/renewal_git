@@ -462,7 +462,12 @@
         border-top: 2px solid;
         tr{border-bottom: 1px solid ;}
         th,td{padding: 20px 0; text-align: center;}
-        th{background-color: whitesmoke;}
+        th{background-color: whitesmoke;
+            i{
+                color: #b5cff0;
+        font-size: 22px;
+        margin-left: 3px;
+            }}
         td{a{
             display: block;
         }}

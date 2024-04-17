@@ -7,7 +7,7 @@
 <input type="hidden" name="orderby" value="<?=$orderby?>">
 <input type="hidden" name="StartDate" value="<?=$StartDate?>">
 <input type="hidden" name="EndDate" value="<?=$EndDate?>">
-<input type="hidden" name="FaqCate" value="<?=$FaqCate?>">
+<input type="hidden" name="EduCate" value="<?=$EduCate?>">
 <input type="hidden" name="Gubun" value="<?=$Gubun?>">
 <input type="hidden" name="ExamType" value="<?=$ExamType?>">
 <input type="hidden" name="ServiceType" value="<?=$ServiceType?>">
@@ -60,9 +60,12 @@
         <div id="wrap">
             <div class="inner">
                 <h2>학습자료실</h2>
-                <div class="search_box">
-                    <input name="" id="" type="text" title="검색어 입력" placeholder="검색어를 입력해주세요"><span class="search_btn"><i class="ph ph-magnifying-glass"></i></span>
-                </div>
+<!--                 <form name="BoardSearchForm" action="<?=$_SERVER['PHP_SELF']?>" method="GET"> -->
+<!-- 	                <div class="search_box"> -->
+<!-- 	                    <input name="sw" id="sw" type="text" title="검색어 입력" <?if($sw){?>value="<?=$sw?>"<?}?> placeholder="검색어를 입력해주세요"> -->
+<!-- 	                    <span class="search_btn" onclick="Javascript:BoardSearch();"><i class="ph ph-magnifying-glass"></i></span> -->
+<!-- 	                </div> -->
+<!--                 </form> -->
             </div>
             <div class="navi">
                 <i class="ph-light ph-house-line"></i>&nbsp;<i class="ph ph-caret-right"></i>&nbsp;학습지원센터<i class="ph ph-caret-right"></i>&nbsp;학습자료실
@@ -83,10 +86,14 @@
     <div class="edudata_content">
         <div id="wrap">
             <div class="edudata_top">
-                <div class="search_box">
-                    <input name="sw" id="sw" type="text" title="검색어 입력" placeholder="검색어를 입력해주세요">
-                    <span class="search_btn" onclick="Javascript:BoardSearch();"><i class="ph ph-magnifying-glass"></i></span>
-                </div>
+
+                <form name="BoardSearchForm" action="<?=$_SERVER['PHP_SELF']?>" method="GET">
+	                <div class="search_box">
+	                    <input name="sw" id="sw" type="text" title="검색어 입력" <?if($sw){?>value="<?=$sw?>"<?}?> placeholder="검색어를 입력해주세요">
+	                    <span class="search_btn" onclick="Javascript:BoardSearch();"><i class="ph ph-magnifying-glass"></i></span>
+	                </div>
+                </form>
+
                 <div class="count">총 <span><?=$TOT_NO?></span>건</div>
             </div>
 
@@ -109,36 +116,32 @@
                         </tr>
                     </thead>
                     <tbody>
-<?
-$i=1;
-$sql = "SELECT * FROM StudyPDS $where $str_orderby LIMIT $PAGE_CLASS->page_start, $page_size";
-$QUERY = mysqli_query($connect, $sql);
-if($QUERY && mysqli_num_rows($QUERY)){
-while($ROW = mysqli_fetch_array($QUERY)){
-extract($ROW);
-$Title = strcut_utf8($Title,45);
-$Content = stripslashes($Content);
-?>
-                       <tr>
-                            <td><?=$i?></td>
-                            <td class="al"><a href="edudata_view.html"> <?=$Title?></a></td>
-                            <td><?if($FileName1){?><img class="download"  src="img/icon_gray.png" alt="파일아이콘"><?}?></td>
-                            <td><?=$RegDate?></td>
-                            <td><?=$ViewCount?></td>
-                        </tr>
-<?
-$i++;
-}
-}
-?>
+					<?
+						$i=1;
+						$sql = "SELECT * FROM StudyPDS $where $str_orderby LIMIT $PAGE_CLASS->page_start, $page_size";
+						$QUERY = mysqli_query($connect, $sql);
+						if($QUERY && mysqli_num_rows($QUERY)){
+							while($ROW = mysqli_fetch_array($QUERY)){
+								extract($ROW);
+								$Title = strcut_utf8($Title,45);
+								$Content = stripslashes($Content);
+					?>
+			                    <tr>
+			                         <td><?=$PAGE_UNCOUNT--?></td>
+			                         <td class="al"><a href="edudata_view.html?idx=<?=$idx?>"><?=$Title?></a></td>
+			                         <td><?if($FileName1){?><img class="download"  src="img/icon_gray.png" alt="파일아이콘"><?}?></td>
+			                         <td><?=substr($RegDate,0,10)?></td>
+			                         <td><?=$ViewCount?></td>
+			                    </tr>
+					<?
+							}
+						}
+					?>
                     </tbody>
                 </table>
             </div>
-            <div class="pagination">
-                <ol>
-                    <li class="on"><a href="javascript:pageRun(1);" style="color: white;">1</a></li>
-                </ol>
-            </div>
+            <?=$BLOCK_LIST?>
+
         </div>
         <!--wrap-->
     </div>

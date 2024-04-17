@@ -1,8 +1,11 @@
+<?php
+include $_SERVER['DOCUMENT_ROOT'] . "/include/include_function.php"; //DB연결 및 각종 함수 정의
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <!--meta name="viewport" content="width=device-width, initial-scale=1.0"-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>HRDe평생교육원</title>
     <script type="text/javascript" src="../common/js/jquery-2.1.4.js"></script>
@@ -30,8 +33,14 @@
                     <img src="../common/img/logo.png" alt="HRDe평생교육원">
                 </div>
                 <div class="menu">
-                    <a href="#" class="login">로그인</a>
-                    <a href="#" class="point"><i class="ph ph-sign-out"></i>나의 학습실</a>
+                    <a href="/hrdedu/group/introduce.html" class="login">교육원소개</a>
+                    <? if(empty($_SESSION['LoginMemberID'])) { ?>
+                    <a href="/public/member/login.html" class="login">로그인</a>
+	                <?}else{?>
+	                <a href="/public/member/logout.php?path=L" class="login">로그아웃</a>
+	                <?}?>
+                
+                    <a href="/public/mypage/lecture_status.html" class="point"><i class="ph ph-sign-out"></i>나의 학습실</a>
                 </div>
             </header>
             <div>
@@ -226,6 +235,24 @@ var swiper = new Swiper(".mySwiper", {
         nextEl: ".swiper-button-next",
         prevEl: ".swiper-button-prev",
 },
+        breakpoints: {
+            1400: {
+                slidesPerView: 3,
+                spaceBetween: 30
+            },
+            930: {
+                slidesPerView: 2,
+                spaceBetween: 20
+            },
+            640: {
+                slidesPerView: 1,
+                spaceBetween: 10
+            },
+            320: {
+                slidesPerView: 1,
+                spaceBetween: 10
+            }
+        }
 });
 </script>
      

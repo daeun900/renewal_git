@@ -5,18 +5,17 @@ include $_SERVER['DOCUMENT_ROOT'] . "/include/include_function.php"; //DB연결 
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HRDe평생교육원</title>
     <script type="text/javascript" src="../../common/js/jquery-2.1.4.js"></script>
     <script src="../js/menu.js?ver=20231207"></script>
     <link rel="stylesheet" href="../../common/css/base.css?ver=2">
-    <link rel="stylesheet" href="../../common/css/common.css?ver=4">
+    <link rel="stylesheet" href="../../common/css/common.css?ver=240415">
     <link rel="stylesheet" href="../css/common.css">
     <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../css/group.css">
     <link rel="stylesheet" href="../css/educourse.css?ver=2">
     <link rel="stylesheet" href="../css/edudetail.css">
-    <link rel="stylesheet" href="../css/edudata.css">
     <link rel="stylesheet" href="../css/etc.css">
     <script src="https://kit.fontawesome.com/ebace215db.js" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
@@ -25,6 +24,7 @@ include $_SERVER['DOCUMENT_ROOT'] . "/include/include_function.php"; //DB연결 
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script type="text/javascript" src="/include/function.js?t=<?=date('YmdHis')?>"></script>
 </head>
 <header>
     <div class="top_header">
@@ -49,6 +49,9 @@ include $_SERVER['DOCUMENT_ROOT'] . "/include/include_function.php"; //DB연결 
     <div class="header">
         <div id="wrap">
             <div class="logo"><a href="/hrdedu/main/main.html"><img src="/common/img/logo.png" alt="회사로고"></a></div>
+            <a class="menuicon">
+                <i class="fa-solid fa-bars"></i>
+            </a>
             <div class="gnb">
                 <ul class="dropdownmenu">
                     <li class="menu"><a href="/hrdedu/group/introduce.html" class="depth1">교육원소개</a>
@@ -99,6 +102,83 @@ include $_SERVER['DOCUMENT_ROOT'] . "/include/include_function.php"; //DB연결 
         </div>
         <!--wrap-->
         <div class="nav_back"></div>
+
+        <div class="navArea_m">
+            <a href="#" class="menuicon">
+                <i class="fa-solid fa-xmark"></i>
+            </a>
+            <div class="topmenu">
+                <? if(empty($_SESSION['LoginMemberID'])) { ?>
+                <span class="member"><a href="/public/member/login.html">로그인</a></span>
+                <? } else { ?>
+                <span class="member"><a href="/public/member/logout.php">로그아웃</a></span>
+                <? } ?>
+                <span class="point"><a href="/public/mypage/lecture_status.html">나의학습실</a></span>
+            </div>
+            <div class="topmenu2">
+                <ul>
+                    <li>
+                        <a href="/public/support/notice.html">
+                            <i class="fa-solid fa-circle-exclamation"></i>
+                            공지사항</a></li>
+                    <li>
+                        <a href="/public/support/faq.html">
+                            <i class="fa-regular fa-comment-dots"></i>
+                            자주묻는질문</a></li>
+                    <li>
+                        <a href="/public/support/ask.html">
+                            <i class="fa-solid fa-comments"></i>1:1문의</a></li>
+                </ul>
+            </div>
+            <ul class="dropdownmenu_m">
+                <li class="depth1">
+                    <a href="/hrdedu/group/introduce.html" class="depth1">
+                        교육원소개
+                        <span><i class="fa-solid fa-chevron-down"></i></span>
+                    </a>
+                    <ul>
+                        <li><a href="/hrdedu/group/introduce.html">교육원 소개</a></li>
+                    </ul>
+                </li>
+                <li class="depth1">
+                    <a href="/hrdedu/educourse/law_course.html" class="depth1">
+                        법정의무교육
+                    </a>
+                    <ul>
+                        <li><a href="/hrdedu/educourse/law_course.html" >전체</a></li>
+                        <li><a href="/hrdedu/educourse/law_course.html" >법정의무교육</a></li>
+                        <li><a href="/hrdedu/educourse/law_course.html" >산업안전보건교육</a></li>
+                        <li><a href="/hrdedu/educourse/law_course.html" >중대재해처벌법</a></li>
+                        <li><a href="/hrdedu/educourse/law_course.html" >의료기관</a></li>
+                    </ul>
+                </li>
+                <li class="depth1">
+                    <a href="/hrdedu/educourse/job_course.html" class="depth1">
+                        직무능력향상교육
+                        <span><i class="fa-solid fa-chevron-down"></i></span>
+                    </a>
+                    <ul>
+                        <li><a href="/hrdedu/educourse/job_course.html">전체</a></li>
+                        <li><a href="/hrdedu/educourse/job_course.html">디지털융합훈련</a></li>
+                        <li><a href="/hrdedu/educourse/job_course.html">보건</a></li>
+                        <li><a href="/hrdedu/educourse/job_course.html">보육</a></li>
+                        <li><a href="/hrdedu/educourse/job_course.html">일반기업</a></li>
+                    </ul>
+                </li>
+                <li class="depth1"><a href="/public/support/edudata.html" class="depth1">
+                    학습자료실
+                    <span><i class="fa-solid fa-chevron-down"></i></span></a>
+                    <ul>
+                        <li><a href="/public/support/edudata.html" >경영·사무</a></li>
+                        <li><a href="/public/support/edudata.html">보건·의료</a></li>
+                        <li><a href="/public/support/edudata.html">보육</a></li>
+                        <li><a href="/public/support/edudata.html">4차산업</a></li>
+                        <li><a href="/public/support/edudata.html">법정의무·기타</a></li>
+                    </ul>
+                </li>
+            </ul>
+    
+        </div>
     </div>
     <!--header-->
 </header>

@@ -31,6 +31,12 @@
 .video_box header .menu .point{color: #fff; background-color: #3252a3; padding: 5px 14px; border-radius: 20px;}
 .video_box header .menu .point i{margin-right: 9px;}
 
+@media(max-width:1000px){
+    .video_box header .logo img{width: 120px;}
+    .video_box header .menu .login{margin-right: 10px;}
+    .video_box header .menu .point{display: none;}
+}
+
 .video_box #wrap > div{position: relative;}
 
 .video_box .txt{margin-bottom: 20px;}
@@ -47,6 +53,17 @@
 .video_box .btn_box .btn:hover{background-color: #3252a3; color: #fff; opacity: 1;}
 .video_box .btn_box .btn:hover h2{color: #fff;}
 
+@media(max-width:1000px){
+    .video_box .txt h1{font-size: 30px; line-height: 60px;}
+    .video_box .txt p{font-size: 20px;}
+    .video_box .txt {margin-bottom: 0;}
+    
+    .video_box .btn_box{flex-direction: column; gap: 10px;}
+    .video_box .btn_box .btn{width: 100%; padding: 20px 0;}
+    .video_box .btn_box .btn h2{ font-size: 22px;}
+.video_box .btn_box .btn p{font-size: 16px;}
+}
+
 @keyframes bottom-up{
     from{transform: translateY(50px); opacity: 0;}
     to{transform: translateY(0);opacity: 1;}
@@ -56,6 +73,10 @@
 .video_box .scroll p{color: #fff; margin-bottom: 10px;}
 .video_box .scroll span{width: 30px; height: 50px; border: 2px solid #fff; border-radius: 20px; margin-bottom: 20px; position: relative; animation: downAni 1s infinite alternate;}
 .video_box .scroll span::after{position: absolute; top: 8px; left: 50%;margin-left: -5px ;width: 10px; height: 10px; background-color: #fff; border-radius: 50%; content: '';}
+
+@media(max-width:1000px){
+    .video_box .scroll{display: none;}
+}
 
 @keyframes downAni{
     from{transform: translateY(10px);}
