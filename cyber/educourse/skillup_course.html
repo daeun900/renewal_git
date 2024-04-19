@@ -49,9 +49,11 @@ if($QUERYB && mysqli_num_rows($QUERYB)){
     	if(keyChkVal || sw || CategoryC){
     		$("#hotCourse").hide();
     		$("#newCourse").hide();
+			$(".course").removeClass("pt100");
     	}else{
     		$("#hotCourse").show();
     		$("#newCourse").show();
+			$(".course").addClass("pt100");
     	}
 	});
 </script>
@@ -59,7 +61,7 @@ if($QUERYB && mysqli_num_rows($QUERYB)){
     <!--mainbanner-->
     <div class="main_banner_wrap">
         <div class="main_banner active" style="background-image: url(../img/educourse/banner/skillupbanner.png); background-color: #2bc2a2;">
-            <div id="wrap">
+            <div id="wrap" class="fcwhite">
                 <strong class="fs40">직무스킬업 교육과정</strong>
                 <p class="mt5">아는 것이 곧 나의 능력 <br>
                     이직 자신감 UP! 업무처리 능력 UP!</p>
@@ -207,7 +209,7 @@ if($QUERYB && mysqli_num_rows($QUERYB)){
     </div>
 	<!-- //신규과정 -->
 	
-	<div class="course pt100">
+	<div class="course">
 		 <ul>
             <?
 			$i = 0;

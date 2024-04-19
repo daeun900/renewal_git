@@ -2,6 +2,11 @@
 .edudetail_top {
   margin-top: 50px;
 }
+@media (max-width: 1000px) {
+  .edudetail_top {
+    margin-top: 30px;
+  }
+}
 .edudetail_top .lecture_title span {
   width: 75px;
   display: inline-block;
@@ -25,19 +30,42 @@
   font-size: 30px;
   line-height: 60px;
 }
+@media (max-width: 1000px) {
+  .edudetail_top .lecture_title strong {
+    font-size: 24px;
+    line-height: 40px;
+  }
+}
 .edudetail_top .flex_box {
   display: flex;
   gap: 30px;
   margin-top: 20px;
 }
+@media (max-width: 700px) {
+  .edudetail_top .flex_box {
+    display: block;
+  }
+}
 .edudetail_top .flex_box .left {
   width: 400px;
+}
+@media (max-width: 700px) {
+  .edudetail_top .flex_box .left {
+    width: 100%;
+    margin-bottom: 20px;
+  }
 }
 .edudetail_top .flex_box .left .lecture_img {
   width: 400px;
   height: 223px;
   overflow: hidden;
   border-radius: 20px;
+}
+@media (max-width: 700px) {
+  .edudetail_top .flex_box .left .lecture_img {
+    width: 100%;
+    height: auto;
+  }
 }
 .edudetail_top .flex_box .left .lecture_img img {
   width: 100%;
@@ -48,10 +76,22 @@
   border-radius: 20px;
   border: 1px solid #ccc;
 }
+@media (max-width: 1000px) {
+  .edudetail_top .flex_box .right .lecture_detail {
+    height: auto;
+    padding: 13px;
+  }
+}
 .edudetail_top .flex_box .right .lecture_detail p {
   position: relative;
   margin-bottom: 15px;
   padding-left: 100px;
+}
+@media (max-width: 1000px) {
+  .edudetail_top .flex_box .right .lecture_detail p {
+    padding-left: 0px;
+    padding-top: 20px;
+  }
 }
 .edudetail_top .flex_box .right .lecture_detail p span {
   font-weight: bold;
@@ -86,11 +126,23 @@
   padding-left: 100px;
   border-top: 1px solid #ccc;
 }
+@media (max-width: 1000px) {
+  .edudetail_bottom > div {
+    padding: 10px 0;
+    padding-left: 0;
+    padding-top: 56px;
+  }
+}
 .edudetail_bottom > div .title {
   position: absolute;
   top: 31px;
   left: 0;
   font-weight: bold;
+}
+@media (max-width: 1000px) {
+  .edudetail_bottom > div .content img {
+    width: 100%;
+  }
 }
 .edudetail_bottom > div .content p {
   margin-bottom: 10px;
@@ -154,6 +206,8 @@
 #modal01 .input_wrap .input_box.captcha_box .captcha {
   width: 100px;
   padding: 0 10px;
+  display: flex;
+  align-items: center;
 }
 #modal01 .input_wrap .input_box.captcha_box .captcha img {
   width: 100%;

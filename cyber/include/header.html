@@ -8,15 +8,15 @@ include $_SERVER['DOCUMENT_ROOT'] . "/include/include_function.php"; //DB연결 
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1"/>
     <title>HRDe사이버연수원</title>
     <script type="text/javascript" src="/common/js/jquery-2.1.4.js"></script>
-    <link rel="stylesheet" href="/common/css/base.css?ver=240416">
-    <link rel="stylesheet" href="/common/css/common.css?ver=240416">
-    <link rel="stylesheet" href="/cyber/css/common.css?ver=240416">
-    <link rel="stylesheet" href="/cyber/css/main.css?ver=240416-2">
-    <link rel="stylesheet" href="/cyber/css/educourse.css?ver=240401-2">
-    <link rel="stylesheet" href="/cyber/css/edudetail.css?ver=240404-2">
-    <link rel="stylesheet" href="/cyber/css/card.css?ver=240328-2">
-    <link rel="stylesheet" href="/cyber/css/voucher.css?ver=240328-2">
-    <link rel="stylesheet" href="/cyber/css/payment.css?ver=240328">
+    <link rel="stylesheet" href="/common/css/base.css?ver=240418">
+    <link rel="stylesheet" href="/common/css/common.css?ver=240419">
+    <link rel="stylesheet" href="/cyber/css/common.css?ver=240418">
+    <link rel="stylesheet" href="/cyber/css/main.css?ver=240419-2">
+    <link rel="stylesheet" href="/cyber/css/educourse.css?ver=240418">
+    <link rel="stylesheet" href="/cyber/css/edudetail.css?ver=240419">
+    <link rel="stylesheet" href="/cyber/css/card.css?ver=240418">
+    <link rel="stylesheet" href="/cyber/css/voucher.css?ver=240418">
+    <link rel="stylesheet" href="/cyber/css/payment.css?ver=240418">
     <script src="https://kit.fontawesome.com/ebace215db.js" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
@@ -25,7 +25,42 @@ include $_SERVER['DOCUMENT_ROOT'] . "/include/include_function.php"; //DB연결 
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     <script type="text/javascript" src="/include/function.js?t=<?=date('YmdHis')?>"></script>
+    <script type="text/javascript" src="/chatbot/constants.js" ></script>
+	<script type="text/javascript" src="/chatbot/chatbot.js" ></script>
+	<script>
+		$(document).ready(function() {
+			//챗봇
+			$(".chatbot").on("click",function(){
+				$("#_chatbot").toggle();
+				initChat();
+			});
+		});
+	</script>
 </head>
+    <!--플로팅배너-->
+    <ul class="float_banner">
+        <li><a href="https://pf.kakao.com/_kEcWxj/chat" target="_blank"><img src="../../common/img/floating_kakao.png"></a></li>
+        <!--<li><a href="https://pf.kakao.com/_kEcWxj/chat" target="_blank"><img src="/images/common/floating_chatbot.png"></a></li>-->
+        <li><img src="../../common/img/chatbot gif.gif" class="_chatbotBtns" style="width:70px;" /></li>
+        <li class="float_banner2"></li>
+    </ul>
+    <!--플로팅배너-->
+	<div id="_chatbot" style="position:fixed;right:10px;top:60px;z-index:999;display:none">
+	    <link rel="stylesheet" href="/chatbot/style.css" />
+	    <link rel="stylesheet" href="/chatbot/jquery-ui.css">
+	
+	    <div id="container" class="container">
+	        <div id="chat" class="chat">
+	            <div id="close_chatbot" style="position:absolute;right:12px;top:52px;">
+	                <input type="button" class='chat_close' style="margin:1px;padding:1px;height:initial;" value=" x " onclick='$("#_chatbot").toggle();initChat()' />
+	            </div>
+	            <div id="messages" class="messages"></div>
+	            <input id="input" type="text" placeholder="질문을 입력해주세요..." autocomplete="off" autofocus="true" />
+	            <script>
+	            </script>
+	        </div>
+	    </div>
+	</div>
 <header>
     <div class="top_header">
         <!--wrap-->
@@ -63,7 +98,8 @@ include $_SERVER['DOCUMENT_ROOT'] . "/include/include_function.php"; //DB연결 
                     <i class="fa-solid fa-bars"></i>
                 </a>
                 <a href="/public/support/faq.html">자주묻는 질문</a>
-                <a href="/public/support/event.html">이벤트</a>
+                <!-- 기능개발완료 전까지 숨김처리 -->
+                <!-- <a href="/public/support/event.html">이벤트</a>  -->
                 <a href="/public/support/notice.html">학습지원센터</a>
                 <a href="/public/mypage/lecture_status.html" class="point"><i class="ph ph-sign-out"></i>나의 학습실</a>
             </div>
@@ -106,50 +142,35 @@ include $_SERVER['DOCUMENT_ROOT'] . "/include/include_function.php"; //DB연결 
             <? } else { ?>
             <span class="member"><a href="/public/member/logout.php">로그아웃</a></span>
             <? } ?>
-            <span class="point"><a href="/public/mypage/lecture_status.html">나의학습실</a></span>
+            <span class="point"><a href="/public/mypage/lecture.php">나의학습실</a></span>
         </div>
         <div class="topmenu2">
             <ul>
-                <li>
-                    <a href="/public/support/notice.html">
-                        <i class="fa-solid fa-circle-exclamation"></i>
-                        공지사항</a></li>
-                <li>
-                    <a href="/public/support/faq.html">
-                        <i class="fa-regular fa-comment-dots"></i>
-                        자주묻는질문</a></li>
-                <li>
-                    <a href="/public/support/ask.html">
-                        <i class="fa-solid fa-comments"></i>1:1문의</a></li>
+                <li><a href="/public/support/notice.html"><i class="fa-solid fa-circle-exclamation"></i>공지사항</a></li>
+                <li><a href="/public/support/faq.html"><i class="fa-regular fa-comment-dots"></i>자주묻는질문</a></li>
+                <li><a href="/public/support/ask.html"><i class="fa-solid fa-comments"></i>1:1문의</a></li>
             </ul>
         </div>
         <ul class="dropdownmenu_m">
-            <li class="depth1"><a href="/cyber/educourse/all_course.html">
-                전체과정
-            </a></li>
-            <li class="depth1"><a href="/cyber/educourse/card_course.html">
-                국민내일배움카드
-                <span><i class="fa-solid fa-chevron-down"></i></span>
-            </a>
+            <li class="depth1"><a href="/cyber/educourse/all_course.html">전체과정</a></li>
+            <li class="depth1">
+            	<a href="#">국민내일배움카드<span><i class="fa-solid fa-chevron-down"></i></span></a>
                 <ul>
                     <li><a href="/cyber/card/card.html">제도안내</a></li>
                     <li><a href="/cyber/educourse/card_course.html">교육과정</a></li>
                     <li><a href="/public/support/faq.html">자주 묻는 질문</a></li>
                 </ul>
             </li>
-            <li class="depth1"><a href="/cyber/educourse/voucher_course.html">
-                평생교육바우처
-                <span><i class="fa-solid fa-chevron-down"></i></span>
-            </a>
+            <li class="depth1">
+            	<a href="#">평생교육바우처<span><i class="fa-solid fa-chevron-down"></i></span></a>
                 <ul>
                     <li><a href="/cyber/voucher/voucher.html">평생교육바우처란?</a></li>
                     <li><a href="/cyber/educourse/voucher_course.html">교육과정</a></li>
                     <li><a href="/public/support/faq.html">자주 묻는 질문</a></li>
-                </ul></li>
-            <li class="depth1"><a href="/cyber/educourse/skillup_course.html" class="depth1">
-                직무스킬업
-                <span><i class="fa-solid fa-chevron-down"></i></span>
-            </a>
+                </ul>
+			</li>
+            <li class="depth1">
+            	<a href="#" class="depth1">직무스킬업<span><i class="fa-solid fa-chevron-down"></i></span></a>
                 <ul>
                     <li><a href="/cyber/educourse/skillup_course.html?CategoryC=1">NCS 직업교육</a></li>
                     <li><a href="/cyber/educourse/skillup_course.html?CategoryC=2">직장인 핵심스킬</a></li>
@@ -188,7 +209,7 @@ $(document).ready(function() {
    //console.log(arrcount);
    
    $('.navArea_m .depth1 > a').click(function(e){ //1depth메뉴를 클릭하면
-     e.preventDefault();
+
        var ind=$(this).parents('.depth1').index(); //0~5
        //var ind=$(this).index('.navArea_m .depth1 h3 a')
       // console.log(ind);

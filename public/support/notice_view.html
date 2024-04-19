@@ -84,17 +84,17 @@ exit;
                         <col max-width="200px">
                         <col width="">
                     </colgroup>
-                    <tr>
+                    <?if($FileName1) { ?><tr>
                         <th>첨부파일 다운로드</th>
-                        <td class="al pl20">
+                        <td class="al pl20"><?}?>
 			                <?if($FileName1) { ?><a href="../../include/download.php?idx=<?=$idx?>&code=Notice&file=1"><img src="img/icon_black.png" alt="파일아이콘" class="download_view"><?=$RealFileName1?></a><?}?>
                             <?if($FileName2) { ?><a href="../../include/download.php?idx=<?=$idx?>&code=Notice&file=2"><img src="img/icon_black.png" alt="파일아이콘" class="download_view"><?=$RealFileName2?></a><?}?>
                             <?if($FileName3) { ?><a href="../../include/download.php?idx=<?=$idx?>&code=Notice&file=3"><img src="img/icon_black.png" alt="파일아이콘" class="download_view"><?=$RealFileName3?></a><?}?>
 			                <?if($FileName4) { ?><a href="../../include/download.php?idx=<?=$idx?>&code=Notice&file=4"><img src="img/icon_black.png" alt="파일아이콘" class="download_view"><?=$RealFileName4?></a><?}?>
 			                <?if($FileName5) { ?><a href="../../include/download.php?idx=<?=$idx?>&code=Notice&file=5"><img src="img/icon_black.png" alt="파일아이콘" class="download_view"><?=$RealFileName5?></a><?}?>
-                        </td>
+                            <?if($FileName1) { ?> </td>
                     </tr>
-                    <tr>
+                    <tr><?}?>
                         <td colspan="2" class="content">
 							<?=$Content?>
                         </td>

@@ -1,11 +1,21 @@
 .card_con {
     padding: 100px 0;
+    @media(max-width:1000px){
+        padding: 40px 0;
+    }
     .title {
         margin-bottom: 60px;
+        @media(max-width:1000px){
+            margin-bottom: 30px;
+        }
         text-align: center;
         strong {
             font-size: 40px;
             line-height: 60px;
+            @media(max-width:1000px){
+                font-size: 25px;
+                line-height: 40px;
+            }
         }
     }
     button {
@@ -22,6 +32,9 @@
 /*con1*/
 .card_con.con1 {
     padding-bottom: 150px;
+    @media(max-width:1000px){
+        padding-bottom: 80px;
+    }
     .title {
         strong {
             margin-bottom: 15px;
@@ -30,12 +43,21 @@
         p {
             font-size: 20px;
             line-height: 35px;
+            @media(max-width:1000px){
+                font-size: 15px;
+                line-height: 24px;
+                
+            }
         }
     }
     .content {
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 40px;
+        @media(max-width:1000px){
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
         > div {
             display: flex;
             background-color: whitesmoke;
@@ -43,9 +65,15 @@
             border-radius: 40px;
             align-items: center;
             position: relative;
+            @media(max-width:1000px){
+                padding: 15px;
+            }
             .img {
                 width: 100px;
                 padding: 10px;
+                @media(max-width:1000px){
+                    width: 70px;
+                }
                 img {
                     width: 100%;
                 }
@@ -55,13 +83,23 @@
                 strong {
                     font-size: 20px;
                     line-height: 30px;
+                    @media(max-width:1000px){
+                        font-size: 15px;
+                    }
                 }
                 p {
                     font-size: 18px;
                     line-height: 28px;
+                    @media(max-width:1000px){
+                        font-size: 14px;
+                        line-height: 20px;
+                    }
                 }
                 span {
                     font-size: 14px;
+                    @media(max-width:1000px){
+                        font-size: 13px;
+                    }
                 }
             }
             button {
@@ -82,10 +120,18 @@
         em {
             font-size: 30px;
             display: block;
+            @media(max-width:1000px){
+                font-size: 17px;
+                line-height: 30px;
+            }
         }
         span {
             font-size: 40px;
             line-height: 80px;
+            @media(max-width:1000px){
+                font-size: 24px;
+                line-height: 36px;
+            }
         }
     }
     .content {
@@ -93,6 +139,9 @@
         .left {
             padding: 0 20px;
             text-align: center;
+            @media(max-width:1000px){
+                display: none;
+            }
             span {
                 font-size: 20px;
                 text-align: left;
@@ -109,6 +158,9 @@
             display: grid;
             grid-template-columns: 1fr 1fr 1fr 1fr;
             gap: 30px;
+            @media(max-width:1000px){
+                gap: 15px;
+            }
             > div {
                 width: 230px;
                 @media (max-width: 1200px) {
@@ -124,6 +176,9 @@
                 padding: 13px;
                 text-align: center;
                 position: relative;
+                @media(max-width:1000px){
+                    height: auto;
+                }
                 span.step {
                     font-size: 12px;
                     color: #a8e8dd;
@@ -139,6 +194,9 @@
                 }
                 p {
                     font-size: 14px;
+                    @media(max-width:1000px){
+                        display: none;
+                    }
                 }
             }
             > div::after {
@@ -152,6 +210,9 @@
                 border-left: 17px solid #fff;
                 border-right: 17px solid transparent;
                 content: "";
+                @media(max-width:1000px){
+                    display: none;
+                }
             }
             > div:nth-of-type(4)::after {
                 border-left: none;
@@ -174,6 +235,9 @@
             > p {
                 font-size: 18px;
                 font-weight: bold;
+                @media(max-width:1000px){
+                    font-size: 15px;;
+                }
             }
             i {
                 position: absolute;
@@ -198,17 +262,30 @@
 
 .refund_con {
     padding: 100px 0;
+    @media(max-width:1000px){
+        padding: 40px 0;
+    }
     .title {
         margin-bottom: 60px;
         text-align: center;
+        @media(max-width:1000px){
+            margin-bottom: 30px;
+        }
         strong {
             font-size: 40px;
             line-height: 60px;
+            @media(max-width:1000px){
+                font-size: 25px;
+                line-height: 40px;
+            }
         }
         p {
             font-size: 20px;
             line-height: 30px;
             margin-top: 13px;
+            @media(max-width:1000px){
+                font-size: 15px;
+            }
         }
     }
 }
@@ -220,6 +297,13 @@
         grid-template-areas:
             "a c"
             "b c";
+            @media(max-width:1000px){
+                grid-template-areas: 
+                "a"
+                "b"
+                "c";
+                gap: 20px;
+            }
         > div:nth-of-type(1) {
             grid-area: a;
         }
@@ -246,6 +330,9 @@
                 width: 100px;
                 padding: 10px;
                 flex-shrink: 0;
+                @media(max-width:1000px){
+                    width: 80px;
+                }
                 img {
                     width: 100%;
                 }
@@ -254,10 +341,17 @@
                 margin-left: 10px;
                 strong {
                     font-size: 20px;
+                    @media(max-width:1000px){
+                        font-size: 17px;
+                    }
                 }
                 p {
                     margin-top: 13px;
                     line-height: 26px;
+                    @media(max-width:1000px){
+                        margin-top: 10px;
+                        line-height: 20px;
+                    }
                 }
             }
         }
@@ -271,6 +365,9 @@
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
         gap: 50px;
+        @media(max-width:1000px){
+            gap: 30px;
+        }
         > div {
             width: 100%;
             height: 170px;
@@ -283,6 +380,9 @@
             padding: 13px;
             text-align: center;
             position: relative;
+            @media(max-width:1000px){
+                height: auto;
+            }
             span.step {
                 font-size: 12px;
                 color: #e8bba8;
@@ -296,14 +396,23 @@
                 line-height: 25px;
                 margin-top: 5px;
                 font-size: 20px;
+                @media(max-width:1000px){
+                    font-size: 17px;
+                }
             }
             p {
                 line-height: 24px;
                 margin-top: 9px;
+                @media(max-width:1000px){
+                    display: none;
+                }
             }
             em {
                 font-size: 14px;
                 color: #777;
+                @media(max-width:1000px){
+                    display: none;
+                }
             }
         }
         > div::after {
@@ -317,6 +426,9 @@
             border-left: 17px solid #fff;
             border-right: 17px solid transparent;
             content: "";
+            @media(max-width:1000px){
+                display: none;
+            }
         }
         > div:nth-of-type(3)::after {
             border-left: none;
@@ -335,12 +447,18 @@
             }
             th {
                 padding: 15px 0 20px 0;
+                @media(max-width:1000px){
+                    padding: 10px 0 10px 0;
+                }
                 font-weight: bold;
                 background-color: whitesmoke;
                 border-right: 1px solid #ccc;
             }
             td {
                 padding: 15px 30px 20px 30px;
+                @media(max-width:1000px){
+                    padding: 10px 15px;
+                }
                 display: grid;
                 grid-template-columns: 1fr 1fr;
                 > div {

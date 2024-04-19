@@ -162,6 +162,11 @@ header {
 .main_banner_wrap {
     position: relative;
     height: 500px;
+    .main_banner.bg40{
+        @media(max-width:1000px){
+            background-position: 40%;
+        }
+    }
     .main_banner {
         visibility: hidden;
         opacity: 0;
@@ -231,6 +236,10 @@ header {
                 background-color: #fff;
                 color: #357af2;
                 margin-left: 10px;
+                @media(max-width:640px){
+                    margin-left: 0;
+                    margin-top: 15px;
+                }
             }
             a.voucher1 {
                 background-color: #0b5454;
@@ -256,7 +265,15 @@ header {
             display: block;
             width: 180px;
             text-align: center;
+            @media(max-width:1000px){
+                width: 100%;
+            }
         }
+        @media(max-width:1000px){
+            li{
+                width: 33%;
+            }
+            }
         li.on {
             a {
                 color: #28ba9a;

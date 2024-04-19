@@ -9,9 +9,9 @@ include $_SERVER['DOCUMENT_ROOT'] . "/include/include_function.php"; //DB연결 
 
     <title>HRDe평생교육원</title>
     <script type="text/javascript" src="../common/js/jquery-2.1.4.js"></script>
-    <link rel="stylesheet" href="../common/css/base.css?ver=240416">
-    <link rel="stylesheet" href="../common/css/common.css?ver=240416">
-    <link rel="stylesheet" href="css/main.css?ver=240416">
+    <link rel="stylesheet" href="../common/css/base.css?ver=240418">
+    <link rel="stylesheet" href="../common/css/common.css?ver=240418">
+    <link rel="stylesheet" href="css/main.css?ver=240418">
     <script src="https://kit.fontawesome.com/ebace215db.js" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
@@ -56,9 +56,15 @@ include $_SERVER['DOCUMENT_ROOT'] . "/include/include_function.php"; //DB연결 
                         <i class="fa-solid fa-right-long"></i>
                     </div>
                     <div class="btn" onclick="location.href='../cyber/main/main.html'">
-                        <h2>사이버 연수원</h2>
+                        <h2>내일배움카드</h2>
                         <p>NCS직업교육 · 직무교육<br>
                             국민내일배움카드 · 평생교육바우처</p>
+                        <i class="fa-solid fa-right-long"></i>
+                    </div>
+                    <div class="btn" onclick="location.href='http://flex.hrdeedu.com/hrdflex/main/main.html'">
+                        <h2>사이버연수원</h2>
+                        <p>기업교육 컨텐츠<br>
+                            무제한 · 무료</p>
                         <i class="fa-solid fa-right-long"></i>
                     </div>
                 </div>
@@ -254,10 +260,7 @@ var swiper = new Swiper(".mySwiper", {
             }
         }
 });
-</script>
-     
 
-<script>
 $(document).ready(function() {
     var screenSize, screenHeight;
     var current=false;
@@ -268,18 +271,6 @@ $(document).ready(function() {
 
     $(".video_box").css('height',screenHeight);
 
-    //   if( screenSize > 768 && current==false){
-    //       $("#videoBG").show();
-    //       $("#videoBG").attr('src','./video/zootopia.mp4');
-    //       $("#imgBG").hide();
-    //       current=true;
-    //     }
-    //   if(screenSize <= 768){
-    //       $("#videoBG").hide();
-    //       $("#videoBG").attr('src','');
-    //       $("#imgBG").show();
-    //       current=false;
-    //   }
     }
 
   screen_size();  //최초 실행시 호출

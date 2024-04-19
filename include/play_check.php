@@ -7,7 +7,7 @@ if($_SESSION['IsPlaying'] == 'Y') {
 	//console.log ('IsPlaying ==== Y');
 	alert ('2개 이상의 강의를 동시에 수강할 수 없습니다.');
 	//top.location.href="/member/login.php";
-	top.location.href="/new/member/login.html";
+	location.reload();;
 //-->
 </script>
 <?

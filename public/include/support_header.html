@@ -5,12 +5,12 @@ include $_SERVER['DOCUMENT_ROOT'] . "/include/include_function.php"; //DB연결 
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HRDe사이버연수원</title>
     <script type="text/javascript" src="../../common/js/jquery-2.1.4.js"></script>
-    <link rel="stylesheet" href="../../common/css/base.css?ver=2">
-    <link rel="stylesheet" href="../../common/css/common.css?ver=4">
-    <link rel="stylesheet" href="css/support.css?ver=240411">
+    <link rel="stylesheet" href="../../common/css/base.css?ver=240419">
+    <link rel="stylesheet" href="../../common/css/common.css?ver=240419">
+    <link rel="stylesheet" href="css/support.css?ver=240419">
     <script src="https://kit.fontawesome.com/ebace215db.js" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
@@ -49,16 +49,41 @@ include $_SERVER['DOCUMENT_ROOT'] . "/include/include_function.php"; //DB연결 
         <div id="wrap">
             <div class="left">
                 <h1>학습지원센터</h1>
+                <a class="menuicon">
+                    <i class="fa-solid fa-bars"></i>
+                </a>
             </div>
             <div class="right">
                 <a href="notice.html" class="notice">공지사항</a>
                 <a href="faq.html" class="faq">자주 묻는 질문</a>
                 <a href="ask.html" class="ask">1:1 상담</a>
                 <a href="edudata.html?EduCate=A" class="edudata">학습자료실</a>
-                <a href="event.html" class="event">이벤트</a>
+                <!-- 기능개발완료 전까지 숨김처리 -->
+                <!-- <a href="event.html" class="event">이벤트</a>  -->
                 <a href="remote.html" class="remote">PC 원격지원</a>
             </div>
         </div>
         <!--wrap-->
     </div>
 </header>
+
+<script>
+    $(document).ready(function() {
+        var op = false;  //네비가 열려있으면(true) , 닫혀있으면(false)
+            
+        $(".menuicon").click(function(e) { //메뉴버튼 클릭시
+            e.preventDefault();
+            var documentHeight =  $(document).height(); //전체페이지의 높이
+            $(".middle_header .right").css('height',documentHeight); 
+
+            if(op==false){ //메뉴가 닫혀있는 상태에서 클릭하면
+                $(".middle_header .right").animate({right:0,opacity:1}, 'fast');
+                op=true;
+            }else{ //메뉴가 열려있는 상태에서 클릭하면
+                $(".middle_header .right").animate({right:'-100%',opacity:0}, 'fast');
+                op=false;
+            }
+
+        });
+    });
+</script>

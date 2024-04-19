@@ -119,9 +119,13 @@ function BrowserVersionCheck() {
 
 /* 숫자체크*/
 function IsNumber(num) {
+	if (typeof num === 'undefined' || num === null || num === '') {
+        return false; // 빈 값이거나 정의되지 않은 경우
+    }
 	var x = num;
 	//var anum=/(^\d+$)|(^\d+\.\d+$)/
-	var anum = /(^\d+$)|(^\d+$)/;
+//	var anum = /(^\d+$)|(^\d+$)/;
+    var anum = /^\d+$/;
 	if (anum.test(x)) testresult = true;
 	else {
 		testresult = false;
@@ -1097,17 +1101,6 @@ function MemberEdit() {
 		return;
 	}
 
-	if ($('#Email').val() == '') {
-		alert('이메일을 입력하세요.');
-		$('#Email').focus();
-		return;
-	}
-
-	if (chkEmail($('#Email').val()) == false) {
-		alert('이메일을 정확하게 입력하세요.');
-		return;
-	}
-
 	if ($('#Mobile01').val() == '') {
 		alert('휴대전화번호를 입력하세요.');
 		$('#Mobile01').focus();
@@ -1144,6 +1137,35 @@ function MemberEdit() {
 		return;
 	}
 
+	if ($('#Email').val() == '') {
+		alert('이메일을 입력하세요.');
+		$('#Email').focus();
+		return;
+	}
+
+	if (chkEmail($('#Email').val()) == false) {
+		alert('이메일을 정확하게 입력하세요.');
+		return;
+	}
+	
+	if($('#CardNumber01').val()!='' || $('#CardNumber02').val()!='' || $('#CardNumber03').val()!='' || $('#CardNumber04').val()!=''){ //카드번호를 입력한 경우
+		if($('#CardName').val() == ''){
+			alert('카드사를 선택해주세요.');
+			return;
+		}
+		if(IsNumber($('#CardNumber01').val()) == false || IsNumber($('#CardNumber02').val()) == false || IsNumber($('#CardNumber03').val()) == false || IsNumber($('#CardNumber04').val()) == false){
+			alert('카드번호를 확인해주세요.');
+			return;
+		}
+	}
+	
+	if($('#CardName').val() != ''){ //카드만 선택한 경우
+		if($('#CardNumber01').val()=='' || $('#CardNumber02').val()=='' || $('#CardNumber03').val()=='' || $('#CardNumber04').val()==''){
+			alert('카드번호를 확인해주세요.');
+			return;
+		}
+	}
+	
 	Yes = confirm('회원정보를 수정하시겠습니까?');
 	if (Yes == true) {
 		$('#SubmitBtn').hide();
@@ -1213,7 +1235,7 @@ function CategorySearch(key) {
 
 //내일배움카드 - 컨텐츠 list 관심과정 기능
 function CourseLike(data, LectureCode, ID){
-	//event.stopPropagation(); //상단 div의 click이벤트 막기
+	event.stopPropagation(); //상단 div의 click이벤트 막기
 	
 	//로그인한경우만 사용가능
 	if(ID){
@@ -1503,6 +1525,84 @@ function CourseLikeAdd(totNo, showNo, hiddenNo, pageStart) {
 	);
 }
 
+//관심강의 - 삭제기능
+function CourseCheckDel() {
+	var idx_value = '';
+	var checkbox_count = $("input[name='chk']").length;
+
+	if(checkbox_count == 0){
+		alert('선택된 항목이 없습니다.');
+		return;
+	}
+
+	if(checkbox_count > 1){
+		for(i = 0; i < checkbox_count; i++){
+			if($("input:checkbox[name='chk']:eq(" + i + ')').is(':checked') == true){
+				if(idx_value == ''){
+					idx_value = $("input:checkbox[name='chk']:eq(" + i + ')').val();
+				}else{
+					idx_value = idx_value + '|' + $("input:checkbox[name='chk']:eq(" + i + ')').val();
+				}
+			}
+		}
+	}else{
+		if($("input:checkbox[name='chk']").is(':checked') == true){
+			idx_value = $("input:checkbox[name='chk']").val();
+		}
+	}
+
+	if(!idx_value){
+		alert('삭제하려는 항목을 선택하세요.');
+		return;
+	}
+
+	Yes = confirm('선택한 항목을 삭제하시겠습니까?');
+	if(Yes == true){
+		var currentWidth = $(window).width();
+		var LocWidth = currentWidth / 2;
+		var body_width = screen.width - 20;
+		var body_height = $('html body').height();
+
+		$("div[id='SysBg_White']")
+			.css({
+				width: body_width,
+				height: body_height,
+				opacity: '0.4',
+				position: 'absolute',
+				'z-index': '99',
+			})
+			.show();
+
+		$("div[id='Roading']")
+			.css({
+				top: '350px',
+				left: LocWidth,
+				opacity: '1.0',
+				position: 'absolute',
+				'z-index': '200',
+			})
+			.show();
+
+		$.post(
+			'/public/mypage/lecture_save_del.php',
+			{
+				idx_value: idx_value,
+			},
+			function(data, status){
+				$("div[id='Roading']").hide();
+				$("div[id='SysBg_White']").hide();
+
+				if(data == 'Y'){
+					alert('삭제 되었습니다.');
+					location.reload();
+				}else{
+					alert('처리중 문제가 발생했습니다.');
+				}
+			}
+		);
+	}
+}
+
 //수강신청/결제내역 - 수강신청내역 조회
 function dateSearch(data) {
 	var DateStartB = $("#DateStartB").val();
@@ -1668,15 +1768,16 @@ function Play(Chapter_Number, LectureCode, Study_Seq, Chapter_Seq, Contents_idx,
 }
 
 function PlayStudyInfo(LectureCode, Contents_idx) {
-	if (browser == 'Explorer') {
+/*	if (browser == 'Explorer') {
 		top_position = 900;
 		left_position = 100;
 		scrollTop_position = 850;
 	} else {
+		*/
 		top_position = 100;
 		left_position = 50;
 		scrollTop_position = 0;
-	}
+/*	}*/
 
 	$('#StudyInformation').load('/player/study_info.php', { LectureCode: LectureCode, Contents_idx: Contents_idx }, function () {
 		$("div[id='StudyInformation']")
@@ -1694,15 +1795,16 @@ function PlayStudyInfo(LectureCode, Contents_idx) {
 }
 
 function PlayStudyCounsel(LectureCode, Study_Seq, Contents_idx) {
-	if (browser == 'Explorer') {
+/*	if (browser == 'Explorer') {
 		top_position = 900;
 		left_position = 100;
 		scrollTop_position = 850;
 	} else {
+*/
 		top_position = 100;
 		left_position = 50;
 		scrollTop_position = 0;
-	}
+//	}
 
 	$('#StudyInformation').load('/player/study_counsel.php', { LectureCode: LectureCode, Study_Seq: Study_Seq, Contents_idx: Contents_idx }, function () {
 		$("div[id='StudyInformation']")
@@ -3702,19 +3804,19 @@ function SimpleAskSubmit() {
 	}
 
 	if (IsNumber($('#Phone01').val()) == false) {
-		alert('전화번호는 숫자만 입력하세요.');
+		alert('전화번호는 숫자만 입력하세요.a');
 		$('#Phone01').focus();
 		return;
 	}
 
 	if (IsNumber($('#Phone02').val()) == false) {
-		alert('전화번호는 숫자만 입력하세요.');
+		alert('전화번호는 숫자만 입력하세요.b');
 		$('#Phone02').focus();
 		return;
 	}
 
 	if (IsNumber($('#Phone03').val()) == false) {
-		alert('전화번호는 숫자만 입력하세요.');
+		alert('전화번호는 숫자만 입력하세요.c');
 		$('#Phone03').focus();
 		return;
 	}
@@ -3731,21 +3833,26 @@ function SimpleAskSubmit() {
 		return;
 	}
 
-	if ($('input:checkbox[id="privacy"]').is(':checked') == false) {
-		alert('개인정보수집방침 동의에 체크하세요.');
-		$('input:checkbox[id="privacy"]').focus();
-		return;
-	}
-
 	if ($('#SecurityCode').val() == '') {
 		alert('보안코드를 입력하세요.');
 		$('#SecurityCode').focus();
 		return;
 	}
 
+	if ($('input:checkbox[id="privacy"]').is(':checked') == false) {
+		alert('개인정보수집방침 동의에 체크하세요.');
+		$('input:checkbox[id="privacy"]').focus();
+		return;
+	}
+
 	Yes = confirm('등록하시겠습니까?');
 	if (Yes == true) {
 		SimpleAskForm.submit();
+		$('.modal-bg').css('display','none');
+		$('#modal01').hide();
+		$('#modal01').removeAttr('style');
+
+		$('html').removeAttr('style');
 	}
 }
 

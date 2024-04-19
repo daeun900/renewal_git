@@ -256,7 +256,7 @@ header {
         span.top {
             font-size: 20px;
             @media(max-width:1000px){
-                font-size: 18px;
+                font-size: 18px !important;
             }
         }
         strong {
@@ -296,14 +296,23 @@ header {
     display: flex;
     width: 100%;
     justify-content: center;
-    z-index: 10;
+    z-index: 9;
     background-color: #2d2d2d;
+    flex-wrap: wrap;
     a {
         color: #fff;
         padding: 15px 0;
         display: block;
         width: 180px;
         text-align: center;
+        @media(max-width:1000px){
+            width: auto;
+        }
+    }
+    @media(max-width:1000px){
+        li{
+            width: 33%;
+        }
     }
     li.on {
         a {

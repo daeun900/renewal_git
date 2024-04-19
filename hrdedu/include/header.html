@@ -9,14 +9,14 @@ include $_SERVER['DOCUMENT_ROOT'] . "/include/include_function.php"; //DB연결 
     <title>HRDe평생교육원</title>
     <script type="text/javascript" src="../../common/js/jquery-2.1.4.js"></script>
     <script src="../js/menu.js?ver=240416"></script>
-    <link rel="stylesheet" href="../../common/css/base.css?ver=240416">
-    <link rel="stylesheet" href="../../common/css/common.css?ver=240416">
-    <link rel="stylesheet" href="../css/common.css?ver=240416">
-    <link rel="stylesheet" href="../css/main.css?ver=240416">
-    <link rel="stylesheet" href="../css/group.css">
-    <link rel="stylesheet" href="../css/educourse.css?ver=2">
-    <link rel="stylesheet" href="../css/edudetail.css">
-    <link rel="stylesheet" href="../css/etc.css">
+    <link rel="stylesheet" href="../../common/css/base.css?ver=240418">
+    <link rel="stylesheet" href="../../common/css/common.css?ver=240419">
+    <link rel="stylesheet" href="../css/common.css?ver=240419">
+    <link rel="stylesheet" href="../css/main.css?ver=240419">
+    <link rel="stylesheet" href="../css/group.css?ver=240419-2">
+    <link rel="stylesheet" href="../css/educourse.css?ver=240419">
+    <link rel="stylesheet" href="../css/edudetail.css?ver=240419">
+    <link rel="stylesheet" href="../css/etc.css?ver=240418-2">
     <script src="https://kit.fontawesome.com/ebace215db.js" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
@@ -25,7 +25,43 @@ include $_SERVER['DOCUMENT_ROOT'] . "/include/include_function.php"; //DB연결 
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     <script type="text/javascript" src="/include/function.js?t=<?=date('YmdHis')?>"></script>
+    <script type="text/javascript" src="/chatbot/constants.js" ></script>
+	<script type="text/javascript" src="/chatbot/chatbot.js" ></script>
+    <script>
+		$(document).ready(function() {
+			//챗봇
+			$(".chatbot").on("click",function(){
+				$("#_chatbot").toggle();
+				initChat();
+			});
+		});
+	</script>
 </head>
+<!--플로팅배너-->
+<ul class="float_banner">
+    <li><a href="https://pf.kakao.com/_kEcWxj/chat" target="_blank"><img src="../../common/img/floating_kakao.png"></a></li>
+    <!--<li><a href="https://pf.kakao.com/_kEcWxj/chat" target="_blank"><img src="/images/common/floating_chatbot.png"></a></li>-->
+    <li><img src="../../common/img/chatbot gif.gif" class="chatbot" style="width:70px;" /></li>
+    <li class="float_banner2"></li>
+</ul>
+<!--플로팅배너-->
+
+<div id="_chatbot" style="position:fixed;right:10px;top:60px;z-index:999;display:none">
+    <link rel="stylesheet" href="/chatbot/style.css" />
+    <link rel="stylesheet" href="/chatbot/jquery-ui.css">
+
+    <div id="container" class="container">
+        <div id="chat" class="chat">
+            <div id="close_chatbot" style="position:absolute;right:12px;top:52px;">
+                <input type="button" class='chat_close' style="margin:1px;padding:1px;height:initial;" value=" x " onclick='$("#chatbot").toggle();initChat()' />
+            </div>
+            <div id="messages" class="messages"></div>
+            <input id="input" type="text" placeholder="질문을 입력해주세요..." autocomplete="off" autofocus="true" />
+            <script>
+            </script>
+        </div>
+    </div>
+</div>
 <header>
     <div class="top_header">
         <!--wrap-->
@@ -87,11 +123,11 @@ include $_SERVER['DOCUMENT_ROOT'] . "/include/include_function.php"; //DB연결 
                     </li>
                     <li class="menu"><a href="/public/support/edudata.html" class="depth1">학습자료실</a>
                         <ul>
-                            <li><a href="/public/support/edudata.html" >경영·사무</a></li>
-                            <li><a href="/public/support/edudata.html">보건·의료</a></li>
-                            <li><a href="/public/support/edudata.html">보육</a></li>
-                            <li><a href="/public/support/edudata.html">4차산업</a></li>
-                            <li><a href="/public/support/edudata.html">법정의무·기타</a></li>
+                            <li><a href="/public/support/edudata.html?EduCate=A" >경영·사무</a></li>
+                            <li><a href="/public/support/edudata.html?EduCate=B">보건·의료</a></li>
+                            <li><a href="/public/support/edudata.html?EduCate=C">보육</a></li>
+                            <li><a href="/public/support/edudata.html?EduCate=D">4차산업</a></li>
+                            <li><a href="/public/support/edudata.html?EduCate=E">법정의무·기타</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -113,7 +149,7 @@ include $_SERVER['DOCUMENT_ROOT'] . "/include/include_function.php"; //DB연결 
                 <? } else { ?>
                 <span class="member"><a href="/public/member/logout.php">로그아웃</a></span>
                 <? } ?>
-                <span class="point"><a href="/public/mypage/lecture_status.html">나의학습실</a></span>
+                <span class="point"><a href="/public/mypage/lecture.php">나의학습실</a></span>
             </div>
             <div class="topmenu2">
                 <ul>
@@ -143,13 +179,14 @@ include $_SERVER['DOCUMENT_ROOT'] . "/include/include_function.php"; //DB연결 
                 <li class="depth1">
                     <a href="/hrdedu/educourse/law_course.html" class="depth1">
                         법정의무교육
+                        <span><i class="fa-solid fa-chevron-down"></i></span>
                     </a>
                     <ul>
-                        <li><a href="/hrdedu/educourse/law_course.html" >전체</a></li>
-                        <li><a href="/hrdedu/educourse/law_course.html" >법정의무교육</a></li>
-                        <li><a href="/hrdedu/educourse/law_course.html" >산업안전보건교육</a></li>
-                        <li><a href="/hrdedu/educourse/law_course.html" >중대재해처벌법</a></li>
-                        <li><a href="/hrdedu/educourse/law_course.html" >의료기관</a></li>
+                        <li><a href="/hrdedu/educourse/law_course.html?PCategory=1&Category=all" >전체</a></li>
+                        <li><a href="/hrdedu/educourse/law_course.html?PCategory=1&Category=2" >법정의무교육</a></li>
+                        <li><a href="/hrdedu/educourse/law_course.html?PCategory=1&Category=7" >산업안전보건교육</a></li>
+                        <li><a href="/hrdedu/educourse/law_course.html?PCategory=1&Category=13" >중대재해처벌법</a></li>
+                        <li><a href="/hrdedu/educourse/law_course.html?PCategory=1&Category=15" >의료기관</a></li>
                     </ul>
                 </li>
                 <li class="depth1">
@@ -158,22 +195,22 @@ include $_SERVER['DOCUMENT_ROOT'] . "/include/include_function.php"; //DB연결 
                         <span><i class="fa-solid fa-chevron-down"></i></span>
                     </a>
                     <ul>
-                        <li><a href="/hrdedu/educourse/job_course.html">전체</a></li>
-                        <li><a href="/hrdedu/educourse/job_course.html">디지털융합훈련</a></li>
-                        <li><a href="/hrdedu/educourse/job_course.html">보건</a></li>
-                        <li><a href="/hrdedu/educourse/job_course.html">보육</a></li>
-                        <li><a href="/hrdedu/educourse/job_course.html">일반기업</a></li>
+                        <li><a href="/hrdedu/educourse/job_course.html?PCategory=3&Category=all">전체</a></li>
+                        <li><a href="/hrdedu/educourse/job_course.html?PCategory=3&Category=4">디지털융합훈련</a></li>
+                        <li><a href="/hrdedu/educourse/job_course.html?PCategory=3&Category=16">보건</a></li>
+                        <li><a href="/hrdedu/educourse/job_course.html?PCategory=3&Category=17">보육</a></li>
+                        <li><a href="/hrdedu/educourse/job_course.html?PCategory=3&Category=18">일반기업</a></li>
                     </ul>
                 </li>
                 <li class="depth1"><a href="/public/support/edudata.html" class="depth1">
                     학습자료실
                     <span><i class="fa-solid fa-chevron-down"></i></span></a>
                     <ul>
-                        <li><a href="/public/support/edudata.html" >경영·사무</a></li>
-                        <li><a href="/public/support/edudata.html">보건·의료</a></li>
-                        <li><a href="/public/support/edudata.html">보육</a></li>
-                        <li><a href="/public/support/edudata.html">4차산업</a></li>
-                        <li><a href="/public/support/edudata.html">법정의무·기타</a></li>
+                        <li><a href="/public/support/edudata.html?EduCate=A" >경영·사무</a></li>
+                        <li><a href="/public/support/edudata.html?EduCate=B">보건·의료</a></li>
+                        <li><a href="/public/support/edudata.html?EduCate=C">보육</a></li>
+                        <li><a href="/public/support/edudata.html?EduCate=D">4차산업</a></li>
+                        <li><a href="/public/support/edudata.html?EduCate=E">법정의무·기타</a></li>
                     </ul>
                 </li>
             </ul>

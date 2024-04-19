@@ -7,27 +7,49 @@
     background-repeat: no-repeat;
     background-size: 500px;
     background-position: 80% 100%;
+    @media(max-width:1000px){
+        padding: 0 0 40px 0;
+    }
     h1 {
         font-size: 40px;
         font-weight: bold;
         line-height: 60px;
         margin-bottom: 20px;
+        @media(max-width:1000px){
+            font-size: 25px;
+            line-height: 40px;
+            margin-bottom: 10px;
+        }
     }
     p {
         font-size: 20px;
         line-height: 36px;
+        @media(max-width:1000px){
+            font-size: 15px;
+            line-height: 30px;
+        }
     }
 }
 
 .card_con2 {
     background-color: whitesmoke;
     padding: 60px 0;
+    @media(max-width:1000px){
+        padding: 20px 0;
+    }
     h2 {
         font-size: 30px;
         font-weight: bold;
         float: left;
         margin-right: 40px;
         line-height: 44px;
+        @media(max-width:1000px){
+            font-size: 24px;
+            margin-right: 0px;
+            margin-bottom: 10px;
+            line-height: 35px;
+            float: none;
+        }
     }
     .content1 {
         display: grid;
@@ -39,13 +61,23 @@
         padding: 20px 40px;
         border-radius: 25px;
         box-shadow: 5px 5px 10px rgb(0 0 0 / 16%);
-
+        @media(max-width:1000px){
+            grid-template-areas:
+            "a"
+            "b"
+            "c";
+            padding: 10px 20px;
+        }
         > div {
             display: flex;
+            @media(max-width:1000px){
+                display: block;
+            }
 
             span {
                 font-weight: bold;
                 min-width: 120px;
+                line-height: 48px;
                 img {
                     width: 30px;
                     margin-right: 10px;
@@ -59,6 +91,9 @@
             grid-area: a;
             width: 400px;
             align-items: center;
+            @media(max-width:1000px){
+                width: auto;
+            }
         }
         > div:nth-child(2) {
             padding: 20px 0;
@@ -67,6 +102,9 @@
             width: 400px;
             align-items: center;
             border-top: 2px dashed #ebebeb;
+            @media(max-width:1000px){
+                width: auto;
+            }
         }
         > div:nth-child(3) {
             padding: 20px;
@@ -79,11 +117,19 @@
                     margin-right: 4px;
                 }
             }
+            @media(max-width:1000px){
+                border-left: none;
+                border-top: 2px dashed #ebebeb;
+            }
         }
     }
     .content2 {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr;
+        @media(max-width:1000px){
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
         > div {
             width: 230px;
                 @media(max-width:1200px){
@@ -136,17 +182,28 @@
 
 .card_con3 {
     padding: 70px 0 100px 0;
-
+    @media(max-width:1000px){
+        padding: 30px 0 40px 0;
+    }
     h2 {
         font-size: 30px;
         line-height: 50px;
         font-weight: bold;
         margin-bottom: 20px;
+        @media(max-width:1000px){
+            font-size: 24px;
+            line-height: 40px;
+            margin-bottom: 10px;
+        }
     }
     .content {
         display: grid;
         gap: 30px;
         grid-template-columns: 1fr 1fr;
+        @media(max-width:1000px){
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
         div {
             .top {
                 border-bottom: 1px solid;
@@ -156,9 +213,18 @@
                     font-weight: 600;
                     margin-right: 23px;
                     line-height: 43px;
+                    @media(max-width:1000px){
+                        display: block;
+                        font-size: 19px;
+                        line-height: 34px;
+                        margin-right: 0;
+                    }
                 }
                 span {
                     display: inline;
+                    @media(max-width:1000px){
+                        line-height: 30px;
+                    }
                 }
             }
             ol {
@@ -205,16 +271,30 @@
     padding-bottom: 150px;
     max-width: 660px;
     margin: 0 auto;
+    @media(max-width:1000px){
+        padding: 0 10px;
+        padding-bottom: 30px;
+    }
     .title {
         margin: 100px 0 80px 0;
+        @media(max-width:1000px){
+            margin: -20px 0 45px 0;
+        }
         text-align: center;
         h1 {
             font-size: 57px;
             font-weight: bold;
             line-height: 100px;
+            @media(max-width:1000px){
+                font-size: 25px;
+                line-height: 43px;
+            }
         }
         p {
             line-height: 29px;
+            @media(max-width:1000px){
+                line-height: 24px;
+            }
         }
     }
     .input_box {
@@ -233,12 +313,18 @@
             background-position: 98% 42%;
             margin: 0 11px;
             padding: 10px;
+            @media(max-width:1000px){
+                margin: 0;
+            }
         }
         input[type="text"] {
             border-bottom: 1px solid #999;
             margin: 0 11px;
             width: 100%;
             padding: 10px 10px;
+            @media(max-width:1000px){
+                margin: 0;
+            }
         }
         input[type="checkbox"] {
             margin: 0 10px 2px 11px;
@@ -250,8 +336,14 @@
     .flex_box {
         display: flex;
         justify-content: space-between;
+        @media(max-width:1000px){
+            display: block;
+        }
         .input_box {
             width: 48%;
+            @media(max-width:1000px){
+                width: auto;
+            }
         }
     }
     .agree_box {

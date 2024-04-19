@@ -1,5 +1,8 @@
 .edudetail_top {
     margin-top: 50px;
+    @media(max-width:1000px){
+        margin-top: 30px;
+    }
     .lecture_title {
         span {
             width: 75px;
@@ -23,6 +26,10 @@
             display: block;
             font-size: 30px;
             line-height: 60px;
+            @media(max-width:1000px){
+                font-size: 24px;
+                line-height: 40px;
+            }
         }
     }
 
@@ -30,13 +37,24 @@
         display: flex;
         gap: 30px;
         margin-top: 20px;
+        @media(max-width:700px){
+            display: block;
+        }
         .left {
             width: 400px;
+            @media(max-width:700px){
+                width: 100%;
+                margin-bottom: 20px;
+            }
             .lecture_img {
                 width: 400px;
                 height: 223px;
                 overflow: hidden;
                 border-radius: 20px;
+                @media(max-width:700px){
+                    width: 100%;
+                    height: auto;
+                }
                 img {
                     width: 100%;
                 }
@@ -48,10 +66,18 @@
                 padding: 20px;
                 border-radius: 20px;
                 border: 1px solid #ccc;
+                @media(max-width:1000px){
+                    height: auto;
+                    padding: 13px;
+                }
                 p {
                     position: relative;
                     margin-bottom: 15px;
                     padding-left: 100px;
+                    @media(max-width:1000px){
+                        padding-left: 0px;
+                        padding-top: 20px;
+                    }
                     span {
                         font-weight: bold;
                         position: absolute;
@@ -89,6 +115,11 @@
         padding: 25px 0;
         padding-left: 100px;
         border-top: 1px solid #ccc;
+        @media(max-width:1000px){
+            padding: 10px 0;
+            padding-left: 0;
+            padding-top: 56px;
+        }
         .title {
             position: absolute;
             top: 31px;
@@ -96,6 +127,9 @@
             font-weight: bold;
         }
         .content {
+            @media(max-width:1000px){
+                img{width: 100%;}
+            }
             p {
                 margin-bottom: 10px;
             }
@@ -173,6 +207,8 @@
             .captcha {
                 width: 100px;
                 padding: 0 10px;
+                display: flex;
+                align-items: center;
                 img {
                     width: 100%;
                 }

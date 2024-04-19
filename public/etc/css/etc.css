@@ -1,10 +1,16 @@
 .etc_wrap {
-  width: 1280px;
+  max-width: 1280px;
   margin: 0 auto;
+  padding: 0 10px;
 }
 .etc_wrap .top {
   margin: 70px 0 50px 0;
   text-align: center;
+}
+@media (max-width: 1000px) {
+  .etc_wrap .top {
+    margin: 40px 0 30px 0;
+  }
 }
 .etc_wrap .top .logo {
   width: 80px;
@@ -18,6 +24,12 @@
   font-weight: bold;
   line-height: 115px;
 }
+@media (max-width: 1000px) {
+  .etc_wrap .top h1 {
+    font-size: 30px;
+    line-height: 82px;
+  }
+}
 .etc_wrap .top .tab_btn {
   display: flex;
   justify-content: center;
@@ -27,6 +39,11 @@
   width: 224px;
   padding: 10px 0;
   border-radius: 50px;
+}
+@media (max-width: 1000px) {
+  .etc_wrap .top .tab_btn button {
+    width: 40%;
+  }
 }
 .etc_wrap .top .tab_btn button.on {
   background-color: #2d2d2d;

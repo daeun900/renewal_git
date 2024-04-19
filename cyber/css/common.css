@@ -167,6 +167,11 @@ header .gnb > ul > li:hover {
   position: relative;
   height: 500px;
 }
+@media (max-width: 1000px) {
+  .main_banner_wrap .main_banner.bg40 {
+    background-position: 40%;
+  }
+}
 .main_banner_wrap .main_banner {
   visibility: hidden;
   opacity: 0;
@@ -250,6 +255,12 @@ header .gnb > ul > li:hover {
   color: #357af2;
   margin-left: 10px;
 }
+@media (max-width: 640px) {
+  .main_banner_wrap .main_banner #wrap a.card2 {
+    margin-left: 0;
+    margin-top: 15px;
+  }
+}
 .main_banner_wrap .main_banner #wrap a.voucher1 {
   background-color: #0b5454;
   color: #fff;
@@ -273,6 +284,16 @@ header .gnb > ul > li:hover {
   display: block;
   width: 180px;
   text-align: center;
+}
+@media (max-width: 1000px) {
+  .main_banner_wrap .sub_gnb a {
+    width: 100%;
+  }
+}
+@media (max-width: 1000px) {
+  .main_banner_wrap .sub_gnb li {
+    width: 33%;
+  }
 }
 .main_banner_wrap .sub_gnb li.on a {
   color: #28ba9a;

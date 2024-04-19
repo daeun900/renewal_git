@@ -49,7 +49,7 @@
 /*학습지원센터 헤더*/
 @media (max-width: 1000px) {
   .middle_header {
-    height: 134px;
+    height: 35px;
   }
 }
 .middle_header #wrap {
@@ -68,6 +68,11 @@
   display: flex;
   align-items: center;
 }
+@media (max-width: 1000px) {
+  .middle_header #wrap .left {
+    justify-content: space-between;
+  }
+}
 .middle_header #wrap .left .logo {
   width: 250px;
   margin-right: 30px;
@@ -75,6 +80,18 @@
 }
 .middle_header #wrap .left .logo img {
   width: 100%;
+}
+.middle_header #wrap .left .menuicon {
+  display: none;
+}
+@media (max-width: 1000px) {
+  .middle_header #wrap .left .menuicon {
+    display: block;
+    margin-right: 10px;
+  }
+  .middle_header #wrap .left .menuicon i {
+    font-size: 20px;
+  }
 }
 .middle_header #wrap .left h1 {
   font-size: 30px;
@@ -91,11 +108,18 @@
 }
 @media (max-width: 1000px) {
   .middle_header #wrap .right {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    display: flex;
+    flex-direction: column;
     border-top: 1px solid #ccc;
     border-left: 1px solid #ccc;
     font-weight: 500;
+    width: 100%;
+    z-index: 100;
+    top: 99px;
+    right: -100%;
+    position: fixed;
+    opacity: 0;
+    background-color: #fff;
   }
 }
 .middle_header #wrap .right a {
@@ -108,6 +132,7 @@
     text-align: center;
     border-bottom: 1px solid #ccc;
     border-right: 1px solid #ccc;
+    height: 45px;
   }
 }
 .middle_header #wrap .right a:hover,
@@ -234,6 +259,7 @@
 @media (max-width: 1000px) {
   .support_content #wrap .count {
     font-size: 16px;
+    font-weight: 500;
   }
 }
 .support_content #wrap .count span {
@@ -251,10 +277,11 @@
 }
 @media (max-width: 1000px) {
   .support_content #wrap > button {
-    top: -7px;
-    right: 11px;
-    padding: 5px 5px;
+    top: -4px;
+    right: 13px;
+    padding: 3px 7px;
     line-height: 21px;
+    font-size: 13px;
   }
 }
 .support_content #wrap > button i {
@@ -383,7 +410,7 @@
 @media (max-width: 1000px) {
   #modal01 {
     width: 100%;
-    height: 100%;
+    height: auto;
     padding: 20px;
   }
 }
@@ -627,8 +654,8 @@
 }
 @media (max-width: 1000px) {
   .tableTypeA_top .title {
-    font-size: 20px;
-    line-height: 30px;
+    font-size: 18px;
+    line-height: 22px;
   }
 }
 .tableTypeA_top .title span {
@@ -675,15 +702,16 @@
     width: 0%;
   }
   .tableTypeA .al {
-    padding: 20px 5px;
+    padding: 15px 5px;
   }
 }
 .tableTypeA table {
   width: 100%;
-  border-top: 2px solid;
+  border-top: 2px solid #555;
+  border-bottom: 1px solid #555;
 }
 .tableTypeA table tr {
-  border-bottom: 1px solid;
+  border-top: 1px solid #555;
 }
 .tableTypeA table th,
 .tableTypeA table td {
@@ -692,7 +720,7 @@
 }
 @media (max-width: 1000px) {
   .tableTypeA table th {
-    padding: 15px 0;
+    display: none;
   }
   .tableTypeA table td img {
     width: 100%;
@@ -708,6 +736,7 @@
 }
 .tableTypeA table td a {
   display: block;
+  margin-bottom: 5px;
 }
 .tableTypeA table img.download {
   width: 26px;
@@ -719,6 +748,11 @@
 .tableTypeA table .content {
   padding: 20px 0;
   text-align: left;
+}
+@media (max-width: 600px) {
+  .tableTypeA table .content {
+    font-size: 14px;
+  }
 }
 
 /*페이지 넘버*/
@@ -1018,6 +1052,11 @@
   align-items: center;
   text-align: center;
   width: 400px;
+}
+@media (max-width: 1000px) {
+  .complete_popup .complete_inner {
+    width: auto;
+  }
 }
 .complete_popup .complete_inner i {
   font-size: 80px;

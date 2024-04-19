@@ -595,11 +595,21 @@
   padding: 10px 0;
   border-top: 1px solid;
 }
+@media (max-width: 600px) {
+  .mypage_content .topic .top {
+    display: block;
+  }
+}
 .mypage_content .topic .top .left .title {
   font-size: 18px;
   font-weight: bold;
   line-height: 30px;
   cursor: pointer;
+}
+@media (max-width: 1000px) {
+  .mypage_content .topic .top .left .title {
+    font-size: 16px;
+  }
 }
 .mypage_content .topic .top .left .detail {
   font-size: 14px;
@@ -616,6 +626,12 @@
   padding: 5px 10px;
   border-radius: 22px;
 }
+@media (max-width: 1000px) {
+  .mypage_content .topic .top .right button {
+    margin-top: 10px;
+    font-size: 14px;
+  }
+}
 .mypage_content .topic .bottom {
   padding: 15px 0;
   border-top: 1px solid #ccc;
@@ -625,6 +641,11 @@
   font-weight: bold;
   line-height: 30px;
 }
+@media (max-width: 600px) {
+  .mypage_content .topic .bottom strong {
+    font-size: 16px;
+  }
+}
 .mypage_content .topic .bottom .content {
   padding: 20px;
   background-color: whitesmoke;
@@ -632,6 +653,12 @@
   margin: 10px 0;
   line-height: 28px;
   cursor: pointer;
+}
+@media (max-width: 600px) {
+  .mypage_content .topic .bottom .content {
+    font-size: 14px;
+    padding: 15px;
+  }
 }
 .mypage_content .topic .answer {
   line-height: 25px;
@@ -830,11 +857,22 @@
   justify-content: center;
   margin-bottom: 80px;
 }
+.survey_wrap .content > label {
+  margin-top: 10px;
+  display: block;
+}
+.survey_wrap .content > input {
+  display: block;
+  border: 1px solid;
+  width: 100%;
+  padding: 5px;
+  margin-top: 10px;
+}
 .survey_wrap .content textarea {
   display: block;
   width: 100%;
   height: 138px;
-  margin-top: 20px;
+  margin-top: 10px;
   padding: 10px;
 }
 .survey_wrap .content .q {

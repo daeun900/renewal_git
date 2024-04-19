@@ -277,7 +277,7 @@ header .middle_header #wrap .right i {
 }
 @media (max-width: 1000px) {
   .mainbanner_wrap .mainbanner #wrap span.top {
-    font-size: 18px;
+    font-size: 18px !important;
   }
 }
 .mainbanner_wrap .mainbanner #wrap strong {
@@ -321,8 +321,9 @@ header .middle_header #wrap .right i {
   display: flex;
   width: 100%;
   justify-content: center;
-  z-index: 10;
+  z-index: 9;
   background-color: #2d2d2d;
+  flex-wrap: wrap;
 }
 .mainbanner_wrap .sub_gnb a {
   color: #fff;
@@ -330,6 +331,16 @@ header .middle_header #wrap .right i {
   display: block;
   width: 180px;
   text-align: center;
+}
+@media (max-width: 1000px) {
+  .mainbanner_wrap .sub_gnb a {
+    width: auto;
+  }
+}
+@media (max-width: 1000px) {
+  .mainbanner_wrap .sub_gnb li {
+    width: 33%;
+  }
 }
 .mainbanner_wrap .sub_gnb li.on a {
   color: #28ba9a;

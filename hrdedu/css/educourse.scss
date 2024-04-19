@@ -24,10 +24,18 @@
             @media(max-width:1300px){
                 grid-template-columns: 1fr 1fr 1fr;
             }
+            @media(max-width:1000px){
+                grid-template-columns: 1fr 1fr;
+            }
+            @media(max-width:640px){
+                grid-template-columns: 1fr;
+            }
         gap: 25px;
         li {
-            
             margin-bottom: 25px;  cursor: pointer;
+            @media(max-width:640px){
+                text-align: center;
+            }
             .course_img {
                 width: 305px;
                 height: 180px;
@@ -39,11 +47,16 @@
                 margin: 0 auto;
                 background-size: cover;
                 background-position: 50% 50%;
-              
+                @media(max-width:640px){
+                    width: 350px;
+                    height: 197px;
+                }
             }
-           
             .course_title {
                 margin: 15px 0 8px 0;
+                @media(max-width:1000px){
+                    font-size: 16px;
+                }
             }
             .course_tag {
                 font-size: 15px;

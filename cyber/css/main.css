@@ -31,10 +31,9 @@
   display: block;
   line-height: 35px;
 }
-@media (max-width: 1000px) {
+@media (max-width: 600px) {
   .main_con .title span {
-    font-size: 17px;
-    line-height: 35px;
+    display: none;
   }
 }
 .main_con .title strong {
@@ -178,7 +177,7 @@
 @media (max-width: 1000px) {
   .main_con2 .content .lecture_box .more,
   .main_con4 .content .lecture_box .more {
-    padding: 5px 0;
+    padding: 0;
   }
 }
 .main_con2 .content .lecture_box .more a,
@@ -230,11 +229,23 @@
   -o-object-fit: cover;
      object-fit: cover;
 }
+@media (max-width: 1000px) {
+  .main_con2 .content .lecture_box ul li .ttl,
+  .main_con4 .content .lecture_box ul li .ttl {
+    text-align: center;
+  }
+}
 .main_con2 .content .lecture_box ul li .ttl p,
 .main_con4 .content .lecture_box ul li .ttl p {
   font-weight: 400;
   line-height: 24px;
   margin-top: 10px;
+}
+@media (max-width: 1000px) {
+  .main_con2 .content .lecture_box ul li .ttl p,
+  .main_con4 .content .lecture_box ul li .ttl p {
+    font-size: 16px;
+  }
 }
 @media (max-width: 400px) {
   .main_con2 .content .lecture_box ul li:nth-of-type(3), .main_con2 .content .lecture_box ul li:nth-of-type(4),
@@ -253,6 +264,11 @@
   justify-content: center;
   margin-top: 25px;
 }
+@media (max-width: 1000px) {
+  .main_con3 .keyword_list {
+    margin-top: 10px;
+  }
+}
 .main_con3 .keyword_list li {
   width: 18%;
   margin: 10px 1%;
@@ -264,6 +280,7 @@
 @media (max-width: 1000px) {
   .main_con3 .keyword_list li {
     width: 31%;
+    margin: 6px 1%;
   }
 }
 .main_con3 .keyword_list li a {
@@ -273,8 +290,8 @@
 }
 @media (max-width: 1000px) {
   .main_con3 .keyword_list li a {
-    font-size: 16px;
-    padding: 10px 4px;
+    font-size: 14px;
+    padding: 7px 2px;
   }
 }
 .main_con3 .keyword_list li:hover {
@@ -575,8 +592,8 @@
 }
 @media (max-width: 1000px) {
   .main_con6 .content2 > .right span {
-    font-size: 17px;
-    font-weight: 400;
+    font-size: 20px;
+    font-weight: 600;
     margin-left: 0;
   }
 }
@@ -593,7 +610,8 @@
 }
 @media (max-width: 500px) {
   .main_con6 .content2 > .right .point {
-    margin: 8px 0;
+    margin: 10px 0;
+    margin-left: 15px;
   }
 }
 .main_con6 .content2 > .right p {
@@ -631,6 +649,12 @@
   justify-content: space-between;
 }
 
+@media (max-width: 1000px) {
+  .modal-wrap {
+    width: 100%;
+    padding: 30px;
+  }
+}
 .modal-wrap .star {
   margin: 10px 0;
 }

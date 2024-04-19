@@ -1827,7 +1827,65 @@ function mts_mms_send($phone, $msg, $callback, $etc1, $template_code="hrd01") {
 
 }
 
-
+// 문자메시지 발송함수
+function mts_mms_send4NewSimpleAsk($phone, $msg, $callback, $template_code="hrd01") {
+    
+    global $connect;
+    
+    if ($phone)  {
+        // 발신번호 /로 여러개 들어가 있는 경우 수정.
+        $callback_arr = explode("/",$callback);
+        $callback = trim($callback_arr[0]);
+        
+        $data=array(
+            //Brad : 변경필요 - auth_code, sender_key, template_code ...
+            "auth_code"=>"Wk0Q7WMig7NbaIDL/Uj7VA==",
+            "sender_key"=>"96c9bc7360b306643e9a588b76a6fe12dbf46b60",
+            "send_date"=>date("YmdHis"),
+            "callback_number"=>$callback,
+            "nation_phone_number"=>"82",
+            "phone_number"=>$phone,
+            "template_code"=>$template_code,
+            "message"=>stripslashes($msg),
+            "tran_type"=>"L",
+            "tran_message"=>$msg,
+        );
+        //print_r($data);
+        $data = json_encode($data);
+        
+        $url = "https://api.mtsco.co.kr";
+        $url .= "/sndng/atk/sendMessage";
+        
+        $ch = curl_init();                                 //curl 초기화
+        curl_setopt($ch,CURLOPT_URL, $url);               //URL 지정하기
+        curl_setopt($ch,CURLOPT_RETURNTRANSFER, true);    //요청 결과를 문자열로 반환
+        curl_setopt($ch,CURLOPT_CONNECTTIMEOUT, 10);      //connection timeout 10초
+        curl_setopt($ch,CURLOPT_SSL_VERIFYPEER, false);   //원격 서버의 인증서가 유효한지 검사 안함
+        curl_setopt($ch,CURLOPT_SSL_VERIFYHOST, false);
+        curl_setopt($ch,CURLOPT_POSTFIELDS, $data);       //POST data
+        curl_setopt($ch,CURLOPT_POST, true);              //true시 post 전송
+        curl_setopt($ch,CURLOPT_HTTPHEADER, array("Accept: application/json","Content-Type: application/json"));
+        $response = curl_exec($ch);
+        
+        curl_close($ch);
+        
+        $response = json_decode($response);
+        if ($response->code != "0000") {
+            $result_code = $response->code;
+        }
+        $result = $response->code;
+        
+        if ($result) {
+            return "Y";
+        } else if ($result == "0000") {
+            return "Y";
+        } else {
+            return "N2";
+        }
+    }else{
+        return "N1";
+    }
+}
 //##########################################################
 
 

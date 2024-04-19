@@ -1,5 +1,8 @@
 .top_section {
     margin: 60px 0 80px 0;
+    @media(max-width:1000px){
+        margin: -40px 0 -20px 0;
+    }
     .title_section {
         margin: 20px 0;
         border-bottom: 2px solid;
@@ -20,13 +23,28 @@
     .detail_wrap {
         display: flex;
         margin: 30px 0 80px 0;
+        @media(max-width:1000px){
+            display: block;
+        }
         .left {
+            @media(max-width:1000px){
+                display: grid;
+                gap: 20px;
+                grid-template-columns: 1fr 1fr;
+                margin-bottom: 24px;
+            }
+            @media(max-width:600px){
+                grid-template-columns: 1fr;
+            }
             .lecture_image {
                 width: 440px;
                 height: 255px;
                 border-radius: 20px;
                 background-size: cover;
                 background-position: 50% 50%;
+                @media(max-width:1000px){
+                    width: 100%;
+                }
             }
             .lecture_detail {
                 background-color: whitesmoke;
@@ -34,6 +52,13 @@
                 margin: 20px 0;
                 height: 165px;
                 position: relative;
+                @media(max-width:1000px){
+                    margin-top: 10px;
+                }
+                @media(max-width:600px){
+                    height: 105px;
+                    margin-bottom: 0;
+                }
                 ul {
                     li {
                         position: relative;
@@ -70,21 +95,38 @@
                 padding: 15px 0px;
                 background-color: white;
                 border: 1px solid #777;
+                @media(max-width:600px){
+                    display: none;
+                }
             }
         }
         .right {
             margin-left: 30px;
+            @media(max-width:1000px){
+                margin-left: 0px;
+            }
             .select_detail {
                 border: 1px solid #999;
                 border-radius: 20px;
                 padding: 15px 20px;
                 height: 440px;
+                @media(max-width:600px){
+                    height: auto;
+                }
                 table {
                     tr {
+                        @media(max-width:600px){
+                            display: flex;
+                            width: 88vw;
+                            flex-direction: column;
+                        }
                         th {
                             text-align: left;
                             vertical-align: top;
                             line-height: 43px;
+                            @media(max-width:600px){
+                                font-weight: bold;
+                            }
                             button {
                                 width: 20px;
                                 height: 20px;
@@ -96,6 +138,9 @@
                         }
                         td {
                             padding: 9px 0;
+                            @media(max-width:600px){
+                                padding: 0;
+                            }
                             select {
                                 width: 290px;
                             }
@@ -221,22 +266,35 @@
             position: relative;
             padding-left: 100px;
             border-bottom: 1px solid #ddd;
+            @media(max-width:600px){
+                padding-left: 0;
+                padding-top:62px;
+            }
             .title {
                 position: absolute;
                 top: 32px;
                 left: 0;
                 font-weight: bold;
                 color: #797979;
+                @media(max-width:600px){
+                    color: #222;
+                }
             }
             p {
                 line-height: 30px;
                 color: #767676;
+                @media(max-width:600px){
+                    line-height: 25px;
+                }
                 b {
                     color: #2d2d2d;
                 }
                 span {
                     position: absolute;
                     left: 100px;
+                    @media(max-width:600px){
+                        left: 4px;
+                    }
                 }
             }
             table {

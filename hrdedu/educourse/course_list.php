@@ -35,7 +35,7 @@ if($QUERY && mysqli_num_rows($QUERY)){
         $ImgUrl = "/upload/Course/".$PreviewImage;
 ?>
 <li>
-    <div class="course_img" style="background-image: url(<?=$ImgUrl?>);" onclick="window.open('../edudetail/edudetail.html')"></div>
+    <div class="course_img" style="background-image: url(<?=$ImgUrl?>);" onclick="window.open('../edudetail/edudetail.html?LectureCode=<?=$LectureCode?>')"></div>
     <div class="course_title"><?=$ContentsName?></div>
     <div class="course_tag">내용전문가 : <?=$Professor?> | <?=$Chapter?>차시<em> / </em><?=$ContentsTime?>시간</div>
 </li>

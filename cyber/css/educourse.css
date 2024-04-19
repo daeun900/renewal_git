@@ -3,16 +3,32 @@
   grid-template-columns: 1fr 1fr;
   margin: 30px 0;
 }
+@media (max-width: 1000px) {
+  .top_section .title {
+    margin: 0;
+    display: block;
+  }
+}
 .top_section .title span {
   font-size: 30px;
   font-weight: bold;
   line-height: 50px;
+}
+@media (max-width: 1000px) {
+  .top_section .title span {
+    font-size: 20px;
+  }
 }
 .top_section .title span.main_course_title {
   position: relative;
   padding-left: 15px;
   font-size: 25px;
   line-height: 25px;
+}
+@media (max-width: 1000px) {
+  .top_section .title span.main_course_title {
+    font-size: 20px;
+  }
 }
 .top_section .title span.main_course_title::before {
   position: absolute;
@@ -30,6 +46,11 @@
   border-radius: 25px;
   padding: 15px 30px 15px 20px;
 }
+@media (max-width: 1000px) {
+  .top_section .title .search_box input {
+    padding: 10px 30px 10px 20px;
+  }
+}
 .top_section .title .search_box input::-moz-placeholder {
   color: #999;
   font-weight: bold;
@@ -40,16 +61,35 @@
   font-weight: bold;
   font-size: 18px;
 }
+@media (max-width: 1000px) {
+  .top_section .title .search_box input::-moz-placeholder {
+    font-size: 14px;
+  }
+  .top_section .title .search_box input::placeholder {
+    font-size: 14px;
+  }
+}
 .top_section .title .search_box span {
   padding-left: 40px;
   bottom: 11px;
   right: 16px;
+}
+@media (max-width: 1000px) {
+  .top_section .title .search_box span {
+    bottom: -10px;
+  }
 }
 .top_section .categorybtn_box {
   display: flex;
   margin: 60px 0;
   justify-content: flex-end;
   color: #777;
+}
+@media (max-width: 1000px) {
+  .top_section .categorybtn_box {
+    margin: 20px 0;
+    display: block;
+  }
 }
 .top_section .categorybtn_box ul {
   display: flex;
@@ -61,9 +101,16 @@
   border: 1px solid;
   padding: 5px 0;
   margin: 10px 10px;
-  width: 122px;
+  width: 146px;
   border-radius: 34px;
   text-align: center;
+}
+@media (max-width: 1000px) {
+  .top_section .categorybtn_box ul li {
+    width: 31%;
+    margin: 7px 1%;
+    font-size: 13px;
+  }
 }
 .top_section .categorybtn_box ul li.on {
   background-color: #222;
@@ -76,10 +123,26 @@ div[class*=lectureswiper] {
   margin-bottom: 60px;
   position: relative;
 }
+@media (max-width: 1000px) {
+  div[class*=lectureswiper] {
+    padding-top: 10px;
+    margin-bottom: 20px;
+  }
+}
 div[class*=lectureswiper] h2 {
   font-size: 30px;
   font-weight: bold;
   margin-bottom: 35px;
+}
+@media (max-width: 1000px) {
+  div[class*=lectureswiper] h2 {
+    font-size: 25px;
+  }
+}
+@media (max-width: 640px) {
+  div[class*=lectureswiper] h2 {
+    font-size: 20px;
+  }
 }
 div[class*=lectureswiper] .swiper-button {
   position: absolute;
@@ -115,11 +178,25 @@ div[class*=lectureswiper] .course_img {
   width: 413px;
   height: 232px;
   border-radius: 20px;
+  background-size: contain;
+  margin: 0 auto;
+}
+@media (max-width: 640px) {
+  div[class*=lectureswiper] .course_img {
+    width: 350px;
+    height: 197px;
+  }
 }
 div[class*=lectureswiper] .course_title {
   margin: 17px 0 10px 0;
   line-height: 30px;
   font-size: 20px;
+}
+@media (max-width: 1000px) {
+  div[class*=lectureswiper] .course_title {
+    font-size: 14px;
+    line-height: 19px;
+  }
 }
 div[class*=lectureswiper] .course_tag {
   margin-top: 30px;
@@ -134,6 +211,11 @@ div[class*=lectureswiper] .course_tag span {
   margin-bottom: 80px;
   position: relative;
 }
+@media (max-width: 1000px) {
+  .course {
+    padding-top: 40px !important;
+  }
+}
 .course ul {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -144,9 +226,24 @@ div[class*=lectureswiper] .course_tag span {
     grid-template-columns: 1fr 1fr 1fr;
   }
 }
+@media (max-width: 1000px) {
+  .course ul {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 640px) {
+  .course ul {
+    grid-template-columns: 1fr;
+  }
+}
 .course ul li {
   margin-bottom: 25px;
   cursor: pointer;
+}
+@media (max-width: 640px) {
+  .course ul li {
+    text-align: center;
+  }
 }
 .course ul li .course_img {
   width: 305px;
@@ -159,6 +256,12 @@ div[class*=lectureswiper] .course_tag span {
   margin: 0 auto;
   background-size: cover;
   background-position: 50% 50%;
+}
+@media (max-width: 640px) {
+  .course ul li .course_img {
+    width: 350px;
+    height: 197px;
+  }
 }
 .course ul li .course_img span {
   position: absolute;

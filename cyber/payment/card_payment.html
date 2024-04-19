@@ -72,13 +72,16 @@ if($BookImage){
                 <span>정부지원금</span>
                 <span><b><?=number_format($Price01,0)?></b>원</span>
             </div>
+            <!-- 해당기능 개발완료될때까지 숨김처리 -->
+            <!-- 
             <div class="discount">
                 <span>추가할인</span>
-                <span><b id="TotalSalePrice"></b>원</span>
+                <span><b>0</b>원</span>
             </div>
+             -->
             <div class="expense">
                 <span>자비부담금</span>
-                <span><b id="RealPrice"></b>원</span>
+                <span><b>0</b>원</span>
             </div>
             <div class="agree">
                 <input type="checkbox" name="agree" id="">
@@ -154,6 +157,8 @@ if($BookImage){
             </div>
             <!--//주문정보-->
             <!--결제정보-->
+            <!-- 해당기능 개발완료될때까지 숨김처리 -->
+			<!-- 
             <div class="con pay_info">
                 <div class="title">결제정보</div>
                 <div class="subtitle">할인적용</div>
@@ -180,7 +185,7 @@ if($BookImage){
                         	<span>*사용가능쿠폰: 1개</span>
                         </td>
                         <th>할인금액</th>
-                        <td class="ar" id="TotalCouponPrice"></td>
+                        <td class="ar">0원</td>
                     </tr>
                     <tr>
                         <th>학습포인트</th>
@@ -190,10 +195,11 @@ if($BookImage){
                             <em>(결제금액의 50%까지 사용가능)</em>
                         </td>
                         <th>할인금액</th>
-                        <td class="ar" id="TotalPointPrice"></td>
+                        <td class="ar">0원</td>
                     </tr>
                 </table>
             </div>
+             -->
             <!--//결제정보-->
             <!--결제방법-->
             <div class="con pay_method">
@@ -312,12 +318,6 @@ jQuery(document).ready(function() {
             $("#modal01").hide();
             $("#modal01").removeAttr('style');
             $('html').removeAttr('style');
-            
-            //쿠폰값 설정 -- 임시용
-            var salePrice = "5000";
-            var salePriceA = "5,000";
-            $("#couponPrice").val(salePrice); //지식쿠폰 선택한 값에 맞게 설정
-            $("#TotalCouponPrice").text(salePriceA+"원"); //지식쿠폰 할인금액 설정
         });
 		//닫기기능
         $('.close-btn, .cancel').on('click', function() {
@@ -328,53 +328,6 @@ jQuery(document).ready(function() {
         });
     });
 });
-</script>
-
-
-<script>
-$(document).ready(function(){
-	var pointVal = $("#pointVal").val(); //입력한 학습포인트
-	var pointValA = pointVal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-	var myPoint = $("#myPoint").text(); //보유포인트
-	var totalPrice = <?=$Price?>; //총판매금액
-	var subPrice = <?=$Price01?>; //정부지원금
-		
-	$("#TotalCouponPrice").text("0원"); //지식쿠폰 할인금액 초기값 설정
-	$("#myPoint").text("20000"); //보유포인트 설정 --임시용
-	$("#TotalPointPrice").text("0원"); //학습포인트 할인금액 초기값 설정
-	$("#TotalSalePrice").text("0"); //주문확인 추가할인 금액 초기값 설정
-	
-	//주문확인 자비부담금 초기값 설정
-	var totalCoupon = $("#TotalCouponPrice").text(); //지식쿠폰 할인금액
-	var totalCouponA = totalCoupon.substring(0, totalCoupon.length-1);
-	var totalPoint = $("#TotalPointPrice").text(); //학습포인트 할인금액
-	var totalPointA = totalPoint.substring(0, totalPoint.length-1);
-	
-	var realPrice = totalPrice - subPrice - totalCouponA - totalPointA;
-	var realPriceA = realPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");	
-	$("#RealPrice").text(realPriceA);
-	
-	//입력한 학습포인트의 값이 변경될 경우
-	$('#pointVal').change( function() {
-		//입력한 포인트가 보유포인트보다 클 경우 제한
-		if(pointVal > myPoint){
-			alert('포인트는 보유하고있는 포인트보다 크게 입력할수없습니다.');
-			$("#pointVal").val("");
-			$("#TotalPointPrice").text("0원");
-		}else{
-			var nowPoint = $("#pointVal").val().toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-			$("#TotalPointPrice").text(nowPoint+"원");
-		}
-	 });
-});
-//최대사용
-function maxPoint(){
-	var myPoint = $("#myPoint").text();
-	var myPointA = myPoint.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-	
-	$("#pointVal").val(myPoint);
-	$("#TotalPointPrice").text(myPointA+"원");
-}
 </script>
 
 <style> 

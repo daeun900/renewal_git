@@ -46,8 +46,8 @@
 .dropdownmenu_m .sns ol li img{width: 100%;}
 
 @media(max-width:640px){
-    .navArea_m .topmenu .member a{font-size: 16px;}
-    .navArea_m .topmenu .point a{font-size: 16px;}
+    .navArea_m .topmenu .member a{font-size: 16px; font-weight: 500;}
+    .navArea_m .topmenu .point a{font-size: 16px; font-weight: 500;}
 
     .navArea_m .topmenu2 ul li a{font-size: 16px}
 
@@ -74,6 +74,7 @@ footer .btn #wrap {
 
 @media(max-width:720px){
     footer #wrap{padding: 0 10px;}
+    footer .btn{padding: 15px 0;}
     footer .btn #wrap{
         display: inherit;
     }
@@ -103,6 +104,10 @@ footer .info {
     border-top: 1px solid #aaa;
     padding: 20px 0 30px 0;
     font-size: 14px
+}
+
+@media(max-width:1000px){
+    footer .info{font-size: 12px;}
 }
 
 footer .info strong {

@@ -53,7 +53,7 @@
                         <col width="50%">
                         <col width="15%">
                         <col width="15%">
-                        <col width="10%">
+                        <col class="mh" width="10%">
                     </colgroup>
                     <thead>
                         <tr>
@@ -61,7 +61,7 @@
                             <th>과정명</th>
                             <th>교육기간</th>
                             <th>수료여부</th>
-                            <th>수료증 출력</th>
+                            <th class="mh">수료증 출력</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -83,7 +83,7 @@
                             <td><?=$ContentsName?></td>
                             <td><?=$LectureStart?> ~ <?=$LectureEnd?></td>
                             <td><?if($PassOK == 'Y'){?>수료<?}else{?>미수료<?}?></td>
-                            <td>
+                            <td class="mh">
                                 <button class="small" onclick="Javascript:CertificatePrint(<?=$Seq?>);">출력</button>
                             </td>
                         </tr>
