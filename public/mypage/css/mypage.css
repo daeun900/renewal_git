@@ -5,6 +5,11 @@
   margin: 0 auto;
   position: relative;
 }
+@media (max-width: 540px) {
+  #wrap {
+    padding: 0 10px;
+  }
+}
 
 /*나의학습실 헤더*/
 .top_header {
@@ -21,6 +26,11 @@
   margin-left: 15px;
   padding: 10px 0;
 }
+@media (max-width: 500px) {
+  .top_header #wrap .btn {
+    opacity: 0;
+  }
+}
 .top_header #wrap .logo {
   width: 148px;
   position: absolute;
@@ -35,6 +45,11 @@
 .middle_header {
   padding: 20px 0;
   border-bottom: 1px solid #ccc;
+}
+@media (max-width: 1000px) {
+  .middle_header {
+    display: none;
+  }
 }
 .middle_header #wrap {
   display: flex;
@@ -90,10 +105,31 @@
   background-color: whitesmoke;
   /*depth1*/
 }
+@media (max-width: 1000px) {
+  .mypage_menu {
+    width: 100%;
+    margin-left: -20px;
+    background-color: #fff;
+  }
+}
 .mypage_menu h1 {
   font-size: 30px;
   font-weight: bold;
   margin: 70px 0 45px 0;
+}
+.mypage_menu .menuicon {
+  display: none;
+}
+@media (max-width: 1000px) {
+  .mypage_menu .menuicon {
+    display: block;
+    position: absolute;
+    top: 21px;
+    right: 21px;
+  }
+  .mypage_menu .menuicon i {
+    font-size: 20px;
+  }
 }
 .mypage_menu .top_point {
   width: 180px;
@@ -103,6 +139,15 @@
   color: #fff;
   border-radius: 22px;
   margin-top: 50px;
+}
+@media (max-width: 1000px) {
+  .mypage_menu .top_point {
+    background-color: transparent;
+    width: 150px;
+    padding: 10px;
+    color: #2c5db4;
+    margin: 0;
+  }
 }
 .mypage_menu .top_point > div {
   display: flex;
@@ -128,12 +173,34 @@
   margin-top: 10px;
   line-height: 24px;
 }
+@media (max-width: 1000px) {
+  .mypage_menu p {
+    display: none;
+  }
+}
 .mypage_menu > ul {
   margin-top: 50px;
   padding: 0 15px;
 }
+@media (max-width: 1000px) {
+  .mypage_menu > ul {
+    margin-top: 0;
+    width: 100%;
+    z-index: 100;
+    top: 99px;
+    right: -100%;
+    position: fixed;
+    opacity: 0;
+    background-color: #fff;
+  }
+}
 .mypage_menu > ul > li {
   border-bottom: 1px solid #bcbcbc;
+}
+@media (max-width: 1000px) {
+  .mypage_menu > ul > li {
+    background-color: #fff;
+  }
 }
 .mypage_menu > ul > li > a {
   padding: 15px 0;
@@ -145,6 +212,14 @@
   right: 10px;
   top: 50%;
   margin-top: -8px;
+}
+@media (max-width: 1000px) {
+  .mypage_menu > ul > li > ul {
+    background-color: aliceblue;
+  }
+  .mypage_menu > ul > li > ul > li {
+    padding: 10px 0;
+  }
 }
 .mypage_menu > ul > li:first-of-type {
   border-top: 1px solid #bcbcbc;
@@ -162,6 +237,18 @@
   padding-left: 40px;
   padding-bottom: 20px;
   padding-top: 5px;
+}
+@media (max-width: 1000px) {
+  .mypage_menu > ul > li.on > ul {
+    display: none;
+    padding: 5px;
+    padding-left: 15px;
+  }
+}
+@media (max-width: 1000px) {
+  .mypage_menu > ul > li.on > ul li {
+    padding: 7px 0;
+  }
 }
 .mypage_menu > ul > li.on > ul li a {
   display: block;
@@ -182,6 +269,15 @@
   min-height: 800px;
   /*토론방*/
   /*쿠폰함*/
+}
+@media (max-width: 1000px) {
+  .mypage_content {
+    padding-left: 0px;
+    padding-top: 62px;
+  }
+  .mypage_content .sb_box {
+    display: none;
+  }
 }
 .mypage_content h1 {
   font-size: 30px;
@@ -206,14 +302,31 @@
   line-height: 30px;
   padding: 20px 0;
 }
+@media (max-width: 1000px) {
+  .mypage_content > .content h2 {
+    font-size: 18px;
+    padding: 10px 0;
+  }
+}
 .mypage_content > .content .search_box {
   display: flex;
   align-items: center;
   margin-bottom: 20px;
   margin-top: 10px;
 }
+@media (max-width: 1000px) {
+  .mypage_content > .content .search_box {
+    display: block;
+  }
+}
 .mypage_content > .content .search_box .tab_btn {
   margin-left: 20px;
+}
+@media (max-width: 1000px) {
+  .mypage_content > .content .search_box .tab_btn {
+    margin-top: 10px;
+    margin-left: 6px;
+  }
 }
 .mypage_content > .content .search_box .tab_btn button {
   width: 45px;
@@ -230,11 +343,27 @@
 .mypage_content > .content .search_box .date_input {
   margin-left: 10px;
 }
+@media (max-width: 1000px) {
+  .mypage_content > .content .search_box .date_input {
+    margin-left: 1px;
+    margin-top: 10px;
+  }
+  .mypage_content > .content .search_box .date_input img {
+    width: 19px;
+    margin-top: 6px;
+  }
+}
 .mypage_content > .content .search_box .date_input input[id*=DateStart] {
   height: 26px;
   border: 0.3px solid #676767;
   width: 130px;
   margin-top: 3px;
+}
+@media (max-width: 1000px) {
+  .mypage_content > .content .search_box .date_input input[id*=DateStart] {
+    height: 22px;
+    width: 90px;
+  }
 }
 .mypage_content > .content .search_box .date_input input[id*=DateEnd] {
   height: 26px;
@@ -242,15 +371,37 @@
   width: 130px;
   margin-top: 3px;
 }
+@media (max-width: 1000px) {
+  .mypage_content > .content .search_box .date_input input[id*=DateEnd] {
+    height: 22px;
+    width: 90px;
+  }
+}
 .mypage_content > .content .search_box .date_input button {
   background-color: #676767;
   color: #fff;
   width: 26px;
   height: 26px;
 }
+@media (max-width: 1000px) {
+  .mypage_content > .content .search_box .date_input button {
+    width: 23px;
+    height: 24px;
+  }
+}
 .mypage_content > .content table {
   width: 100%;
   text-align: center;
+}
+@media (max-width: 700px) {
+  .mypage_content > .content table .mh {
+    display: none;
+    visibility: hidden;
+    width: 0%;
+  }
+  .mypage_content > .content table .al {
+    padding: 20px 5px;
+  }
 }
 .mypage_content > .content table thead {
   background-color: whitesmoke;
@@ -269,8 +420,20 @@
   border: 0.5px solid #707070;
   padding: 3px 10px;
 }
+@media (max-width: 1000px) {
+  .mypage_content > .content table tbody tr td button.small {
+    padding: 0px 0px;
+    font-size: 12px;
+    line-height: 18px;
+  }
+}
 .mypage_content > .content table tbody tr td img {
   width: 26px;
+}
+@media (max-width: 1000px) {
+  .mypage_content > .content table tbody tr td img {
+    width: 22px;
+  }
 }
 .mypage_content > .content .top_button {
   display: flex;
@@ -314,6 +477,11 @@
   padding: 35px 0;
   padding-left: 28px;
 }
+@media (max-width: 500px) {
+  .mypage_content > .content ul.saved_lecture_list li {
+    display: block;
+  }
+}
 .mypage_content > .content ul.saved_lecture_list li input {
   -webkit-appearance: auto;
      -moz-appearance: auto;
@@ -325,6 +493,11 @@
 }
 .mypage_content > .content ul.saved_lecture_list .left {
   margin-right: 40px;
+}
+@media (max-width: 500px) {
+  .mypage_content > .content ul.saved_lecture_list .left {
+    display: none;
+  }
 }
 .mypage_content > .content ul.saved_lecture_list .left .lecture_img {
   width: 260px;
@@ -370,6 +543,7 @@
 .mypage_content > .content ul.saved_lecture_list .right strong {
   font-size: 18px;
   font-weight: bold;
+  line-height: 30px;
 }
 .mypage_content > .content ul.saved_lecture_list .right .top .tag_box {
   margin-top: 9px;
@@ -379,6 +553,14 @@
   background-color: #e8e8e8;
   border-radius: 5px;
   font-size: 14px;
+}
+@media (max-width: 1000px) {
+  .mypage_content > .content ul.saved_lecture_list .right .bottom {
+    margin-top: 16px;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+  }
 }
 .mypage_content > .content ul.saved_lecture_list .right .bottom .price {
   display: inline-block;
@@ -488,9 +670,20 @@
   font-size: 12px;
   align-items: center;
 }
+@media (max-width: 1000px) {
+  .mypage_content .coupon_box {
+    display: block;
+    padding: 10px;
+  }
+}
 .mypage_content .coupon_box .left {
   display: flex;
   align-items: center;
+}
+@media (max-width: 540px) {
+  .mypage_content .coupon_box .left .img {
+    display: none;
+  }
 }
 .mypage_content .coupon_box .left .input_box {
   padding: 0 20px;
@@ -538,6 +731,11 @@
   padding-left: 20px;
   border-left: 1px solid #ccc;
 }
+@media (max-width: 1000px) {
+  .mypage_content .coupon_box .right {
+    display: none;
+  }
+}
 .mypage_content .coupon_box .right i {
   font-weight: 700;
   margin-right: 7px;
@@ -546,6 +744,11 @@
   margin: 30px 0 20px 0;
   font-weight: bold;
   font-size: 17px;
+}
+@media (max-width: 1000px) {
+  .mypage_content h3 {
+    margin: 20px 0 10px 0;
+  }
 }
 .mypage_content .tab-list {
   display: flex;
@@ -975,6 +1178,12 @@
   height: 70px;
   border-bottom: 1px solid #e4e4e4;
 }
+@media (max-width: 1000px) {
+  .lecture_title {
+    margin-top: 20px;
+    padding-bottom: 10px;
+  }
+}
 
 .lecture_title .left {
   display: flex;
@@ -983,10 +1192,21 @@
   font-size: 18px;
   font-weight: 400;
 }
+@media (max-width: 1000px) {
+  .lecture_title .left {
+    display: initial;
+    line-height: 28px;
+  }
+}
 
 .lecture_title .left > span {
   display: block;
   margin-top: 1px;
+}
+@media (max-width: 1000px) {
+  .lecture_title .left > span {
+    display: inline;
+  }
 }
 
 .lecture_title .right {
@@ -1015,10 +1235,21 @@
   display: flex;
   margin-top: 25px;
 }
+@media (max-width: 1000px) {
+  .lecture_detail {
+    display: block;
+  }
+}
 
 .lecture_detail .lecture_detail_left {
   width: 50%;
   padding-right: 30px;
+}
+@media (max-width: 1000px) {
+  .lecture_detail .lecture_detail_left {
+    width: 100%;
+    padding-right: 0;
+  }
 }
 
 .lecture_detail .lecture_detail_left > div {
@@ -1047,6 +1278,13 @@
   padding-left: 30px;
   width: 50%;
   border-left: 1px solid #e7e7e7;
+}
+@media (max-width: 1000px) {
+  .lecture_detail .lecture_detail_right {
+    padding: 10px;
+    width: 100%;
+    border-left: 0px;
+  }
 }
 
 .lecture_detail .lecture_detail_right .lecture_graph {
@@ -1139,7 +1377,7 @@
 
 /*회원정보*/
 .memberinfo_wrap {
-  width: 500px;
+  max-width: 500px;
   margin: 0 auto;
 }
 
@@ -1462,9 +1700,20 @@
 .tableTypeA_top .title span {
   margin-right: 10px;
 }
+@media (max-width: 1000px) {
+  .tableTypeA_top .title {
+    font-size: 17px;
+    line-height: 28px;
+  }
+}
 .tableTypeA_top .detail {
   overflow: hidden;
   margin: 20px 0;
+}
+@media (max-width: 1000px) {
+  .tableTypeA_top .detail {
+    margin: 10px 0;
+  }
 }
 .tableTypeA_top .detail > div {
   float: left;
@@ -1485,6 +1734,16 @@
   margin-top: 20px;
   margin-bottom: 40px;
 }
+@media (max-width: 700px) {
+  .tableTypeA .mh {
+    display: none;
+    visibility: hidden;
+    width: 0%;
+  }
+  .tableTypeA .al {
+    padding: 20px 5px;
+  }
+}
 .tableTypeA table {
   width: 100%;
   border-top: 2px solid;
@@ -1493,7 +1752,7 @@
   border-bottom: 1px solid;
 }
 .tableTypeA table th, .tableTypeA table td {
-  padding: 20px 0;
+  padding: 20px 10px;
   text-align: center;
 }
 .tableTypeA table th {
@@ -1504,15 +1763,32 @@
   font-size: 22px;
   margin-left: 3px;
 }
+@media (max-width: 1000px) {
+  .tableTypeA table th i {
+    font-size: 18px;
+    margin-left: 0;
+  }
+}
 .tableTypeA table td a {
   display: block;
 }
+@media (max-width: 1000px) {
+  .tableTypeA table td a {
+    font-size: 11px;
+    line-height: 15px;
+  }
+}
 .tableTypeA table img.download {
-  width: 26px;
+  width: 26px !important;
 }
 .tableTypeA table img.download_view {
   width: 20px;
   margin-right: 10px;
+}
+@media (max-width: 1000px) {
+  .tableTypeA table img.download_view {
+    width: 18px !important;
+  }
 }
 .tableTypeA table .content {
   padding: 20px 0;
@@ -1539,6 +1815,11 @@
   position: absolute;
   right: 0;
   top: 21px;
+}
+@media (max-width: 1000px) {
+  .search_box_2 {
+    display: none;
+  }
 }
 .search_box_2 input {
   background-color: whitesmoke;

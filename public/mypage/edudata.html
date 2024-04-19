@@ -80,17 +80,17 @@ $PAGE_UNCOUNT = $PAGE_CLASS->page_uncount; ##-- 게시물 번호 한개씩 감�
                     <colgroup>
                         <col width="10%">
                         <col width="50%">
-                        <col width="10%">
-                        <col width="20%">
-                        <col width="10%">
+                        <col class="mh" width="10%">
+                        <col class="mh" width="20%">
+                        <col class="mh" width="10%">
                     </colgroup>
                     <thead>
                         <tr>
                             <th>번호</th>
                             <th>과정명</th>
-                            <th>파일</th>
-                            <th>등록일</th>
-                            <th>조회</th>
+                            <th class="mh">파일</th>
+                            <th class="mh">등록일</th>
+                            <th class="mh">조회</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -116,9 +116,9 @@ $PAGE_UNCOUNT = $PAGE_CLASS->page_uncount; ##-- 게시물 번호 한개씩 감�
                         <tr>
                             <td><?=$PAGE_UNCOUNT--?></td>
                             <td class="al"><a href="edudata_view.html?idx=<?=$idx?>"> <?=$Title?></a></td>
-                            <td><? if($FileName1){ ?><img class="download"  src="img/icon_blue.png" alt="파일아이콘"><? } ?></td>
-                            <td><?=substr($RegDate,0,10)?></td>
-                            <td><?=$ViewCount?></td>
+                            <td class="mh"><? if($FileName1){ ?><img class="download"  src="img/icon_blue.png" alt="파일아이콘"><? } ?></td>
+                            <td class="mh"><?=substr($RegDate,0,10)?></td>
+                            <td class="mh"><?=$ViewCount?></td>
                         </tr>
                         
                         <?

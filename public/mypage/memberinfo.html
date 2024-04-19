@@ -88,7 +88,7 @@ function ZipcodeFind() {
         </div>
         <div class="content">
             <h2>회원정보</h2>
-            <form name="EditForm" method="POST" action="/public/member/mypage/myinfo_ok.php">
+            <form name="EditForm" method="POST" action="/public/mypage/myinfo_ok.php">
                 <input type="hidden" name="CompanyCode" id="CompanyCode" value="<?=$CompanyCode?>">
                 <input type="hidden" name="MemberType" id="MemberType" value="<?=$MemberType?>">
                 <input type="hidden" name="path" id="path" value="<?=$path?>">
@@ -140,7 +140,7 @@ function ZipcodeFind() {
                 	</div>
                 
 	                <div class="Requiredinfo_area">
-	                    <h3>추가정보</h3>
+	                    <h3>추가정보(선택)</h3>
 	                    <div class="Requiredinfo_row">
 	                        <div class="title">주소</div>
 	                        <div class="content">
@@ -183,9 +183,7 @@ function ZipcodeFind() {
 	                            <input type="text" name="Position" id="Position" class="inp_txt" title="직위" placeholder="직위 입력" value="<?=$Position?>" >
 	                        </div>
 	                    </div>     
-
-
-                    <?if($MemberType=="B") {?>
+<br>
                         <div class="Requiredinfo_row">
                         	<div class="title">내일배움카드</div>
                             <div class="content">
@@ -205,14 +203,7 @@ function ZipcodeFind() {
 	                                <div class="cardbox mr1"><input type="text" name="CardNumber04" id="CardNumber04" class="inp_txt" value="<?=$CardNumber04?>" maxlength="4" /></div>
                                 </div>
                             </div>
-                    <?}else{?>
-                            <input type="hidden" name="CardName" id="CardName" value="<?=$CardName?>">
-                            <input type="hidden" name="CardNumber01" id="CardNumber01" class="inp_txt" value="<?=$CardNumber01?>">
-                            <input type="hidden" name="CardNumber02" id="CardNumber02" class="inp_txt" value="<?=$CardNumber02?>">
-                            <input type="hidden" name="CardNumber03" id="CardNumber03" class="inp_txt" value="<?=$CardNumber03?>">
-                            <input type="hidden" name="CardNumber04" id="CardNumber04" class="inp_txt" value="<?=$CardNumber04?>">
-                    <?}?>
-
+<br>
 
                     <div class="Requiredinfo_row">
                         <div class="content">
@@ -225,6 +216,10 @@ function ZipcodeFind() {
                         <div class="content">
                             <input type="checkbox" name="Marketing" id="Marketing" value="Y" <? if($Marketing=="Y"){?> checked <? } ?>>
                             <label for="Marketing">마케팅 수신에 동의합니다.</label>
+                            <div class="input_wrap ml20">
+                                <input type="checkbox" name="chk5Email" id="chk5Email" class="chk2" onclick="JoinAgreeCheckA()"<? if($Marketing=="Y"){?> checked <? } ?>><label class="ml10" for="chk5Email">이메일</label>
+                                <input type="checkbox" name="chk5Sms" id="chk5Sms" class="chk2 ml10" onclick="JoinAgreeCheckA()"<? if($Marketing=="Y"){?> checked <? } ?>><label class="ml10" for="chk5Sms">SMS</label>
+                            </div>
                         </div>
                     </div>                                                                                                  
                 </div> 
@@ -244,6 +239,7 @@ function ZipcodeFind() {
     <!--mypage_content-->
 </div>
 </form>
+</div>
 <!--wrap-->
 
 <?
@@ -400,4 +396,23 @@ if ($sEncData == -9)
     $(document).ready(function(){
         $('.mypage_menu .memberinfo').addClass("on");
     });
+</script>
+
+
+<!--check all-->
+<script>
+	$(document).ready(function() {
+		$("#Marketing").click(function() {
+			if($("#Marketing").is(":checked")) $("input[name=chk5Email],input[name=chk5Sms]").prop("checked", true);
+			else $("input[name=chk5Email],input[name=chk5Sms]").prop("checked", false);
+		});
+		
+		$("input[name=chk5Email],input[name=chk5Sms]").click(function() {
+			var total = $("input[name=chk5Email],input[name=chk5Sms]").length;
+            var checked = $("input[name=chk5Email]:checked,input[name=chk5Sms]:checked").length;
+			
+			if(total != checked) $("#Marketing").prop("checked", false);
+			else $("#Marketing").prop("checked", true); 
+		});
+		});
 </script>

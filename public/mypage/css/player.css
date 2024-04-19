@@ -252,3 +252,70 @@
 .popupArea .search .btn a:hover { background:#888;}
 .popupArea .taList_ty01 { font-size:14px;}
 .popupArea .taList_ty01 tr:hover { background:#fffde6;}
+
+
+
+/*모바일 플레이어*/
+
+/* my */
+.myLecinfo { background:#fafafa; border:solid 1px #0f97af; border-bottom:none; width:100%; padding:12px 0; color:#0f97af; text-align:center;}
+
+.myList { position:relative;}
+.myList ul { border-top:solid 1px #0f6caf;}
+.myList ul li { border-bottom:solid 1px #0f6caf; padding:20px 0 25px 0;}
+.myList ul li a { width:100%; text-decoration:none; display:inline-block;}
+.myList .title { font-size:20px; color:#000; font-weight:bold; line-height:27px;}
+.myList .lecInfo { margin-top:10px; color:#777; font-size:14px; line-height:22px;}
+.myList .lecInfo span { color:#0f6caf;}
+.myList .checkArea { position:relative; background:#fff; width:100%; margin-top:10px; color:#777; font-size:13px; text-align:center; border:solid 1px #e2e2e2; display:table; -webkit-border-radius:3px; -moz-border-radius:3px; border-radius:3px;}
+.myList .checkArea dl { width:25%; border-left:solid 1px #e2e2e2; vertical-align:top; display:table-cell;}
+.myList .checkArea dl:first-child { width:50%; border-left:none;}
+.myList .checkArea dt { background:#f5f5f5; line-height:30px;}
+.myList .checkArea dd { padding:5px 0 7px 0;}
+.myList .checkArea dd.notxt { line-height:41px;}
+.myList .checkArea dd strong { color:#ff2a3b; font-size:16px;}
+.myList .onlyPC { background:#ff7e00; margin-top:10px; padding:8px 0 10px 0; color:#fff; font-size:17px; text-align:center; -webkit-border-radius:3px; -moz-border-radius:3px; border-radius:3px;}
+
+.viewTab { position:relative; background:#fff;}
+.viewTab .area { width:100%; margin:0 auto; display:table;}
+.viewTab .area li { background:#aaaaaa; width:50%; border-right:solid 1px #fff; text-align:center; display:table-cell;}
+.viewTab .area li:last-child { border-right:none;}
+.viewTab .area li a { width:100%; padding:5px 0 7px 0; color:#fff; font-size:16px; text-align:center; text-decoration:none; display:inline-block;}
+.viewTab .area li a:hover { background:#888;}
+.viewTab .area li a.show { background:#0f6caf; color:#fff;}
+
+.myLectureList { position:relative; color:#777; font-size:14px;}
+.myLectureList ul { position:relative; width:100%; border-bottom:solid 1px #e2e2e2; display:table;}
+.myLectureList ul li { padding:10px 0 12px 0; text-align:center; vertical-align:middle; display:table-cell;}
+.myLectureList ul li:nth-child(1) { width:65px;}
+.myLectureList ul li:nth-child(1) strong { color:#ff2a3b; font-size:15px;}
+.myLectureList ul li:nth-child(3) { width:62px;}
+.myLectureList .infoArea { text-align:left; font-size:13px; line-height:19px;}
+.myLectureList .infoArea .title { color:#000; font-size:17px; line-height:23px;}
+.myLectureList .btnView {}
+.myLectureList .btnView a { background:#ff7e00; width:52px; padding:6px 0; color:#fff; font-size:16px; font-weight:500; line-height:20px; text-decoration:none; display:inline-block; -webkit-border-radius:7px; -moz-border-radius:7px; border-radius:7px;}
+.myLectureList .btnView a:hover { background:#0f97af;}
+
+
+.playZone { position:relative; margin-top:15px;}
+.playZone .titleArea { position:relative; color:#777; line-height:20px;}
+.playZone .titleArea .title { border-bottom:solid 1px #e2e2e2; padding-bottom:10px; text-align:center;}
+.playZone .titleArea .subTitle { margin-top:10px;}
+.playZone .titleArea strong { color:#0f6caf; font-size:16px;}
+.playZone .clipArea { text-align:center;}
+.playZone .clipArea .clip { background:#000;}
+.playZone .clipArea .arr { position:relative; background:#0f97af; width:100%; height:42px; color:#e2e2e2; text-align:center; font-size:0; line-height:normal;}
+.playZone .clipArea .arr img { width:13px;}
+.playZone .clipArea .arr a { width:100%; padding:10px 0; display:inline-block;}
+.playZone .clipArea .arr span:nth-child(1) { position:absolute; top:0; left:0; width:42px;}
+.playZone .clipArea .arr span:nth-child(3) { position:absolute; top:0; right:0; width:42px;}
+.playZone .clipArea .arr span:nth-child(2) { font-size:14px; line-height:40px;}
+.playZone .clipArea .arr span:nth-child(2) strong { font-size:19px; color:#fff;}
+.playZone .infoArea { margin-top:15px;}
+.playZone .infoArea ul {}
+.playZone .infoArea ul li { border-bottom:solid 1px #e2e2e2; padding:15px 0;}
+.playZone .infoArea ul li:last-child { border-bottom:none; padding-bottom:0;}
+.playZone .infoArea ul li p { font-weight:500; margin-bottom:10px;}
+.playZone .infoArea ul li p span { background:#0f6caf; padding:5px 20px; color:#fff; display:inline-block; -webkit-border-radius:3px; -moz-border-radius:3px; border-radius:3px;}
+
+

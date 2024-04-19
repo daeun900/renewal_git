@@ -52,15 +52,15 @@
                 c.CategoryName AS Category1Name, c.idx AS Category1_idx, 
                 d.CategoryName AS Category2Name, d.idx AS Category2_idx, 
                 e.Name AS TutorName, 
-                (SELECT COUNT(idx) FROM Progress WHERE ID='test06' AND LectureCode=a.LectureCode AND Study_Seq=a.Seq) AS ProgressCount, 
+                (SELECT COUNT(idx) FROM Progress WHERE ID='$LoginMemberID' AND LectureCode=a.LectureCode AND Study_Seq=a.Seq) AS ProgressCount, 
                 (SELECT COUNT(idx) FROM PaymentSheet WHERE CompanyCode=a.CompanyCode AND LectureStart=a.LectureStart AND LectureEnd=a.LectureEnd AND PayStatus='Y') AS PaymentCount 
-                FROM Study AS a 
-                LEFT OUTER JOIN Course AS b ON a.LectureCode=b.LectureCode 
-                LEFT OUTER JOIN CourseCategory AS c ON b.Category1=c.idx 
-                LEFT OUTER JOIN CourseCategory AS d ON b.Category2=d.idx 
-                LEFT OUTER JOIN StaffInfo AS e ON a.Tutor=e.ID 
-                LEFT OUTER JOIN CourseCyber AS f ON a.LectureCode=f.LectureCode 
-                WHERE a.ID='$LoginMemberID' AND ((a.LectureStart <= '$NowDate' AND a.LectureEnd >= '$NowDate') AND a.StudyEnd='N') ORDER BY a.PackageRef ASC, a.PackageLevel ASC, a.InputDate DESC";	
+			FROM Study AS a 
+            LEFT OUTER JOIN Course AS b ON a.LectureCode=b.LectureCode 
+            LEFT OUTER JOIN CourseCategory AS c ON b.Category1=c.idx 
+            LEFT OUTER JOIN CourseCategory AS d ON b.Category2=d.idx 
+            LEFT OUTER JOIN StaffInfo AS e ON a.Tutor=e.ID 
+            LEFT OUTER JOIN CourseCyber AS f ON a.LectureCode=f.LectureCode 
+            WHERE a.ID='$LoginMemberID' AND ((a.LectureStart <= '$NowDate' AND a.LectureEnd >= '$NowDate') AND a.StudyEnd='N') ORDER BY a.PackageRef ASC, a.PackageLevel ASC, a.InputDate DESC";	
 //echo $SQL;
 	$QUERY = mysqli_query($connect, $SQL);
 	if($QUERY && mysqli_num_rows($QUERY)){
@@ -162,7 +162,7 @@
                 <div class="lecture_header">
                     <ul class="lecture_title">
                         <li class="left">
-                            <?=$ContentsName?>|<?=$LectureCode?><span class="btn_02 small_org ml7">PC</span> <?if($Mobile=="Y") {?><span class="btn_02 small_violet ml7">모바일</span><?}?>
+                            <?=$ContentsName?><span class="btn_02 small_org ml7">PC</span> <?if($Mobile=="Y") {?><span class="btn_02 small_violet ml7">모바일</span><?}?>
                         </li> 
 						<?if($attachFile) {?>
 						<li class="right">
@@ -289,7 +289,7 @@ if($LectureCode == "SA2024") { //인재개발원 연동
                             LEFT OUTER JOIN Contents AS b ON a.Sub_idx=b.idx 
                             LEFT OUTER JOIN Progress AS c ON a.Seq=c.Chapter_Seq AND b.idx=c.Contents_idx AND c.ID='$LoginMemberID' AND c.LectureCode='$LectureCode' AND c.Study_Seq=$Study_Seq 
                             WHERE a.LectureCode='$LectureCode' $ServiceTypeWhere ORDER BY a.OrderByNum ASC";
-							 //echo $SQL2;
+							//echo $SQL2;
 							$QUERY2 = mysqli_query($connect, $SQL2);
 							if($QUERY2 && mysqli_num_rows($QUERY2)){
 								while($ROW2 = mysqli_fetch_array($QUERY2)){
@@ -834,7 +834,7 @@ if($LectureCode == "SA2024") { //인재개발원 연동
                 
                 <div class="lecture_header">
                     <ul class="lecture_title">
-                        <li class="left"><?=$ContentsName?>|<?=$LectureCode?><span class="btn_02 small_org ml7">PC</span></span><?if($Mobile=="Y") {?><span class="btn_02 small_violet ml7">모바일</span><?}?></li>
+                        <li class="left"><?=$ContentsName?><span class="btn_02 small_org ml7">PC</span></span><?if($Mobile=="Y") {?><span class="btn_02 small_violet ml7">모바일</span><?}?></li>
                         <li class="right">
 							<?if($attachFile) {?>
 								<a href="/player/lecture_download.php?LectureCode=<?=$LectureCode?>" target="ScriptFrame"><span class="cursor">학습자료 다운로드</span></a>
