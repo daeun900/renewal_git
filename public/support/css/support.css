@@ -9,6 +9,11 @@
   margin: 0 auto;
   position: relative;
 }
+@media (max-width: 1000px) {
+  #wrap {
+    padding: 0 10px;
+  }
+}
 
 /*학습지원센터 헤더*/
 .top_header {
@@ -25,6 +30,11 @@
   margin-left: 15px;
   padding: 10px 0;
 }
+@media (max-width: 1000px) {
+  .top_header #wrap .btn a {
+    opacity: 0;
+  }
+}
 .top_header #wrap .logo {
   width: 148px;
   position: absolute;
@@ -36,11 +46,23 @@
   width: 100%;
 }
 
+/*학습지원센터 헤더*/
+@media (max-width: 1000px) {
+  .middle_header {
+    height: 134px;
+  }
+}
 .middle_header #wrap {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 20px;
+}
+@media (max-width: 1000px) {
+  .middle_header #wrap {
+    display: block;
+    padding: 10px;
+  }
 }
 .middle_header #wrap .left {
   display: flex;
@@ -59,15 +81,45 @@
   font-weight: bold;
   line-height: 60px;
 }
+@media (max-width: 1000px) {
+  .middle_header #wrap .left h1 {
+    font-size: 20px;
+  }
+}
 .middle_header #wrap .right {
   font-weight: 400;
 }
+@media (max-width: 1000px) {
+  .middle_header #wrap .right {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    border-top: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+    font-weight: 500;
+  }
+}
 .middle_header #wrap .right a {
   padding: 0 15px;
-  font-size: 17px;
 }
-.middle_header #wrap .right a:hover, .middle_header #wrap .right a.on {
-  color: #3A87EF;
+@media (max-width: 1000px) {
+  .middle_header #wrap .right a {
+    font-size: 14px;
+    padding: 10px 0px;
+    text-align: center;
+    border-bottom: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+  }
+}
+.middle_header #wrap .right a:hover,
+.middle_header #wrap .right a.on {
+  color: #3a87ef;
+}
+@media (max-width: 1000px) {
+  .middle_header #wrap .right a:hover,
+  .middle_header #wrap .right a.on {
+    background-color: aliceblue;
+    font-weight: bold;
+  }
 }
 .middle_header #wrap .right .point {
   color: #fff;
@@ -82,6 +134,11 @@
 .top_section {
   background-color: whitesmoke;
   padding: 90px 0 60px 0;
+}
+@media (max-width: 1000px) {
+  .top_section {
+    display: none;
+  }
 }
 .top_section #wrap {
   position: relative;
@@ -120,12 +177,39 @@
   font-weight: 500;
   color: #9c9c9c;
 }
+@media (max-width: 1000px) {
+  .category {
+    margin-top: 27px;
+    margin-bottom: -10px;
+    font-weight: 400;
+  }
+  .category #wrap {
+    padding: 0;
+  }
+}
 .category ul {
   display: flex;
+}
+@media (max-width: 1000px) {
+  .category ul {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
 }
 .category ul li {
   padding: 20px;
   cursor: pointer;
+}
+@media (max-width: 1000px) {
+  .category ul li {
+    font-size: 14px;
+    line-height: 18px;
+    padding: 12px 0;
+    text-align: center;
+    border-bottom: 1px solid;
+    position: relative;
+    bottom: -1px;
+  }
 }
 .category ul li.on {
   color: #333;
@@ -135,12 +219,22 @@
 .support_content {
   padding: 70px 0;
 }
+@media (max-width: 1000px) {
+  .support_content {
+    padding: 40px 0;
+  }
+}
 .support_content #wrap {
   position: relative;
 }
 .support_content #wrap .count {
   font-weight: 600;
   font-size: 20px;
+}
+@media (max-width: 1000px) {
+  .support_content #wrap .count {
+    font-size: 16px;
+  }
 }
 .support_content #wrap .count span {
   color: #fa9726;
@@ -154,6 +248,14 @@
   background-color: #2d2d2d;
   color: #fff;
   border-radius: 5px;
+}
+@media (max-width: 1000px) {
+  .support_content #wrap > button {
+    top: -7px;
+    right: 11px;
+    padding: 5px 5px;
+    line-height: 21px;
+  }
 }
 .support_content #wrap > button i {
   margin-right: 5px;
@@ -180,12 +282,22 @@
   border-top: 2px solid #2d2d2d;
   font-size: 16px;
 }
+@media (max-width: 1000px) {
+  .support_content #wrap ul {
+    font-size: 14px;
+  }
+}
 .support_content #wrap ul #ContentView {
   padding: 20px 5px;
   border-bottom: 1px solid #2d2d2d;
   cursor: pointer;
   position: relative;
   font-weight: 400;
+}
+@media (max-width: 1000px) {
+  .support_content #wrap ul #ContentView {
+    padding-right: 50px;
+  }
 }
 .support_content #wrap ul #ContentView .date {
   position: absolute;
@@ -196,6 +308,11 @@
   right: 11px;
   top: 20px;
   font-size: 22px;
+}
+@media (max-width: 1000px) {
+  .support_content #wrap ul #ContentView i {
+    font-size: 17px;
+  }
 }
 .support_content #wrap ul #ContentElement {
   padding: 20px;
@@ -263,23 +380,57 @@
 #modal01 {
   padding: 50px;
 }
+@media (max-width: 1000px) {
+  #modal01 {
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+  }
+}
 #modal01 .close-btn {
   top: 50px;
   right: 50px;
+}
+@media (max-width: 1000px) {
+  #modal01 .close-btn {
+    top: 30px;
+    right: 25px;
+  }
+  #modal01 .close-btn i {
+    font-size: 30px;
+  }
 }
 #modal01 h2 {
   font-size: 30px;
   font-weight: bold;
   line-height: 50px;
 }
+@media (max-width: 1000px) {
+  #modal01 h2 {
+    font-size: 20px;
+    line-height: 30px;
+  }
+}
 #modal01 .input_wrap {
   display: flex;
   margin-top: 30px;
+}
+@media (max-width: 1000px) {
+  #modal01 .input_wrap {
+    display: block;
+    margin-top: 20px !important;
+  }
 }
 #modal01 .input_wrap .title {
   font-size: 17px;
   padding: 10px;
   width: 136px;
+}
+@media (max-width: 1000px) {
+  #modal01 .input_wrap .title {
+    font-size: 15px;
+    padding: 10px 0;
+  }
 }
 #modal01 .input_wrap .input_box.captcha_box {
   flex-direction: row;
@@ -295,6 +446,11 @@
   display: flex;
   flex-direction: column;
   width: 650px;
+}
+@media (max-width: 1000px) {
+  #modal01 .input_wrap .input_box {
+    width: 100%;
+  }
 }
 #modal01 .input_wrap .input_box select,
 #modal01 .input_wrap .input_box input,
@@ -430,9 +586,25 @@
   justify-content: space-between;
   align-items: center;
 }
+@media (max-width: 1000px) {
+  .remote_wrap {
+    padding: 20px 0;
+    display: block;
+  }
+}
 .remote_wrap .left strong {
   font-size: 40px;
   font-weight: bold;
+}
+@media (max-width: 1000px) {
+  .remote_wrap .left strong {
+    font-size: 27px;
+  }
+}
+@media (max-width: 700px) {
+  .remote_wrap .left strong {
+    font-size: 20px;
+  }
 }
 .remote_wrap .left span {
   font-size: 20px;
@@ -440,11 +612,24 @@
   margin-top: 20px;
   display: block;
 }
+@media (max-width: 700px) {
+  .remote_wrap .left span {
+    font-size: 15px;
+    line-height: 25px;
+    margin-bottom: 20px;
+  }
+}
 
 /*공지사항,학습자료실 게시판*/
 .tableTypeA_top .title {
   font-size: 24px;
   font-weight: 600;
+}
+@media (max-width: 1000px) {
+  .tableTypeA_top .title {
+    font-size: 20px;
+    line-height: 30px;
+  }
 }
 .tableTypeA_top .title span {
   margin-right: 10px;
@@ -452,6 +637,11 @@
 .tableTypeA_top .detail {
   overflow: hidden;
   margin: 20px 0;
+}
+@media (max-width: 1000px) {
+  .tableTypeA_top .detail {
+    margin: 15px 0;
+  }
 }
 .tableTypeA_top .detail > div {
   float: left;
@@ -472,6 +662,22 @@
   margin-top: 20px;
   margin-bottom: 40px;
 }
+@media (max-width: 1000px) {
+  .tableTypeA {
+    margin-top: 14px;
+    margin-bottom: 20px;
+  }
+}
+@media (max-width: 700px) {
+  .tableTypeA .mh {
+    display: none;
+    visibility: hidden;
+    width: 0%;
+  }
+  .tableTypeA .al {
+    padding: 20px 5px;
+  }
+}
 .tableTypeA table {
   width: 100%;
   border-top: 2px solid;
@@ -479,9 +685,18 @@
 .tableTypeA table tr {
   border-bottom: 1px solid;
 }
-.tableTypeA table th, .tableTypeA table td {
+.tableTypeA table th,
+.tableTypeA table td {
   padding: 20px 0;
   text-align: center;
+}
+@media (max-width: 1000px) {
+  .tableTypeA table th {
+    padding: 15px 0;
+  }
+  .tableTypeA table td img {
+    width: 100%;
+  }
 }
 .tableTypeA table th {
   background-color: whitesmoke;
@@ -548,11 +763,34 @@
   margin-top: 80px;
   margin-bottom: 80px;
 }
+@media (max-width: 1000px) {
+  .event_con h1 {
+    font-size: 20px;
+    margin-top: 37px;
+    margin-bottom: 30px;
+  }
+}
 .event_con .content1 .table {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 30px;
   overflow: hidden;
+}
+@media (max-width: 1200px) {
+  .event_con .content1 .table {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+@media (max-width: 900px) {
+  .event_con .content1 .table {
+    grid-template-columns: 1fr 1fr;
+    text-align: center;
+  }
+}
+@media (max-width: 600px) {
+  .event_con .content1 .table {
+    grid-template-columns: 1fr;
+  }
 }
 .event_con .content1 .table > div {
   position: relative;
@@ -561,6 +799,7 @@
   width: 290px;
   height: 190px;
   overflow: hidden;
+  margin: 0 auto;
 }
 .event_con .content1 .table > div .img img {
   width: 100%;
@@ -604,6 +843,11 @@
   position: relative;
   font-weight: 400;
 }
+@media (max-width: 1000px) {
+  .event_con .content2 ul #ContentView {
+    padding: 15px 5px;
+  }
+}
 .event_con .content2 ul #ContentView .date {
   position: absolute;
   right: 50px;
@@ -614,6 +858,11 @@
   top: 20px;
   font-size: 22px;
 }
+@media (max-width: 1000px) {
+  .event_con .content2 ul #ContentView i {
+    font-size: 17px;
+  }
+}
 .event_con .content2 ul #ContentElement {
   padding: 20px;
   background-color: #f1f6f9;
@@ -623,6 +872,13 @@
 .event_con .content2 ul #ContentView.q {
   padding-left: 70px;
   position: relative;
+}
+@media (max-width: 1000px) {
+  .event_con .content2 ul #ContentView.q {
+    padding-left: 55px;
+    padding-right: 42px;
+    font-size: 14px;
+  }
 }
 .event_con .content2 ul #ContentView.q::after {
   position: absolute;
@@ -641,6 +897,12 @@
 .event_con .content2 ul #ContentElement.a {
   padding-left: 70px;
   position: relative;
+}
+@media (max-width: 1000px) {
+  .event_con .content2 ul #ContentElement.a {
+    font-size: 14px;
+    line-height: 20px;
+  }
 }
 .event_con .content2 ul #ContentElement.a::after {
   position: absolute;
@@ -680,6 +942,11 @@
 .edudata_content {
   padding: 70px 0;
 }
+@media (max-width: 1000px) {
+  .edudata_content {
+    padding: 40px 0;
+  }
+}
 .edudata_content .button_wrap {
   display: flex;
   justify-content: center;
@@ -687,19 +954,24 @@
   margin-top: 10px;
 }
 .edudata_content .button_wrap button {
-  background-color: #EBEBEB;
+  background-color: #ebebeb;
   padding: 13px 0;
   text-align: center;
   width: 187px;
   border-radius: 10px;
 }
 .edudata_content .button_wrap button.save {
-  background-color: #357AF2;
+  background-color: #357af2;
   color: #fff;
 }
 
 .edudata_top {
   position: relative;
+}
+@media (max-width: 1000px) {
+  .edudata_top {
+    display: none;
+  }
 }
 .edudata_top .search_box {
   padding-left: 40px;
@@ -709,7 +981,7 @@
   width: 550px;
 }
 .edudata_top .search_box input {
-  background-color: #F5F5F5;
+  background-color: #f5f5f5;
   width: 100%;
   border-bottom: none;
   border-radius: 25px;
