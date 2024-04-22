@@ -1,0 +1,59 @@
+<? include "../include/mypage_header.html"; ?>
+<? include "../include/login_check.php"; ?>
+<div class="mypage_content">
+    <div class="sb_box">
+        <h1>수강후기</h1>
+        <div class="navi">
+            <i class="ph-light ph-house-line"></i>&nbsp;<i class="ph ph-caret-right"></i>&nbsp;나의학습실<i class="ph ph-caret-right"></i>&nbsp;수강후기
+        </div>
+    </div>
+    <div class="content">
+        <h2>수강후기</h2>
+        <table>
+            <colgroup>
+                <col width=10%%">
+                <col width="50%">
+                <col class="mh" width="10%">
+                <col class="mh" width="10%">
+                <col class="mh" width="10%">
+                <col class="mh" width="10%">
+            </colgroup>
+            <thead>
+                <tr>
+                    <th>번호</th>
+                    <th>제목</th>
+                    <th class="mh">평점</th>
+                    <th class="mh">작성자</th>
+                    <th class="mh">작성일</th>
+                    <th class="mh">조회수</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td class="al">
+                        <a href="lecture_review_view.html">
+                            <span class="lecture_name">과정명</span>제목
+                        </a>
+                    </td>
+                    <td class="mh">   <div class="star"><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i></div></td>
+                    <td class="mh">이*재</td>
+                    <td class="mh">2024-03-26</td>
+                    <td class="mh">4</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <?=$BLOCK_LIST?>  
+    <!--content-->
+</div>
+<!--mypage_content-->
+</div>
+<!--wrap-->
+</body>
+<? include "../../common/include/footer.html"; ?>
+<script>
+    $(document).ready(function(){
+        $('.lecture_review').addClass("on");
+    });
+</script>

@@ -20,14 +20,10 @@ $chk5Email = Replace_Check($chk5Email); //마케팅동의-이메일
 $chk5Sms = Replace_Check($chk5Sms); //마케팅동의-SMS
 
 //휴대폰 본인인증을 통해 가져온 값
-//$Name = Replace_Check($Name);
-//$BirthDay = Replace_Check($BirthDay);
-//$Gender = Replace_Check($Gender);
-//$Mobile = Replace_Check($Mobile);
-$Name = "이연경";
-$BirthDay = "19940101";
-$Gender = "0";
-$Mobile = "010-2120-5387";
+$Name = Replace_Check($Name);
+$BirthDay = Replace_Check($BirthDay);
+$Gender = Replace_Check($Gender);
+$Mobile = Replace_Check($Mobile);
 
 if($Mobile) {
 	$Mobile_Arrary = explode("-",$Mobile);

@@ -79,14 +79,20 @@ include $_SERVER['DOCUMENT_ROOT'] . "/include/include_function.php"; //DB연결 
                 <i class="fa-solid fa-bars"></i>
             </a>
             <ul>
-                <li class="lecture_status depth1">
-                    <?if($UserDevice=="PC") {?>
-                    <a href="lecture_status.html">학습현황</a>
-                    <?}?>
-                    <? if($UserDevice=="Mobile") { ?>
-                    <a href="lecture.php">학습현황</a>
-                    <?}?>
+               <?if($UserDevice=="PC") {?>
+                <li class="lecture_status depth1"><a href="lecture_status.html">학습현황<span><i class="ph-bold ph-caret-down"></i></span></a>
+                    <ul style="display: none;">
+                        <li class="status01"><a href="lecture_status.html"><i>·</i>학습중인 과정</a></li>
+                        <li class="status02"><a href="lecture_status02.html"><i>·</i>복습중인 과정</a></li>
+                    </ul>
                 </li>
+                <?}?>
+                <? if($UserDevice=="Mobile") { ?>
+                <li class="lecture_status depth1">
+                    <a href="lecture.php">학습현황</a>
+                </li>
+                <?}?>
+                
                 <li class="lecture_history depth1"><a href="lecture_history.html">학습이력</a></li>
                 <!-- <li class="lecture_payment depth1"><a href="lecture_payment.html">수강신청/결제내역</a></li>  -->
 				<li class="lecture_payment depth1"><a href="lecture_payment.html">수강신청/결제내역<span><i class="ph-bold ph-caret-down"></i></span></a>
@@ -96,6 +102,7 @@ include $_SERVER['DOCUMENT_ROOT'] . "/include/include_function.php"; //DB연결 
                     </ul>
                 </li>
                 <li class="lecture_save depth1"><a href="lecture_save.html">관심강의</a></li>
+                <li class="lecture_review depth1"><a href="lecture_review.html">수강후기</a></li>
                 <li class="data depth1"><a href="edudata.html">자료관리<span><i class="ph-bold ph-caret-down"></i></span></a>
                     <ul style="display: none;">
                         <li class="edudata "><a href="edudata.html"><i>·</i>찜한 학습자료</a></li>

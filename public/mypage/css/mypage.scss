@@ -384,6 +384,7 @@
                             }
                         }
                     }
+                    td.al{padding: 15px 10px;}
                 }
             }
         }
@@ -531,6 +532,30 @@
                     }
                 }
             }
+        }
+        /*수강후기*/
+        td{
+            span.lecture_name{font-size: 14px;
+                display: block;
+                color: #888;}
+        }
+        .star {
+            i {
+                color: #d54e4e;
+                margin-right: 1px;
+            }
+        }
+        div.modify{
+            display: flex;
+            align-items: center;
+            span{width: 50px;}
+        
+        }
+        input.modify{
+            border: 1px solid #9c9c9c;
+            padding: 4px 10px;
+            border-radius: 5px;
+            width: 100%;
         }
     }
     button#load {

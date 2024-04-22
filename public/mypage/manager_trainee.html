@@ -1,5 +1,17 @@
 <? include "../include/mypage_header.html"; ?>
 <? include "../include/login_check.php"; ?>
+<?
+	if($LoginEduManager!="Y") {
+	?>
+	<script type="text/javascript">
+	<!--
+		location.href="../main/main.html";
+	//-->
+	</script>
+	<?
+	exit;
+	}
+?>
         <div class="mypage_content">
             <div class="sb_box">
                 <h1>교육담당자</h1>
@@ -11,9 +23,11 @@
                 <h2>자사수강생 리스트</h2>
                 <ul class="studentlst">
                     <select name="SearchYear" id="SearchYear" style="width: 150px;margin-bottom: -28px;">
-                        <option value="">년도 검색</option>
-                        <option value="<?=$i?>"><?=$i?>년</option>
-                       </select>
+						<option value="">년도 검색</option>
+						<?for($i=2018;$i<=date("Y");$i++) { ?>
+						<option value="<?=$i?>"><?=$i?>년</option>
+						<?}?>
+					</select>
                     <!-- List -->
                     <li>
                         <!-- info list -->
@@ -50,6 +64,9 @@
                             </tbody>
                         </table>
                         <!-- info list // -->
+                        
+                        
+                        
                     </li>
                     <!-- List // -->
                                 

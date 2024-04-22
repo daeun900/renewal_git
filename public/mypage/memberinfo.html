@@ -217,8 +217,8 @@ function ZipcodeFind() {
                             <input type="checkbox" name="Marketing" id="Marketing" value="Y" <? if($Marketing=="Y"){?> checked <? } ?>>
                             <label for="Marketing">마케팅 수신에 동의합니다.</label>
                             <div class="input_wrap ml20">
-                                <input type="checkbox" name="chk5Email" id="chk5Email" class="chk2" onclick="JoinAgreeCheckA()"<? if($Marketing=="Y"){?> checked <? } ?>><label class="ml10" for="chk5Email">이메일</label>
-                                <input type="checkbox" name="chk5Sms" id="chk5Sms" class="chk2 ml10" onclick="JoinAgreeCheckA()"<? if($Marketing=="Y"){?> checked <? } ?>><label class="ml10" for="chk5Sms">SMS</label>
+                                <input type="checkbox" name="chk5Email" id="chk5Email" class="chk2" value="Y" onclick="JoinAgreeCheckA()"<? if($Marketing=="Y" || $Marketing=="E"){?> checked <? } ?>><label class="ml10" for="chk5Email">이메일</label>
+                                <input type="checkbox" name="chk5Sms" id="chk5Sms" class="chk2 ml10" value="Y" onclick="JoinAgreeCheckA()"<? if($Marketing=="Y" || $Marketing=="S"){?> checked <? } ?>><label class="ml10" for="chk5Sms">SMS</label>
                             </div>
                         </div>
                     </div>                                                                                                  

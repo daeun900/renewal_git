@@ -294,6 +294,7 @@
   padding-bottom: 70px;
   position: relative;
   /*관심강의*/
+  /*수강후기*/
 }
 .mypage_content > .content h2 {
   border-top: 2px solid;
@@ -434,6 +435,9 @@
   .mypage_content > .content table tbody tr td img {
     width: 22px;
   }
+}
+.mypage_content > .content table tbody tr td.al {
+  padding: 15px 10px;
 }
 .mypage_content > .content .top_button {
   display: flex;
@@ -577,6 +581,28 @@
 .mypage_content > .content ul.saved_lecture_list .right .bottom button.enrolment i {
   font-size: 14px;
   margin-left: 4px;
+}
+.mypage_content > .content td span.lecture_name {
+  font-size: 14px;
+  display: block;
+  color: #888;
+}
+.mypage_content > .content .star i {
+  color: #d54e4e;
+  margin-right: 1px;
+}
+.mypage_content > .content div.modify {
+  display: flex;
+  align-items: center;
+}
+.mypage_content > .content div.modify span {
+  width: 50px;
+}
+.mypage_content > .content input.modify {
+  border: 1px solid #9c9c9c;
+  padding: 4px 10px;
+  border-radius: 5px;
+  width: 100%;
 }
 .mypage_content button#load {
   width: 100%;

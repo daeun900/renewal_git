@@ -352,7 +352,7 @@ function JoinAgreeCheckA() {
 
 //이용약관
 function JoinAgree01Check(str) {
-	if (str == 'A') {
+	if (str == 'A') { 
 		$('#Agree01_02').prop('checked', false);
 	}
 	if (str == 'B') {
@@ -3606,7 +3606,7 @@ function PassFirstChange(ID) {
 		})
 		.show();
 
-	$('#DataResult').load('/mypage/pass_first_change.php', { ID: ID }, function () {
+	$('#DataResult').load('/public/mypage/pass_first_change.php', { ID: ID }, function () {
 		$("div[id='Roading']").hide();
 
 		$('html, body').animate({ scrollTop: 200 }, 500);

@@ -1,0 +1,75 @@
+<? 
+include "../include/mypage_header.html";
+include "../include/login_check.php";
+?>
+<div class="mypage_content">
+    <div class="sb_box">
+        <h1>수강후기</h1>
+        <div class="navi">
+            <i class="ph-light ph-house-line"></i>&nbsp;<i class="ph ph-caret-right"></i>&nbsp;나의학습실<i class="ph ph-caret-right"></i>&nbsp;수강후기
+        </div>
+    </div>
+    <div class="content">
+        <div class="tableTypeA_top">
+            <div class="title">
+                후기 제목
+            </div>
+            <div class="detail">
+                <div class="date">
+                    <span>등록일</span>
+                    2024-04-11
+                </div>
+                <div class="date">
+                    <span>수정일</span>
+                    2024-04-11
+                </div>
+                <div class="bar"></div>
+                <div class="view">
+                    <span>조회</span>
+                    4
+                </div>
+            </div>
+        </div>
+        <div class="tableTypeA">
+            <table>
+                <colgroup>
+                    <col width="100px">
+                    <col width="">
+                    <col width="100px">
+                    <col width="">
+                </colgroup>
+                <tr>
+                    <th>수강과목</th>
+                    <td class="al">과목명</td>
+                    <th>평점</th>
+                    <td class="al"> <div class="star"><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i></div></td>
+                </tr>
+                <tr>
+                    <td colspan="4" class="content">
+                        후기 내용
+                    </td>
+                </tr>
+                <tr>
+                    <th>댓글</th>
+                    <td colspan="3" class="al">후기 댓글</td>
+                </tr>
+            </table>
+        </div>
+        <div class="button_wrap">
+            <button>삭제</button>
+            <button onclick="location.href='lecture_review_modify.html'">수정</button>
+            <button onclick="history.back();">목록</button>
+        </div>
+    </div>
+    <!--content-->
+</div>
+<!--mypage_content-->
+</div>
+<!--wrap-->
+</body>
+<? include "../../common/include/footer.html"; ?>
+<script>
+    $(document).ready(function(){
+        $('.lecture_review').addClass("on");
+    });
+</script>

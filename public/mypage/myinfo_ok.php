@@ -53,8 +53,14 @@ if(!$Mailling) {
 	$Mailling = "N";
 }
 
-if(!$Marketing) {
-	$Marketing = "N";
+if($Marketing == "Y") {
+	$Marketing = "Y";
+}else{
+    if($chk5Email == "Y"){
+        $Marketing = "E";
+    }else if($chk5Sms == "Y"){
+        $Marketing = "S";
+    }
 }
 
 $CardNumber = $CardNumber01."-".$CardNumber02."-".$CardNumber03."-".$CardNumber04;
