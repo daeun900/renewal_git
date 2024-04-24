@@ -135,10 +135,11 @@ if($BookImage){
                             <td>
                                 <strong><?=$ContentsName?></strong>
                                 <button onclick="javascript:history.back();">새창<i class="ph-fill ph-caret-right"></i></button><br>
-                                <select name="applyType" id="applyType">
+                                <select name="applyType" id="applyType" onchange="ApplyTypeChange(this.value)">
                                     <option value="A">국민내일배움카드(재직자) / <?=$LectureStart?></option>
                                     <option value="B">일반(수시) / <?=$LectureStart?></option>
                                     <option value="C">고용보험환급 / <?=$LectureStart?></option>
+                                    <option value="D">평생교육바우처</option>
                                 </select>
                                 <span class="fc999">
                                     * 선택된 지원유형: <?=$supportTypeVal?> <br>
@@ -201,104 +202,227 @@ if($BookImage){
             </div>
              -->
             <!--//결제정보-->
+            <!--TypeA-->
             <!--결제방법-->
-            <div class="con pay_method">
-                <div class="title">결제방법</div>
-                <div class="content">
-                    <span class="subtitle">결제수단선택</span> 
-                    <input type="radio" name="" id=""><label for="">신용카드 </label> 
-                    <span class="fcred ml40">*자비부담금은 반드시 발급받으신 내일배움카드(NH/신한)로만 결제하셔야 합니다.</span>
-                </div>
-            </div>
-            <!--//결제방법-->
-            <!--재직자확인-->
-            <div class="con confirm">
-                <div class="title">재직자확인</div>
-                <div class="content">
-                    <span class="subtitle">대상자확인</span> 
-                    <input type="radio" name="" id=""><label for="">개강일 기준 재직자, 자영업자, 특수고용직에 해당됩니다.</label> 
-                </div>
-                <div class="content pt25 pb25">
-                    <span class="fcred">
-                        *교육진행 중 실업자로 확인될 경우 교육이 취소되며 환불이 불가합니다. <br>
-                        *자영업자는 홈택스 기준으로 사업자 등록이 되신 분만 가능합니다. <br>
-                        *특수고용근로자는 산재보험 가입이력 또는 재직증명서 등의 증빙이 가능하여야 합니다.</span>
-                </div>
-            </div>
-            <!--//재직자확인-->
-            <!--안내사항-->
-            <div class="con notice">
-                <div class="title">안내사항</div>
-                <div class="content">
-                    <span>본 과정은 국민 평생 직업능력 개발훈련 지원규정 개정으로 인해 추후 지원내용이 변경될 수 있습니다.</span>
-                </div>
-                <div class="content grid_box">
-                    <div class="left">
-                        <div>
-                            1. 본인인증 절차 필수 진행
-                            <p>정부지원 과정의 경우 과목별 최초 수강 진행 시 본인인증(휴대폰 또는 아이핀)이 필수 항목이며, 본인인증이 불가능 할 경우 학습 진행이 불가합니다.</p>
-                            <p>휴대폰 인증의 경우 본인명의 휴대폰으로만 인증가능하며 해외 근무자는 로밍 이용자에 한하여 인증 가능합니다.</p>
-                        </div>
-                        <div>2. 수료기준 <br>정부지원 과정은 훈련과정의 학습시간 변경, 평가, 과제 등 수료기준의 변경이 불가하오니 신청 과정의 수료기준을 반드시 확인하시고 신청하시기 바랍니다.</div>
-                        <div>
-                            3. 결제 및 수강취소 유의사항
-                            <p>본인 명의로 발급받은 국민내일배움카드(NH/신한)로 결제하셔야 합니다.</p>
-                            <p>수강취소는 학습시작일 전 일 까지만 가능합니다.</p>
-                        </div>
-                        <div>
-                            4. 국민내일배움카드 계좌 잔액의 차감
-                            <table class="mt10">
-                                <colgroup>
-                                    <col>
-                                    <col width="60px">
-                                    <col width="140px">
-                                </colgroup>
-                                <tr>
-                                    <th colspan="2">구분</th>
-                                    <th>차감액</th>
-                                </tr>
-                                <tr>
-                                    <td rowspan="3">1. 질병ㆍ사고, 훈련기관 사정, 천재지변 등  <br>불가피한 사유 없이 중도에  훈련 수강을 그만둔 경우</td>
-                                    <td>1회</td>
-                                    <td>20만 원</td>
-                                </tr>
-                                <tr>
-                                    <td>2회</td>
-                                    <td>50만 원</td>
-                                </tr>
-                                <tr>
-                                    <td>3회 이상</td>
-                                    <td>100만 원</td>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="right">
-                        <div>5. 국민내일배움카드 수강신청 시 유의사항 <br>소득세법 제59조의4, 국민 평생 직업능력 개발법 제2조에 따라 HRDe의 교육비 자부담금은 교육비 항목으로 공제 불가합니다.</div>
-                        <div>
-                            6. 개인정보 수집 및 제3자 제공에 관한 동의
-                            <p>제공받는자 : 한국산업인력공단, 고용노동부</p>
-                            <p>이용목적 : 국민내일배움카드 훈련과정, 사업주 훈련 교육과정에 대한 고용노동부 행정지원시스템 수강정보 등록, 수강생 모니터링, 부정수급 방지, 훈련품질 향상을 위한 설문조사, 훈련수강과 관련된 사실관계 확인</p>
-                            <p>제공항목 : 이름, 생년월일, 성별, 로그인ID, 비밀번호, 자택 전화번호, 자택 주소, 휴대전화번호, 이메일, 회사명, 사업자등록번호, 회사주소, 우편물 수신주소, 서비스 이용기록, 접속로그, 쿠키, 접속IP, 학습이력정보, 결제 카드사, 결제 카드 앞/뒤 4자리 등</p>
-                            <p>보유 및 이용기간 : 수집 후 3년, 자료분석 후 5년</p>
-                        </div>
+            <div id="TypeA">
+                <div class="con pay_method">
+                    <div class="title">결제방법</div>
+                    <div class="content">
+                        <span class="subtitle">결제수단선택</span> 
+                        <input type="radio" name="" id=""><label for="">신용카드 </label> 
+                        <span class="fcred ml40">*자비부담금은 반드시 발급받으신 내일배움카드(NH/신한)로만 결제하셔야 합니다.</span>
                     </div>
                 </div>
-                <div class="agree">
-                    <input type="checkbox" name="" id="">
-                    <label for="">미수료, 수강포기 등 중도탈락에 따른 국민내일배움카드 잔액 차감에 대한 기준을 확인하였음을 동의합니다. </label>
+                <!--//결제방법-->
+                <!--재직자확인-->
+                <div class="con confirm">
+                    <div class="title">재직자확인</div>
+                    <div class="content">
+                        <span class="subtitle">대상자확인</span> 
+                        <input type="radio" name="" id=""><label for="">개강일 기준 재직자, 자영업자, 특수고용직에 해당됩니다.</label>
+                    </div>
+                    <div class="content pt25 pb25">
+                        <span class="fcred">
+                            *교육진행 중 실업자로 확인될 경우 교육이 취소되며 환불이 불가합니다. <br>
+                            *자영업자는 홈택스 기준으로 사업자 등록이 되신 분만 가능합니다. <br>
+                            *특수고용근로자는 산재보험 가입이력 또는 재직증명서 등의 증빙이 가능하여야 합니다.</span>
+                    </div>
                 </div>
-                <div class="agree">
-                    <input type="checkbox" name="" id="">
-                    <label for="">상기 내용을 정확히 숙지하고 이에 동의합니다. </label>
+                <!--//재직자확인-->
+                <!--안내사항-->
+                <div class="con notice">
+                    <div class="title">안내사항</div>
+                    <div class="content">
+                        <span>본 과정은 국민 평생 직업능력 개발훈련 지원규정 개정으로 인해 추후 지원내용이 변경될 수 있습니다.</span>
+                    </div>
+                    <div class="content grid_box">
+                        <div class="left">
+                            <div>
+                                1. 본인인증 절차 필수 진행
+                                <p>정부지원 과정의 경우 과목별 최초 수강 진행 시 본인인증(휴대폰 또는 아이핀)이 필수 항목이며, 본인인증이 불가능 할 경우 학습 진행이 불가합니다.</p>
+                                <p>휴대폰 인증의 경우 본인명의 휴대폰으로만 인증가능하며 해외 근무자는 로밍 이용자에 한하여 인증 가능합니다.</p>
+                            </div>
+                            <div>2. 수료기준 <br>정부지원 과정은 훈련과정의 학습시간 변경, 평가, 과제 등 수료기준의 변경이 불가하오니 신청 과정의 수료기준을 반드시 확인하시고 신청하시기 바랍니다.</div>
+                            <div>
+                                3. 결제 및 수강취소 유의사항
+                                <p>본인 명의로 발급받은 국민내일배움카드(NH/신한)로 결제하셔야 합니다.</p>
+                                <p>수강취소는 학습시작일 전 일 까지만 가능합니다.</p>
+                            </div>
+                            <div>
+                                4. 국민내일배움카드 계좌 잔액의 차감
+                                <table class="mt10">
+                                    <colgroup>
+                                        <col>
+                                        <col width="60px">
+                                        <col width="140px">
+                                    </colgroup>
+                                    <tr>
+                                        <th colspan="2">구분</th>
+                                        <th>차감액</th>
+                                    </tr>
+                                    <tr>
+                                        <td rowspan="3">1. 질병ㆍ사고, 훈련기관 사정, 천재지변 등  <br>불가피한 사유 없이 중도에  훈련 수강을 그만둔 경우</td>
+                                        <td>1회</td>
+                                        <td>20만 원</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2회</td>
+                                        <td>50만 원</td>
+                                    </tr>
+                                    <tr>
+                                        <td>3회 이상</td>
+                                        <td>100만 원</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="right">
+                            <div>5. 국민내일배움카드 수강신청 시 유의사항 <br>소득세법 제59조의4, 국민 평생 직업능력 개발법 제2조에 따라 HRDe의 교육비 자부담금은 교육비 항목으로 공제 불가합니다.</div>
+                            <div>
+                                6. 개인정보 수집 및 제3자 제공에 관한 동의
+                                <p>제공받는자 : 한국산업인력공단, 고용노동부</p>
+                                <p>이용목적 : 국민내일배움카드 훈련과정, 사업주 훈련 교육과정에 대한 고용노동부 행정지원시스템 수강정보 등록, 수강생 모니터링, 부정수급 방지, 훈련품질 향상을 위한 설문조사, 훈련수강과 관련된 사실관계 확인</p>
+                                <p>제공항목 : 이름, 생년월일, 성별, 로그인ID, 비밀번호, 자택 전화번호, 자택 주소, 휴대전화번호, 이메일, 회사명, 사업자등록번호, 회사주소, 우편물 수신주소, 서비스 이용기록, 접속로그, 쿠키, 접속IP, 학습이력정보, 결제 카드사, 결제 카드 앞/뒤 4자리 등</p>
+                                <p>보유 및 이용기간 : 수집 후 3년, 자료분석 후 5년</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="agree">
+                        <input type="checkbox" name="" id="">
+                        <label for="">미수료, 수강포기 등 중도탈락에 따른 국민내일배움카드 잔액 차감에 대한 기준을 확인하였음을 동의합니다. </label>
+                    </div>
+                    <div class="agree">
+                        <input type="checkbox" name="" id="">
+                        <label for="">상기 내용을 정확히 숙지하고 이에 동의합니다. </label>
+                    </div>
                 </div>
+                <!--//안내사항-->
             </div>
-            <!--//안내사항-->
+            <!--TypeA-->
+            <!--TypeD-->
+            <div id="TypeD" style="display: none;">
+                <div class="con pay_method">
+                    <div class="title">결제방법</div>
+                    <div class="content">
+                        <span class="subtitle">결제수단선택</span> 
+                        <input type="radio" name="" id=""><label for="">평생교육바우처</label> 
+                        <span class="fcred ml40">*평생교육바우처로 결제하지 않을 시 자동 취소 처리 됩니다.</span>
+                    </div>
+                </div>
+                <!--//결제방법-->
+                <!--재직자확인-->
+                <div class="con confirm">
+                    <div class="title">재직자확인</div>
+                    <div class="content">
+                        <span class="subtitle">대상자확인</span> 
+                        <input type="radio" name="" id=""><label for="">개강일 기준 평생교육바우처 이용자에 해당됩니다.</label>
+                    </div>
+                </div>
+                <!--//재직자확인-->
+                <!--안내사항-->
+                <div class="con notice">
+                    <div class="title">안내사항</div>
+                    <div class="content">
+                        <span>본 과정은 국민 평생 직업능력 개발훈련 지원규정 개정으로 인해 추후 지원내용이 변경될 수 있습니다.</span>
+                    </div>
+                    <div class="content grid_box">
+                        <div class="left">
+                            <div>
+                                <b>1. 평생교육바우처 유의사항</b><br>
+                                <p>평생교육바우처카드는 이용자 본인만 사용 가능합니다.(본인을 제외한 가족도 사용 불가)</p>
+                                <p>평생교육바우처 이용자 선정 후, 2개월 이내 카드를 발급하여야 합니다.(평생교육바우처 이용자 선정결과 통과일로부터 2개월 동안 평생교육바우처 카드를 미발급 시 이용자격 박탈)</p>
+                                <p>평생교육희망카드로 결제하지 않을 시 자동 취소 처리됩니다.</p>
+                                <p>평생교육바우처 카드 발급 이후 별도 공지일까지 사용가능합니다.
+                                    (이 기간동안 사용하지 않은 금액은 자동 소멸되며, 다음 년도 이월이나 현금 인출 불가)</p>
+                                <p>결제 전 평생교육바우처 사용 유효기간 및 잔액을 확인 부탁드립니다.</p>
+                                <p>수강료가 35만원을 넘을 경우, 초과 비용에 대해서는 본인부담합니다.</p>
+                                <p>평생교육희망카드는 간편결제(PAYCO, 삼성페이 등)가 불가합니다.</p>
+                                <p>평생교육바우처 35만원 미사용시 다음 연도 이용에 제한을 받으실 수 있습니다.</p>
+                                <p>평생교육바우처카드로 결제한 강좌의 80%이상 수강 시 다음연도 대상자 선발 시 가산점을 받을 수 있습니다.</p>
+                            </div>
+                            <div>
+                                <b>2. 평생교육바우처 수강취소</b><br>
+                                <p>평생교육희망카드로 결제하지 않을 시 자동 취소 처리됩니다.</p>
+                                <p>수강취소는 학습시작 당일까지 가능하며, 학습취소는 고객센터로 접수바랍니다.</p>
+                                <p>평생교육바우처카드 잔액 부족일 경우 (수강료가 35만원을 넘을 경우, 초과 비용에 대해서는 본인부담 가능)</p>
+                                <p>평생교육바우처카드 유효기간 만료의 경우</p>
+                                <p>평생교육바우처 부분취소 불가</p>
+                            </div>
+                        </div>
+                        <div class="right">
+                            <div>
+                                <b>3.환불규정</b><br>
+                                교육비 환불 요청 시 평생교육법 시행령 학습비 반환기준에 따라 환불이 진행됩니다.
+                                <table class="mt10">
+                                    <colgroup>
+                                        <col width="33.3%">
+                                        <col width="33.3%">
+                                        <col width="33.3%">
+                                    </colgroup>
+                                    <tr>
+                                        <th>구분</th>
+                                        <th>반환사유 발생일</th>
+                                        <th>반환금액</th>
+                                    </tr>
+                                    <tr>
+                                        <td>1. 법 제28조 제4항 제1호 및 제2호에 따른 반환사유의 경우</td>
+                                        <td>수업을 할 수 없거나, 수업장소를 제공할 수 없게 된 날</td>
+                                        <td>이미 낸 학습비를 일 단위로 계산한 금액</td>
+                                    </tr>
+                                    <tr>
+                                        <td rowspan="4">2.법 제28조 제4항 제3호에 따른 반환사유의 경우</td>
+                                        <td>1) 학습기간 시작 전</td>
+                                        <td>이미 낸 학습비 전액</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2) 진도율 0%~33%</td>
+                                        <td>이미 낸 학습비의 2/3에 해당하는 금액</td>
+                                    </tr>
+                                    <tr>
+                                        <td>3) 진도율 34%~50%</td>
+                                        <td>이미 낸 학습비의 1/2에 해당하는 금액</td>
+                                    </tr>
+                                    <tr>
+                                        <td>4) 진도율 51% 이상</td>
+                                        <td>반환하지 아니함</td>
+                                    </tr>
+                                </table>
+                                <span class="fcred">* 학습기간(=교육기간)이 종료된 이후에는 환불이 불가합니다. <br>
+                                                    * 교재는 환불되지 않습니다. </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="agree">
+                        <input type="checkbox" name="" id="">
+                        <label for="">미수료, 수강포기 등 중도탈락에 따른 평생바우처 잔액 차감에 대한 기준을 확인하였음을 동의합니다. </label>
+                    </div>
+                    <div class="agree">
+                        <input type="checkbox" name="" id="">
+                        <label for="">상기 내용을 정확히 숙지하고 이에 동의합니다. </label>
+                    </div>
+                </div>
+                <!--//안내사항-->
+            </div>
+            <!--TypeD-->
         </div>
-     
     </div>
 </body>
 <? include "../include/footer.html"; ?>
+
+
+    <!--신청유형 선택에 따라 show/hide -->
+<script>
+    function ApplyTypeChange(str) {	
+        if (str == 'D') {
+            $("#TypeA").hide();
+            $("#TypeD").show();
+        }else{
+            $("#TypeD").hide();
+            $("#TypeA").show();
+        }
+    }
+    </script>
+
 
 <!-- 지식쿠폰 팝업 -->
 <script>
