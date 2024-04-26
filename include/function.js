@@ -4,19 +4,17 @@ if (location.protocol == 'http:') {
 	//location.href = location.href.replace('http://', 'https://');
 }
 
-if (location.hostname == 'hrdeedu.com') {
- 	//location.href = location.href.replace(location.hostname, 'www.hrdeedu.com');
+if (location.hostname == 'new.hrdeedu.com') {
+ 	//location.href = location.href.replace(location.hostname, 'hrdelms.com');
 }
-
-if (location.hostname == 'tutor.hrdeedu.com') {
- 	location.href = 'https://tutor.hrdeedu.com/hrd_manager/';
+/*
+if (location.hostname == 'tutor.hrdelms.com') {
+ 	location.href = 'https://tutor.hrdelms.com/hrd_manager/';
 }
-
- 
-if(location.hostname == "manager.hrdeedu.com")
-{
-	location.href = "https://manager.hrdeedu.com/hrd_manager/";
+if(location.hostname == "manager.hrdelms.com"){
+	location.href = "https://manager.hrdelms.com/hrd_manager/";
 }
+*/
  
 
 //사이트 로딩시 실행되는 함수들--------
@@ -2685,75 +2683,46 @@ function ExamTempSave() {
 	);
 }
 
-//설문조사 참여
-function SurveyStart(Study_Seq, LectureCode) {
-	//로그아웃 시간 초기화
-	$('#NowTime').val('0');
-
-	var currentWidth = $(window).width();
-	var LocWidth = currentWidth / 2;
-	var body_width = screen.width - 20;
-	var body_height = $('html body').height() + 2000;
-
-	$("div[id='SysBg_Black']")
-		.css({
-			width: body_width,
-			height: body_height,
-			opacity: '0.4',
-			position: 'absolute',
-			'z-index': '99',
-		})
-		.show();
-
-	$("div[id='Roading']")
-		.css({
-			top: '350px',
-			left: LocWidth,
-			opacity: '0.6',
-			position: 'absolute',
-			'z-index': '200',
-		})
-		.show();
-
-	$('#DataResult').load('/player/survey_take.php', { Study_Seq: Study_Seq, LectureCode: LectureCode }, function () {
-		$("div[id='Roading']").hide();
-
-		$('html, body').animate({ scrollTop: 0 }, 200);
-		$("div[id='DataResult']")
-			.css({
-				top: '50px',
-				left: body_width / 2 - 250,
-				opacity: '1.0',
-				position: 'absolute',
-				'z-index': '1000',
-			})
-			.show();
-
-		//$('html').css("overflow","hidden");
-	});
-}
-
-//설문문항 체크
+//설문/후기 등록
 function SurveyValueCheck() {
-	var ExamA_count = $('#ATypeEA').val(); //객관식문항수
-	var ExamB_count = $('#BTypeEA').val(); //주관식 문항수
+	var ServiceType = $("#ServiceType").val(); //환급여부(4:근로자훈련)
+	var ExamA_count = $('#ATypeEA').val(); //설문 문항수
 
+	var survey1 = $('input[name=survey1]').is(":checked");
+		
+	if(ServiceType == '4'){
+		var survey1Val = $('input[name=survey1]:checked').val();
+		
+		if(!survey1){
+			alert('별점을 선택해주세요.');
+			return;
+		}
+		if($('#title').val() == ''){
+			alert('제목을 입력하세요.');
+			$('#title').focus();
+			return;
+		}
+		if($('#content').val() == ''){
+			alert('내용을 입력하세요.');
+			$('#content').focus();
+			return;
+		}
+		
+		$('#ReviewVal').val(survey1Val);
+	}
+	
 	var ExamA_idx_value = '';
-	var ExamB_idx_value = '';
 	var ExamA_answer = '';
-	var ExamB_answer = '';
-
+	
 	var checked_value = '';
 	var input_value = '';
 
 	k = 1;
 	for (i = 1; i <= ExamA_count; i++) {
-		//객관식 문항 체크
-
+		//설문 문항 체크
 		checked_value = $(":radio[name='AQ" + i + "']:checked").val();
-
 		if (checked_value == undefined) {
-			alert(k + '번 설문을 확인하세요.');
+			alert(k + '번째 설문을 확인하세요.');
 			return;
 		} else {
 			if (ExamA_idx_value == '') {
@@ -2764,42 +2733,15 @@ function SurveyValueCheck() {
 				ExamA_answer = ExamA_answer + '|' + checked_value;
 			}
 		}
-
 		k++;
 	}
-
-	for (i = 1; i <= ExamB_count; i++) {
-		//주관식 문항 체크
-
-		input_value = $("textarea[name='BQ" + i + "']").val();
-
-		if (input_value == '') {
-			alert(k + '번 설문을 확인하세요.');
-			return;
-		} else {
-			if (ExamB_idx_value == '') {
-				ExamB_idx_value = $("input[id='ExamB_idx']:eq(" + (i - 1) + ')').val();
-				ExamB_answer = input_value;
-			} else {
-				ExamB_idx_value = ExamB_idx_value + '|' + $("input[id='ExamB_idx']:eq(" + (i - 1) + ')').val();
-				ExamB_answer = ExamB_answer + '|' + input_value;
-			}
-		}
-
-		k++;
-	}
-
+	
 	$('#ExamA_idx_value').val(ExamA_idx_value);
-	$('#ExamB_idx_value').val(ExamB_idx_value);
 	$('#ExamA_answer').val(ExamA_answer);
-	$('#ExamB_answer').val(ExamB_answer);
 
 	Yes = confirm('작성한 설문을 제출 하시겠습니까?');
 	if (Yes == true) {
-		$('#SurveyBtn01').hide();
-		$('#SurveyBtn02').show();
-
-		SurveyForm1.submit();
+		SurveyForm.submit();
 	}
 }
 
@@ -3023,7 +2965,7 @@ function PayMentOpen_LG(pay_idx, CompanyCode) {
 		})
 		.show();
 
-	$('#DataResult').load('/mypage/pay_request_lg.php', { pay_idx: pay_idx, CompanyCode: CompanyCode }, function () {
+	$('#DataResult').load('/public/mypage/pay_request_lg.php', { pay_idx: pay_idx, CompanyCode: CompanyCode }, function () {
 		$("div[id='Roading']").hide();
 
 		$('html, body').animate({ scrollTop: 0 }, 500);
@@ -3048,7 +2990,7 @@ function ManagerCourseCheck(LectureStart, LectureEnd, LectureCode) {
 	//로그아웃 시간 초기화
 	$('#NowTime').val('0');
 
-	var url = '/mypage/manager_trainee_list.php?LectureStart=' + LectureStart + '&LectureEnd=' + LectureEnd + '&LectureCode=' + LectureCode;
+	var url = '/public/mypage/manager_trainee_list.php?LectureStart=' + LectureStart + '&LectureEnd=' + LectureEnd + '&LectureCode=' + LectureCode;
 	window.open(url, 'manager_check', 'scrollbars=yes, resizable=no, top=0, left=0, width=' + currentWidth + ', height=' + currentHeight);
 }
 
@@ -3576,7 +3518,7 @@ function MultiPlayerExamType02Result() {
 }
 
 function PayResult(pay_idx, CompanyCode) {
-	var url = '/mypage/payment_result.php?pay_idx=' + pay_idx + '&CompanyCode=' + CompanyCode;
+	var url = '/public/mypage/payment_result.php?pay_idx=' + pay_idx + '&CompanyCode=' + CompanyCode;
 	window.open(url, 'result', 'scrollbars=no, resizable=no, left=400, width=550, height=600');
 }
 
@@ -3745,6 +3687,7 @@ function PayMentOpen2_LG(pay_idx, ID) {
 	});
 }
 
+//간편문의
 function SimpleAsk() {
 	var currentWidth = $(window).width();
 	var LocWidth = currentWidth / 2;
@@ -4087,7 +4030,7 @@ function CertificatePrintMulti(CompanyCode, LectureStart, LectureEnd, LectureCod
 	}
 
 	var url =
-		'/mypage/certificate_pdf02.php?CompanyCode=' +
+		'/public/mypage/certificate_pdf02.php?CompanyCode=' +
 		CompanyCode +
 		'&LectureStart=' +
 		LectureStart +
@@ -4111,4 +4054,36 @@ function CertMethodView(str) {
 		$('#IPINCert').show();
 		$('html, body').animate({ scrollTop: 700 }, 500);
 	}
+}
+
+//메인화면 수강후기 - 상세페이지
+function SurveyPop(idx) {
+	var currentWidth = $(window).width();
+	var LocWidth = currentWidth / 2;
+	var body_width = screen.width - 20;
+	var body_height = $('html body').height() + 500;
+	var ScrollPosition = $(window).scrollTop() + 200;
+
+	$("div[id='SysBg_Black']")
+		.css({
+			width: body_width,
+			height: body_height,
+			opacity: '0.4',
+			position: 'absolute',
+			'z-index': '999',
+		})
+		.show();
+
+	$('#DataResult').load('/cyber/main/survey_pop.php', { t: '1', idx:idx }, function () {
+		$("div[id='DataResult']")
+			.css({
+				top: ScrollPosition,
+				left: body_width / 2 - 310,
+				opacity: '1.0',
+				position: 'absolute',
+				'z-index': '1000',
+			})
+			.show();
+		$('html').css('overflow', 'hidden');
+	});
 }

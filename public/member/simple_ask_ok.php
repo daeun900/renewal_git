@@ -54,7 +54,7 @@ $Phone = $Phone01."-".$Phone02."-".$Phone03;
 $Phone_enc = "HEX(AES_ENCRYPT('$Phone','$DB_Enc_Key'))";
 $Email_enc = "HEX(AES_ENCRYPT('$Email','$DB_Enc_Key'))";
 
-$Sql = "INSERT INTO NewSimpleAsk(ID, Name, Phone, Email, Contents, Status, RegDate, Del) 
+$Sql = "INSERT INTO SimpleAsk(ID, Name, Phone, Email, Contents, Status, RegDate, Del) 
 			VALUES('$ID', '$Name', $Phone_enc, $Email_enc, '$Contents', 'A', NOW(), 'N')";
 //echo $Sql;
 $Row = mysqli_query($connect, $Sql);

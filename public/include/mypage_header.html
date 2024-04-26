@@ -26,7 +26,7 @@ include $_SERVER['DOCUMENT_ROOT'] . "/include/include_function.php"; //DB연결 
         <!--wrap-->
         <div id="wrap">
             <div class="logo" >
-            <?if($_SESSION["SiteCode"] == "B"){?>
+            <?if($_SESSION["MainCode"] == "B"){?>
             	<a href="/cyber/main/main.html">
             <?}else{?>
             	<a href="/hrdedu/main/main.html">
@@ -109,13 +109,15 @@ include $_SERVER['DOCUMENT_ROOT'] . "/include/include_function.php"; //DB연결 
                         <li class="discuss"><a href="discussion.html"><i>·</i>토론방</a></li>
                     </ul>
                 </li>
-                <li class="manager depth1"><a href="manager_trainee.html">교육담당자<span><i class="ph-bold ph-caret-down"></i></span></a>
-                    <ul style="display: none;">
-                        <li class="trainee"><a href="manager_trainee.html"><i>·</i>자사수강생 리스트</a></li>
-                        <li class="payment"><a href="manager_payment.html"><i>·</i>자부담금 관리</a></li>
-                        <li class="complete"><a href="manager_complete.html"><i>·</i>수료 관리</a></li>
-                    </ul>
-				</li>
+                <?if($LoginEduManager=="Y") {?>
+	                <li class="manager depth1"><a href="manager_trainee.html">교육담당자<span><i class="ph-bold ph-caret-down"></i></span></a>
+	                    <ul style="display: none;">
+	                        <li class="trainee"><a href="manager_trainee.html"><i>·</i>자사수강생 리스트</a></li>
+	                        <li class="payment"><a href="manager_payment.html"><i>·</i>자부담금 관리</a></li>
+	                        <li class="complete"><a href="manager_complete.html"><i>·</i>수료 관리</a></li>
+	                    </ul>
+					</li>
+				<?}?>
 				<!-- 해당기능이 개발완료되기전까지 숨김처리 -->
                 <!-- 
                 <li class="adven depth1"><a href="coupon.html">혜택관리<span><i class="ph-bold ph-caret-down"></i></span></a>

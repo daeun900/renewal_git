@@ -1,8 +1,8 @@
 <? include '../include/header.html'; ?>
 <?
 //사이트정보 세션에 담기
-unset($_SESSION["SiteCode"]);
-$_SESSION["SiteCode"] = "A";
+unset($_SESSION["MainCode"]);
+$_SESSION["MainCode"] = "A";
 ?>
 <body>
     <!-- 메인배너 -->
@@ -297,7 +297,7 @@ $_SESSION["SiteCode"] = "A";
                     <ul>
                     	<?
                         $i = 0;
-                        $SQL = "SELECT * FROM NewFaq WHERE Del='N' AND UseYN='Y' ORDER BY OrderByNum ASC, RegDate ASC LIMIT 3";
+                        $SQL = "SELECT * FROM Faq WHERE Del='N' AND UseYN='Y' ORDER BY OrderByNum ASC, RegDate ASC LIMIT 3";
 						$QUERY = mysqli_query($connect, $SQL);
                         if($QUERY && mysqli_num_rows($QUERY)){
                             while($ROW = mysqli_fetch_array($QUERY)){
@@ -443,6 +443,10 @@ var swiper = new Swiper(".maincon1-swiper", {
         prevEl: ".maincon1-btn-prev",
     },
     breakpoints: {
+        1300: {
+                slidesPerView: 4,
+                spaceBetween: 20
+            },
             930: {
                 slidesPerView: 3,
                 spaceBetween: 20

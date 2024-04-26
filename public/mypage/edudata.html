@@ -111,8 +111,7 @@ $PAGE_UNCOUNT = $PAGE_CLASS->page_uncount; ##-- 게시물 번호 한개씩 감�
 								$Title = strcut_utf8($Title, 45);
 								$Content = stripslashes($Content);
 								$cnt = $Count-$i;
-					?>
-						
+					?>						
                         <tr>
                             <td><?=$PAGE_UNCOUNT--?></td>
                             <td class="al"><a href="edudata_view.html?idx=<?=$idx?>"> <?=$Title?></a></td>
@@ -120,7 +119,6 @@ $PAGE_UNCOUNT = $PAGE_CLASS->page_uncount; ##-- 게시물 번호 한개씩 감�
                             <td class="mh"><?=substr($RegDate,0,10)?></td>
                             <td class="mh"><?=$ViewCount?></td>
                         </tr>
-                        
                         <?
                         $i++;
                         }}else{?>
@@ -131,7 +129,7 @@ $PAGE_UNCOUNT = $PAGE_CLASS->page_uncount; ##-- 게시물 번호 한개씩 감�
                     </tbody>
                 </table>
             </div>
-            <?=$BLOCK_LIST?>  
+            <?=$BLOCK_LIST?>
             <!--content-->
         </div>
         <!--mypage_content-->

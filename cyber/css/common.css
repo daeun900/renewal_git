@@ -350,4 +350,60 @@ header .gnb > ul > li:hover {
 }
 .phonenumber_input input {
   width: 30%;
+}
+
+/*수강후기 팝업*/
+@media (max-width: 1000px) {
+  .review-modal {
+    width: 100%;
+    padding: 30px;
+  }
+}
+.review-modal .star {
+  margin-bottom: 6px;
+}
+.review-modal .star i {
+  font-size: 25px;
+  color: #d54e4e;
+  margin-right: 1px;
+}
+.review-modal > span {
+  font-size: 20px;
+  font-weight: 400;
+  margin: 6px 0;
+  display: inline-block;
+}
+.review-modal .lecturename {
+  position: relative;
+  font-size: 16px;
+  padding: 10px 0 15px 30px;
+  border-bottom: 1px solid #777;
+}
+.review-modal .lecturename::before {
+  position: absolute;
+  content: "";
+  left: 0;
+  top: 13px;
+  background-image: url(../img/main/con5/icon.png);
+  background-size: contain;
+  width: 21px;
+  height: 20px;
+}
+.review-modal .info {
+  margin: 15px 0;
+}
+.review-modal .info .user i {
+  font-size: 20px;
+  color: #777;
+  margin-right: 10px;
+}
+.review-modal .info .bar {
+  margin: 0 10px;
+}
+.review-modal .info .date {
+  padding-left: 10px;
+}
+.review-modal p {
+  background-color: rgba(175, 175, 175, 0.168627451);
+  padding: 10px;
 }/*# sourceMappingURL=common.css.map */

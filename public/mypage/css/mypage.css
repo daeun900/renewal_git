@@ -591,19 +591,6 @@
   color: #d54e4e;
   margin-right: 1px;
 }
-.mypage_content > .content div.modify {
-  display: flex;
-  align-items: center;
-}
-.mypage_content > .content div.modify span {
-  width: 50px;
-}
-.mypage_content > .content input.modify {
-  border: 1px solid #9c9c9c;
-  padding: 4px 10px;
-  border-radius: 5px;
-  width: 100%;
-}
 .mypage_content button#load {
   width: 100%;
   margin: 30px 0 100px 0;
@@ -1792,6 +1779,19 @@
 }
 .tableTypeA_top .detail .view {
   margin-left: 30px;
+}
+.tableTypeA_top div.modify {
+  display: flex;
+  align-items: center;
+}
+.tableTypeA_top div.modify span {
+  width: 50px;
+}
+.tableTypeA_top input.modify {
+  border: 1px solid #9c9c9c;
+  padding: 4px 10px;
+  border-radius: 5px;
+  width: 100%;
 }
 
 .tableTypeA {

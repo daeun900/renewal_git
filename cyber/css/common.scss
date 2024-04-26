@@ -330,3 +330,61 @@ header {
         width: 30% 
     }
 }
+
+/*수강후기 팝업*/
+.review-modal {
+    @media(max-width:1000px){
+        width: 100%;
+        padding: 30px;
+    }
+    .star {
+        margin-bottom: 6px;
+        i {
+            font-size: 25px;
+            color: #d54e4e;
+            margin-right: 1px;
+        }
+    }
+    > span {
+        font-size: 20px;
+        font-weight: 400;
+        margin: 6px 0;
+        display: inline-block;
+    }
+    .lecturename {
+        position: relative;
+        font-size: 16px;
+        padding: 10px 0 15px 30px;
+        border-bottom: 1px solid #777;
+    }
+    .lecturename::before {
+        position: absolute;
+        content: "";
+        left: 0;
+        top: 13px;
+        background-image: url(../img/main/con5/icon.png);
+        background-size: contain;
+        width: 21px;
+        height: 20px;
+    }
+    .info {
+        margin: 15px 0;
+        .user {
+            i {
+                font-size: 20px;
+                color: #777;
+                margin-right: 10px;
+            }
+        }
+        .bar {
+            margin: 0 10px;
+        }
+        .date {
+            padding-left: 10px;
+        }
+    }
+    p{
+        background-color: #afafaf2b;
+        padding: 10px;
+    }
+}

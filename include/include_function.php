@@ -49,7 +49,7 @@ session_start_samesite();
 $db['host'] ="112.175.249.12";
 $db['user'] = "hrd";
 $db['pass'] = "qwer1234!@#$";
-$db['db'] 	= "hrd";
+$db['db'] 	= "hrdLMS";
 
 $connect = mysqli_connect($db['host'], $db['user'], $db['pass'], $db['db']);
 mysqli_query($connect,"SET NAMES utf8");
@@ -74,29 +74,28 @@ if(empty($_SERVER['HTTPS']) || $_SERVER['HTTPS'] == "off"){
 
 $SiteCode = "HRDe";
 
-$SiteName = "HRDe평생교육원";
-$CertSiteName = "HRDe평생교육원";
-$CertSiteName2 = "HRDe평생교육원";
-$CertSiteName3 = "근로자안전보건센터장";
-
-$CyberSiteName = "HRDe사이버연수원";
-$CyberCertSiteName = "HRDe사이버연수원";
-$CyberCertSiteName2 = "HRDe사이버연수원";
+$SiteName = "HRDeLMS";
+$CertSiteName = "HRDeLMS";
+$CertSiteName2 = "HRDeLMS";
+$CertSiteName3 = "HRDeLMS";
 
 $UPLOAD_DIR = "/home/hrd_new/html/upload";
 $HomeDirectory = "/home/hrd_new/html";
 
-//$SiteURL 			= $Protocol_SSL."www.hrdeedu.com";
 $SiteURL 			= $Protocol_SSL."new.hrdeedu.com";
-$MobileSiteURL 		= $Protocol_SSL."m.hrdeedu.com";
+//$SiteURL 			= $Protocol_SSL."hrdelms.com";
+$MobileSiteURL 		= $Protocol_SSL."new.hrdeedu.com";
+//$MobileSiteURL 			= $Protocol_SSL."hrdelms.com";
 
-$MobileAuthURL 		= $Protocol_SSL."m.hrdeedu.com/"; //모바일 인증 도메인
-//$FlashServerURL 	= $Protocol_SSL."www.hrdeedu.com/contents";
-//$MovieServerURL		= $Protocol_SSL."www.hrdeedu.com/contents";
-//$MobileServerURL 	= $Protocol_SSL."www.hrdeedu.com/contents";
+$MobileAuthURL 		= $Protocol_SSL."new.hrdeedu.com/"; //모바일 인증 도메인
+//$MobileAuthURL 		= $Protocol_SSL."hrdelms.com/"; //모바일 인증 도메인
+
 $FlashServerURL 	= $Protocol_SSL."new.hrdeedu.com/contents";
 $MovieServerURL		= $Protocol_SSL."new.hrdeedu.com/contents";
 $MobileServerURL 	= $Protocol_SSL."new.hrdeedu.com/contents";
+//$FlashServerURL 	= $Protocol_SSL."hrdelms.com/contents";
+//$MovieServerURL		= $Protocol_SSL."hrdelms.com/contents";
+//$MobileServerURL 	= $Protocol_SSL."hrdelms.com/contents";
 
 $Auth_Mobile_path 	= $HomeDirectory."/lib/CheckPlusSafe/64bit/CPClient_64bit"; //휴대폰 본인인증 모듈 경로
 $Auth_IPIN_path 	= $HomeDirectory."/lib/NiceIPIN/64bit/IPIN2Client"; //아이핀 본인인증 모듈 경로
@@ -261,7 +260,7 @@ $UseYN_array = array(
     "N" => "미사용"
 );
 reset($UseYN_array);
-
+/*
 $Faq_array = array(
     "A" => "회원가입",
     "B" => "학습",
@@ -269,6 +268,15 @@ $Faq_array = array(
     "D" => "과제",
     "E" => "회원탈퇴",
     "F" => "기타"
+);
+reset($Faq_array);
+*/
+$Faq_array = array(
+    "A" => "국민내일배움카드",
+    "B" => "평생교육바우처",
+    "C" => "학습장애",
+    "D" => "증명서 발급",
+    "E" => "사업주훈련"
 );
 reset($Faq_array);
 
@@ -730,7 +738,11 @@ $Manager_Top_Link_array = array(
     "G2" => "main_course_list.php", //메인디자인 관리
     "G3" => "work_request.php", //작업 요청 게시판
     "G4" => "site_info.php", //사이트 정보 관리
-
+    
+    "H1" => "course_cyber.php", //단과 컨텐츠 관리
+    "H2" => "contents_keyword.php", //컨텐츠 키워드 관리
+    "H3" => "cyber_contents.php", //BEST 컨텐츠관리
+    // "H4" => "cyber_contents.php", //NEW 컨텐츠관리
 
     "X" => "" //
 );
@@ -1828,7 +1840,7 @@ function mts_mms_send($phone, $msg, $callback, $etc1, $template_code="hrd01") {
 }
 
 // 문자메시지 발송함수
-function mts_mms_send4NewSimpleAsk($phone, $msg, $callback, $template_code="hrd01") {
+function mts_mms_send4SimpleAsk($phone, $msg, $callback, $template_code="hrd01") {
     
     global $connect;
     
@@ -2133,6 +2145,41 @@ function ReviewIDView($ID,$len) {
 
     return $IDView;
 
+}
+
+//나의학습실>수강후기 - 별점표시
+function StarPointViewA($StarPoint) {    
+    $StarImgOn = "<img src='/common/img/star_fill.png' alt='' style='width: 20px;'/>";
+    $StarImgOff = "<img src='/common/img/star.png' alt='' style='width: 20px;'/>";
+    
+    $StarPoint2 = "";
+    for($i=0;$i<$StarPoint;$i++) {
+        $StarPoint2 .= "@";
+    }
+    
+    $Star = str_pad($StarPoint2,5,'*',STR_PAD_RIGHT);
+    $Star = str_replace("@",$StarImgOn,$Star);
+    $Star = str_replace("*",$StarImgOff,$Star);
+    
+    return $Star;
+}
+
+
+//메인화면>수강후기 - 별점표시
+function StarPointViewB($StarPoint) {
+    $StarImgOn = "<img src='/common/img/star_fill.png' alt='' style='width: 15px;'/>";
+    $StarImgOff = "<img src='/common/img/star.png' alt='' style='width: 15px;'/>";
+    
+    $StarPoint2 = "";
+    for($i=0;$i<$StarPoint;$i++) {
+        $StarPoint2 .= "@";
+    }
+    
+    $Star = str_pad($StarPoint2,5,'*',STR_PAD_RIGHT);
+    $Star = str_replace("@",$StarImgOn,$Star);
+    $Star = str_replace("*",$StarImgOff,$Star);
+    
+    return $Star;
 }
 
 function StarPointView($StarPoint) {
