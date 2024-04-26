@@ -1,8 +1,8 @@
 <? include '../include/header.html'; ?>
 <?
 //사이트정보 세션에 담기
-unset($_SESSION["SiteCode"]);
-$_SESSION["SiteCode"] = "B";
+unset($_SESSION["MainCode"]);
+$_SESSION["MainCode"] = "B";
 ?>
 <body>
     <!--mainbanner-->
@@ -218,39 +218,32 @@ $_SESSION["SiteCode"] = "B";
             <div class="content">
                 <div class="side">
                     <strong>수강후기</strong>
-                    <p>정성이 담긴 수강후기를 남겨주신
-                        3분께 푸짐한 선물을 드립니다.</p>
+                    <p>정성이 담긴 수강후기를 남겨주신3분께 푸짐한 선물을 드립니다.</p>
                     <img src="../img/main/con5/illustration.png" alt="선물박스">
                 </div>
                 <ul>
-                    <li class="modal-btn" href="#modal01">
-                        <span>나를 위해 투자를 한 인생 첫 강의 강추요!!</span>
-                        <div class="star"><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i></div>
-                        <div class="lecturename">엑셀보다 쉽게 배우는 데이터 분석(feat. SQL) </div>
-                        <p>2022년 4월부터 보았던 책을 4~5회
-                            읽고 강의까지 꼼꼼하게 들었습니다 유익한 시간</p>
+                <?
+                $i = 0;
+                $SQL = "SELECT * FROM Review WHERE Del='N' AND MainYN='Y' ORDER BY RegDate ASC LIMIT 4";
+				$QUERY = mysqli_query($connect, $SQL);
+                if($QUERY && mysqli_num_rows($QUERY)){
+                	while($ROW = mysqli_fetch_array($QUERY)){
+                    	extract($ROW);
+                        $Title = strcut_utf8($Title,45);
+						$Star = StarPointViewB($StarPoint);
+						$Contents = strcut_utf8($Contents,100);
+				?>
+					<li class="modal-btn" onclick="Javascript:SurveyPop();"><!-- href="#modal01" -->
+                        <span><?=$Title?></span>
+                        <div class="star"><?=$Star?></div>
+                        <div class="lecturename"><?=$ContentsName?></div>
+                        <p><?=$Contents?></p>
                     </li>
-                    <li class="modal-btn" href="#modal01">
-                        <span>나를 위해 투자를 한 인생 첫 강의 강추요!!</span>
-                        <div class="star"><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i></div>
-                        <div class="lecturename">엑셀보다 쉽게 배우는 데이터 분석(feat. SQL) </div>
-                        <p>2022년 4월부터 보았던 책을 4~5회
-                            읽고 강의까지 꼼꼼하게 들었습니다 유익한 시간</p>
-                    </li>
-                    <li class="modal-btn" href="#modal01">
-                        <span>나를 위해 투자를 한 인생 첫 강의 강추요!!</span>
-                        <div class="star"><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i></div>
-                        <div class="lecturename">엑셀보다 쉽게 배우는 데이터 분석(feat. SQL) </div>
-                        <p>2022년 4월부터 보았던 책을 4~5회
-                            읽고 강의까지 꼼꼼하게 들었습니다 유익한 시간</p>
-                    </li>
-                    <li class="modal-btn" href="#modal01">
-                        <span>나를 위해 투자를 한 인생 첫 강의 강추요!!</span>
-                        <div class="star"><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i></div>
-                        <div class="lecturename">엑셀보다 쉽게 배우는 데이터 분석(feat. SQL) </div>
-                        <p>2022년 4월부터 보았던 책을 4~5회
-                            읽고 강의까지 꼼꼼하게 들었습니다 유익한 시간</p>
-                    </li>
+                <?
+                        $i++;
+					}
+                }
+                ?>
                 </ul>
             </div>
         </div>
@@ -266,7 +259,7 @@ $_SESSION["SiteCode"] = "B";
                     <ul>
                     	<?
                         $i = 0;
-                        $SQL = "SELECT * FROM NewFaq WHERE Del='N' AND UseYN='Y' ORDER BY OrderByNum ASC, RegDate ASC LIMIT 3";
+                        $SQL = "SELECT * FROM Faq WHERE Del='N' AND UseYN='Y' ORDER BY OrderByNum ASC, RegDate ASC LIMIT 3";
 						$QUERY = mysqli_query($connect, $SQL);
                         if($QUERY && mysqli_num_rows($QUERY)){
                             while($ROW = mysqli_fetch_array($QUERY)){
@@ -357,63 +350,3 @@ $_SESSION["SiteCode"] = "B";
 
 </script>
 
-<!--모달팝업-->
-
-<script>
-        jQuery(document).ready(function() {
-    $('.modal-btn').each(function() {
-        var modalID = $(this).attr('href');
-    
-        $(this).on('click', function(e) {
-            e.preventDefault();
-
-            $('.modal-bg').fadeIn();
-            
-            $(modalID).show();
-
-            $('html').css({overflow: 'hidden'});
-        });
-
-        $('.close-btn').on('click', function() {
-            $('.modal-bg').fadeOut();
-            $(modalID).hide();
-            $(modalID).removeAttr('style');
-
-            $('html').removeAttr('style');
-        });
-    });
-});
-</script>
-<style> 
-    .modal-bg {display:none;width:100%;height:100%;position:fixed;top:0;left:0;right:0;background: rgba(0, 0, 0, 0.8);z-index:999;}
-    .modal-wrap {display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#fff;z-index:1000;  padding: 50px;border-radius: 30px;}
-    .close-btn{position: absolute;top: 20px; right: 20px;cursor: pointer;}
-    .close-btn i{font-size: 25px;}
-    .modal-wrap p{padding: 10px 0;}
-</style>
-<!--modal01-->
-<div class="modal-bg"></div>
-<div id="modal01" class="modal-wrap">
-    <div class="close-btn">
-        <i class="ph-thin ph-x"></i>
-    </div>
-    <div class="star"><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i></div>
-    <span>나를 위해 투자를 한 인생 첫 강의 강추요!!</span>
-    <div class="lecturename">엑셀보다 쉽게 배우는 데이터 분석(feat. SQL) </div>
-    <div class="info">
-        <span class="user"><i class="ph-light ph-user"></i>abcd****</span>
-        <span class="bar"></span>
-        <span class="date">2024-02-25</span>
-    </div>
-    <p> 혼자하다 늘 실패한 데이터 분석. <br>
-        이번에 강의 듣고 많이 배울수 있었습니다.<br>
-        재수강 만료일도 얼마 남지 않아서 이번에 또 재수강 할수 없다고 단단히 마음먹고,<br>
-        드디어 어제 완강했습니다. 박수~~ㅋㅋㅋ<br>
-        들어도 이해가 안가는 부분은 반복반복...정말 진도는 더디 나가는데,<br>
-        스스로에게 할수있다 계속 중얼거리면서 어제 완강을 했습니다.<br>
-        이 뿌듯함~~~~<br>
-        선생님이 공유해주신 템플릿도 받았고, 강의 내용을 복습하려구요<br>
-        친절하게 끝까지 하나라도 더 챙겨주시려고 강의해주신 선생님께 감사드립니다~
-        </p>
-</div>
-<!--modal01-->
