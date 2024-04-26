@@ -489,7 +489,7 @@
   position: relative;
 }
 #modal01 .input_wrap .input_box select {
-  background: url("../img/common/caret-down-fill.png") no-repeat 97% 50%;
+  background: url("/common/img/caret-down-fill.png") no-repeat 97% 50%;
 }
 #modal01 .input_wrap .input_box select option {
   padding: 2px 5px;
@@ -672,16 +672,16 @@
 }
 .tableTypeA_top .detail > div {
   float: left;
-  font-size: 13px;
+  font-size: 14px;
 }
 .tableTypeA_top .detail > div span {
   margin-right: 10px;
   font-weight: 500;
 }
-.tableTypeA_top .detail .date {
+.tableTypeA_top .detail .date, .tableTypeA_top .detail .left {
   margin-right: 30px;
 }
-.tableTypeA_top .detail .view {
+.tableTypeA_top .detail .view, .tableTypeA_top .detail .right {
   margin-left: 30px;
 }
 
@@ -753,6 +753,52 @@
   .tableTypeA table .content {
     font-size: 14px;
   }
+}
+
+.comment {
+  position: relative;
+  border-bottom: 1px solid #555;
+  padding-bottom: 40px;
+  margin-bottom: 40px;
+}
+.comment .left {
+  position: absolute;
+  left: 0;
+}
+.comment .left i {
+  width: 17px;
+  height: 17px;
+  border-bottom: 1px solid #bbb;
+  border-left: 1px solid #bbb;
+  display: inline-block;
+}
+.comment .left span {
+  font-size: 14px;
+  font-weight: bold;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  color: #fff;
+  background-color: #90C0EF;
+  display: inline-block;
+  text-align: center;
+  padding: 5px 0;
+  margin-left: 10px;
+}
+.comment .right {
+  padding-left: 94px;
+}
+.comment .right b {
+  color: #90C0EF;
+  font-weight: bold;
+  display: block;
+}
+.comment .right span {
+  font-size: 12px;
+  color: #999;
+}
+.comment .right p {
+  margin-top: 10px;
 }
 
 /*페이지 넘버*/

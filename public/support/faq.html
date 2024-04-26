@@ -47,7 +47,7 @@
     }
 
     ##-- 검색 등록수
-    $Sql = "SELECT COUNT(*) FROM NewFaq $where";
+    $Sql = "SELECT COUNT(*) FROM Faq $where";
     $Result = mysqli_query($connect, $Sql);
     $Row = mysqli_fetch_array($Result);
     $TOT_NO = $Row[0];
@@ -93,7 +93,7 @@
             <ul class="faq">
             	<?
 					$i = 0;
-                    $SQL = "SELECT * FROM NewFaq $where $str_orderby LIMIT $PAGE_CLASS->page_start, $page_size";
+                    $SQL = "SELECT * FROM Faq $where $str_orderby LIMIT $PAGE_CLASS->page_start, $page_size";
 					$QUERY = mysqli_query($connect, $SQL);
                     if($QUERY && mysqli_num_rows($QUERY)){
                     	while($ROW = mysqli_fetch_array($QUERY)){
