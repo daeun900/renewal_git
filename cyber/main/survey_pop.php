@@ -4,7 +4,7 @@ include "../../include/include_function.php"; //DB연결 및 각종 함수 정�
 $idx = Replace_Check($idx);
 
 //조회수 증가
-$Sql = "UPDATE Review SET ViewCount=ViewCount+1 WHERE idx=$idx";
+$Sql = "UPDATE Review SET ViewCount=ViewCount+1 WHERE idx=$idx AND Del='N'";
 $Row = mysqli_query($connect, $Sql);
 
 //해당 데이터 조회
@@ -23,8 +23,13 @@ if($Row) {
     $MaskingID = $Row['MaskingID']; //마스킹된 아이디
     
     $Star = StarPointViewC($StarPoint);
-}
+}else{
 ?>
+<scirpt>
+	alert('해당 수강후기글이 없습니다.');
+	history.back();
+</scirpt>
+<?}?>
 <style> 
     .review-modal {position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#fff;z-index:1000;  padding: 50px;border-radius: 30px; width: 620px;}
     .close-btn{position: absolute;top: 20px; right: 20px;cursor: pointer;}

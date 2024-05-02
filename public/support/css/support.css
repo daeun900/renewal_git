@@ -465,6 +465,8 @@
 #modal01 .input_wrap .input_box.captcha_box .captcha {
   width: 100px;
   padding: 0 10px;
+  display: flex;
+  align-items: center;
 }
 #modal01 .input_wrap .input_box.captcha_box .captcha img {
   width: 100%;
@@ -519,6 +521,23 @@
 #modal01 .input_wrap .input_box .input-content {
   height: 150px;
 }
+#modal01 .input_wrap .input_box .input-file {
+  border: none;
+}
+#modal01 .input_wrap .input_box .input-file::file-selector-button {
+  width: 147px;
+  padding: 10px 0;
+  background-color: #2d2d2d;
+  color: #fff;
+  border-radius: 6px;
+  text-align: center;
+  margin-right: 10px;
+  cursor: pointer;
+}
+#modal01 .input_wrap .input_box #output-file {
+  display: block;
+  white-space: pre-wrap;
+}
 #modal01 .input_wrap .input_box button {
   width: 147px;
   padding: 10px 0;
@@ -529,7 +548,6 @@
 #modal01 .input_wrap .input_box span {
   font-size: 14px;
   color: #999;
-  margin-top: 13px;
 }
 #modal01 .notice_box {
   display: flex;
@@ -672,16 +690,18 @@
 }
 .tableTypeA_top .detail > div {
   float: left;
-  font-size: 14px;
+  font-size: 13px;
 }
 .tableTypeA_top .detail > div span {
   margin-right: 10px;
   font-weight: 500;
 }
-.tableTypeA_top .detail .date, .tableTypeA_top .detail .left {
+.tableTypeA_top .detail .date,
+.tableTypeA_top .detail .left {
   margin-right: 30px;
 }
-.tableTypeA_top .detail .view, .tableTypeA_top .detail .right {
+.tableTypeA_top .detail .view,
+.tableTypeA_top .detail .right {
   margin-left: 30px;
 }
 
@@ -738,12 +758,20 @@
   display: block;
   margin-bottom: 5px;
 }
+.tableTypeA table tr.file th, .tableTypeA table tr.file td {
+  font-size: 13px;
+}
+.tableTypeA table tr.file td {
+  padding: 15px 0 12px 20px;
+  text-align: left;
+}
 .tableTypeA table img.download {
   width: 26px;
 }
 .tableTypeA table img.download_view {
-  width: 20px;
   margin-right: 10px;
+  margin-top: -1px;
+  width: 16px;
 }
 .tableTypeA table .content {
   padding: 20px 0;
@@ -759,7 +787,6 @@
   position: relative;
   border-bottom: 1px solid #555;
   padding-bottom: 40px;
-  margin-bottom: 40px;
 }
 .comment .left {
   position: absolute;
@@ -779,7 +806,7 @@
   height: 34px;
   border-radius: 50%;
   color: #fff;
-  background-color: #90C0EF;
+  background-color: #90c0ef;
   display: inline-block;
   text-align: center;
   padding: 5px 0;
@@ -789,7 +816,7 @@
   padding-left: 94px;
 }
 .comment .right b {
-  color: #90C0EF;
+  color: #90c0ef;
   font-weight: bold;
   display: block;
 }
@@ -799,6 +826,21 @@
 }
 .comment .right p {
   margin-top: 10px;
+}
+
+.tableTypeA.comment-file {
+  margin-top: 0px;
+}
+@media (max-width: 1000px) {
+  .tableTypeA.comment-file {
+    margin-top: 0px;
+  }
+}
+.tableTypeA.comment-file table {
+  border-top: 0px solid #555;
+}
+.tableTypeA.comment-file table tr {
+  border-top: 0px solid #555;
 }
 
 /*페이지 넘버*/

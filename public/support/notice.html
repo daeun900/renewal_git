@@ -18,8 +18,7 @@ $read_page = "notice_view.html";
 <input type="hidden" name="ServiceType" value="<?=$ServiceType?>">
 <input type="hidden" name="str_TestType" value="<?=$str_TestType?>">
 </form>
-    <?
-    
+<?
 	$idxA = Replace_Check($idx);
 	$pg = Replace_Check_XSS2($pg);
     $sw = Replace_Check_XSS2($sw);
@@ -121,7 +120,9 @@ $read_page = "notice_view.html";
                     ?>
                         <tr>
                             <td>
-                            <?if($Notice=='Y'){?>
+                            <?if($Notice=='Y'){
+                            $PAGE_UNCOUNT--
+                            ?>
                             	<span class="fcskyblue">공지</span>
                             <?}else{?>
                             	<?=$PAGE_UNCOUNT--?>

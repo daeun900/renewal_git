@@ -1,5 +1,7 @@
 <? include "../include/header.html"; ?>
 <?
+$ID = $_SESSION['LoginMemberID'];
+
 $Sql = "SELECT * FROM CourseCyber WHERE LectureCode = '$LectureCode' AND Del='N' AND UseYN = 'Y'";
 
 $Result = mysqli_query($connect, $Sql);
@@ -15,9 +17,6 @@ if($Row) {
 	$BookImage = html_quote($Row['BookImage']); //교재 이미지
 }
 
-//자비부담금
-$RealPrice = $Price - $Price01;
-
 //신청유형
 $applyTypeVal;
 if($applyType == "A"){
@@ -26,6 +25,8 @@ if($applyType == "A"){
 	$applyTypeVal = "일반(수시)";
 }else if($applyType == "C"){
 	$applyTypeVal = "고용보험환급";
+}else if($applyType == "D"){
+	$applyTypeVal = "평생교육바우처";
 }
 
 //지원유형
@@ -62,6 +63,15 @@ if($BookImage){
 <body>
 	<!-- 주문확인 -->
     <div class="payment_right_wrap">
+    	<input type="hidden" name="LectureStart" id="LectureStart" value="<?=$LectureStart?>">
+    	<input type="hidden" name="supportType" id="supportType" value="<?=$supportType?>">
+    	<input type="hidden" name="LectureCode" id="LectureCode" value="<?=$LectureCode?>">
+    	<input type="hidden" name="ContentsName" id="ContentsName" value="<?=$ContentsName?>">
+    	<input type="hidden" name="Price" id="Price" value="<?=$Price?>">
+    	<input type="hidden" name="SubPrice" id="SubPrice" value="<?=$Price01?>">
+    	<input type="hidden" name="PointPrice" id="PointPrice" value="0">
+    	<input type="hidden" name="CouponPrice" id="CouponPrice" value="0">
+    	<input type="hidden" name="RealPrice" id="RealPrice">
         <div class="payment_right">
             <strong>주문확인</strong>
             <div class="total">
@@ -70,7 +80,7 @@ if($BookImage){
             </div>
             <div class="support">
                 <span>정부지원금</span>
-                <span><b><?=number_format($Price01,0)?></b>원</span>
+                <span id="supportPriceA"><b></b>원</span>
             </div>
             <!-- 해당기능 개발완료될때까지 숨김처리 -->
             <!-- 
@@ -81,14 +91,14 @@ if($BookImage){
              -->
             <div class="expense">
                 <span>자비부담금</span>
-                <span><b>0</b>원</span>
+                <span id="expensePriceA"><b></b>원</span>
             </div>
             <div class="agree">
-                <input type="checkbox" name="agree" id="">
+                <input type="checkbox" name="agree" id="agree">
                 <label for="agree">결제조건 확인 및 개인정보 제공에 동의합니다.</label>
             </div>
             <button class="prev" onclick="javascript:history.back();">이전</button>
-            <button class="pay" onclick="location.href='payment_complete.html'">결제하기</button>
+            <button class="pay" onclick="CardPayment('<?=$LectureCode?>', '<?=$ID?>')">결제하기</button>
         </div>
     </div>
     <!-- //주문확인 -->
@@ -105,9 +115,7 @@ if($BookImage){
     </div>
     <div id="wrap">
         <div class="payment_left">
-            <div class="top fcred">
-                HRDe 교육 접수전 HRD-NTE(www.hrd.go.kr)에서 수강신청을 먼저 완료하여 주시기 바랍니다.
-            </div>
+            <div class="top fcred" id="topDiv">HRDe 교육 접수전 HRD-NTE(www.hrd.go.kr)에서 수강신청을 먼저 완료하여 주시기 바랍니다.</div>
             <!--주문정보-->
             <div class="con order_info">
                 <div class="title">주문정보</div>
@@ -136,10 +144,10 @@ if($BookImage){
                                 <strong><?=$ContentsName?></strong>
                                 <button onclick="javascript:history.back();">새창<i class="ph-fill ph-caret-right"></i></button><br>
                                 <select name="applyType" id="applyType" onchange="ApplyTypeChange(this.value)">
-                                    <option value="A">국민내일배움카드(재직자) / <?=$LectureStart?></option>
-                                    <option value="B">일반(수시) / <?=$LectureStart?></option>
-                                    <option value="C">고용보험환급 / <?=$LectureStart?></option>
-                                    <option value="D">평생교육바우처</option>
+                                    <option value="A" <?if($applyType == 'A') echo "selected";?> >국민내일배움카드(재직자) / <?=$LectureStart?></option>
+                                    <option value="B" <?if($applyType == 'B') echo "selected";?>>일반(수시) / <?=$LectureStart?></option>
+                                    <option value="C" <?if($applyType == 'C') echo "selected";?>>고용보험환급 / <?=$LectureStart?></option>
+                                    <option value="D" <?if($applyType == 'D') echo "selected";?>>평생교육바우처</option>
                                 </select>
                                 <span class="fc999">
                                     * 선택된 지원유형: <?=$supportTypeVal?> <br>
@@ -150,8 +158,8 @@ if($BookImage){
                             <td class="ac"><?=$LectureTermVal?></td>
                             <td class="ac"><?=$BookVal?></td>
                             <td class="ac"><b><?=number_format($Price,0)?></b>원</td>
-                            <td class="ac"><?=number_format($Price01,0)?>원</td>
-                            <td class="fcred ac"><b><?=number_format($RealPrice,0)?></b>원</td>
+                            <td class="ac" id="supportPriceB">원</td>
+                            <td class="fcred ac" id="expensePriceB"><b></b>원</td>
                         </tr>
                     </tbody>
                 </table>
@@ -202,6 +210,7 @@ if($BookImage){
             </div>
              -->
             <!--//결제정보-->
+            
             <!--TypeA-->
             <!--결제방법-->
             <div id="TypeA">
@@ -209,7 +218,7 @@ if($BookImage){
                     <div class="title">결제방법</div>
                     <div class="content">
                         <span class="subtitle">결제수단선택</span> 
-                        <input type="radio" name="" id=""><label for="">신용카드 </label> 
+                        <input type="radio" name="payMethodA" id="payMethodA"><label for="">신용카드 </label> 
                         <span class="fcred ml40">*자비부담금은 반드시 발급받으신 내일배움카드(NH/신한)로만 결제하셔야 합니다.</span>
                     </div>
                 </div>
@@ -219,13 +228,10 @@ if($BookImage){
                     <div class="title">재직자확인</div>
                     <div class="content">
                         <span class="subtitle">대상자확인</span> 
-                        <input type="radio" name="" id=""><label for="">개강일 기준 재직자, 자영업자, 특수고용직에 해당됩니다.</label>
+                        <input type="radio" name="confirmA" id="confirmA"><label for="">개강일 기준 재직자, 자영업자, 특수고용직에 해당됩니다.</label>
                     </div>
                     <div class="content pt25 pb25">
-                        <span class="fcred">
-                            *교육진행 중 실업자로 확인될 경우 교육이 취소되며 환불이 불가합니다. <br>
-                            *자영업자는 홈택스 기준으로 사업자 등록이 되신 분만 가능합니다. <br>
-                            *특수고용근로자는 산재보험 가입이력 또는 재직증명서 등의 증빙이 가능하여야 합니다.</span>
+                        <span class="fcred">*교육진행 중 실업자로 확인될 경우 교육이 취소되며 환불이 불가합니다. <br>*자영업자는 홈택스 기준으로 사업자 등록이 되신 분만 가능합니다. <br>*특수고용근로자는 산재보험 가입이력 또는 재직증명서 등의 증빙이 가능하여야 합니다.</span>
                     </div>
                 </div>
                 <!--//재직자확인-->
@@ -237,17 +243,9 @@ if($BookImage){
                     </div>
                     <div class="content grid_box">
                         <div class="left">
-                            <div>
-                                1. 본인인증 절차 필수 진행
-                                <p>정부지원 과정의 경우 과목별 최초 수강 진행 시 본인인증(휴대폰 또는 아이핀)이 필수 항목이며, 본인인증이 불가능 할 경우 학습 진행이 불가합니다.</p>
-                                <p>휴대폰 인증의 경우 본인명의 휴대폰으로만 인증가능하며 해외 근무자는 로밍 이용자에 한하여 인증 가능합니다.</p>
-                            </div>
+                            <div>1. 본인인증 절차 필수 진행<p>정부지원 과정의 경우 과목별 최초 수강 진행 시 본인인증(휴대폰 또는 아이핀)이 필수 항목이며, 본인인증이 불가능 할 경우 학습 진행이 불가합니다.</p><p>휴대폰 인증의 경우 본인명의 휴대폰으로만 인증가능하며 해외 근무자는 로밍 이용자에 한하여 인증 가능합니다.</p></div>
                             <div>2. 수료기준 <br>정부지원 과정은 훈련과정의 학습시간 변경, 평가, 과제 등 수료기준의 변경이 불가하오니 신청 과정의 수료기준을 반드시 확인하시고 신청하시기 바랍니다.</div>
-                            <div>
-                                3. 결제 및 수강취소 유의사항
-                                <p>본인 명의로 발급받은 국민내일배움카드(NH/신한)로 결제하셔야 합니다.</p>
-                                <p>수강취소는 학습시작일 전 일 까지만 가능합니다.</p>
-                            </div>
+                            <div>3. 결제 및 수강취소 유의사항<p>본인 명의로 발급받은 국민내일배움카드(NH/신한)로 결제하셔야 합니다.</p><p>수강취소는 학습시작일 전 일 까지만 가능합니다.</p></div>
                             <div>
                                 4. 국민내일배움카드 계좌 잔액의 차감
                                 <table class="mt10">
@@ -288,24 +286,25 @@ if($BookImage){
                         </div>
                     </div>
                     <div class="agree">
-                        <input type="checkbox" name="" id="">
+                        <input type="checkbox" name="agree1A" id="agree1A">
                         <label for="">미수료, 수강포기 등 중도탈락에 따른 국민내일배움카드 잔액 차감에 대한 기준을 확인하였음을 동의합니다. </label>
                     </div>
                     <div class="agree">
-                        <input type="checkbox" name="" id="">
+                        <input type="checkbox" name="agree2A" id="agree2A">
                         <label for="">상기 내용을 정확히 숙지하고 이에 동의합니다. </label>
                     </div>
                 </div>
                 <!--//안내사항-->
             </div>
-            <!--TypeA-->
-            <!--TypeD-->
+            <!--//TypeA-->
+            
+            <!--TypeD(평생교육바우처)-->
             <div id="TypeD" style="display: none;">
                 <div class="con pay_method">
                     <div class="title">결제방법</div>
                     <div class="content">
                         <span class="subtitle">결제수단선택</span> 
-                        <input type="radio" name="" id=""><label for="">평생교육바우처</label> 
+                        <input type="radio" name="payMethodB" id="payMethodB"><label for="">평생교육바우처</label> 
                         <span class="fcred ml40">*평생교육바우처로 결제하지 않을 시 자동 취소 처리 됩니다.</span>
                     </div>
                 </div>
@@ -315,7 +314,7 @@ if($BookImage){
                     <div class="title">재직자확인</div>
                     <div class="content">
                         <span class="subtitle">대상자확인</span> 
-                        <input type="radio" name="" id=""><label for="">개강일 기준 평생교육바우처 이용자에 해당됩니다.</label>
+                        <input type="radio" name="confirmB" id="confirmB"><label for="">개강일 기준 평생교육바우처 이용자에 해당됩니다.</label>
                     </div>
                 </div>
                 <!--//재직자확인-->
@@ -332,8 +331,7 @@ if($BookImage){
                                 <p>평생교육바우처카드는 이용자 본인만 사용 가능합니다.(본인을 제외한 가족도 사용 불가)</p>
                                 <p>평생교육바우처 이용자 선정 후, 2개월 이내 카드를 발급하여야 합니다.(평생교육바우처 이용자 선정결과 통과일로부터 2개월 동안 평생교육바우처 카드를 미발급 시 이용자격 박탈)</p>
                                 <p>평생교육희망카드로 결제하지 않을 시 자동 취소 처리됩니다.</p>
-                                <p>평생교육바우처 카드 발급 이후 별도 공지일까지 사용가능합니다.
-                                    (이 기간동안 사용하지 않은 금액은 자동 소멸되며, 다음 년도 이월이나 현금 인출 불가)</p>
+                                <p>평생교육바우처 카드 발급 이후 별도 공지일까지 사용가능합니다.(이 기간동안 사용하지 않은 금액은 자동 소멸되며, 다음 년도 이월이나 현금 인출 불가)</p>
                                 <p>결제 전 평생교육바우처 사용 유효기간 및 잔액을 확인 부탁드립니다.</p>
                                 <p>수강료가 35만원을 넘을 경우, 초과 비용에 대해서는 본인부담합니다.</p>
                                 <p>평생교육희망카드는 간편결제(PAYCO, 삼성페이 등)가 불가합니다.</p>
@@ -351,8 +349,7 @@ if($BookImage){
                         </div>
                         <div class="right">
                             <div>
-                                <b>3.환불규정</b><br>
-                                교육비 환불 요청 시 평생교육법 시행령 학습비 반환기준에 따라 환불이 진행됩니다.
+                                <b>3.환불규정</b><br>교육비 환불 요청 시 평생교육법 시행령 학습비 반환기준에 따라 환불이 진행됩니다.
                                 <table class="mt10">
                                     <colgroup>
                                         <col width="33.3%">
@@ -387,41 +384,75 @@ if($BookImage){
                                         <td>반환하지 아니함</td>
                                     </tr>
                                 </table>
-                                <span class="fcred">* 학습기간(=교육기간)이 종료된 이후에는 환불이 불가합니다. <br>
-                                                    * 교재는 환불되지 않습니다. </span>
+                                <span class="fcred">* 학습기간(=교육기간)이 종료된 이후에는 환불이 불가합니다. <br>* 교재는 환불되지 않습니다. </span>
                             </div>
                         </div>
                     </div>
                     <div class="agree">
-                        <input type="checkbox" name="" id="">
+                        <input type="checkbox" name="agree1B" id="agree1B">
                         <label for="">미수료, 수강포기 등 중도탈락에 따른 평생바우처 잔액 차감에 대한 기준을 확인하였음을 동의합니다. </label>
                     </div>
                     <div class="agree">
-                        <input type="checkbox" name="" id="">
+                        <input type="checkbox" name="agree2B" id="agree2B">
                         <label for="">상기 내용을 정확히 숙지하고 이에 동의합니다. </label>
                     </div>
                 </div>
                 <!--//안내사항-->
             </div>
-            <!--TypeD-->
+            <!--//TypeD(평생교육바우처)-->
         </div>
     </div>
 </body>
 <? include "../include/footer.html"; ?>
 
 
-    <!--신청유형 선택에 따라 show/hide -->
+<!--신청유형 선택에 따라 show/hide -->
 <script>
-    function ApplyTypeChange(str) {	
-        if (str == 'D') {
-            $("#TypeA").hide();
-            $("#TypeD").show();
-        }else{
-            $("#TypeD").hide();
-            $("#TypeA").show();
-        }
+$(document).ready(function(){
+	var applyType = '<?=$applyType?>';
+	ApplyTypeChange(applyType);
+});
+
+function ApplyTypeChange(str) {	
+	//금액 계산
+	var price = $("#Price").val(); //판매가
+	var priceA = ""; //정부지원금
+	if(str =='B') priceA = '0'; else priceA = '<?=$Price01?>';
+	var priceB = price - priceA; //자비부담금
+	var priceC = priceB.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','); //자비부담금 콤마처리
+	$("#RealPrice").val(priceB);
+	$("#expensePriceA").text(priceC+'원');
+    $("#expensePriceB").text(priceC+'원');
+
+	//신청유형 : 평생교육바우처
+    if (str == 'D') {
+    	$("#TypeA").hide(); //typeA문구(평생교육바우처 제외)
+        $("#TypeD").show(); //typeB문구(평생교육바우처)
+        $("#topDiv").hide(); //상단문구
+      	//정부지원금
+        $("#supportPriceA").text('<?=number_format($Price01,0)?>'+'원');
+        $("#supportPriceB").text('<?=number_format($Price01,0)?>'+'원');        
+
+	//신청유형 : 일반(수시) -- 정부지원금 없음.
+    }else if(str == 'B'){
+    	$("#TypeA").show();
+        $("#TypeD").hide();            
+        $("#topDiv").show();
+      	//정부지원금
+        $("#supportPriceA").text('0원'); 
+        $("#supportPriceB").text('0원');
+            
+    //신청유형 : 그외
+    }else{
+    	$("#TypeA").show();
+        $("#TypeD").hide();            
+        $("#topDiv").show();
+        //정부지원금
+        $("#supportPriceA").text('<?=number_format($Price01,0)?>'+'원');
+        $("#supportPriceB").text('<?=number_format($Price01,0)?>'+'원');
     }
-    </script>
+}
+</script>
 
 
 <!-- 지식쿠폰 팝업 -->

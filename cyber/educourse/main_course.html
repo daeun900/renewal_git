@@ -197,48 +197,10 @@ mysqli_free_result($ResultA);
     	</div>
     	<?}?>
 	</div>
-    <!--플로팅배너-->
-    <ul class="float_banner">
-        <li><a href="https://pf.kakao.com/_kEcWxj/chat" target="_blank"><img src="../img/common/floating_kakao.png"></a></li>
-        <!--<li><a href="https://pf.kakao.com/_kEcWxj/chat" target="_blank"><img src="/images/common/floating_chatbot.png"></a></li>-->
-        <li><img src="../img/common/chatbot gif.gif" class="_chatbotBtns" style="width:70px;" /></li>
-        <li class="float_banner2"></li>
-    </ul>
-    <!--//플로팅배너-->
 </body>
 <? include "../include/footer.html"; ?>
 
-<!--플로팅배너-->
-<script>
-    $(document).ready(function() {
-    // hide #back-top first
-    $(".float_banner2").hide();
 
-    // fade in #back-top
-    $(function() {
-        $(window).scroll(function() {
-            if ($(this).scrollTop() > 100) {
-                $('.float_banner2').fadeIn();
-            } else {
-                $('.float_banner2').fadeOut();
-            }
-        });
-
-        // scroll body to 0px on click
-        $('.float_banner2').click(function() {
-            $('body,html').animate({
-                scrollTop: 0
-            }, 800);
-            return false;
-        });
-    });
-	
-	$("._chatbotBtns").on("click",function(){
-		$("#_chatbot").toggle();
-		initChat();
-	});
-});
-</script>
 
 <!--메뉴-->
 <script>

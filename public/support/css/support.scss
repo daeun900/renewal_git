@@ -58,7 +58,7 @@
         .left {
             display: flex;
             align-items: center;
-            @media(max-width:1000px){
+            @media (max-width: 1000px) {
                 justify-content: space-between;
             }
             .logo {
@@ -68,14 +68,17 @@
                 img {
                     width: 100%;
                 }
-         
             }
-            .menuicon{display: none;
-                @media(max-width:1000px){
+            .menuicon {
+                display: none;
+                @media (max-width: 1000px) {
                     display: block;
                     margin-right: 10px;
-                    i{font-size: 20px;}
-                }}
+                    i {
+                        font-size: 20px;
+                    }
+                }
+            }
             h1 {
                 font-size: 30px;
                 font-weight: bold;
@@ -175,27 +178,29 @@
     font-size: 17px;
     font-weight: 500;
     color: #9c9c9c;
-    @media(max-width:1000px){
-margin-top: 27px;
-margin-bottom: -10px;
-font-weight: 400;
-#wrap{padding: 0;}
+    @media (max-width: 1000px) {
+        margin-top: 27px;
+        margin-bottom: -10px;
+        font-weight: 400;
+        #wrap {
+            padding: 0;
+        }
     }
     ul {
         display: flex;
-        @media(max-width:1000px){
-display: grid;
-grid-template-columns: 1fr 1fr 1fr;
+        @media (max-width: 1000px) {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
         }
         li {
             padding: 20px;
             cursor: pointer;
-            @media(max-width:1000px){
+            @media (max-width: 1000px) {
                 font-size: 14px;
                 line-height: 18px;
                 padding: 12px 0;
                 text-align: center;
-                border-bottom: 1px solid ;
+                border-bottom: 1px solid;
                 position: relative;
                 bottom: -1px;
             }
@@ -234,9 +239,9 @@ grid-template-columns: 1fr 1fr 1fr;
             background-color: #2d2d2d;
             color: #fff;
             border-radius: 5px;
-            @media(max-width:1000px){
+            @media (max-width: 1000px) {
                 top: -4px;
-                right:13px;
+                right: 13px;
                 padding: 3px 7px;
                 line-height: 21px;
                 font-size: 13px;
@@ -266,7 +271,7 @@ grid-template-columns: 1fr 1fr 1fr;
             margin: 15px 0;
             border-top: 2px solid #2d2d2d;
             font-size: 16px;
-            @media(max-width:1000px){
+            @media (max-width: 1000px) {
                 font-size: 14px;
             }
             #ContentView {
@@ -275,7 +280,7 @@ grid-template-columns: 1fr 1fr 1fr;
                 cursor: pointer;
                 position: relative;
                 font-weight: 400;
-                @media(max-width:1000px){
+                @media (max-width: 1000px) {
                     padding-right: 50px;
                 }
                 .date {
@@ -287,7 +292,7 @@ grid-template-columns: 1fr 1fr 1fr;
                     right: 11px;
                     top: 20px;
                     font-size: 22px;
-                    @media(max-width:1000px){
+                    @media (max-width: 1000px) {
                         font-size: 17px;
                     }
                 }
@@ -360,7 +365,7 @@ grid-template-columns: 1fr 1fr 1fr;
 /*1:1문의 팝업*/
 #modal01 {
     padding: 50px;
-    @media(max-width:1000px){
+    @media (max-width: 1000px) {
         width: 100%;
         height: auto;
         padding: 20px;
@@ -368,10 +373,10 @@ grid-template-columns: 1fr 1fr 1fr;
     .close-btn {
         top: 50px;
         right: 50px;
-        @media(max-width:1000px){
+        @media (max-width: 1000px) {
             top: 30px;
             right: 25px;
-            i{
+            i {
                 font-size: 30px;
             }
         }
@@ -380,7 +385,7 @@ grid-template-columns: 1fr 1fr 1fr;
         font-size: 30px;
         font-weight: bold;
         line-height: 50px;
-        @media(max-width:1000px){
+        @media (max-width: 1000px) {
             font-size: 20px;
             line-height: 30px;
         }
@@ -388,7 +393,7 @@ grid-template-columns: 1fr 1fr 1fr;
     .input_wrap {
         display: flex;
         margin-top: 30px;
-        @media(max-width:1000px){
+        @media (max-width: 1000px) {
             display: block;
             margin-top: 20px !important;
         }
@@ -396,7 +401,7 @@ grid-template-columns: 1fr 1fr 1fr;
             font-size: 17px;
             padding: 10px;
             width: 136px;
-            @media(max-width:1000px){
+            @media (max-width: 1000px) {
                 font-size: 15px;
                 padding: 10px 0;
             }
@@ -406,6 +411,8 @@ grid-template-columns: 1fr 1fr 1fr;
             .captcha {
                 width: 100px;
                 padding: 0 10px;
+                display: flex;
+                align-items: center;
                 img {
                     width: 100%;
                 }
@@ -415,7 +422,7 @@ grid-template-columns: 1fr 1fr 1fr;
             display: flex;
             flex-direction: column;
             width: 650px;
-            @media(max-width:1000px){
+            @media (max-width: 1000px) {
                 width: 100%;
             }
             select,
@@ -459,6 +466,23 @@ grid-template-columns: 1fr 1fr 1fr;
             .input-content {
                 height: 150px;
             }
+            .input-file {
+                border: none;
+            }
+            .input-file::file-selector-button {
+                width: 147px;
+                padding: 10px 0;
+                background-color: #2d2d2d;
+                color: #fff;
+                border-radius: 6px;
+                text-align: center;
+                margin-right: 10px;
+                cursor: pointer;
+            }
+            #output-file {
+                display: block;
+                white-space: pre-wrap;
+            }
             button {
                 width: 147px;
                 padding: 10px 0;
@@ -469,7 +493,6 @@ grid-template-columns: 1fr 1fr 1fr;
             span {
                 font-size: 14px;
                 color: #999;
-                margin-top: 13px;
             }
         }
     }
@@ -554,7 +577,7 @@ grid-template-columns: 1fr 1fr 1fr;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    @media(max-width:1000px){
+    @media (max-width: 1000px) {
         padding: 20px 0;
         display: block;
     }
@@ -562,10 +585,10 @@ grid-template-columns: 1fr 1fr 1fr;
         strong {
             font-size: 40px;
             font-weight: bold;
-            @media(max-width:1000px){
+            @media (max-width: 1000px) {
                 font-size: 27px;
             }
-            @media(max-width:700px){
+            @media (max-width: 700px) {
                 font-size: 20px;
             }
         }
@@ -574,7 +597,7 @@ grid-template-columns: 1fr 1fr 1fr;
             line-height: 40px;
             margin-top: 20px;
             display: block;
-            @media(max-width:700px){
+            @media (max-width: 700px) {
                 font-size: 15px;
                 line-height: 25px;
                 margin-bottom: 20px;
@@ -588,7 +611,7 @@ grid-template-columns: 1fr 1fr 1fr;
     .title {
         font-size: 24px;
         font-weight: 600;
-        @media(max-width:1000px){
+        @media (max-width: 1000px) {
             font-size: 18px;
             line-height: 22px;
         }
@@ -599,21 +622,23 @@ grid-template-columns: 1fr 1fr 1fr;
     .detail {
         overflow: hidden;
         margin: 20px 0;
-        @media(max-width:1000px){
+        @media (max-width: 1000px) {
             margin: 15px 0;
         }
         > div {
             float: left;
-            font-size: 14px;
+            font-size: 13px;
             span {
                 margin-right: 10px;
                 font-weight: 500;
             }
         }
-        .date, .left {
+        .date,
+        .left {
             margin-right: 30px;
         }
-        .view, .right {
+        .view,
+        .right {
             margin-left: 30px;
         }
     }
@@ -631,7 +656,9 @@ grid-template-columns: 1fr 1fr 1fr;
             visibility: hidden;
             width: 0%;
         }
-        .al{padding: 15px 5px;}
+        .al {
+            padding: 15px 5px;
+        }
     }
     table {
         width: 100%;
@@ -649,8 +676,8 @@ grid-template-columns: 1fr 1fr 1fr;
             th {
                 display: none;
             }
-            td{
-                img{
+            td {
+                img {
                     width: 100%;
                 }
             }
@@ -669,56 +696,84 @@ grid-template-columns: 1fr 1fr 1fr;
                 margin-bottom: 5px;
             }
         }
+        tr.file{
+            th,td{  font-size: 13px;}
+            td{padding: 15px 0 12px 20px; text-align: left;}
+          
+        }
         img.download {
             width: 26px;
         }
         img.download_view {
-            width: 20px;
-            margin-right: 10px;
+            margin-right: 10px;    margin-top: -1px;
+            width: 16px;
         }
         .content {
             padding: 20px 0;
             text-align: left;
-            @media(max-width:600px){
+            @media (max-width: 600px) {
                 font-size: 14px;
             }
         }
     }
 }
 
-.comment{
+.comment {
     position: relative;
     border-bottom: 1px solid #555;
     padding-bottom: 40px;
-    margin-bottom: 40px;
-    .left{
+    .left {
         position: absolute;
         left: 0;
-        i{
+        i {
             width: 17px;
             height: 17px;
             border-bottom: 1px solid #bbb;
             border-left: 1px solid #bbb;
             display: inline-block;
         }
-        span{
-            font-size: 14px; font-weight: bold;
-            width: 34px; height: 34px; border-radius: 50%;
+        span {
+            font-size: 14px;
+            font-weight: bold;
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
             color: #fff;
-            background-color:#90C0EF ;display: inline-block;
+            background-color: #90c0ef;
+            display: inline-block;
             text-align: center;
             padding: 5px 0;
             margin-left: 10px;
         }
     }
-    .right{
+    .right {
         padding-left: 94px;
-        b{color: #90C0EF; font-weight: bold;display: block; }
-        span{font-size: 12px; color: #999;}
-        p{margin-top: 10px;}
+        b {
+            color: #90c0ef;
+            font-weight: bold;
+            display: block;
+        }
+        span {
+            font-size: 12px;
+            color: #999;
+        }
+        p {
+            margin-top: 10px;
+        }
     }
 }
-
+.tableTypeA.comment-file {
+    margin-top: 0px;
+    @media (max-width: 1000px) {
+        margin-top: 0px;
+    }
+    table {
+        border-top: 0px solid #555;
+        tr {
+            border-top: 0px solid #555;
+        }
+    }
+}
 /*페이지 넘버*/
 .pagination {
     padding: 20px 0;
@@ -760,7 +815,7 @@ grid-template-columns: 1fr 1fr 1fr;
         font-weight: 700;
         margin-top: 80px;
         margin-bottom: 80px;
-        @media(max-width:1000px){
+        @media (max-width: 1000px) {
             font-size: 20px;
             margin-top: 37px;
             margin-bottom: 30px;
@@ -771,14 +826,14 @@ grid-template-columns: 1fr 1fr 1fr;
         .table {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr 1fr;
-            @media(max-width:1200px){
+            @media (max-width: 1200px) {
                 grid-template-columns: 1fr 1fr 1fr;
             }
-            @media(max-width:900px){
+            @media (max-width: 900px) {
                 grid-template-columns: 1fr 1fr;
                 text-align: center;
             }
-            @media(max-width:600px){
+            @media (max-width: 600px) {
                 grid-template-columns: 1fr;
             }
             gap: 30px;
@@ -834,7 +889,7 @@ grid-template-columns: 1fr 1fr 1fr;
                 cursor: pointer;
                 position: relative;
                 font-weight: 400;
-                @media(max-width:1000px){
+                @media (max-width: 1000px) {
                     padding: 15px 5px;
                 }
                 .date {
@@ -846,7 +901,7 @@ grid-template-columns: 1fr 1fr 1fr;
                     right: 11px;
                     top: 20px;
                     font-size: 22px;
-                    @media(max-width:1000px){
+                    @media (max-width: 1000px) {
                         font-size: 17px;
                     }
                 }
@@ -860,7 +915,7 @@ grid-template-columns: 1fr 1fr 1fr;
             #ContentView.q {
                 padding-left: 70px;
                 position: relative;
-                @media(max-width:1000px){
+                @media (max-width: 1000px) {
                     padding-left: 55px;
                     padding-right: 42px;
                     font-size: 14px;
@@ -883,7 +938,7 @@ grid-template-columns: 1fr 1fr 1fr;
             #ContentElement.a {
                 padding-left: 70px;
                 position: relative;
-                @media(max-width:1000px){
+                @media (max-width: 1000px) {
                     font-size: 14px;
                     line-height: 20px;
                 }
@@ -931,7 +986,7 @@ grid-template-columns: 1fr 1fr 1fr;
 /*학습자료실*/
 .edudata_content {
     padding: 70px 0;
-    @media(max-width:1000px){
+    @media (max-width: 1000px) {
         padding: 40px 0;
     }
     .button_wrap {
@@ -955,7 +1010,7 @@ grid-template-columns: 1fr 1fr 1fr;
 
 .edudata_top {
     position: relative;
-    @media(max-width:1000px){
+    @media (max-width: 1000px) {
         display: none;
     }
     .search_box {
@@ -1000,7 +1055,7 @@ grid-template-columns: 1fr 1fr 1fr;
         align-items: center;
         text-align: center;
         width: 400px;
-        @media(max-width:1000px){
+        @media (max-width: 1000px) {
             width: auto;
         }
         i {

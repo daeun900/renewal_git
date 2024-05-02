@@ -444,6 +444,9 @@
   border-bottom: 2px solid;
   text-align: center;
 }
+#complete_wrap table {
+  width: 100%;
+}
 #complete_wrap table tr {
   border-bottom: 1px solid #ccc;
 }

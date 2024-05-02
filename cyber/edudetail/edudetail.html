@@ -1,7 +1,12 @@
 <? include '../include/header.html'; ?>
 <?
-$Sql = "SELECT * FROM CourseCyber WHERE LectureCode = '$LectureCode' AND Del='N' AND UseYN = 'Y'";
+$SqlA = "SELECT COUNT(*) FROM Review WHERE Del='N' AND UseYN='Y' AND LectureCode = '$LectureCode'";
+$ResultA = mysqli_query($connect, $SqlA);
+$RowA = mysqli_fetch_array($ResultA);
+$TOT_NO = $RowA[0];
 
+$Sql = "SELECT * FROM CourseCyber WHERE LectureCode = '$LectureCode' AND Del='N' AND UseYN = 'Y'";
+//echo $Sql;
 $Result = mysqli_query($connect, $Sql);
 $Row = mysqli_fetch_array($Result);
 
@@ -45,7 +50,11 @@ $RealPrice = $Price - $Price01;
 //수료기준-시험
 $StandardTest = ($PassTest/($TotalPassMid+$TotalPassTest))*100;
 //수료기준-과제
-$StandardReprot = ($PassReport/$TotalPassReport)*100;
+if($TotalPassReport != 0){
+	$StandardReprot = ($PassReport/$TotalPassReport)*100;
+}else{
+	$StandardReprot = 0;
+}
 ?>
 <body>
 <div id="wrap">
@@ -72,7 +81,7 @@ $StandardReprot = ($PassReport/$TotalPassReport)*100;
                         </div>
                         <div class="review">
                             <span>학습후기</span>
-                            <a href="#" class="fcblue fwbold">80건  <i class="ph ph-caret-right"></i></a>
+                            <a href="#tab03" class="fcblue fwbold"><?=$TOT_NO?>건<i class="ph ph-caret-right"></i></a>
                         </div>
                     </div>
                     <button class="preview" onclick="Javascript:CoursePreview('<?=$LectureCode?>', 'B');">강의 미리보기</button>
@@ -96,13 +105,14 @@ $StandardReprot = ($PassReport/$TotalPassReport)*100;
                                     <option value="A" selected id="ApplyType1">국민내일배움카드 (재직자)</option>
                                     <option value="B" id="ApplyType2">일반(수시) </option>
                                     <option value="C" id="ApplyType3">고용보험환급</option>
+                                    <option value="D" id="ApplyType4">평생교육바우처</option>
                                 </select>
                             </td>
                         </tr>
                         <tr class="period">
-                            <th>학습기간</th>
+                            <th>학습시작일자</th>
                             <td>
-                                <input name="LectureStart" id="LectureStart" type="text" size="12" value="" autocomplete='off'>  ~  <input name="LectureEnd" id="LectureEnd" type="text" size="12" value="" autocomplete='off'>
+                                <input name="LectureStart" id="LectureStart" type="text" size="12" value="" autocomplete='off'>
                                 <span>학습기간 30일 + 무료 학습기간 12개월</span>
                             </td>
                         </tr>
@@ -175,7 +185,7 @@ $StandardReprot = ($PassReport/$TotalPassReport)*100;
                 <a href="#tab02">강의목차</a>
             </div>
             <div class="tab_btn tab03" onclick="TabBtnClick(2)">
-                <a href="#tab03">학습후기<span class="fcred">(4)</span></a>
+                <a href="#tab03">학습후기<span class="fcred">(<?=$TOT_NO?>)</span></a>
             </div>
         </div>
         <div class="content_wrap">
@@ -291,23 +301,50 @@ $StandardReprot = ($PassReport/$TotalPassReport)*100;
             <div class="content_review pb30" id="tab03">
                 <div class="title">
                     학습후기
-                    <span class="fcred">
-                        평점 &nbsp;  <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
-                    </span>
+                    <?
+                    $SqlA = "SELECT ROUND(AVG(StarPoint)) AS AvgStar FROM Review WHERE Del='N' AND UseYN='Y' AND LectureCode = '$LectureCode'";
+					$ResultA = mysqli_query($connect, $SqlA);
+					$RowA = mysqli_fetch_array($ResultA);
+					$AVG_STAR = $RowA[0];
+					$Star = StarPointViewA($AVG_STAR);
+                    ?>
+                    <span style="color: #C75D59;">평점 &nbsp;<?=$Star?></span>
                 </div>
                 <ul>
-                    <li class="cp" onclick="Javascript:SurveyPop();">
-                        <span class="name fwbold">홍*동</span><span class="id fwbold">abc****</span>
-                        <p>주니어 레벨에서 CX 직무 관련하여 기본 개념 잡기가 좋은 것 같습니다. 좋은 교육 잘 들었습니다. 좀 더 심화 과정도 있으면 좋겠어요.</p>
+                <?
+                $i = 0;
+                $Sql = "SELECT	REGEXP_REPLACE(a.ID , '(?<=.{3}).', '*') AS MaskingID , 
+								CASE WHEN CHAR_LENGTH(a.Name) > 2 THEN 
+        						CONCAT(
+						            SUBSTRING(a.Name, 1, 1)
+            						,LPAD('*', CHAR_LENGTH(a.Name) - 2, '*')
+            						,SUBSTRING(NAME, CHAR_LENGTH(a.Name), CHAR_LENGTH(a.Name))
+        						)
+        						ELSE CONCAT(
+            						SUBSTRING(a.Name, 1, 1)
+            						,LPAD('*', CHAR_LENGTH(a.Name) - 1, '*')
+        						)END AS MASKINGNAME ,
+								a.* 
+						FROM Review a
+						WHERE Del='N' AND UseYN='Y' AND LectureCode = '$LectureCode'
+						ORDER BY a.idx desc";
+				$QUERY = mysqli_query($connect, $Sql);
+                if($QUERY && mysqli_num_rows($QUERY)){
+                	while($ROW = mysqli_fetch_array($QUERY)){
+                    	extract($ROW);
+                        $Title = strcut_utf8($Title,45);
+						$Star = StarPointViewB($StarPoint);
+						$Contents = strcut_utf8($Contents,100);
+				?>
+                    <li class="cp" onclick="Javascript:SurveyPop('<?=$idx?>');">
+                        <span class="name fwbold"><?=$MASKINGNAME?></span><span class="id fwbold"><?=$MaskingID?></span>
+                        <p><?=$Contents?></p>
                     </li>
-                    <li class="cp" onclick="Javascript:SurveyPop();">
-                        <span class="name fwbold">홍*동</span><span class="id fwbold">abc****</span>
-                        <p>주니어 레벨에서 CX 직무 관련하여 기본 개념 잡기가 좋은 것 같습니다. 좋은 교육 잘 들었습니다. 좀 더 심화 과정도 있으면 좋겠어요.</p>
-                    </li>
-                    <li class="cp" onclick="Javascript:SurveyPop();">
-                        <span class="name fwbold">홍*동</span><span class="id fwbold">abc****</span>
-                        <p>주니어 레벨에서 CX 직무 관련하여 기본 개념 잡기가 좋은 것 같습니다. 좋은 교육 잘 들었습니다. 좀 더 심화 과정도 있으면 좋겠어요.</p>
-                    </li>
+                <?
+                        $i++;
+					}
+                }
+                ?>
                 </ul>
             </div>
         </div>
@@ -516,9 +553,8 @@ jQuery(document).ready(function() {
 <!--datepicker-->
 <script type="text/javascript" src="/include/jquery.ui.datepicker-ko.js"></script>
 <script type="text/javascript">
-    <!--
     $(document).ready(function(){
-        $("#LectureStart, #LectureEnd").datepicker({
+        $("#LectureStart").datepicker({
             changeMonth: true,
             changeYear: true,
             showButtonPanel: true,
@@ -526,8 +562,7 @@ jQuery(document).ready(function() {
             buttonImage: "../img/common/calendar-blank.png", //이미지 주소
             buttonImageOnly: true //이미지만 보이기
         });
-        $("#LectureStart, #LectureEnd").val("");
+        $("#LectureStart").val("");
         $("img.ui-datepicker-trigger").attr("style","margin-left:5px; vertical-align:top; cursor:pointer;"); //이미지 버튼 style적용
     });
-    //-->
-    </script>
+</script>

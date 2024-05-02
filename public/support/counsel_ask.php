@@ -1,7 +1,6 @@
 <?
 include "../../include/include_function.php"; //DB연결 및 각종 함수 정의
 
-
 if($LoginMemberID) {
     
     $Sql = "SELECT * FROM Member WHERE ID='$LoginMemberID'";
@@ -34,7 +33,7 @@ if($LoginMemberID) {
         <i class="ph-thin ph-x"></i>
     </div>
     <h2>상담 문의 등록</h2>
-    <form name="CounselForm" method="POST" action="/public/support/ask_ok.php" target="ScriptFrame">
+    <form name="CounselForm" method="POST" enctype="multipart/form-data" action="/public/support/ask_ok.php" target="ScriptFrame">
     	<input type='hidden' name='Name' value='<?=$Name?>'>
     	<input type='hidden' name='Mobile' value='<?=$Mobile?>'>
     	<input type='hidden' name='Email' value='<?=$Email?>'>
@@ -60,9 +59,9 @@ if($LoginMemberID) {
 	    <div class="input_wrap">
 	        <p class="title">사진 첨부</p>
 	        <div class="input_box">
-	            <input name="file" type="file" class="input-file" id="input-file" multiple>
+	            <input name="file" type="file" class="input-file" id="input-file">
 				<output id="output-file"></output>
-	            <span>사진 첨부는 10MB 미만 파일만 등록 가능하며, 최대 5개까지 등록 가능합니다.</span>
+	            <span>사진 첨부는 10MB 미만 파일만 등록 가능합니다.</span>
 	        </div>
 	    </div>
 	    <div class="input_wrap">
@@ -79,15 +78,6 @@ if($LoginMemberID) {
     
 </div>
 <script>
-	/*업로드한 파일 목록*/
-	const input = document.getElementById('input-file')
-	const output = document.getElementById('output-file')
-
-document.getElementById('input-file').addEventListener('input', (event) => {
-	const files = event.target.files
-	output.textContent = Array.from(files).map(file => file.name).join('\n')
-})
-
 /* 파일용량 제한*/
 $("input[name=file").on("change", function(){
     let maxSize = 10 * 1024 * 1024; //* 10MB 사이즈 제한
@@ -99,17 +89,5 @@ $("input[name=file").on("change", function(){
 		output.value = "";
 		return; 
 	}
-	/*파일갯수제한*/
-	if ('files' in input) {
-		if (input.files.length > 5) {
-			alert("파일 개수가 초과되었습니다.");
-			input.value = ""; //업로드한 파일 제거
-			output.value = "";
-			return;
-		}
-	}
 });
-
-
-
 </script>

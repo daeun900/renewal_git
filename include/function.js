@@ -3,16 +3,15 @@
 if (location.protocol == 'http:') {
 	//location.href = location.href.replace('http://', 'https://');
 }
-
 if (location.hostname == 'new.hrdeedu.com') {
  	//location.href = location.href.replace(location.hostname, 'hrdelms.com');
 }
 /*
-if (location.hostname == 'tutor.hrdelms.com') {
- 	location.href = 'https://tutor.hrdelms.com/hrd_manager/';
+if (location.hostname == 'tutor.new.hrdeedu.com') {
+ 	location.href = 'https://tutor.new.hrdeedu.com/hrd_manager/';
 }
-if(location.hostname == "manager.hrdelms.com"){
-	location.href = "https://manager.hrdelms.com/hrd_manager/";
+if(location.hostname == "manager.new.hrdeedu.com"){
+	location.href = "https://manager.new.hrdeedu.com/hrd_manager/";
 }
 */
  
@@ -1374,15 +1373,20 @@ function LectureRequestSubmitOk(LectureCode, Price) {
 			}
 		});
 	}
-
 }
 
 //내일배움카드 - 수강신청
 function CourseRequest(LectureCode, sessionID) {
-	var applyType = $("#applyType").val(); //신청유형 (A:국민내일배움카드(재직자)/B:일반(수시)/C:고용보험환급)
+	var applyType = $("#applyType").val(); //신청유형 (A:국민내일배움카드(재직자)/B:일반(수시)/C:고용보험환급,D:평생교육바우처)
 	var LectureStart = $("#LectureStart").val(); //학습기간 시작일자
-	var LectureEnd = $("#LectureEnd").val(); //학습기간 종료일자
+	//var LectureEnd = $("#LectureEnd").val(); //학습기간 종료일자
 	var supportType = $("#supportType").val(); //지원유형 (A:재직자 일반)
+	
+	var now = new Date(); // 현재 날짜 및 시간
+	var date = new Date(now.setDate(now.getDate() - 2));
+	
+	//날짜비교할수있도록 날짜포맷으로 설정
+	const startDate = new Date(LectureStart);
 	
 	if(!sessionID){
 		alert('로그인 후 사용 가능합니다.');
@@ -1392,16 +1396,116 @@ function CourseRequest(LectureCode, sessionID) {
 		alert('신청유형을 선택해주세요.');
 		return;
 	}
-	if(LectureStart == "" || LectureEnd == ""){
-		alert('학습기간을 선택해주세요.');
+	if(LectureStart == ""){
+		alert('학습시작일자를 선택해주세요.');
 		return;
+	}else{
+		if(date > startDate){
+			alert('학습시작일자는 오늘날짜 기준으로 하루전날짜부터 선택이 가능합니다.');
+			return;
+		}
 	}
 	if(supportType == ""){
 		alert('지원유형을 선택해주세요.');
 		return;
 	}
 	
-	location.href = "/cyber/payment/card_payment.html?LectureCode="+LectureCode+"&applyType="+applyType+"&LectureStart="+LectureStart+"&LectureEnd="+LectureEnd+"&supportType="+supportType;
+	location.href = "/cyber/payment/card_payment.html?LectureCode="+LectureCode+"&applyType="+applyType+"&LectureStart="+LectureStart+"&supportType="+supportType;
+}
+
+//내일배움카드 - 결제하기
+function CardPayment(LectureCode, sessionID) {	
+	var applyType = $("#applyType").val(); //신청유형 (A:국민내일배움카드(재직자)/B:일반(수시)/C:고용보험환급/D:평생교육바우처)
+	var supportType = $("#supportType").val(); //지원유형 (A:재직자 일반)
+	var LectureCode = $("#LectureCode").val(); //과정코드
+	var ContentsName = $("#ContentsName").val(); //과정명	
+	var Price = $("#Price").val(); //판매가	
+	var SubPrice = $("#SubPrice").val(); //정부지원금	
+	var PointPrice = $("#PointPrice").val(); //학습포인트	
+	var CouponPrice = $("#CouponPrice").val(); //쿠폰	
+	var RealPrice = $("#RealPrice").val(); //자비부담금
+	
+	var payMethodA = $("#payMethodA").is(':checked'); //결제방법A
+	var payMethodB = $("#payMethodB").is(':checked'); //결제방법B
+	var confirmA = $("#confirmA").is(':checked'); //재직자확인A
+	var confirmB = $("#confirmB").is(':checked'); //재직자확인B
+	var agree1A = $("#agree1A").is(':checked'); //동의1A
+	var agree1B = $("#agree1B").is(':checked'); //동의1B
+	var agree2A = $("#agree2A").is(':checked'); //동의2A
+	var agree2B = $("#agree2B").is(':checked'); //동의2B
+	var agree = $("#agree").is(':checked'); //최종동의
+	
+	//학습시작일자와 종료일자
+	var LectureStart = $("#LectureStart").val(); //학습시작일자
+	var date = new Date(LectureStart);
+	//학습종료일자 : 학습시작일자+30일
+	var oneMonth = new Date(date);
+	oneMonth.setMonth(date.getMonth() + 1);
+	
+	var yyyy = oneMonth.getFullYear();
+	var mm = oneMonth.getMonth()+1;
+	mm = mm>= 10 ? mm : '0'+mm;
+	var dd = oneMonth.getDate()-1;
+	dd = dd>= 10 ? dd : '0'+dd;	
+	var LectureEnd = yyyy+'-'+mm+'-'+dd;
+	
+	if(!sessionID){
+		alert('로그인 후 사용 가능합니다.');
+		return;
+	}
+	
+	//신청유형 : 평생교육바우처 일때
+	if(applyType == "D"){
+		if(!payMethodB){
+			alert('결제방법을 선택해주세요.');
+			return;
+		}
+		if(!confirmB){
+			alert("대상자를 선택해주세요.");
+			return;
+		}
+		if(!agree1B || !agree2B){
+			alert('안내사항 동의를 선택해주세요.');
+			return;
+		}
+	}else{	
+		if(!payMethodA){
+			alert('결제방법을 선택해주세요.');
+			return;
+		}
+		if(!confirmA){
+			alert("대상자를 선택해주세요.");
+			return;
+		}
+		if(!agree1A || !agree2A){
+			alert('안내사항 동의를 선택해주세요.');
+			return;
+		}
+	}
+	if(!agree){
+		alert('개인정보 제공동의를 선택해주세요.');
+		return;
+	}
+	
+	Yes = confirm("결제하시겠습니까?");
+	if(Yes==true) {
+		$.post('/cyber/payment/lecture_request_ok.php', 
+			{ applyType: applyType, supportType: supportType, LectureStart: LectureStart, LectureEnd: LectureEnd,
+			  LectureCode: LectureCode, ContentsName: ContentsName,
+			  Price: Price, SubPrice: SubPrice, PointPrice: PointPrice, CouponPrice: CouponPrice, RealPrice: RealPrice
+			},
+			function (data) {
+				if (data == 'N') {
+					alert("결제중 오류가 발생했습니다.");
+				}else if(data == "exist"){
+					alert("이미 결제내역이 존재합니다.");
+				}else{
+					alert("신청이 완료되었습니다.");
+					location.href = "/cyber/payment/payment_complete.html?idx="+data;
+				}
+			}
+		);
+	}
 }
 
 //컨텐츠 관련---------------------------------------------------------------------------------------------------
@@ -1618,21 +1722,21 @@ function dateSearch(data) {
 	dateSearchForm.submit();
 }
 
-//수강신청/결제내역 - 수강신청 취소신청
-function LectureRequestCancel(idx) {
+//수강신청/결제내역 - 취소신청
+function LectureRequestCancel(idx, mode) {
 	Yes = confirm('수강 신청을 취소하시겠습니까?');
 	if (Yes == true) {
-		$.post('/public/mypage/lecture_request_cancel.php', { idx: idx }, function (data) {
+		$.post('/public/mypage/lecture_request_cancel.php', { idx: idx, mode: mode }, function (data) {
 			if (data == 'Login') {
 				LoginYes = confirm('로그인후에 수강신청이 가능합니다.\n\n로그인 하시겠습니까?');
 				if (LoginYes == true) {
 					location.href = '/public/member/login.html';
 				}
 			} else if (data == 'Success') {
-				alert('수강 신청 취소가 완료되었습니다.');
+				alert('취소가 완료되었습니다.');
 				location.reload();
 			} else {
-				alert('수강 신청 취소중 오류가 발생했습니다.');
+				alert('취소중 오류가 발생했습니다.');
 			}
 		});
 	}
@@ -3705,7 +3809,7 @@ function SimpleAsk() {
 		})
 		.show();
 
-	$('#DataResult').load('/member/simple_ask.php', { t: '1' }, function () {
+	$('#DataResult').load('/public/member/simple_ask.php', { t: '1' }, function () {
 		//$('html, body').animate({ scrollTop : 0 }, 300);
 		$("div[id='DataResult']")
 			.css({
@@ -3791,11 +3895,82 @@ function SimpleAskSubmit() {
 	Yes = confirm('등록하시겠습니까?');
 	if (Yes == true) {
 		SimpleAskForm.submit();
-		$('.modal-bg').css('display','none');
-		$('#modal01').hide();
-		$('#modal01').removeAttr('style');
 
-		$('html').removeAttr('style');
+		$("div[id='Roading']").hide();
+		$("div[id='DataResult']").html('');
+		$("div[id='DataResult']").hide();
+		$("div[id='SysBg_White']").hide();
+		$("div[id='SysBg_Black']").hide();
+		$('html').css('overflow', '');
+	}
+}
+
+function CounselAsk(){
+	var currentWidth = $(window).width();
+	var LocWidth = currentWidth / 2;
+	var body_width = screen.width - 20;
+	var body_height = $('html body').height() + 500;
+	var ScrollPosition = $(window).scrollTop() + 200;
+
+	$("div[id='SysBg_Black']")
+		.css({
+			width: body_width,
+			height: body_height,
+			opacity: '0.4',
+			position: 'absolute',
+			'z-index': '99',
+		})
+		.show();
+
+	$('#DataResult').load('/public/support/counsel_ask.php', { t: '1' }, function () {
+		//$('html, body').animate({ scrollTop : 0 }, 300);
+		$("div[id='DataResult']")
+			.css({
+				top: ScrollPosition,
+				left: body_width / 2 - 260,
+				opacity: '1.0',
+				position: 'absolute',
+				'z-index': '1000',
+			})
+			.show();
+
+		$('html').css('overflow', 'hidden');
+	});
+}
+
+function uploadCounsel(){
+	console.log('funmction.js');
+
+	var form = $("form[name='CounselForm']");
+	if (form) {
+		if ($('#Title').val() == '') {
+			alert('제목을 입력하세요.');
+			$('#Title').focus();
+			return;
+		}
+		if ($('#Content').val() == '') {
+			alert('내용을 입력하세요.');
+			$('#Content').focus();
+			return;
+		}
+		
+		if ($('#SecurityCode').val() == '') {
+			alert('보안코드를 입력하세요.');
+			$('#SecurityCode').focus();
+			return;
+		}
+		
+		Yes = confirm('등록하시겠습니까?');
+		if (Yes == true) {
+			form.submit();
+			$('.modal-bg').css('display','none');
+			$('#modal01').hide();
+			$('#modal01').removeAttr('style');
+	
+			$('html').removeAttr('style');
+		}
+	}else{
+		console.error('cannot find a form');
 	}
 }
 

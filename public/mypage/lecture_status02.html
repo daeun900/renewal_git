@@ -436,7 +436,29 @@
                         </tbody>
                     </table>
                     <div class="mt20 ac">
-                        <button type="button" onclick="location.href='survey.html'" class="btn_01 ml10">설문/후기작성</button>
+                    	<?
+            			if($SurveyView == "Y") {
+			                switch($Survey) {
+            			        case "N":
+                        			$Survey_msg = "미작성";
+                        			$SurveyStudy = "Y";
+                    			break;
+                    			
+								case "Y":
+                        			$Survey_msg = "작성완료";
+                        			$SurveyStudy = "N";
+                    			break;
+                			}
+            				if($SurveyStudy=="Y") {
+            			?>
+                        <button type="button" onclick="location.href='survey.html?Study_Seq=<?=$Study_Seq?>&LectureCode=<?=$LectureCode?>&ServiceType=<?=$ServiceType?>'" class="btn_01 ml10">설문/후기작성</button>
+                        <?
+        		    		}
+        		    	}
+        		    	?>
+        		    	<?if($LoginMemberID=="test1234" || $LoginMemberID=="test05") {?>
+        		    	<button type="button" onclick="location.href='survey.html?Study_Seq=<?=$Study_Seq?>&LectureCode=<?=$LectureCode?>&ServiceType=<?=$ServiceType?>'" class="btn_01 ml10">설문/후기작성</button>
+        		    	<?}?>
                     </div>
                 </div>				
 				<?

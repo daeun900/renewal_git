@@ -233,7 +233,7 @@ $_SESSION["MainCode"] = "B";
 						$Star = StarPointViewB($StarPoint);
 						$Contents = strcut_utf8($Contents,100);
 				?>
-					<li class="modal-btn" onclick="Javascript:SurveyPop();"><!-- href="#modal01" -->
+					<li class="modal-btn" onclick="Javascript:SurveyPop('<?=$idx?>');">
                         <span><?=$Title?></span>
                         <div class="star"><?=$Star?></div>
                         <div class="lecturename"><?=$ContentsName?></div>

@@ -111,12 +111,14 @@ $PAGE_UNCOUNT = $PAGE_CLASS->page_uncount; ##-- 게시물 번호 한개씩 감�
                             <td><?=$RegDate?></td>
                             <td><?=$ContentsName?></td>
                             <td><?=$LectureStart?> ~ <?=$LectureEnd?></td>
-                            <td><button class="small" onclick="Javascript:LectureRequestCancel('<?=$idx?>');">취소신청</button></td>
+                            <td><button class="small" onclick="Javascript:LectureRequestCancel('<?=$idx?>','A');">취소신청</button></td>
                         </tr>
                     <?
                     	}
-                   	}
+                   	}else{
                     ?>
+                    	<tr><td colspan="4">수강신청 내역이 없습니다.</td></tr>
+                    <?}?>
                     </tbody>
                 </table>
             </div>

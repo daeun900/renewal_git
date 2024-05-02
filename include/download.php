@@ -38,6 +38,10 @@ switch($file){
 		$RealFileName = "BookImage";
 		$FileName = "BookImage";
 	break;
+	case "counselStudent":
+		$RealFileName = "RealFileName4Student";
+		$FileName = "FileName4Student";
+	break;
 }
 
 $TableName = $code;
